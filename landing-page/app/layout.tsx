@@ -9,10 +9,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-           {/* ✅ Always visible */}
+           
         
-        {children}        {/* ✅ page.tsx renders here */}
-               {/* ✅ Always visible */}
+        {children}      
+              
       </body>
     </html>
   );

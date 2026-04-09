@@ -23,7 +23,7 @@ export default function HeroChart() {
           <div
             className="relative w-full rounded-2xl overflow-hidden"
             style={{
-              border: "1px solid rgba(80,160,255,0.25)",
+              
               background: "rgba(2, 8, 30, 0.45)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
