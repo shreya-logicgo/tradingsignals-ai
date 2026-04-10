@@ -71,6 +71,7 @@ export default function Features() {
               <span
                 style={{
                   fontSize: "11px",
+                  fontFamily: "var(--font-mono)",
                   fontWeight: 500,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
@@ -84,7 +85,7 @@ export default function Features() {
             {/* Heading */}
             <h2
               style={{
-                fontSize: "clamp(32px, 3.5vw, 48px)",
+                fontSize: "clamp(32px, 3.5vw, 40px)",
                 fontWeight: 600,
                 color: "white",
                 lineHeight: 1.15,
