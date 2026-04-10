@@ -1,41 +1,38 @@
 import { Brain, Link2, SlidersHorizontal, LineChart } from "lucide-react";
 import FeatureCard from "./FeatureCard";
 
+
 const features = [
   {
     icon: Brain,
     title: "AI-Powered Signals",
-    description:
-      "Advanced machine learning models analyze market patterns, sentiment, and on-chain data to generate high-probability trading signals.",
-    gradient: "/assets/images/gradent_3_.png",
+    description: "Advanced machine learning models analyze market patterns, sentiment, and on-chain data to generate high-probability trading signals.",
+    gradient: "/images/gradient_3_.png",
   },
   {
     icon: Link2,
     title: "Multi-Exchange Integration",
-    description:
-      "Connect to Binance, Coinbase, Kraken, Bybit, OKX and more. Trade across all major exchanges from a single dashboard.",
-    gradient: "/assets/images/gradent_6_.png",
+    description: "Connect to Binance, Coinbase, Kraken, Bybit, OKX and more. Trade across all major exchanges from a single dashboard.",
+    gradient: "/images/gradient_4_.png",
   },
   {
     icon: SlidersHorizontal,
     title: "Automation + Manual Trading",
-    description:
-      "Execute trades automatically or use our signals for manual trading. Full control over your trading style and risk management.",
-    gradient: "/assets/images/gradent_5_.png",
+    description: "Execute trades automatically or use our signals for manual trading. Full control over your trading style and risk management.",
+    gradient: "/images/gradient_5_.png",
   },
   {
     icon: LineChart,
     title: "Real-Time Analytics",
-    description:
-      "Track performance, analyze trades, and optimize strategies with our comprehensive analytics dashboard and reporting tools.",
-    gradient: "/assets/images/gradent_4_.png",
+    description: "Track performance, analyze trades, and optimize strategies with our comprehensive analytics dashboard and reporting tools.",
+    gradient: "/images/gradient_6_.png",
   },
 ];
 
 export default function Features() {
   return (
     <section
-      className="w-full py-24"
+      className="w-full py-1"
       style={{ backgroundColor: "#010B24" }}
     >
       {/*
@@ -86,10 +83,10 @@ export default function Features() {
             <h2
               style={{
                 fontSize: "clamp(32px, 3.5vw, 40px)",
-                fontWeight: 600,
                 color: "white",
                 lineHeight: 1.15,
                 maxWidth: "516px",
+                fontFamily: "var(--font-hoves)",
               }}
             >
               Everything You Need to Trade Profitably
@@ -99,12 +96,13 @@ export default function Features() {
           {/* Right: description */}
           <p
             style={{
-              fontSize: "18px",
+              fontSize: "15px",
               fontWeight: 400,
               color: "rgba(255,255,255,0.65)",
               lineHeight: "1.6",
               maxWidth: "420px",
               flexShrink: 0,
+              fontFamily: "var(--font-hoves)",
             }}
           >
             A complete trading ecosystem built for modern crypto traders.

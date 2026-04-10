@@ -6,6 +6,7 @@ import HeroChart from "./HeroChart";
 
 import gradient1 from "@/assets/images/gradient_1_.png";
 import gradient2 from "@/assets/images/gradient_2_.png";
+import avatars from "@/assets/images/avatars.png";
 
 export default function Hero() {
   return (
@@ -66,7 +67,7 @@ export default function Hero() {
         {/* HEADING */}
         <h1 className="text-[48px] md:text-[48px] lg:text-[48px] font-semibold leading-tight text-white max-w-[1200px]">
           Trade Smarter, Grow Faster <br />
-          with Trading Signal Ai
+          with Trading Signal AI
         </h1>
 
         
@@ -81,9 +82,6 @@ export default function Hero() {
         <div className="flex gap-4 mt-2">
           <button className="w-[199px] h-[52px] rounded-full border border-white/30 bg-transparent text-white text-sm flex items-center justify-center hover:bg-white/10 transition">
             Start Trading Now
-          </button>
-          <button className="w-[199px] h-[52px] rounded-full bg-[#0012B8] text-white text-sm flex items-center justify-center shadow-lg hover:scale-105 transition">
-            Check Our Channels
           </button>
         </div>
 

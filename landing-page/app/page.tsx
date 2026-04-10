@@ -1,16 +1,29 @@
 
 
+import Navbar from "@/components/common/navbar/Navbar";
+import Categories from "@/components/sections/categories/Categories";
 import Features from "@/components/sections/features/Features";
 import Hero from "@/components/sections/hero/Hero";
+import Stats from "@/components/sections/stats/Stats";
+import Steps from "@/components/sections/steps/Steps";
+import Strategies from "@/components/sections/strategies/Strategies";
+import Testimonials from "@/components/sections/testimonials/Testimonials";
+import Traders from "@/components/sections/traders/Traders";
 import TrustedLogos from "@/components/sections/trusted/TrustedLogos";
 
 export default function Home() {
   return (
     <main>
+      <Navbar />
       <Hero />
       <TrustedLogos />
       <Features />
-    
+      <Strategies />
+      <Steps />
+      <Stats />
+      <Categories />
+      <Traders />
+      <Testimonials />
     </main>
   );
 }

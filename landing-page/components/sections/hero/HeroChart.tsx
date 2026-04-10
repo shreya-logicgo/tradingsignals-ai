@@ -4,7 +4,7 @@ import Container from "@/components/common/container/Container";
 
 export default function HeroChart() {
   return (
-    <section className="w-full relative z-10 pt-[149px]">
+    <section className="w-full relative z-10 pt-[50px]">
       <Container className="flex justify-center">
 
         <div className="relative w-full max-w-[1100px]">
@@ -47,7 +47,7 @@ export default function HeroChart() {
 
               {/* URL bar centred */}
               <div
-                className="mx-auto"
+                className="mx-89.5"
                 style={{
                   background: "rgba(255,255,255,0.06)",
                   border: "1px solid rgba(255,255,255,0.08)",

@@ -116,7 +116,7 @@ const allLogos = [...logos, ...logos, ...logos];
 
 export default function TrustedLogos() {
   return (
-    <section className="w-full py-10 overflow-hidden relative">
+    <section className="w-full pt-2 pb-10 overflow-hidden relative">
 
       {/* Label */}
       <p
