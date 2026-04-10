@@ -1,0 +1,269 @@
+{
+    "navbar": {
+        "features": "Funkcje",
+        "strategies": "Strategie",
+        "testimonials": "Opinie",
+        "blog": "Blog",
+        "faq": "FAQ",
+        "login": "Zaloguj się",
+        "signup": "Zarejestruj się",
+        "cta": "Rozpocznij handel już teraz"
+    },
+    "hero": {
+        "users": "Używane przez ponad 10 000+ traderów",
+        "title": "Handluj mądrzej, rozwijaj się szybciej z Trading Signal Ai",
+        "description": "Handluj mądrzej dzięki sygnałom opartym na sztucznej inteligencji, ustrukturyzowanym strategiom i analityce w czasie rzeczywistym — wszystko na jednej ujednoliconej platformie.",
+        "integration": "Zintegrowane z najlepszymi giełdami"
+    },
+    "features": {
+        "title": "Funkcje platformy",
+        "heading": "Wszystko, czego potrzebujesz, aby handlować z zyskiem",
+        "description": "Kompletny ekosystem handlowy zbudowany dla nowoczesnych traderów krypto. Od sygnałów, przez realizację, aż po analitykę.",
+        "cards": {
+            "aiSignals": {
+                "title": "Sygnały oparte na AI",
+                "desc": "Zaawansowane modele uczenia maszynowego analizują wzorce rynkowe, nastroje i dane on-chain w celu generowania sygnałów transakcyjnych o wysokim prawdopodobieństwie."
+            },
+            "multiExchange": {
+                "title": "Integracja wielu giełd",
+                "desc": "Połącz się z Binance, Coinbase, Kraken, Bybit, OKX i nie tylko. Handluj na wszystkich głównych giełdach z jednego pulpitu nawigacyjnego."
+            },
+            "automation": {
+                "title": "Automatyzacja i handel ręczny",
+                "desc": "Wykonuj transakcje automatycznie lub używaj naszych sygnałów do handlu ręcznego. Pełna kontrola nad Twoim stylem handlowym i zarządzaniem ryzykiem."
+            },
+            "analytics": {
+                "title": "Analityka w czasie rzeczywistym",
+                "desc": "Śledź wydajność, analizuj transakcje i optymalizuj strategie dzięki naszemu kompleksowemu pulpitowi analitycznemu i narzędziom raportowania."
+            }
+        }
+    },
+    "strategy": {
+        "strategybadge": "Strategie AI",
+        "title": "Wybierz swoje kanały handlowe",
+        "description": "Uzyskaj dostęp do wyspecjalizowanych strumieni sygnałów napędzanych przez AI, z których każdy jest zbudowany dla określonej strategii — od skalpowania i swing tradingu po momentum i automatyzację.",
+        "popular": "Najpopularniejsze",
+        "cards": {
+            "prime": {
+                "title": "TSAI Prime",
+                "tag": "Najpopularniejsze",
+                "desc": "Zaawansowane sygnały AI napędzane dogłębną analizą rynku i modelami prawdopodobieństwa.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            },
+            "momentum": {
+                "title": "TSAI Momentum",
+                "desc": "Podążaj za silnymi trendami i wychwytuj potężne ekspansje rynkowe.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            },
+            "core": {
+                "title": "TSAI Core",
+                "desc": "Ustrukturyzowane transakcje typu swing na głównych aktywach o wysokim prawdopodobieństwie powodzenia.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            },
+            "alts": {
+                "title": "TSAI Alts",
+                "desc": "Zarządzane przez AI okazje na altcoinach z silnym momentum i płynnością.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            },
+            "flash": {
+                "title": "TSAI Flash",
+                "desc": "Ultraszybkie transakcje do skalpowania w niestabilnych warunkach rynkowych.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            },
+            "system": {
+                "title": "TSAI System",
+                "desc": "Zautomatyzowane sygnały dla spójnego i pasywnego handlu.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            },
+            "struct": {
+                "title": "TSAI Struct",
+                "desc": "Zdyscyplinowany handel z kontrolowanym zarządzaniem ryzykiem.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            },
+            "assist": {
+                "title": "TSAI Assist",
+                "desc": "Proste sygnały z przewodnikiem przeznaczone dla nowych traderów.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            },
+            "vol": {
+                "title": "TSAI Vol",
+                "desc": "Przechwytuj ruchy o wysokiej zmienności w wielu ramach czasowych.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            },
+            "hybrid": {
+                "title": "TSAI Hybrid",
+                "desc": "Elastyczna strategia łącząca krótko- i średnioterminowe podejścia handlowe.",
+                "monthlyAvg": "Średnia miesięczna",
+                "cta": "Handluj teraz"
+            }
+        }
+    },
+    "gettingStarted": {
+        "stepbadge": "Krok",
+        "title": "Jak zacząć",
+        "heading": "Rozpocznij handel w 3 prostych krokach",
+        "description": "Uruchom w kilka minut. Nie wymaga skomplikowanej konfiguracji.",
+        "steps": {
+            "step1": {
+                "title": "Zarejestruj się i połącz",
+                "desc": "Bezpiecznie połącz swoje konto giełdowe za pomocą API. Obsługujemy Binance, Coinbase, Kraken, Bybit, OKX i inne. Twoje środki pozostają na Twojej giełdzie."
+            },
+            "step2": {
+                "title": "Wybierz kanały sygnałowe",
+                "desc": "Wybierz spośród 8 strategii opartych na sztucznej inteligencji w oparciu o swoją tolerancję ryzyka i cele handlowe. Połącz wiele strategii w celu dywersyfikacji."
+            },
+            "step3": {
+                "title": "Handluj i monitoruj",
+                "desc": "Wykonuj transakcje automatycznie lub ręcznie. Śledź wyniki w czasie rzeczywistym dzięki naszemu zaawansowanemu pulpitowi analitycznemu."
+            }
+        },
+        "stats": {
+            "registeredUsers": "Zarejestrowani użytkownicy",
+            "aum": "Aktywa pod zarządzaniem",
+            "pnl": "Całkowite PnL obserwujących"
+        }
+    },
+    "tradingChannels": {
+        "title": "Kanały handlowe",
+        "heading": "Handluj z celem, nie zgaduj",
+        "description": "Ustrukturyzowane strategie oparte na sztucznej inteligencji, zaprojektowane do wykorzystywania okazji w zakresie zmienności, trendów i dynamiki rynku.",
+        "cards": {
+            "scalping": {
+                "title": "Skalpowanie",
+                "desc": "Strategie szybkiego reagowania zbudowane w celu przechwytywania krótkoterminowych ruchów cen i skoków zmienności przy szybkiej egzekucji.",
+                "badges": [
+                    "TSAI Vol",
+                    "TSAI Flash"
+                ]
+            },
+            "swing": {
+                "title": "Swing Trading",
+                "desc": "Ustrukturyzowane strategie skupiające się na średnioterminowych trendach i okazjach o wysokim prawdopodobieństwie na głównych rynkach oraz rynkach altcoinów.",
+                "badges": [
+                    "TSAI Core",
+                    "TSAI Alts"
+                ]
+            },
+            "aiStrategy": {
+                "title": "Strategia AI",
+                "desc": "Flagowa strategia oparta na sztucznej inteligencji analizująca strukturę rynku, nastroje i zmienność w celu zidentyfikowania dominujących formacji rynkowych.",
+                "badges": [
+                    "TSAI Prime"
+                ]
+            },
+            "lowRisk": {
+                "title": "Niskie ryzyko",
+                "desc": "Uproszczone sygnały handlowe przeznaczone do kierowanej egzekucji i kontrolowanej ekspozycji, idealne dla początkujących i do stabilnego handlu.",
+                "badges": [
+                    "TSAI Assist"
+                ]
+            },
+            "highRisk": {
+                "title": "Wysokie ryzyko, wysoka nagroda",
+                "desc": "Agresywne strategie ukierunkowane na silne ekspansje cenowe i okazje handlowe o wysokiej dynamice.",
+                "badges": [
+                    "TSAI Momentum",
+                    "TSAI Hybrid"
+                ]
+            },
+            "futures": {
+                "title": "Kontrakty Futures",
+                "desc": "Zaawansowane strategie skupiające się na ustrukturyzowanej egzekucji, systematycznych sygnałach i kontroli ryzyka na poziomie portfela.",
+                "badges": [
+                    "TSAI Struct",
+                    "TSAI System"
+                ]
+            }
+        },
+        "cta": "Odkryj"
+    },
+    "whyUs": {
+        "title": "Dlaczego warto nas wybrać",
+        "heading": "Zbudowane dla poważnych traderów",
+        "description": "Skupiamy się na szczegółach, abyś mógł skupić się na tym, co ważne: na dochodowym handlu.",
+        "items": {
+            "security": {
+                "title": "Bezpieczeństwo na poziomie bankowym",
+                "desc": "Twoje klucze API są szyfrowane algorytmem AES-256. Nigdy nie mamy dostępu do wypłat Twoich środków."
+            },
+            "transparency": {
+                "title": "Pełna przejrzystość",
+                "desc": "Śledzenie wyników w czasie rzeczywistym. Zobacz każdą transakcję, każdy P&L, każdy szczegół. Zero ukrytych opłat."
+            },
+            "analytics": {
+                "title": "Zaawansowana analityka",
+                "desc": "Szczegółowe raporty, historia transakcji i wskaźniki wydajności w celu optymalizacji Twojej strategii."
+            },
+            "execution": {
+                "title": "Błyskawiczna realizacja",
+                "desc": "Wykonywanie transakcji w ułamku sekundy gwarantuje, że nigdy nie przegapisz okazji na szybko zmieniających się rynkach."
+            }
+        }
+    },
+    "testimonials": {
+        "title": "Opinie",
+        "heading": "Zaufanie ponad 1000 traderów",
+        "description": "Prawdziwe wyniki od prawdziwych traderów korzystających z Trading Signals AI"
+    },
+    "faq": {
+        "badge": "FAQ",
+        "title": "Często zadawane pytania",
+        "description": "Wszystko, co musisz wiedzieć o Trading Signals AI",
+        "questions": [
+            "Czym jest Trading Signals AI?",
+            "Czym są kanały sygnałowe?",
+            "Czy mogę zautomatyzować swoje transakcje?",
+            "Czy platforma jest odpowiednia dla początkujących?",
+            "Czy wyniki wydajności są przejrzyste?",
+            "Czy moje konto jest bezpieczne?"
+        ]
+    },
+    "blog": {
+        "title": "Blog",
+        "heading": "Najnowsze wiadomości i spostrzeżenia",
+        "description": "Wszystko, co kiedykolwiek chciałeś wiedzieć o ubezpieczeniach biznesowych.",
+        "viewMore": "Zobacz więcej",
+        "cta": "Dowiedz się więcej"
+    },
+    "starttoday": {
+        "badge": "Zacznij dziś",
+        "heading": "Gotowy na transformację swojego handlu?",
+        "description": "Dołącz do tysięcy zyskownych traderów korzystających z sygnałów opartych na sztucznej inteligencji, aby codziennie podejmować mądrzejsze decyzje.",
+        "cta": "Rozpocznij handel już teraz"
+    },
+    "footer": {
+        "description": "Sygnały handlu krypto oparte na AI dla mądrzejszych decyzji. Zaufanie ponad 12 000 traderów na całym świecie.",
+        "sections": {
+            "product": "Produkt",
+            "legal": "Kwestie Prawne"
+        },
+        "links": {
+            "features": "Funkcje",
+            "strategies": "Strategie",
+            "testimonials": "Opinie",
+            "faq": "FAQ",
+            "contact": "Kontakt",
+            "privacy": "Polityka prywatności",
+            "terms": "Warunki świadczenia usług",
+            "risk": "Ostrzeżenie o ryzyku",
+            "cookie": "Polityka plików cookie"
+        },
+        "copyright": "© 2026 Trading Signals AI. Wszelkie prawa zastrzeżone.",
+        "disclaimer": "Handel wiąże się ze znacznym ryzykiem i nie jest odpowiedni dla każdego inwestora. Wyniki osiągnięte w przeszłości nie są gwarancją przyszłych wyników. To nie jest porada finansowa."
+    },
+    "blogPage": {
+        "title": "Blog",
+        "description": "Wszystko, co kiedykolwiek chciałeś wiedzieć o ubezpieczeniach biznesowych.",
+        "ctaPrimary": "Zobacz więcej",
+        "ctaSecondary": "Dowiedz się więcej"
+    }
+}
