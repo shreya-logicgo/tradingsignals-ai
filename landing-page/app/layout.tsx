@@ -1,5 +1,16 @@
-
 import "./globals.css";
+import { Inter, Space_Mono } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-mono",
+});
 
 export default function RootLayout({
   children,
@@ -8,11 +19,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-           {/* ✅ Always visible */}
-        
-        {children}        {/* ✅ page.tsx renders here */}
-               {/* ✅ Always visible */}
+      <body className={`${inter.variable} ${spaceMono.variable}`}>
+        {children}
       </body>
     </html>
   );
