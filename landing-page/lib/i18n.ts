@@ -13,11 +13,19 @@ i18n.use(initReactI18next).init({
     pl: { translation: pl },
     th: { translation: th },
   },
-  lng: "en",
+  lng: "en", // Set default language to match server render
   fallbackLng: "en",
   interpolation: {
     escapeValue: false,
   },
 });
 
+// Update localStorage when language changes
+i18n.on("languageChanged", (lng) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("i18nextLng", lng);
+  }
+});
+
 export default i18n;
+

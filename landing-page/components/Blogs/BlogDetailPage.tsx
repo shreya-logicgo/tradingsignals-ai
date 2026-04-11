@@ -17,6 +17,7 @@ import { notFound } from "next/navigation";
 import BlogContent from "@/components/Blogs/Blogcontent";
 import BlogDetailView from "@/components/Blogs/BlogDetailView";
 import { BlogPostDetail } from "./blog";
+import symbollogo from "@/assets/images/symbol-logo.png";
 // import type { BlogPost } from "./blog";
 
 // ─── Mock data fetch (replace with real CMS / API call) ──────────────────────
@@ -30,7 +31,7 @@ async function getPostBySlug(slug: string): Promise<BlogPostDetail | null> {
     pl: "Strategie handlowe AI na rok 2026 dla NVDA: Przewodnik po wykresach i analityce AI",
     th: "กลยุทธ์การเทรดด้วย AI ปี 2026 สำหรับ NVDA: คู่มือกราฟและการวิเคราะห์ AI"
   },
-  author: { name: "TradingSignals Ai", avatar: "/avatars/ts-logo.png" },
+  author: { name: "TradingSignals AI", avatar: symbollogo },
   publishedAt: "2025-05-15",
   content: [
     {
@@ -250,7 +251,7 @@ export default async function BlogDetailPage({
   );
 
   return (
-    <div className="bg-[#0a0e1a] min-h-screen flex flex-col"
+    <div className="bg-[#0a0e1a] min-h-screen flex flex-col lg:mt-10"
       style={{ fontFamily: "var(--font-hoves)" }}
     >
       {/* <Navbar /> */}
