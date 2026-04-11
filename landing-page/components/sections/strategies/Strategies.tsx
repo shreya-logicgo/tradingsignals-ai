@@ -95,59 +95,23 @@ const strategies = [
 
 export default function Strategies() {
   return (
-    <section className="w-full py-5" style={{ backgroundColor: "#010B24" }}>
-      <div
-        className="w-full mx-auto"
-        style={{
-          paddingLeft: "clamp(20px, 13vw, 250px)",
-          paddingRight: "clamp(20px, 13vw, 250px)",
-        }}
-      >
-        {/* Header */}
-        <div
-          className="flex flex-col items-center text-center mx-auto"
-          style={{ maxWidth: "740px", gap: "30px", marginBottom: "35px" }}
-        >
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              padding: "5px 5px",
-              borderRadius: "40px",
-              border: "1px solid rgba(255,255,255,0.10)",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "11px",
-                fontWeight: 500,
-                fontFamily: "var(--font-mono)",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                color: "#C7CCD2",
-              }}
-            >
+    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+        
+        {/* Header Section */}
+        <div className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-12 md:mb-16 gap-6 md:gap-8">
+          {/* Badge */}
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 shadow-inner">
+            <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-[#C7CCD2]">
               AI Strategies
             </span>
           </div>
 
-          <div className="flex flex-col items-center" style={{ gap: "16px" }}>
-            <h2
-              className="text-white font-medium leading-tight"
-              style={{ fontSize: "clamp(32px, 3.5vw, 44px)" , fontFamily: "var(--font-hoves)" }}
-            >
+          <div className="flex flex-col items-center gap-4">
+            <h2 className="text-white font-hoves font-medium text-3xl md:text-4xl lg:text-5xl leading-tight">
               Choose Your Trading Channels
             </h2>
-            <p
-              style={{
-                fontSize: "14px",
-                fontFamily: "var(--font-hoves)",
-                color: "#C7CCD2",
-                lineHeight: "1.7",
-                maxWidth: "600px",
-              }}
-
-            >
+            <p className="font-hoves text-[15px] md:text-base text-[#C7CCD2] leading-relaxed max-w-[600px] opacity-80">
               Access specialized AI-driven signal streams, each built for a
               specific strategy — from scalping and swing trading to momentum
               and automation.
@@ -155,19 +119,24 @@ export default function Strategies() {
           </div>
         </div>
 
-        <StrategyTabs />
-        <StrategyFilters />
+        {/* Filters and Tabs */}
+        <div className="flex flex-col gap-6 mb-12">
+          <StrategyTabs />
+          <StrategyFilters />
+        </div>
 
-        {/* ✅ items-start stops grid from stretching cells */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start"
-          style={{ gap: "20px" }}
-        >
+        {/* Strategies Grid — using h-full to normalize heights */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 items-stretch">
           {strategies.map((s) => (
-            <StrategyCard key={s.name} {...s} />
+            <div key={s.name} className="flex">
+              <StrategyCard {...s} />
+            </div>
           ))}
         </div>
       </div>
+
+      {/* Background Decorative Glow (Optional but premium) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />
     </section>
   );
 }

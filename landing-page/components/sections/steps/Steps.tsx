@@ -5,35 +5,38 @@ import { Link2, Layers, BarChart3 } from "lucide-react";
 
 export default function Steps() {
   return (
-    <section
-      className="w-full py-24 relative overflow-hidden"
-      style={{ backgroundColor: "#010B24" }}
-    >
-      <div
-        className="w-full mx-auto"
-        style={{
-          paddingLeft: "clamp(20px, 13vw, 250px)",
-          paddingRight: "clamp(20px, 13vw, 250px)",
-        }}
-      >
-
+    <section className="w-full py-16 md:py-24 relative overflow-hidden bg-[#010B24]">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         {/*
-          Layout: 3-column grid
-          Left col  → Step 01 card (top-aligned)
-          Center col → heading + Step 02 card below
-          Right col  → Step 03 card (top-aligned)
+          Triptych Layout for Large Screens:
+          Col 1 | Col 2   | Col 3
+          S1    | Heading | S3
+                | S2      |
         */}
-        <div
-          className="grid w-full"
-          style={{
-            gridTemplateColumns: "300px 1fr 300px",
-            gap: "20px",
-            alignItems: "start",
-          }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-x-12 lg:gap-y-0 items-start">
+          
+          {/* ── HEADING (Center on Desktop, Top on Mobile) ── */}
+          <div className="lg:col-start-2 lg:row-start-1 flex flex-col items-center text-center lg:pt-14 mb-8 lg:mb-0 order-1">
+            {/* Badge */}
+            <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-white/50">
+                Getting Started
+              </span>
+            </div>
 
-          {/* ── LEFT: Step 01 ── */}
-          <div className="flex justify-start">
+            {/* Heading */}
+            <h2 className="text-4xl md:text-[40px] font-medium leading-tight md:leading-[1.1] text-white font-hoves mb-6 lg:max-w-md">
+              Start Trading in 3 Simple Steps
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-sm md:text-base font-light leading-relaxed text-[#c7ccd2] font-hoves max-w-[280px]">
+              Get up and running in minutes. No complex setup required.
+            </p>
+          </div>
+
+          {/* ── STEP 01 (Left on Desktop, After Heading on Mobile) ── */}
+          <div className="lg:col-start-1 lg:row-start-1 flex justify-center lg:justify-start order-2 lg:order-1 lg:pt-4">
             <StepCard
               step="Step 01"
               Icon={Link2}
@@ -42,79 +45,8 @@ export default function Steps() {
             />
           </div>
 
-          {/* ── CENTER: Heading + Step 02 ── */}
-          <div className="flex flex-col items-center" style={{ gap: "30px" }}>
-
-            {/* Center text block */}
-            <div
-              className="flex flex-col items-center text-center"
-              style={{ gap: "16px", maxWidth: "380px" }}
-            >
-              {/* Badge */}
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "5px 14px",
-                  borderRadius: "40px",
-                  border: "1px solid rgba(255,255,255,0.20)",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "11px",
-                    fontWeight: 500,
-                    letterSpacing: "0.10em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.65)",
-                    fontFamily: "var(--font-hoves)",
-                  }}
-                >
-                  Getting Started
-                </span>
-              </div>
-
-              {/* Heading */}
-              <h2
-                style={{
-                  fontSize: "clamp(36px, 3.5vw, 50px)",
-                  fontWeight: 400,
-                  lineHeight: "1.1",
-                  color: "white",
-                  fontFamily: "var(--font-hoves)",
-                  textAlign: "center",
-                }}
-              >
-                Start Trading in 3 Simple Steps
-              </h2>
-
-              {/* Subtitle */}
-              <p
-                style={{
-                  fontSize: "16px",
-                  fontWeight: 400,
-                  lineHeight: "1.5",
-                  color: "rgba(255,255,255,0.60)",
-                  fontFamily: "var(--font-hoves)",
-                  textAlign: "center",
-                }}
-              >
-                Get up and running in minutes. No complex setup required.
-              </p>
-            </div>
-
-            {/* Step 02 card — centered below heading */}
-            <StepCard
-              step="Step 02"
-              Icon={Layers}
-              title="Choose Signal Channels"
-              description="Select from 8 AI-powered strategies based on your risk tolerance and trading goals. Combine multiple strategies for diversification."
-            />
-          </div>
-
-          {/* ── RIGHT: Step 03 ── */}
-          <div className="flex justify-end">
+          {/* ── STEP 03 (Right on Desktop) ── */}
+          <div className="lg:col-start-3 lg:row-start-1 flex justify-center lg:justify-end order-4 lg:order-3 lg:pt-4">
             <StepCard
               step="Step 03"
               Icon={BarChart3}
@@ -123,8 +55,18 @@ export default function Steps() {
             />
           </div>
 
+          {/* ── STEP 02 (Below Heading on Desktop) ── */}
+          <div className="lg:col-start-2 lg:row-start-2 flex justify-center pt-8 lg:pt-24 order-3 lg:order-4">
+            <StepCard
+              step="Step 02"
+              Icon={Layers}
+              title="Choose Signal Channels"
+              description="Select from 8 AI-powered strategies based on your risk tolerance and trading goals. Combine multiple strategies for diversification."
+            />
+          </div>
+
         </div>
       </div>
     </section>
   );
-}
+}

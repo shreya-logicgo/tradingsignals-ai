@@ -1,11 +1,13 @@
+"use client";
+
 import TestimonialCard from "./TestimonialCard";
+import Image from "next/image";
 import img1 from "@/assets/images/testimonial-1.jpg";
 import img2 from "@/assets/images/testimonial-2.jpg";
 import img3 from "@/assets/images/testimonial-3.jpg";
 import img4 from "@/assets/images/testimonial-4.jpg";
 import img5 from "@/assets/images/testimonial-5.jpg";
 
-// Note: replace img3 below with testimonial-4.jpg once you add it to assets/images/
 const leftCards = [
   {
     image: img1,
@@ -26,7 +28,7 @@ const rightCards = [
       '"With Trading Signals AI, I found a welcoming community and a wealth of resources to guide me on my trading journey."',
   },
   {
-    image: img5, // ← swap to img4 once testimonial-4.jpg is added
+    image: img5,
     quote:
       '"Trading Signals AI has been a game-changer for me as a beginner in the world of crypto trading. Before joining, I was hesitant to explore into the market, fearing I\'d make costly mistakes."',
   },
@@ -34,120 +36,39 @@ const rightCards = [
 
 export default function Testimonials() {
   return (
-    <section
-      className="w-full relative overflow-hidden py-5"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(0,40,255,0.25) 0%, rgba(0,18,184,0.15) 30%, rgba(0,10,80,0.08) 55%, rgba(1,6,26,0) 100%)",
-       
-      }}
-    >
+    <section className="w-full relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-[#0028ff40] via-[#0012b826] via-[#000a5014] to-transparent">
       {/* Radial depth glow */}
-      <div
+      <div 
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[600px] blur-[60px] pointer-events-none z-0"
         style={{
-          position: "absolute",
-          top: 0,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "1000px",
-          height: "600px",
-          background:
-            "radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(37,99,235,0.15) 40%, rgba(1,6,26,0) 70%)",
-          filter: "blur(60px)",
-          zIndex: 0,
-          pointerEvents: "none",
+          background: "radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(37,99,235,0.15) 40%, rgba(1,6,26,0) 70%)"
         }}
       />
 
-      {/* Content */}
-      <div
-        className="w-full mx-auto relative"
-        style={{
-          paddingLeft: "clamp(20px, 13vw, 250px)",
-          paddingRight: "clamp(20px, 13vw, 250px)",
-          zIndex: 1,
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1420px",
-            display: "grid",
-            gridTemplateColumns: "31% 1fr 31%",
-            gap: "clamp(20px, 3vw, 50px)",
-            alignItems: "start",
-          }}
-        >
-          {/* ── Left Column ── */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 3vw, 50px)" }}>
-            {leftCards.map((card, i) => (
-              <TestimonialCard key={i} {...card} />
-            ))}
-          </div>
-
-          {/* ── Center Content ── */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              gap: "30px",
-              marginTop: "40px",
-            }}
-          >
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 items-start">
+          
+          {/* ── CENTER / HEADING (Top on Mobile, Middle on Desktop) ── */}
+          <div className="flex flex-col items-center text-center gap-6 lg:mt-10 order-1 lg:order-2 md:col-span-2 lg:col-span-1">
             {/* Badge */}
-            <div
-              style={{
-                padding: "5px 14px",
-                borderRadius: "40px",
-                border: "1px solid rgba(255,255,255,0.2)",
-                background: "rgba(255,255,255,0.04)",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontFamily: "var(--font-mono)",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.7)",
-                }}
-              >
+            <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
                 Testimonials
               </span>
             </div>
 
             {/* Heading */}
-            <h2
-              style={{
-                fontSize: "clamp(28px, 3vw, 40px)",
-                lineHeight: "1.2",
-                fontWeight: 500,
-                color: "#FFFFFF",
-                fontFamily: "var(--font-hoves)",
-                margin: 0,
-              }}
-            >
-              Trusted by 1k+
-              <br />
-              Traders
+            <h2 className="text-3xl md:text-4xl font-medium leading-tight text-white font-hoves">
+              Trusted by 1k+ <br className="hidden md:block" /> Traders
             </h2>
 
             {/* Subtext */}
-            <p
-              style={{
-                fontSize: "clamp(13px, 1.2vw, 16px)",
-                color: "rgba(255,255,255,0.65)",
-                lineHeight: "1.6",
-                margin: 0,
-                fontFamily: "var(--font-hoves)",
-              }}
-            >
+            <p className="text-sm md:text-base text-white/65 leading-relaxed font-hoves max-w-xs">
               Real results from real traders using Trading Signals AI
             </p>
 
-            {/* 5th card */}
-            <div style={{ width: "100%", marginTop: "10px" }}>
+            {/* Featured Testimonial Card */}
+            <div className="w-full mt-4">
               <TestimonialCard
                 image={img3}
                 quote="Trading Signals AI has transformed my trading experience. The platform is user-friendly, and the signals are accurate and timely. I've seen a significant improvement in my trading performance since I started using it."
@@ -155,14 +76,22 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* ── Right Column ── */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 3vw, 50px)" }}>
+          {/* ── LEFT COLUMN (Second on Mobile, First on Desktop) ── */}
+          <div className="flex flex-col gap-8 md:gap-12 order-2 lg:order-1">
+            {leftCards.map((card, i) => (
+              <TestimonialCard key={i} {...card} />
+            ))}
+          </div>
+
+          {/* ── RIGHT COLUMN (Third on Mobile, Third on Desktop) ── */}
+          <div className="flex flex-col gap-8 md:gap-12 order-3">
             {rightCards.map((card, i) => (
               <TestimonialCard key={i} {...card} />
             ))}
           </div>
+
         </div>
       </div>
     </section>
   );
-}
+}

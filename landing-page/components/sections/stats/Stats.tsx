@@ -10,15 +10,12 @@ const stats = [
 export default function Stats() {
   return (
     <section
-      className="w-full relative overflow-hidden"
-      style={{
-        backgroundColor: "#010B24",
-        height: "260px",
-      }}
+      className="w-full relative lg:py-30 "
+
     >
       {/* ── GlowBar Image ── */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute -top-90 mx-auto inset-0 pointer-events-none lg:h-250 lg:max-w-300"
         style={{ zIndex: 1 }}
       >
         <Image
@@ -26,65 +23,55 @@ export default function Stats() {
           alt=""
           fill
           sizes="100vw" // ✅ FIXED (removes warning)
-          className="object-cover object-bottom"
+          className=""
           style={{ mixBlendMode: "screen" }}
           priority
         />
       </div>
 
       {/* ── Stats Content ── */}
-      <div
+      {/* <div
         className="absolute inset-0 flex items-center justify-center"
         style={{ zIndex: 2 }}
-      >
-        <div className="flex items-center justify-center">
-          {stats.map((stat, i) => (
-            <div key={stat.label} className="flex items-center">
-              
-              {/* Divider */}
-              {i > 0 && (
-                <div
-                  style={{
-                    width: "1px",
-                    height: "44px",
-                    background: "rgba(255,255,255,0.12)",
-                    margin: "0 60px",
-                    flexShrink: 0,
-                  }}
-                />
-              )}
+      > */}
+      <div className="flex flex-col md:flex-row items-center justify-center">
+        {stats.map((stat, i) => (
+          <div key={stat.label} className="flex flex-col md:flex-row items-center">
 
-              {/* Stat Block */}
-              <div className="flex flex-col items-center text-center">
-                <span
-                  style={{
-                    fontSize: "48px",
-                    fontFamily: "var(--font-hoves)",
-                    fontWeight: 500,
-                    color: "#FFFFFF",
-                    letterSpacing: "-0.5px",
-                    lineHeight: 1.1,
-                  }}
-                >
-                  {stat.number}
-                </span>
+            {/* Divider */}
+            {i > 0 && (
+              <div
+                className="w-16 h-[1px] md:w-[1px] md:h-[44px] my-6 md:my-0 md:mx-[60px] shrink-0"
+                style={{
+                  background: "rgba(255,255,255,0.12)",
+                }}
+              />
+            )}
 
-                <span
-                  style={{
-                    fontSize: "14px",
-                    color: "rgba(255,255,255,0.50)",
-                    marginTop: "10px",
-                    fontFamily: "var(--font-hoves)",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {stat.label}
-                </span>
-              </div>
+            {/* Stat Block */}
+            <div className="flex flex-col items-center text-center">
+              <span
+                className="text-4xl md:text-[48px] font-medium text-white tracking-[-0.5px] leading-[1.1]"
+                style={{
+                  fontFamily: "var(--font-hoves)",
+                }}
+              >
+                {stat.number}
+              </span>
+
+              <span
+                className="text-xs md:text-[14px] text-white/50 mt-2 md:mt-[10px] whitespace-nowrap"
+                style={{
+                  fontFamily: "var(--font-hoves)",
+                }}
+              >
+                {stat.label}
+              </span>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+      {/* </div> */}
     </section>
   );
 }

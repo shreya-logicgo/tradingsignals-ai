@@ -31,122 +31,60 @@ const features = [
 
 export default function Features() {
   return (
-    <section
-      className="w-full py-5"
-      style={{ backgroundColor: "#010B24" }}
-    >
-      {/*
-        Figma: content starts at left: 250px on a 1920px canvas
-        → paddingLeft/Right: 250px on large screens, scales down responsively
-      */}
-      <div
-        className="w-full mx-auto"
-        style={{
-          paddingLeft: "clamp(20px, 13vw, 180px)",
-          paddingRight: "clamp(20px, 13vw, 150px)",
-        }}
-      >
-
-        {/* ── Header ── */}
-        <div
-          className="flex flex-col lg:flex-row lg:items-end lg:justify-between"
-          style={{ gap: "40px", marginBottom: "48px" }}
-        >
-          {/* Left: badge + heading */}
-          <div>
+    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+        
+        {/* Header Section — Mobile-first column, Desktop split row */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12 lg:gap-20 mb-12 md:mb-16">
+          
+          {/* Left: Badge + Heading block */}
+          <div className="flex flex-col items-start gap-4 md:gap-5">
             {/* Badge */}
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                padding: "5px 14px",
-                borderRadius: "40px",
-                border: "1px solid rgba(255,255,255,0.20)",
-                marginBottom: "20px",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontFamily: "var(--font-mono)",
-                  fontWeight: 500,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.65)",
-                }}
-              >
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 shadow-inner">
+              <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-white/50">
                 Platform Features
               </span>
             </div>
 
-            {/* Heading */}
-            <h2
-              style={{
-                fontSize: "clamp(32px, 3.5vw, 40px)",
-                color: "white",
-                lineHeight: 1.15,
-                maxWidth: "516px",
-                fontFamily: "var(--font-hoves)",
-              }}
-            >
+            {/* Main Section Heading */}
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-medium text-white leading-tight md:leading-[1.15] font-hoves max-w-[520px]">
               Everything You Need to Trade Profitably
             </h2>
           </div>
 
-          {/* Right: description */}
-          <p
-            style={{
-              fontSize: "15px",
-              fontWeight: 400,
-              color: "rgba(255,255,255,0.65)",
-              lineHeight: "1.6",
-              maxWidth: "420px",
-              flexShrink: 0,
-              fontFamily: "var(--font-hoves)",
-            }}
-          >
-            A complete trading ecosystem built for modern crypto traders.
-            From signals to execution to analytics.
-          </p>
+          {/* Right: Supporting brief */}
+          <div className="lg:max-w-[420px] lg:mb-2 flex-shrink-0">
+            <p className="text-[15px] md:text-base font-normal text-white/50 leading-relaxed font-hoves">
+              A complete trading ecosystem built for modern crypto traders.
+              From signals to execution to analytics.
+            </p>
+          </div>
         </div>
 
-        {/* ── Cards grid ── */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-
-          {/* Row 1: 42% | 58% */}
-          <div
-            style={{
-              display: "flex",
-              gap: "20px",
-              flexWrap: "wrap",
-            }}
-          >
-            <div style={{ flex: "0 0 calc(42% - 10px)", minWidth: "280px", flexGrow: 1 }}>
-              <FeatureCard {...features[0]} className="w-full" />
-            </div>
-            <div style={{ flex: "0 0 calc(58% - 10px)", minWidth: "280px", flexGrow: 1 }}>
-              <FeatureCard {...features[1]} className="w-full" />
-            </div>
+        {/* ── Asymmetrical Bento Grid ── */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-stretch">
+          
+          {/* Top Asymmetrical Row: 42% | 58% (Approx 5:7 columns) */}
+          <div className="md:col-span-5 h-full">
+            <FeatureCard {...features[0]} />
+          </div>
+          <div className="md:col-span-7 h-full">
+            <FeatureCard {...features[1]} />
           </div>
 
-          {/* Row 2: 58% | 42% */}
-          <div
-            style={{
-              display: "flex",
-              gap: "20px",
-              flexWrap: "wrap",
-            }}
-          >
-            <div style={{ flex: "0 0 calc(58% - 10px)", minWidth: "280px", flexGrow: 1 }}>
-              <FeatureCard {...features[2]} className="w-full" />
-            </div>
-            <div style={{ flex: "0 0 calc(42% - 10px)", minWidth: "280px", flexGrow: 1 }}>
-              <FeatureCard {...features[3]} className="w-full" />
-            </div>
+          {/* Bottom Asymmetrical Row: 58% | 42% (Approx 7:5 columns) */}
+          <div className="md:col-span-7 h-full">
+            <FeatureCard {...features[2]} />
+          </div>
+          <div className="md:col-span-5 h-full">
+            <FeatureCard {...features[3]} />
           </div>
 
         </div>
       </div>
+      
+      {/* Decorative background glow for depth */}
+      <div className="absolute bottom-0 left-0 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />
     </section>
   );
-}
+}

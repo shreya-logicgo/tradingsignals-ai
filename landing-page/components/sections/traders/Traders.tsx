@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TraderFeatureCard from "./TraderFeatureCard";
 
 /* ── Inline SVG icons ── */
@@ -68,110 +68,61 @@ const allCards = [
 
 export default function Traders() {
   const [startIndex, setStartIndex] = useState(0);
-  const visibleCount = 4;
+  const [visibleCount, setVisibleCount] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) setVisibleCount(1);
+      else if (window.innerWidth < 1024) setVisibleCount(2);
+      else setVisibleCount(4);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Adjust startIndex if out of bounds after resize
+  useEffect(() => {
+    if (startIndex + visibleCount > allCards.length) {
+      setStartIndex(Math.max(0, allCards.length - visibleCount));
+    }
+  }, [visibleCount, startIndex]);
+
   const canPrev = startIndex > 0;
   const canNext = startIndex + visibleCount < allCards.length;
 
   const visibleCards = allCards.slice(startIndex, startIndex + visibleCount);
 
   return (
-    <section
-      className="w-full relative overflow-hidden py-5"
-      style={{ backgroundColor: "#010B24", textAlign: "center"}}
-    >
-      {/* Inner wrapper */}
-      <div
-        className="w-full mx-auto"
-        style={{
-          paddingLeft: "clamp(20px, 13vw, 250px)",
-          paddingRight: "clamp(20px, 13vw, 250px)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1420px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "60px",
-          }}
-        >
+    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+        <div className="flex flex-col gap-12 lg:gap-16 items-center">
+          
           {/* ── Header block ── */}
-          <div
-            style={{
-              maxWidth: "521px",
-              margin: "0 auto",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              gap: "30px",
-            }}
-          >
+          <div className="flex flex-col items-center text-center gap-6 max-w-[521px]">
             {/* Badge */}
-            <div
-              style={{
-                padding: "5px 14px",
-                borderRadius: "40px",
-                border: "1px solid rgba(255,255,255,0.2)",
-                background: "rgba(255,255,255,0.04)",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontFamily: "var(--font-mono)",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.7)",
-                }}
-              >
+            <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
                 Why Choose Us
               </span>
             </div>
 
             {/* Heading */}
-            <h2
-              style={{
-                fontFamily: "var(--font-hoves)",
-                fontWeight: 500,
-                fontSize: "40px",
-                lineHeight: "1.2",
-                color: "#FFFFFF",
-                margin: 0,
-              }}
-            >
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight">
               Built for Serious Traders
             </h2>
 
             {/* Subtext */}
-            <p
-              style={{
-                fontSize: "16px",
-                color: "rgba(199,204,210,1)",
-                lineHeight: "1.5",
-                maxWidth: "480px",
-                margin: 0,
-                fontFamily: "var(--font-hoves)",
-              }}
-            >
+            <p className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed max-w-[480px]">
               We obsess over the details so you can focus on what matters: profitable trading.
             </p>
           </div>
 
-          {/* ── Cards row + connecting line ── */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            <div style={{ position: "relative" }}>
-
-              {/* Cards */}
-              <div
-                style={{
-                  display: "flex",
-                  gap: "20px",
-                  width: "100%",
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              >
+          {/* ── Cards slider ── */}
+          <div className="w-full flex flex-col gap-8">
+            <div className="relative w-full">
+              {/* Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 transition-all duration-300">
                 {visibleCards.map((card, i) => (
                   <TraderFeatureCard key={startIndex + i} {...card} />
                 ))}
@@ -179,42 +130,38 @@ export default function Traders() {
             </div>
 
             {/* ── Navigation arrows ── */}
-            <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginTop: "20px" }}>
+            <div className="flex justify-center items-center gap-4">
               <button
                 onClick={() => setStartIndex((p) => Math.max(0, p - 1))}
                 disabled={!canPrev}
-                style={{
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "50%",
-                  background: canPrev ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: canPrev ? "pointer" : "not-allowed",
-                  color: canPrev ? "#fff" : "rgba(255,255,255,0.3)",
-                  transition: "background 0.2s",
-                }}
+                className={`w-10 h-10 rounded-full border border-white/10 flex items-center justify-center transition-all duration-200 ${
+                  canPrev 
+                    ? "bg-white/10 text-white cursor-pointer hover:bg-white/20" 
+                    : "bg-white/5 text-white/20 cursor-not-allowed"
+                }`}
               >
                 <ChevronLeft />
               </button>
+              
+              <div className="flex gap-1.5">
+                {Array.from({ length: allCards.length - visibleCount + 1 }).map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === startIndex ? "w-6 bg-[#00F0FF]" : "w-1.5 bg-white/20"
+                    }`}
+                  />
+                ))}
+              </div>
+
               <button
                 onClick={() => setStartIndex((p) => Math.min(allCards.length - visibleCount, p + 1))}
                 disabled={!canNext}
-                style={{
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "50%",
-                  background: canNext ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: canNext ? "pointer" : "not-allowed",
-                  color: canNext ? "#fff" : "rgba(255,255,255,0.3)",
-                  transition: "background 0.2s",
-                }}
+                className={`w-10 h-10 rounded-full border border-white/10 flex items-center justify-center transition-all duration-200 ${
+                  canNext 
+                    ? "bg-white/10 text-white cursor-pointer hover:bg-white/20" 
+                    : "bg-white/5 text-white/20 cursor-not-allowed"
+                }`}
               >
                 <ChevronRight />
               </button>
@@ -224,4 +171,4 @@ export default function Traders() {
       </div>
     </section>
   );
-}
+}

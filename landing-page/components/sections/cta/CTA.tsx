@@ -1,4 +1,6 @@
 "use client";
+
+import Image from "next/image";
 import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";
 import blog3 from "@/assets/images/blog-3.jpg";
@@ -26,227 +28,72 @@ const posts = [
 
 export default function CTA() {
   return (
-    <section
-      className="w-full relative overflow-hidden py-5"
-      style={{ backgroundColor: "#010B24"}}
-    >
-      <div
-        className="w-full mx-auto"
-        style={{
-          paddingLeft: "clamp(20px, 13vw, 250px)",
-          paddingRight: "clamp(20px, 13vw, 250px)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1420px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "60px",
-          }}
-        >
+    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+        <div className="flex flex-col gap-12 lg:gap-16">
+          
           {/* ── Header ── */}
-          <div
-            style={{
-              maxWidth: "497px",
-              margin: "0 auto",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              gap: "30px",
-            }}
-          >
+          <div className="flex flex-col items-center text-center gap-6 max-w-[500px] mx-auto">
             {/* Badge */}
-            <div
-              style={{
-                padding: "5px 14px",
-                borderRadius: "40px",
-                border: "1px solid rgba(255,255,255,0.2)",
-                background: "rgba(255,255,255,0.04)",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontFamily: "var(--font-mono)",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.7)",
-                }}
-              >
+            <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
                 Blogs
               </span>
             </div>
 
             {/* Heading */}
-            <h2
-              style={{
-                fontFamily: "var(--font-hoves)",
-                fontWeight: 500,
-                fontSize: "clamp(28px, 3.5vw, 44px)",
-                lineHeight: "1.2",
-                color: "#FFFFFF",
-                margin: 0,
-              }}
-            >
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight">
               Latest News & Insights
             </h2>
 
             {/* Subtext */}
-            <p
-              style={{
-                fontFamily: "var(--font-hoves)",
-                fontSize: "16px",
-                color: "rgba(199,204,210,1)",
-                lineHeight: "1.5",
-                margin: 0,
-              }}
-            >
-              Everything you've ever wanted to know about business insurance.
+            <p className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed">
+              Stay ahead of the curve with our expert analysis, trading guides, and major platform announcements.
             </p>
           </div>
 
           {/* ── Cards + CTA ── */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "30px",
-            }}
-          >
-            {/* Cards row */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "20px",
-                width: "100%",
-              }}
-            >
+          <div className="flex flex-col gap-12">
+            {/* Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
               {posts.map((post, i) => (
                 <div
                   key={i}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "30px",
-                    cursor: "pointer",
-                    transition: "transform 0.3s ease",
-                  }}
-                  onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLDivElement).style.transform =
-                      "translateY(-5px)")
-                  }
-                  onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLDivElement).style.transform =
-                      "translateY(0)")
-                  }
+                  className="group flex flex-col gap-6 cursor-pointer transition-transform duration-300 hover:-translate-y-2"
                 >
-                  {/* Image */}
-                  <div
-                    style={{
-                      width: "100%",
-                      aspectRatio: "460 / 300",
-                      borderRadius: "15px",
-                      overflow: "hidden",
-                      flexShrink: 0,
-                    }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={post.image.src}
+                  {/* Image Container */}
+                  <div className="relative w-full aspect-[460/300] rounded-2xl overflow-hidden shadow-2xl">
+                    <Image
+                      src={post.image}
                       alt={post.title}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                      }}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
 
                   {/* Text content */}
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "15px",
-                    }}
-                  >
-                    <h3
-                      style={{
-                        fontFamily: "var(--font-hoves)",
-                        fontWeight: 500,
-                        fontSize: "20px",
-                        color: "#FFFFFF",
-                        margin: 0,
-                        lineHeight: "1.3",
-                      }}
-                    >
+                  <div className="flex flex-col gap-4">
+                    <h3 className="font-hoves font-medium text-xl text-white leading-tight">
                       {post.title}
                     </h3>
-                    <p
-                      style={{
-                        fontFamily: "var(--font-hoves)",
-                        fontWeight: 400,
-                        fontSize: "16px",
-                        color: "rgba(199,204,210,1)",
-                        lineHeight: "1.5",
-                        margin: 0,
-                      }}
-                    >
+                    <p className="font-hoves font-normal text-sm md:text-base text-[#c7ccd2] leading-relaxed">
                       {post.description}
                     </p>
 
                     {/* View more link */}
-                    <span
-                      style={{
-                        fontSize: "14px",
-                        color: "#FFFFFF",
-                        fontFamily: "var(--font-hoves)",
-                        textDecoration: "underline",
-                        textUnderlineOffset: "3px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      View more
-                    </span>
+                    <div className="mt-auto">
+                      <span className="text-sm text-white font-hoves underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all">
+                        View more
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Learn More button */}
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
-              <button
-                style={{
-                  width: "132px",
-                  height: "52px",
-                  padding: "19px 24px",
-                  borderRadius: "40px",
-                  background: "transparent",
-                  border: "1px solid #FFFFFF",
-                  color: "#FFFFFF",
-                  fontSize: "14px",
-                  fontFamily: "var(--font-hoves)",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "background 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  const btn = e.currentTarget as HTMLButtonElement;
-                  btn.style.background = "#FFFFFF";
-                  btn.style.color = "#000000";
-                }}
-                onMouseLeave={(e) => {
-                  const btn = e.currentTarget as HTMLButtonElement;
-                  btn.style.background = "transparent";
-                  btn.style.color = "#FFFFFF";
-                }}
-              >
+            <div className="flex justify-center mt-4">
+              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black">
                 Learn More
               </button>
             </div>

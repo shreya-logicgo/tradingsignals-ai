@@ -12,11 +12,11 @@ import Strategies from "@/components/sections/strategies/Strategies";
 import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Traders from "@/components/sections/traders/Traders";
 import TrustedLogos from "@/components/sections/trusted/TrustedLogos";
+import glowBar from "@/assets/images/glowBars.png";
 
 export default function Home() {
   return (
     <main>
-      <Navbar />
       <Hero />
       <TrustedLogos />
       <Features />
@@ -27,7 +27,7 @@ export default function Home() {
       <Traders />
       <Testimonials />
       <FAQ />
-      <CTA /> 
+      <CTA />
     </main>
   );
 }

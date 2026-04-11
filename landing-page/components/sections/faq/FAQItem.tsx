@@ -13,70 +13,23 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
   return (
     <div
       onClick={() => setIsOpen((p) => !p)}
-      style={{
-        width: "100%",
-        padding: isOpen ? "20px" : "0px 20px",
-        borderRadius: "15px",
-        background: isOpen
-          ? "rgba(255,255,255,0.07)"
-          : "rgba(255,255,255,0.05)",
-        border: isOpen
-          ? "1px solid rgba(255,255,255,0.15)"
-          : "1px solid rgba(255,255,255,0.10)",
-        cursor: "pointer",
-        transition: "background 0.25s ease, border-color 0.25s ease",
-        boxSizing: "border-box",
-        overflow: "hidden",
-      }}
-      onMouseEnter={(e) => {
-        if (!isOpen) {
-          (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.08)";
-          (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.2)";
-        }
-      }}
-      onMouseLeave={(e) => {
-        if (!isOpen) {
-          (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.05)";
-          (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.10)";
-        }
-      }}
+      className={`group w-full transition-all duration-300 cursor-pointer rounded-2xl border ${
+        isOpen 
+          ? "bg-white/10 border-white/20 p-6" 
+          : "bg-white/5 border-white/10 px-6 py-4 hover:bg-white/[0.08] hover:border-white/20"
+      }`}
     >
       {/* Question row */}
-      <div
-        style={{
-          height: "62px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "16px",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "var(--font-hoves)",
-            fontSize: "16px",
-            color: "#FFFFFF",
-            lineHeight: 1.3,
-          }}
-        >
+      <div className="flex items-center justify-between gap-4 py-2">
+        <span className="font-hoves font-medium text-base text-white leading-tight">
           {question}
         </span>
 
         {/* +/× icon */}
         <div
-          style={{
-            width: "28px",
-            height: "28px",
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.08)",
-            border: "1px solid rgba(255,255,255,0.2)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-            transition: "transform 0.25s ease",
-            transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
-          }}
+          className={`w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${
+            isOpen ? "rotate-45" : "rotate-0"
+          }`}
         >
           <svg
             width="14"
@@ -91,26 +44,16 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         </div>
       </div>
 
-      {/* Answer — shown only when open */}
-      {isOpen && (
-        <div
-          style={{
-            paddingBottom: "4px",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "var(--font-hoves)",
-              fontSize: "14px",
-              color: "rgba(199,204,210,1)",
-              lineHeight: "1.6",
-              margin: 0,
-            }}
-          >
-            {answer}
-          </p>
-        </div>
-      )}
+      {/* Answer content */}
+      <div 
+        className={`overflow-hidden transition-all duration-300 ${
+          isOpen ? "max-h-[500px] mt-4 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <p className="font-hoves font-light text-[14px] text-[#c7ccd2] leading-relaxed pb-2">
+          {answer}
+        </p>
+      </div>
     </div>
   );
-}
+}

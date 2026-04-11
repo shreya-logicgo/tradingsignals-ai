@@ -7,82 +7,29 @@ interface TestimonialCardProps {
 
 export default function TestimonialCard({ image, quote }: TestimonialCardProps) {
   return (
-    <div
-      style={{
-        width: "100%",
-        padding: "20px",
-        borderRadius: "15px",
-        background: "rgba(255,255,255,0.03)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        boxSizing: "border-box",
-      }}
-    >
+    <div className="w-full p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-5 box-border backdrop-blur-sm transition-all duration-300 hover:border-white/20">
       {/* Video thumbnail */}
-      <div
-        style={{
-          width: "100%",
-          aspectRatio: "2 / 1",
-          borderRadius: "15px",
-          overflow: "hidden",
-          position: "relative",
-          flexShrink: 0,
-        }}
-      >
+      <div className="w-full aspect-[2/1] rounded-xl overflow-hidden relative flex-shrink-0 group cursor-pointer">
         <Image
           src={image}
           alt="Testimonial thumbnail"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
-        {/* Play button */}
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "50px",
-            height: "50px",
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.20)",
-            backdropFilter: "blur(6px)",
-            border: "1px solid rgba(255,255,255,0.25)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1,
-          }}
-        >
-          <div
-            style={{
-              width: 0,
-              height: 0,
-              borderTop: "8px solid transparent",
-              borderBottom: "8px solid transparent",
-              borderLeft: "14px solid rgba(255,255,255,0.9)",
-              marginLeft: "3px",
-            }}
-          />
+        {/* Play button overlay */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+           <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <div className="w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-left-[14px] border-left-white/90 ml-1" />
+           </div>
         </div>
       </div>
 
       {/* Quote */}
-      <p
-        style={{
-          fontSize: "14px",
-          color: "rgba(255,255,255,0.70)",
-          lineHeight: "1.6",
-          margin: 0,
-          fontFamily: "var(--font-hoves)",
-        }}
-      >
+      <p className="text-sm text-white/70 leading-relaxed m-0 font-hoves">
         {quote}
       </p>
     </div>
   );
-}
+}

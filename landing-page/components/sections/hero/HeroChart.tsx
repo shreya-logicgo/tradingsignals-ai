@@ -1,140 +1,79 @@
+import Image from "next/image";
 import Container from "@/components/common/container/Container";
-import heroGif from "@/assets/images/hero.gif"; // ✅ import your GIF
+import heroGif from "@/assets/images/hero.gif";
 
 export default function HeroChart() {
   return (
-    <section className="w-full relative z-10 pt-[10px]">
-      <Container className="flex justify-center">
-
+    <section className="w-full relative z-10 pt-2 lg:pt-[10px]">
+      <Container className="flex justify-center px-4 md:px-0">
         <div className="relative w-full max-w-[1100px]">
-
+          
           {/* Outer ambient glow */}
-          <div
-            className="absolute -inset-4 -z-10 rounded-3xl"
-            style={{
-              background:
-                "radial-gradient(ellipse at 50% 40%, rgba(0,120,255,0.25) 0%, rgba(0,60,180,0.1) 50%, transparent 75%)",
-              filter: "blur(40px)",
-            }}
-          />
+          <div className="absolute -inset-4 -z-10 rounded-3xl bg-[radial-gradient(ellipse_at_50%_40%,_rgba(0,120,255,0.25)_0%,_rgba(0,60,180,0.1)_50%,_transparent_75%)] blur-[40px] pointer-events-none" />
 
-          {/* Glass card */}
-          <div
-            className="relative w-full rounded-2xl overflow-hidden"
-            style={{
-              background: "rgba(2, 8, 30, 0.45)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              boxShadow:
-                "0 0 0 1px rgba(100,180,255,0.08) inset, 0 32px 100px rgba(0,0,0,0.8), 0 0 60px rgba(0,80,255,0.12)",
-            }}
-          >
+          {/* Glass card background */}
+          <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden bg-[#02081e]/45 backdrop-blur-2xl ring-1 ring-inset ring-white/10 shadow-[0_32px_100px_rgba(0,0,0,0.8),_0_0_60px_rgba(0,80,255,0.12)]">
 
-            {/* Browser bar */}
-            <div
-              className="flex items-center gap-2 px-4 py-[10px]"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                borderBottom: "1px solid rgba(80,160,255,0.12)",
-              }}
-            >
-              <span className="w-[11px] h-[11px] rounded-full bg-[#ff5f57]" />
-              <span className="w-[11px] h-[11px] rounded-full bg-[#ffbd2e]" />
-              <span className="w-[11px] h-[11px] rounded-full bg-[#28c840]" />
-
-              <div
-                className="mx-89.5"
-                style={{
-                  background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "6px",
-                  padding: "4px 28px",
-                  color: "#FFFF",
-                  minWidth: "240px",
-                  textAlign: "center",
-                  fontSize: "12px",
-                  letterSpacing: "0.02em",
-                }}
-              >
-                tradingsignals.ai
+            {/* Browser top-bar */}
+            <div className="flex items-center gap-2 px-4 py-3 md:py-3.5 bg-white/[0.03] border-b border-white/[0.06]">
+              {/* Traffic light dots */}
+              <div className="flex gap-1.5 flex-shrink-0">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57] opacity-80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] opacity-80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#28c840] opacity-80" />
               </div>
+
+              {/* URL bar - Responsive sizing */}
+              <div className="flex-grow flex justify-center">
+                <div className="bg-white/5 border border-white/5 rounded-md px-4 md:px-12 py-1.5 md:py-1 text-white text-[11px] md:text-xs font-mono tracking-normal md:tracking-wider min-w-[120px] md:min-w-[240px] text-center opacity-60">
+                  tradingsignals.ai
+                </div>
+              </div>
+              
+              {/* Spacer to balance traffic lights on desktop */}
+              <div className="w-12 hidden md:block" />
             </div>
 
-            {/* GIF instead of chart */}
-            <div className="relative w-full">
-              <img
-                src={heroGif.src} // ✅ important
-                alt="Trading Chart"
+            {/* Hero Main Content Area */}
+            <div className="relative w-full overflow-hidden">
+              <Image
+                src={heroGif}
+                alt="AI Trading Signals Dashboard Performance"
+                width={1100}
+                height={600}
                 className="w-full h-auto block"
+                priority
               />
 
-              {/* Bottom fade */}
-              <div
-                className="absolute bottom-0 left-0 right-0 pointer-events-none"
-                style={{
-                  height: "55%",
-                  background:
-                    "linear-gradient(to bottom, transparent 0%, rgba(1,8,28,0.55) 35%, rgba(1,8,28,0.90) 65%, rgba(1,8,28,1) 100%)",
-                }}
-              />
+              {/* Bottom depth gradient */}
+              <div className="absolute bottom-0 left-0 right-0 h-[60%] pointer-events-none bg-gradient-to-t from-[#01081c] via-[#01081c]/60 to-transparent" />
 
-              {/* Watch Demo button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button
-                  className="group flex items-center gap-3 rounded-full transition-all duration-200 hover:scale-105 active:scale-100"
-                  style={{
-                    background: "rgba(255,255,255,0.10)",
-                    backdropFilter: "blur(16px)",
-                    WebkitBackdropFilter: "blur(16px)",
-                    border: "1px solid rgba(255,255,255,0.20)",
-                    boxShadow: "0 4px 32px rgba(0,0,0,0.5)",
-                    padding: "10px 20px 10px 10px",
-                  }}
-                >
-                  <span
-                    className="flex items-center justify-center w-9 h-9 rounded-full flex-shrink-0"
-                    style={{
-                      background: "linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)",
-                      boxShadow: "0 0 16px rgba(37,99,235,0.6)",
-                    }}
-                  >
-                    <span
-                      style={{
-                        display: "block",
-                        width: 0,
-                        height: 0,
-                        borderTop: "5px solid transparent",
-                        borderBottom: "5px solid transparent",
-                        borderLeft: "10px solid white",
-                        marginLeft: "3px",
-                      }}
-                    />
-                  </span>
+              {/* Interactive Play Button Overaly */}
+              <div className="absolute inset-0 flex items-center justify-center p-6">
+                <button className="group flex items-center gap-4 px-4 py-2.5 md:px-6 md:py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/20 active:scale-95">
+                  {/* Icon Container */}
+                  <div className="flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-gradient-to-br from-blue-600 to-sky-500 shadow-[0_0_25px_rgba(37,99,235,0.6)] group-hover:shadow-[0_0_35px_rgba(37,99,235,0.8)] transition-all duration-500">
+                    <div className="w-0 h-0 border-y-[5px] md:border-y-[7px] border-l-[10px] md:border-l-[13px] border-transparent border-l-white ml-1" />
+                  </div>
 
-                  <span className="flex flex-col leading-tight text-left">
-                    <span style={{ color: "white", fontWeight: 600, fontSize: "14px" }}>
+                  {/* Labels */}
+                  <div className="flex flex-col text-left leading-none">
+                    <span className="text-white font-medium text-sm md:text-base tracking-tight">
                       Watch Demo
                     </span>
-                    <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "11px" }}>
-                      1:00 min
+                    <span className="text-white/40 text-[10px] md:text-[11px] font-mono mt-1 uppercase tracking-widest">
+                      0:58 min
                     </span>
-                  </span>
+                  </div>
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Reflection line */}
-          <div
-            className="absolute -bottom-px left-1/2 -translate-x-1/2 w-3/4 h-px"
-            style={{
-              background:
-                "linear-gradient(to right, transparent, rgba(80,160,255,0.5), transparent)",
-            }}
-          />
-
+          {/* Bottom horizon reflection */}
+          <div className="absolute -bottom-px left-1/2 -translate-x-1/2 w-4/5 h-[1.5px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent blur-sm" />
         </div>
       </Container>
     </section>
   );
-}
+}
