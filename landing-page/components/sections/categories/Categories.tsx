@@ -43,151 +43,54 @@ const categories = [
 
 export default function Categories() {
   return (
-    <section
-      className="w-full"
-      style={{ backgroundColor: "#010B24", paddingTop: "10px", paddingBottom: "10px" }}
-    >
-      {/* Outer wrapper — same horizontal padding as Features */}
-      <div
-        className="w-full mx-auto"
-        style={{
-          paddingLeft: "clamp(20px, 13vw, 250px)",
-          paddingRight: "clamp(20px, 13vw, 250px)",
-        }}
-      >
+    <section className="w-full bg-[#010B24] py-16 md:py-24">
+      {/* Outer wrapper — responsive horizontal padding */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         {/* Main content container */}
-        <div
-          className="flex flex-col"
-          style={{
-            maxWidth: "1420px",
-            paddingTop: "50px",
-            paddingBottom: "120px",
-            gap: "0px",
-          }}
-        >
+        <div className="flex flex-col gap-12 lg:gap-16">
+          
           {/* ── Header Block ── */}
-          <div
-            className="flex flex-row items-start justify-between"
-          >
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12">
             {/* Left: Badge + Heading */}
-            <div
-              className="flex flex-col"
-              style={{ maxWidth: "439px", gap: "7px" }}
-            >
+            <div className="flex flex-col gap-4 max-w-[439px]">
               {/* Badge */}
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignSelf: "flex-start",
-                  alignItems: "center",
-                  padding: "5px 14px",
-                  borderRadius: "40px",
-                  border: "1px solid rgba(255,255,255,0.10)",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "11px",
-                    fontFamily: "var(--font-mono)",
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase",
-                    color: "#C7CCD2",
-                  }}
-                >
+              <div className="inline-flex self-start items-center px-4 py-1.5 rounded-full border border-white/10">
+                <span className="text-[11px] font-mono tracking-widest uppercase text-[#C7CCD2]">
                   Trading Channels
                 </span>
               </div>
 
               {/* Heading */}
-              <h2
-                style={{
-                  fontSize: "36px",
-                  lineHeight: "40px",
-                  fontFamily: "var(--font-hoves)",
-                  color: "#FFFFFF",
-                  margin: 0,
-                }}
-              >
-                Trade with Purpose,
-                <br />
-                Not Guesswork
+              <h2 className="text-3xl md:text-4xl font-normal leading-tight md:leading-[40px] font-hoves text-white">
+                Trade with Purpose, Not Guesswork
               </h2>
             </div>
 
             {/* Right: Description */}
-            <div
-              className="flex flex-col"
-              style={{ maxWidth: "540px", gap: "10px", alignSelf: "flex-start", paddingTop: "4px" }}
-            >
-              <p
-                style={{
-                  fontSize: "14px",
-                  lineHeight: "1.7",
-                  color: "rgba(255,255,255,0.65)",
-                  fontFamily: "var(--font-hoves)",
-                  margin: 45,
-                  textAlign: "end",
-                  marginRight: "-5px"
-                }}
-              >
-                Structured strategies powered by AI, designed to capture <br />
+            <div className="max-w-[540px] lg:self-end">
+              <p className="text-sm md:text-base leading-relaxed text-white/65 font-hoves lg:text-right">
+                Structured strategies powered by AI, designed to capture
                 opportunities across volatility, trends, and market momentum.
               </p>
             </div>
           </div>
 
           {/* ── Cards Grid ── */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "20px",
-              width: "100%",
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {categories.map((cat) => (
               <CategoryCard key={cat.title} {...cat} />
             ))}
           </div>
 
           {/* ── Explore Button ── */}
-          <div className="flex justify-center">
-            <button
-              style={{
-                width: "80px",
-                height: "6px",
-                padding: "19px 24px",
-                marginTop: "35px",
-                borderRadius: "40px",
-                border: "1px solid #FFFFFF",
-                background: "transparent",
-                color: "#FFFFFF",
-                fontSize: "12px",
-                fontFamily: "var(--font-hoves)",
-                cursor: "pointer",
-                transition: "background 0.2s ease, border-color 0.2s ease",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                
-              }}
-              onMouseEnter={(e) => {
-                const btn = e.currentTarget;
-                btn.style.background =
-                  "linear-gradient(90deg, #2563eb, #06b6d4)";
-                btn.style.borderColor = "transparent";
-              }}
-              onMouseLeave={(e) => {
-                const btn = e.currentTarget;
-                btn.style.background = "transparent";
-                btn.style.borderColor = "#FFFFFF";
-              }}
-            >
-              Explore
+          <div className="flex justify-center pt-4">
+            <button className="group relative px-10 py-3 rounded-full border border-white text-white text-xs font-medium uppercase tracking-widest font-hoves transition-all duration-500 overflow-hidden hover:border-transparent">
+              <span className="relative z-10">Explore</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </button>
           </div>
         </div>
       </div>
     </section>
   );
-}
+}

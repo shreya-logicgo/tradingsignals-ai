@@ -17,68 +17,35 @@ export default function FeatureCard({
 }: FeatureCardProps) {
   return (
     <div
-      className={`relative flex flex-col justify-between overflow-hidden hover:scale-[1.02] transition-transform duration-300 ${className}`}
+      className={`group relative flex flex-col justify-between p-6 lg:p-8 rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.01] hover:shadow-2xl hover:shadow-blue-900/10 border border-white/[0.06] min-h-[240px] md:min-h-[260px] h-full ${className}`}
       style={{
-        height: "260px",
-        borderRadius: "10px",
-        padding: "24px",
         backgroundImage: `url('${gradient}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        border: "1px solid rgba(255,255,255,0.08)",
-        backgroundClip: "padding-box",
-        outline: "none",
-        boxShadow: "none",
       }}
     >
-      {/* Dark overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "rgba(0,5,20,0.30)",
-          borderRadius: "10px",
-        }}
-      />
+      {/* Background Overlay for better text readability */}
+      <div className="absolute inset-0 bg-[#000514]/30 group-hover:bg-[#000514]/20 transition-colors duration-500 pointer-events-none" />
 
-      {/* Icon — top-left */}
-      <div className="relative z-10">
-        <Icon
-          style={{
-            width: "48px",
-            height: "48px",
-            color: "rgba(255,255,255,0.90)",
-            strokeWidth: 1.4,
-          }}
-        />
+      {/* Icon — elevated via z-index */}
+      <div className="relative z-10 flex-shrink-0">
+        <div className="w-12 h-12 flex items-center justify-center text-white/90">
+          <Icon className="w-10 h-10 md:w-12 md:h-12 stroke-[1.2]" />
+        </div>
       </div>
 
-      {/* Text — bottom */}
-      <div className="relative z-10">
-        <h3
-          style={{
-            fontSize: "18px",
-            fontWeight: 500,
-            color: "white",
-            lineHeight: "1.3",
-            marginBottom: "8px",
-            fontFamily: "var(--font-hoves)",
-          }}
-        >
+      {/* Text Content Area */}
+      <div className="relative z-10 mt-auto pt-8">
+        <h3 className="text-lg md:text-xl font-medium text-white leading-tight font-hoves mb-2 md:mb-3">
           {title}
         </h3>
-        <p
-          style={{
-            fontSize: "13px",
-            fontWeight: 400,
-            color: "rgba(255,255,255,0.60)",
-            lineHeight: "1.6",
-            maxWidth: "340px",
-            fontFamily: "var(--font-hoves)",
-          }}
-        >
+        <p className="text-[13px] md:text-sm font-normal text-white/50 group-hover:text-white/70 transition-colors leading-relaxed font-hoves max-w-[420px]">
           {description}
         </p>
       </div>
+
+      {/* Subtle bottom-edge highlight on hover */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/0 to-transparent group-hover:via-blue-500/40 transition-all duration-700" />
     </div>
   );
-}
+}

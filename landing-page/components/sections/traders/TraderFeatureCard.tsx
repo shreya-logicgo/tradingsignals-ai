@@ -8,72 +8,27 @@ interface TraderFeatureCardProps {
 
 export default function TraderFeatureCard({ icon, title, description }: TraderFeatureCardProps) {
   return (
-    <div
-      style={{
-        flex: "1 1 0",
-        minWidth: 0,
-        height: "160px",
-        padding: "12px",
-        borderRadius: "10px",
-        background: "rgba(255,255,255,0.05)",
-        border: "1px solid rgba(255,255,255,0.10)",
-        display: "flex",
-        flexDirection: "column",
-        gap: "25px",
-        boxSizing: "border-box",
-      }}
-    >
+    <div className="flex-1 min-w-0 p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-6 box-border transition-all duration-300 hover:border-white/20">
       {/* Inner container */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "30px", width: "100%" }}>
+      <div className="flex flex-col gap-6 w-full h-full">
 
         {/* Icon container */}
-        <div
-          style={{
-            width: "43px",
-            height: "45px",
-            padding: "9px",
-            borderRadius: "10px",
-            background: "linear-gradient(90deg, #0012B8 0%, #00F0FF 100%)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-          }}
-        >
-          <div style={{ width: "26px", height: "26px", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+        <div className="w-11 h-11 p-2.5 rounded-xl bg-gradient-to-r from-[#0012B8] to-[#00F0FF] flex items-center justify-center flex-shrink-0">
+          <div className="w-6 h-6 flex items-center justify-center text-white">
             {icon}
           </div>
         </div>
 
         {/* Text content */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "100%" }}>
-          <h3
-            style={{
-              fontFamily: "var(--font-hoves)",
-              fontWeight: 500,
-              fontSize: "16px",
-              textAlign: "left",
-              lineHeight: "100%",
-              color: "#FFFFFF",
-              margin: 0,
-            }}
-          >
+        <div className="flex flex-col gap-2 w-full">
+          <h3 className="font-hoves font-medium text-base text-left leading-none text-white m-0">
             {title}
           </h3>
-          <p
-            style={{
-              fontFamily: "var(--font-hoves)",
-              fontWeight: 200,
-              textAlign: "left",
-              fontSize: "12px",
-              lineHeight: "1.4",
-              color: "rgba(199,204,210,1)",
-            }}
-          >
+          <p className="font-hoves font-extralight text-left text-xs leading-relaxed text-[#c7ccd2]">
             {description}
           </p>
         </div>
       </div>
     </div>
   );
-}
+}

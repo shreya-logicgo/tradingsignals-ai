@@ -6,6 +6,7 @@ import HeroChart from "./HeroChart";
 
 import gradient1 from "@/assets/images/gradient_1_.png";
 import gradient2 from "@/assets/images/gradient_2_.png";
+import userslabel from "@/assets/images/avatars.png";
 
 const PARTICLES = [
   // Zone A — top-right teal (x: 62–96, y: 2–58)
@@ -64,11 +65,8 @@ const PARTICLES = [
 
 export default function Hero() {
   return (
-    <section
-      className="relative w-full min-h-screen pt-28 overflow-hidden"
-      style={{ backgroundColor: "#010B24" }}
-    >
-      {/* CSS keyframes — 3 drift paths for organic variety */}
+    <section className="relative w-full min-h-screen pt-24 md:pt-32 pb-16 overflow-hidden bg-[#010B24]">
+      {/* Organic floating animations for particles */}
       <style>{`
         @keyframes float-a {
           0%   { transform: translate(0px, 0px);    opacity: 0; }
@@ -93,101 +91,88 @@ export default function Hero() {
         }
       `}</style>
 
-      {/* ── Gradient Layer 1: Wide teal sweep — top-right ── */}
-      <Image
-        src={gradient2}
-        alt=""
-        aria-hidden="true"
-        className="absolute top-[-120px] right-[-10px] w-[900px] lg:w-[1200px] max-w-none opacity-90 pointer-events-none z-0 object-contain"
-        priority
-      />
+      {/* ── Background Gradients — scaling responsively to prevent overflow ── */}
+      <div className="absolute top-[-150px] right-[-5%) md:right-[-10px] w-full max-w-[1200px] pointer-events-none z-0 opacity-80">
+        <Image
+          src={gradient2}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-auto object-contain"
+          priority
+        />
+      </div>
 
-      {/* ── Gradient Layer 2: Blue/white beam — top-left ── */}
-      <Image
-        src={gradient1}
-        alt=""
-        aria-hidden="true"
-        className="absolute top-0 left-0 w-[55%] h-auto opacity-75 pointer-events-none z-0 object-contain"
-        priority
-      />
+      <div className="absolute top-0 left-0 w-full md:w-[70%] lg:w-[55%] pointer-events-none z-0 opacity-70">
+        <Image
+          src={gradient1}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-auto object-contain"
+          priority
+        />
+      </div>
 
-      {/* ── Particles — pure CSS, GPU composited, zero JS ── */}
-      {PARTICLES.map((p, i) => {
-        const anim = i % 3 === 0 ? "float-a" : i % 3 === 1 ? "float-b" : "float-c";
-        return (
-          <div
-            key={p.id}
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              left: `${p.x}%`,
-              top: `${p.y}%`,
-              width: `${p.s}px`,
-              height: `${p.s}px`,
-              borderRadius: "50%",
-              backgroundColor: `rgba(255,255,255,${p.o})`,
-              pointerEvents: "none",
-              zIndex: 1,
-              willChange: "transform, opacity",
-              animation: `${anim} ${p.dur}s ease-in-out ${p.del}s infinite`,
-            }}
-          />
-        );
-      })}
+      {/* ── Particles Layer — CSS animated, absolute positioned ── */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        {PARTICLES.map((p, i) => {
+          const anim = i % 3 === 0 ? "float-a" : i % 3 === 1 ? "float-b" : "float-c";
+          return (
+            <div
+              key={p.id}
+              aria-hidden="true"
+              className="absolute rounded-full will-change-transform"
+              style={{
+                left: `${p.x}%`,
+                top: `${p.y}%`,
+                width: `${p.s}px`,
+                height: `${p.s}px`,
+                backgroundColor: `rgba(255,255,255,${p.o})`,
+                animation: `${anim} ${p.dur}s ease-in-out ${p.del}s infinite`,
+              }}
+            />
+          );
+        })}
+      </div>
 
-      {/* ── All content ── */}
-      <Container className="relative z-10 flex flex-col items-center text-center gap-6">
-
-        {/* BADGE */}
-        <div className="flex items-center gap-3 px-5 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+      {/* ── Main content area ── */}
+      <Container className="relative z-20 flex flex-col items-center text-center gap-6 md:gap-8">
+        
+        {/* Social Proof Badge — Scaled down for mobile balance */}
+        <div className="flex items-center gap-2.5 px-4 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4">
           <Image
-            src="/avatars.png"
-            alt="Users"
-            width={120}
-            height={32}
-            className="h-7 w-auto"
+            src={userslabel}  
+            alt="TSAI Traders"
+            width={100}
+            height={28}
+            className="h-5 md:h-6 w-auto"
           />
-          <span className="text-[14px] text-gray-200 whitespace-nowrap">
-            Used by over{" "}
-            <span className="text-white font-medium">10,000+</span> traders
+          <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap">
+            Used by over <span className="text-white font-semibold">10,000+</span> traders
           </span>
         </div>
 
-        {/* HEADING */}
-        <h1 className="text-[48px] font-semibold leading-tight text-white max-w-[1200px]">
-          Trade Smarter, Grow Faster <br />
+        {/* HERO TITLE */}
+        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[72px] font-semibold leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[1000px]">
+          Trade Smarter, Grow Faster <br className="hidden md:block" />
           with Trading Signal AI
         </h1>
 
-        {/* SUBTEXT */}
-        <p className="text-gray-400 text-base md:text-lg max-w-[620px]">
-          Join Trading Signal Ai to get AI-powered signals for Forex, Crypto &
-          the Indian Market—backed by real-time analysis and live results.
+        {/* SUPPORTING TEXT */}
+        <p className="text-gray-400 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0">
+          Join thousands of traders getting AI-powered signals for Forex, Crypto &
+          the Indian Market — backed by real-time analysis and live results.
         </p>
 
-        {/* CTA */}
-        <div className="flex gap-4 mt-2">
-          <button
-            className="w-[199px] h-[52px] rounded-full border border-white/30 bg-transparent text-white text-sm flex items-center justify-center transition"
-
-            onMouseEnter={(e) => {
-              const btn = e.currentTarget as HTMLButtonElement;
-              btn.style.background = "#FFFFFF";
-              btn.style.color = "#000000";
-            }}
-
-            onMouseLeave={(e) => {
-              const btn = e.currentTarget as HTMLButtonElement;
-              btn.style.background = "transparent";
-              btn.style.color = "#FFFFFF";
-            }}
-          >
+        {/* PRIMARY CTA — Optimized mobile height and width */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
+          <button className="w-full sm:w-[220px] h-12 md:h-14 rounded-full text-sm md:text-[15px] font-medium transition-all duration-300 bg-white text-black hover:bg-gray-100 hover:scale-105 active:scale-95 shadow-xl">
             Start Trading Now
           </button>
         </div>
 
-        {/* CHART */}
-        <div className="w-full mt-8">
+
+        {/* Product Visual (Chart/Dashboard) */}
+        <div className="w-full mt-10 md:mt-16">
           <HeroChart />
         </div>
 

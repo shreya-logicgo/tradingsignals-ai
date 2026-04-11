@@ -35,98 +35,33 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section
-      className="w-full relative overflow-hidden py-5"
-      style={{ backgroundColor: "#010B24" }}
-    >
-      <div
-        className="w-full mx-auto"
-        style={{
-          paddingLeft: "clamp(20px, 13vw, 250px)",
-          paddingRight: "clamp(20px, 13vw, 250px)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1420px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "60px",
-          }}
-        >
-          {/* ── Header ── */}
-          <div
-            style={{
-              maxWidth: "619px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              gap: "30px",
-            }}
-          >
+    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+      {/* Outer container — responsive horizontal padding */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+        <div className="flex flex-col items-center gap-12 lg:gap-16">
+          
+          {/* ── Header Block ── */}
+          <div className="flex flex-col items-center text-center gap-6 max-w-[619px]">
             {/* Badge */}
-            <div
-              style={{
-                padding: "5px 14px",
-                borderRadius: "40px",
-                border: "1px solid rgba(255,255,255,0.2)",
-                background: "rgba(255,255,255,0.04)",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontFamily: "var(--font-mono)",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.7)",
-                }}
-              >
+            <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
                 FAQ
               </span>
             </div>
 
             {/* Heading */}
-            <h2
-              style={{
-                fontFamily: "var(--font-hoves)",
-                fontWeight: 500,
-                fontSize: "40px",
-                lineHeight: "1.2",
-                color: "#FFFFFF",
-                margin: 0,
-              }}
-            >
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
               Frequently Asked Questions
             </h2>
 
             {/* Subtext */}
-            <p
-              style={{
-                fontFamily: "var(--font-hoves)",
-                fontSize: "16px",
-                color: "rgba(199,204,210,1)",
-                lineHeight: "1.5",
-                maxWidth: "500px",
-                margin: 0,
-              }}
-            >
+            <p className="font-hoves font-light text-sm md:text-base text-[#C7CCD2] leading-relaxed max-w-[500px]">
               Everything you need to know about Trading Signals AI
             </p>
           </div>
 
           {/* ── FAQ Accordion List ── */}
-          <div
-            style={{
-              width: "750px",
-              maxWidth: "100%",
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-            }}
-          >
+          <div className="w-full max-w-3xl flex flex-col gap-4">
             {faqs.map((faq, i) => (
               <FAQItem key={i} question={faq.question} answer={faq.answer} />
             ))}
@@ -135,4 +70,4 @@ export default function FAQ() {
       </div>
     </section>
   );
-}
+}
