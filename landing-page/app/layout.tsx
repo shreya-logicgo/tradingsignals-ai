@@ -1,6 +1,9 @@
+import Navbar from "@/components/common/navbar/Navbar";
 import "./globals.css";
 import { Inter, Space_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import Footer from "@/components/common/footer/Footer";
+import { I18nProvider } from "@/components/I18nProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,8 +38,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${spaceMono.variable} ${ttHoves.variable}`}>
-
-        {children}
+        <I18nProvider>
+          <Navbar/>
+          {children}
+          <Footer />
+        </I18nProvider>
       </body>
     </html>
   );

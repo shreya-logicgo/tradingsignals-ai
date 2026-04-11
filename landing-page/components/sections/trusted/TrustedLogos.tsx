@@ -1,4 +1,5 @@
 "use client";
+import { useTranslation } from "react-i18next";
 
 const logos = [
   {
@@ -100,6 +101,8 @@ const logos = [
 const allLogos = [...logos, ...logos, ...logos];
 
 export default function TrustedLogos() {
+  const { t } = useTranslation();
+
   return (
     <section className="w-full pt-2 pb-10 overflow-hidden relative">
 
@@ -114,7 +117,7 @@ export default function TrustedLogos() {
           fontWeight: 500,
         }}
       >
-        Integrated with Top Exchanges
+        {t("hero.integration")}
       </p>
 
       {/* Marquee strip */}
