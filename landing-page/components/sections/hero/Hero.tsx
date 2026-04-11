@@ -65,7 +65,7 @@ const PARTICLES = [
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-screen pt-24 md:pt-32 pb-16 overflow-hidden bg-[#010B24]">
+    <section className="relative w-full min-h-screen pt-30 md:pt-42  pb-16 overflow-hidden bg-[#010B24]">
       {/* Organic floating animations for particles */}
       <style>{`
         @keyframes float-a {
@@ -158,9 +158,8 @@ export default function Hero() {
         </h1>
 
         {/* SUPPORTING TEXT */}
-        <p className="text-gray-400 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0"style={{ fontFamily: "var(--font-hoves)" }}>
-          Join thousands of traders getting AI-powered signals for Forex, Crypto &
-          the Indian Market — backed by real-time analysis and live results.
+        <p className="text-white/80 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0"style={{ fontFamily: "var(--font-hoves)" }}>
+          Trade smarter with AI-driven signals, structured strategies, and real-time analytics — all in one unified platform.
         </p>
 
         {/* PRIMARY CTA — Optimized mobile height and width */}
