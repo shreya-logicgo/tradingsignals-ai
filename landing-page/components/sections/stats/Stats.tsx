@@ -42,9 +42,7 @@ export default function Stats() {
             {i > 0 && (
               <div
                 className="w-16 h-[1px] md:w-[1px] md:h-[44px] my-6 md:my-0 md:mx-[60px] shrink-0"
-                style={{
-                  background: "rgba(255,255,255,0.12)",
-                }}
+            
               />
             )}
 

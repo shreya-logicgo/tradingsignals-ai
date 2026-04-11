@@ -31,7 +31,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+    <section className="w-full bg-[#010B24] py-5 md:py-5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         
         {/* Header Section — Mobile-first column, Desktop split row */}
@@ -47,14 +47,14 @@ export default function Features() {
             </div>
 
             {/* Main Section Heading */}
-            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-medium text-white leading-tight md:leading-[1.15] font-hoves max-w-[520px]">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-medium text-white leading-tight md:leading-[1.15] font-hoves max-w-[520px]"style={{ fontFamily: "var(--font-hoves)" }}>
               Everything You Need to Trade Profitably
             </h2>
           </div>
 
           {/* Right: Supporting brief */}
           <div className="lg:max-w-[420px] lg:mb-2 flex-shrink-0">
-            <p className="text-[15px] md:text-base font-normal text-white/50 leading-relaxed font-hoves">
+            <p className="text-[15px] md:text-base font-normal text-white/50 leading-relaxed font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
               A complete trading ecosystem built for modern crypto traders.
               From signals to execution to analytics.
             </p>
@@ -87,4 +87,4 @@ export default function Features() {
       <div className="absolute bottom-0 left-0 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />
     </section>
   );
-}
+}

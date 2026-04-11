@@ -95,11 +95,17 @@ const strategies = [
 
 export default function Strategies() {
   return (
-    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+    <section
+      className="w-full py-10 md:py-16 relative overflow-hidden"
+      style={{
+        /* #010B24 for ~85% of the section, only a small bottom portion fades to #042b8d */
+        background: "linear-gradient(180deg, #010B24 0%, #010B24 75%, #02164b 100%)",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         
         {/* Header Section */}
-        <div className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-12 md:mb-16 gap-6 md:gap-8">
+        <div className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-8 md:mb-12 gap-4 md:gap-6">
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 shadow-inner">
             <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-[#C7CCD2]">
@@ -107,11 +113,11 @@ export default function Strategies() {
             </span>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
-            <h2 className="text-white font-hoves font-medium text-3xl md:text-4xl lg:text-5xl leading-tight">
+          <div className="flex flex-col items-center gap-2">
+            <h2 className="text-white font-hoves font-medium text-3xl md:text-4xl lg:text-5xl leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
               Choose Your Trading Channels
             </h2>
-            <p className="font-hoves text-[15px] md:text-base text-[#C7CCD2] leading-relaxed max-w-[600px] opacity-80">
+            <p className="font-hoves text-[15px] md:text-base text-[#C7CCD2] leading-relaxed max-w-[600px] opacity-80"style={{ fontFamily: "var(--font-hoves)" }}>
               Access specialized AI-driven signal streams, each built for a
               specific strategy — from scalping and swing trading to momentum
               and automation.
@@ -120,7 +126,7 @@ export default function Strategies() {
         </div>
 
         {/* Filters and Tabs */}
-        <div className="flex flex-col gap-6 mb-12">
+        <div className="flex flex-col gap-4 ">
           <StrategyTabs />
           <StrategyFilters />
         </div>

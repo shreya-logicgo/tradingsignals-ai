@@ -146,29 +146,45 @@ export default function Hero() {
             height={28}
             className="h-5 md:h-6 w-auto"
           />
-          <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap">
-            Used by over <span className="text-white font-semibold">10,000+</span> traders
+          <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap"style={{ fontFamily: "var(--font-hoves)" }}>
+            Used by over <span className="text-white ">10,000+</span> traders
           </span>
         </div>
 
         {/* HERO TITLE */}
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[72px] font-semibold leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[1000px]">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[1000px]"style={{ fontFamily: "var(--font-hoves)" }}>
           Trade Smarter, Grow Faster <br className="hidden md:block" />
           with Trading Signal AI
         </h1>
 
         {/* SUPPORTING TEXT */}
-        <p className="text-gray-400 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0">
+        <p className="text-gray-400 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0"style={{ fontFamily: "var(--font-hoves)" }}>
           Join thousands of traders getting AI-powered signals for Forex, Crypto &
           the Indian Market — backed by real-time analysis and live results.
         </p>
 
         {/* PRIMARY CTA — Optimized mobile height and width */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
-          <button className="w-full sm:w-[220px] h-12 md:h-14 rounded-full text-sm md:text-[15px] font-medium transition-all duration-300 bg-white text-black hover:bg-gray-100 hover:scale-105 active:scale-95 shadow-xl">
-            Start Trading Now
-          </button>
-        </div>
+  <button
+    className="w-full sm:w-[160px] h-5 md:h-8 rounded-full border border-white/30 font-mono bg-transparent text-white text-sm md:text-[13px] font-medium flex items-center justify-center transition-all duration-300"
+    
+    onMouseEnter={(e) => {
+      const btn = e.currentTarget as HTMLButtonElement;
+      btn.style.background = "#FFFFFF";
+      btn.style.color = "#000000";
+      btn.style.borderColor = "#FFFFFF";
+    }}
+
+    onMouseLeave={(e) => {
+      const btn = e.currentTarget as HTMLButtonElement;
+      btn.style.background = "transparent";
+      btn.style.color = "#FFFFFF";
+      btn.style.borderColor = "rgba(255,255,255,0.3)";
+    }}
+  >
+    Start Trading Now
+  </button>
+</div>
 
 
         {/* Product Visual (Chart/Dashboard) */}

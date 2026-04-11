@@ -17,7 +17,7 @@ export default function FeatureCard({
 }: FeatureCardProps) {
   return (
     <div
-      className={`group relative flex flex-col justify-between p-6 lg:p-8 rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.01] hover:shadow-2xl hover:shadow-blue-900/10 border border-white/[0.06] min-h-[240px] md:min-h-[260px] h-full ${className}`}
+      className={`group relative flex flex-col justify-between p-6 lg:p-8 rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.01] hover:shadow-2xl hover:shadow-blue-900/10  min-h-[240px] md:min-h-[260px] h-full ${className}`}
       style={{
         backgroundImage: `url('${gradient}')`,
         backgroundSize: "cover",
@@ -36,10 +36,10 @@ export default function FeatureCard({
 
       {/* Text Content Area */}
       <div className="relative z-10 mt-auto pt-8">
-        <h3 className="text-lg md:text-xl font-medium text-white leading-tight font-hoves mb-2 md:mb-3">
+        <h3 className="text-lg md:text-xl font-medium text-white leading-tight font-hoves mb-2 md:mb-3"style={{ fontFamily: "var(--font-hoves)" }}>
           {title}
         </h3>
-        <p className="text-[13px] md:text-sm font-normal text-white/50 group-hover:text-white/70 transition-colors leading-relaxed font-hoves max-w-[420px]">
+        <p className="text-[13px] md:text-sm font-normal text-white/50 group-hover:text-white/70 transition-colors leading-relaxed font-hoves max-w-[420px]"style={{ fontFamily: "var(--font-hoves)" }}>
           {description}
         </p>
       </div>
@@ -48,4 +48,4 @@ export default function FeatureCard({
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/0 to-transparent group-hover:via-blue-500/40 transition-all duration-700" />
     </div>
   );
-}
+}
