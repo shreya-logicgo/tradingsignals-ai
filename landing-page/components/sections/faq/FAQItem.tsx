@@ -21,7 +21,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
     >
       {/* Question row */}
       <div className="flex items-center justify-between gap-4 py-2">
-        <span className="font-hoves font-medium text-base text-white leading-tight">
+        <span className="font-hoves font-medium text-base text-white leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
           {question}
         </span>
 
@@ -50,10 +50,10 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
           isOpen ? "max-h-[500px] mt-4 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <p className="font-hoves font-light text-[14px] text-[#c7ccd2] leading-relaxed pb-2">
+        <p className="font-hoves font-light text-[14px] text-[#c7ccd2] leading-relaxed pb-2"style={{ fontFamily: "var(--font-hoves)" }}>
           {answer}
         </p>
       </div>
     </div>
   );
-}
+}

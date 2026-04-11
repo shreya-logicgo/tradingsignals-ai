@@ -40,39 +40,38 @@ export default function StrategyCard({
 
         {/* Text Area */}
         <div className="flex flex-col gap-2 relative z-10 flex-grow">
-          <h3 className="text-white text-[15px] font-medium leading-snug font-hoves">
+          <h3 className="text-white text-[15px] font-medium leading-snug font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
             {name}
           </h3>
-          <p className="text-[13px] font-hoves text-white/50 leading-relaxed line-clamp-3 group-hover:text-white/70 transition-colors">
+          <p className="text-[13px] font-hoves text-white/50 leading-relaxed line-clamp-3 group-hover:text-white/70 transition-colors"style={{ fontFamily: "var(--font-hoves)" }}>
             {description}
           </p>
         </div>
 
-        {/* Divider */}
-        <div className="h-[1px] w-full bg-white/5 relative z-10" />
+      
 
         {/* Footer Stats Area */}
         <div className="flex flex-col gap-5 relative z-10">
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-lg font-semibold text-green-500 font-hoves leading-tight tracking-tight">
+              <span className="text-lg font-semibold text-green-500 font-hoves leading-tight tracking-tight"style={{ fontFamily: "var(--font-hoves)" }}>
                 {roi}
               </span>
-              <span className="text-[11px] text-white/30 font-hoves uppercase tracking-wider">
+              <span className="text-[11px] text-white/30 font-hoves uppercase tracking-wider"style={{ fontFamily: "var(--font-hoves)" }}>
                 Monthly Avg
               </span>
             </div>
-            <span className="text-white/80 font-medium text-sm font-hoves">
+            <span className="text-white/80 font-medium text-sm font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
               {price}
             </span>
           </div>
 
           {/* Action Button */}
-          <button className="w-full h-11 rounded-full text-sm font-medium transition-all duration-300 font-hoves bg-blue-600/10 text-white border border-white/10 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-600/20">
+          <button className="w-full h-11 rounded-full text-sm font-medium transition-all duration-300 font-hoves bg-blue-600/10 text-white border border-white/10 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-600/20"style={{ fontFamily: "var(--font-hoves)" }}>
             Trade Now
           </button>
         </div>
       </div>
     </div>
   );
-}
+}

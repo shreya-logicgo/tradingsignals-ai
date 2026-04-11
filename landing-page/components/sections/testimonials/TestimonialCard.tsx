@@ -27,9 +27,9 @@ export default function TestimonialCard({ image, quote }: TestimonialCardProps) 
       </div>
 
       {/* Quote */}
-      <p className="text-sm text-white/70 leading-relaxed m-0 font-hoves">
+      <p className="text-sm text-white/70 leading-relaxed m-0 font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
         {quote}
       </p>
     </div>
   );
-}
+}

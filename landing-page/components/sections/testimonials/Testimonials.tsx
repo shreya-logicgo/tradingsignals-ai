@@ -51,24 +51,24 @@ export default function Testimonials() {
           {/* ── CENTER / HEADING (Top on Mobile, Middle on Desktop) ── */}
           <div className="flex flex-col items-center text-center gap-6 lg:mt-10 order-1 lg:order-2 md:col-span-2 lg:col-span-1">
             {/* Badge */}
-            <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
+            <div className="px-3.5 py-1 flex justify-center rounded-full border border-white/20 bg-white/5">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70"style={{ fontFamily: "var(--font-mono)" }}>
                 Testimonials
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl md:text-4xl font-medium leading-tight text-white font-hoves">
+            <h2 className="text-4xl md:text-5xl font-medium leading-tight text-white font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
               Trusted by 1k+ <br className="hidden md:block" /> Traders
             </h2>
 
             {/* Subtext */}
-            <p className="text-sm md:text-base text-white/65 leading-relaxed font-hoves max-w-xs">
+            <p className="text-sm md:text-base text-white/65 leading-relaxed font-hoves max-w-xs"style={{ fontFamily: "var(--font-hoves)" }}>
               Real results from real traders using Trading Signals AI
             </p>
 
             {/* Featured Testimonial Card */}
-            <div className="w-full mt-4">
+            <div className="w-full mt-4"style={{ fontFamily: "var(--font-hoves)" }}>
               <TestimonialCard
                 image={img3}
                 quote="Trading Signals AI has transformed my trading experience. The platform is user-friendly, and the signals are accurate and timely. I've seen a significant improvement in my trading performance since I started using it."
@@ -94,4 +94,4 @@ export default function Testimonials() {
       </div>
     </section>
   );
-}
+}

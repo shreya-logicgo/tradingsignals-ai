@@ -94,7 +94,7 @@ export default function Traders() {
   const visibleCards = allCards.slice(startIndex, startIndex + visibleCount);
 
   return (
-    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+    <section className="w-full bg-[#010B24] py-3 md:py-3 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex flex-col gap-12 lg:gap-16 items-center">
           
@@ -108,12 +108,12 @@ export default function Traders() {
             </div>
 
             {/* Heading */}
-            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight">
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
               Built for Serious Traders
             </h2>
 
             {/* Subtext */}
-            <p className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed max-w-[480px]">
+            <p className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed max-w-[480px]"style={{ fontFamily: "var(--font-hoves)" }}>
               We obsess over the details so you can focus on what matters: profitable trading.
             </p>
           </div>
@@ -171,4 +171,4 @@ export default function Traders() {
       </div>
     </section>
   );
-}
+}

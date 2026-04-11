@@ -18,7 +18,7 @@ export default function StepCard({
   return (
     <div className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-[330px] group">
       {/* Step badge — floats above top-right of card */}
-      <div className="absolute -top-3 -right-2 px-5 py-1.5 rounded-full bg-blue-700 text-white text-[11px] font-bold font-hoves z-20 shadow-lg border border-white/10 tracking-wider">
+      <div className="absolute -top-3 -right-2 px-5 py-1.5 rounded-full bg-blue-700 text-white text-[12px]  font-hoves z-20 shadow-lg border border-white/10 tracking-wider"style={{ fontFamily: "var(--font-hoves)" }}>
         {step}
       </div>
 
@@ -31,10 +31,10 @@ export default function StepCard({
 
         {/* Text content */}
         <div className="flex flex-col gap-4">
-          <h3 className="text-white text-lg font-medium font-hoves leading-tight">
+          <h3 className="text-white text-lg font-medium font-hoves leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
             {title}
           </h3>
-          <p className="text-[13px] font-light text-white/50 leading-relaxed font-hoves">
+          <p className="text-[13px] font-light text-white/50 leading-relaxed font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
             {description}
           </p>
         </div>
@@ -42,4 +42,4 @@ export default function StepCard({
     </div>
   );
 }
-
+

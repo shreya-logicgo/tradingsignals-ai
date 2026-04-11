@@ -47,7 +47,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden lg:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-8"style={{ fontFamily: "var(--font-hoves)" }}>
           {navLinks.map((link) => (
             <li key={link.label}>
               <Link
@@ -65,16 +65,19 @@ export default function Navbar() {
           <Link
             href="/login"
             className="px-5 py-1.5 rounded-full border border-white/30 text-white text-sm font-medium hover:bg-white/10 transition-colors duration-200"
+            style={{ fontFamily: "var(--font-hoves)" }}
+
           >
             {t("navbar.login")}
           </Link>
           <Link
             href="/signup"
             className="px-5 py-1.5 rounded-full bg-white text-[#0a0e1a] text-sm font-bold hover:bg-gray-100 transition-colors duration-200"
+            style={{ fontFamily: "var(--font-hoves)" }}
           >
             {t("navbar.signup")}
           </Link>
-          <div className="relative flex items-center">
+          <div className="relative flex items-center"style={{ fontFamily: "var(--font-hoves)" }}>
             <select
               value={i18n.language || "en"}
               onChange={handleLanguageChange}
