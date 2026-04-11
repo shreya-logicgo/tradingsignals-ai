@@ -20,7 +20,7 @@ export default function Steps() {
             </div>
 
             {/* Heading */}
-            <h2 className="text-4xl md:text-[40px] font-medium leading-tight md:leading-[1.1] text-white font-hoves mb-6 lg:max-w-md"style={{ fontFamily: "var(--font-hoves)" }}>
+            <h2 className="text-4xl md:text-[40px] font-medium leading-tight md:leading-[1.1] text-white font-hoves mb-2 lg:max-w-md"style={{ fontFamily: "var(--font-hoves)" }}>
               Start Trading in 3 Simple Steps
             </h2>
 

@@ -54,7 +54,7 @@ export default function Features() {
 
           {/* Right: Supporting brief */}
           <div className="lg:max-w-[420px] lg:mb-2 flex-shrink-0">
-            <p className="text-[15px] md:text-base font-normal text-white/50 leading-relaxed font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
+            <p className="text-[15px] md:text-base font-normal text-white/80 leading-relaxed font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
               A complete trading ecosystem built for modern crypto traders.
               From signals to execution to analytics.
             </p>

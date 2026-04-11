@@ -39,7 +39,7 @@ export default function FeatureCard({
         <h3 className="text-lg md:text-xl font-medium text-white leading-tight font-hoves mb-2 md:mb-3"style={{ fontFamily: "var(--font-hoves)" }}>
           {title}
         </h3>
-        <p className="text-[13px] md:text-sm font-normal text-white/50 group-hover:text-white/70 transition-colors leading-relaxed font-hoves max-w-[420px]"style={{ fontFamily: "var(--font-hoves)" }}>
+        <p className="text-[13px] md:text-sm font-normal text-white/70 group-hover:text-white/90 transition-colors leading-relaxed font-hoves max-w-[420px]"style={{ fontFamily: "var(--font-hoves)" }}>
           {description}
         </p>
       </div>

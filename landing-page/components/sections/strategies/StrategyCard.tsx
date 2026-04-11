@@ -23,7 +23,7 @@ export default function StrategyCard({
       <div className="absolute inset-0 rounded-xl bg-white/10 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-cyan-400 transition-colors duration-300" />
       
       {/* Inner Card Content */}
-      <div className="relative flex flex-col w-full h-full p-6 gap-6 rounded-[11px] bg-gradient-to-br from-[#0b1736] to-[#0a1124] z-10 overflow-hidden">
+      <div className="relative flex flex-col w-full h-full p-3 gap-4 rounded-[11px] bg-gradient-to-br from-[#0b1736] to-[#0a1124] z-10 overflow-hidden">
         {/* Glow Effect on Hover */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-600/10 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

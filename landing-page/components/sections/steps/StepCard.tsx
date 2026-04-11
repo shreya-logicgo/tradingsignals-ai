@@ -23,18 +23,18 @@ export default function StepCard({
       </div>
 
       {/* Card Body */}
-      <div className="flex flex-col h-full min-h-[290px] p-8 gap-8 rounded-xl bg-[#0b1224] border border-white/[0.05] shadow-2xl transition-all duration-500 group-hover:border-white/10 group-hover:bg-[#0d152b]">
+      <div className="flex flex-col h-full min-h-[260px] p-8 gap-8 rounded-xl bg-[#0b1224] border border-white/[0.05] shadow-2xl transition-all duration-500 group-hover:border-white/10 group-hover:bg-[#0d152b]">
         {/* Icon container */}
         <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-black/40 border border-white/[0.05] shadow-inner flex-shrink-0">
           <Icon size={26} className="text-white/80" />
         </div>
 
         {/* Text content */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
           <h3 className="text-white text-lg font-medium font-hoves leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
             {title}
           </h3>
-          <p className="text-[13px] font-light text-white/50 leading-relaxed font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
+          <p className="text-[13px] font-light text-white/70 leading-relaxed font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
             {description}
           </p>
         </div>
