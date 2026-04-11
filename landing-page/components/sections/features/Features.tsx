@@ -32,7 +32,7 @@ const features = [
 export default function Features() {
   return (
     <section
-      className="w-full py-1"
+      className="w-full py-5"
       style={{ backgroundColor: "#010B24" }}
     >
       {/*

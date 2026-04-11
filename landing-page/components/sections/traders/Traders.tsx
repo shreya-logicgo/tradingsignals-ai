@@ -76,7 +76,7 @@ export default function Traders() {
 
   return (
     <section
-      className="w-full relative overflow-hidden pb-4"
+      className="w-full relative overflow-hidden py-5"
       style={{ backgroundColor: "#010B24", textAlign: "center"}}
     >
       {/* Inner wrapper */}

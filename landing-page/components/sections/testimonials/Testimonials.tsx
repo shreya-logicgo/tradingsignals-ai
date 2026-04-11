@@ -35,11 +35,11 @@ const rightCards = [
 export default function Testimonials() {
   return (
     <section
-      className="w-full relative overflow-hidden"
+      className="w-full relative overflow-hidden py-5"
       style={{
         background:
           "linear-gradient(180deg, rgba(0,40,255,0.25) 0%, rgba(0,18,184,0.15) 30%, rgba(0,10,80,0.08) 55%, rgba(1,6,26,0) 100%)",
-        padding: "120px 0",
+       
       }}
     >
       {/* Radial depth glow */}

@@ -1,15 +1,14 @@
-import Image from "next/image";
-import chart from "@/assets/images/chart.png";
 import Container from "@/components/common/container/Container";
+import heroGif from "@/assets/images/hero.gif"; // ✅ import your GIF
 
 export default function HeroChart() {
   return (
-    <section className="w-full relative z-10 pt-[50px]">
+    <section className="w-full relative z-10 pt-[10px]">
       <Container className="flex justify-center">
 
         <div className="relative w-full max-w-[1100px]">
 
-          {/* Outer ambient glow — blue halo behind the card */}
+          {/* Outer ambient glow */}
           <div
             className="absolute -inset-4 -z-10 rounded-3xl"
             style={{
@@ -19,11 +18,10 @@ export default function HeroChart() {
             }}
           />
 
-          {/* Glass card wrapper */}
+          {/* Glass card */}
           <div
             className="relative w-full rounded-2xl overflow-hidden"
             style={{
-              
               background: "rgba(2, 8, 30, 0.45)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
@@ -32,7 +30,7 @@ export default function HeroChart() {
             }}
           >
 
-            {/* Browser chrome bar */}
+            {/* Browser bar */}
             <div
               className="flex items-center gap-2 px-4 py-[10px]"
               style={{
@@ -40,12 +38,10 @@ export default function HeroChart() {
                 borderBottom: "1px solid rgba(80,160,255,0.12)",
               }}
             >
-              {/* Traffic lights */}
-              <span className="w-[11px] h-[11px]  rounded-full bg-[#ff5f57]"  />
+              <span className="w-[11px] h-[11px] rounded-full bg-[#ff5f57]" />
               <span className="w-[11px] h-[11px] rounded-full bg-[#ffbd2e]" />
               <span className="w-[11px] h-[11px] rounded-full bg-[#28c840]" />
 
-              {/* URL bar centred */}
               <div
                 className="mx-89.5"
                 style={{
@@ -64,16 +60,15 @@ export default function HeroChart() {
               </div>
             </div>
 
-            {/* Chart image + overlays */}
+            {/* GIF instead of chart */}
             <div className="relative w-full">
-              <Image
-                src={chart}
+              <img
+                src={heroGif.src} // ✅ important
                 alt="Trading Chart"
                 className="w-full h-auto block"
-                priority
               />
 
-              {/* Bottom fade — tall & strong to match Figma */}
+              {/* Bottom fade */}
               <div
                 className="absolute bottom-0 left-0 right-0 pointer-events-none"
                 style={{
@@ -96,7 +91,6 @@ export default function HeroChart() {
                     padding: "10px 20px 10px 10px",
                   }}
                 >
-                  {/* Blue play circle */}
                   <span
                     className="flex items-center justify-center w-9 h-9 rounded-full flex-shrink-0"
                     style={{
@@ -130,7 +124,7 @@ export default function HeroChart() {
             </div>
           </div>
 
-          {/* Reflection line under the card */}
+          {/* Reflection line */}
           <div
             className="absolute -bottom-px left-1/2 -translate-x-1/2 w-3/4 h-px"
             style={{

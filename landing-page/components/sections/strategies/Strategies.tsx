@@ -95,7 +95,7 @@ const strategies = [
 
 export default function Strategies() {
   return (
-    <section className="w-full py-24" style={{ backgroundColor: "#010B24" }}>
+    <section className="w-full py-5" style={{ backgroundColor: "#010B24" }}>
       <div
         className="w-full mx-auto"
         style={{
@@ -112,7 +112,7 @@ export default function Strategies() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              padding: "5px 7px",
+              padding: "5px 5px",
               borderRadius: "40px",
               border: "1px solid rgba(255,255,255,0.10)",
             }}

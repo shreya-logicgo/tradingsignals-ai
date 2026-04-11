@@ -2,6 +2,8 @@
 
 import Navbar from "@/components/common/navbar/Navbar";
 import Categories from "@/components/sections/categories/Categories";
+import CTA from "@/components/sections/cta/CTA";
+import FAQ from "@/components/sections/faq/FAQ";
 import Features from "@/components/sections/features/Features";
 import Hero from "@/components/sections/hero/Hero";
 import Stats from "@/components/sections/stats/Stats";
@@ -24,6 +26,8 @@ export default function Home() {
       <Categories />
       <Traders />
       <Testimonials />
+      <FAQ />
+      <CTA /> 
     </main>
   );
 }
