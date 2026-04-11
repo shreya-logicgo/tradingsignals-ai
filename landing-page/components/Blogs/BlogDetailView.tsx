@@ -31,14 +31,14 @@ export default function BlogDetailView({ post, formattedDate, enrichedContent }:
 
       {/* Author + date */}
       <div className="flex items-center gap-3 mb-7">
-        <div className="w-8 h-8 rounded-full bg-[#0057FF] flex items-center justify-center overflow-hidden shrink-0">
+        <div className="w-8 h-8 rounded-full bg-[linear-gradient(276deg,_rgba(0,240,255,1)_15%,_rgba(0,18,184,1)_76%)] flex items-center justify-center overflow-hidden shrink-0">
           {post.author.avatar ? (
             <Image
               src={post.author.avatar}
               alt={post.author.name}
-              width={32}
-              height={32}
-              className="object-cover w-full h-full"
+              width={22}
+              height={22}
+              className="object-cover flex justify-center items-center mx-auto"
             />
           ) : (
             <svg width="18" height="18" viewBox="0 0 36 36" fill="none">
