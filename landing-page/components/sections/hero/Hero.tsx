@@ -68,8 +68,8 @@ export default function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative w-full min-h-screen pt-24 md:pt-32 pb-16 overflow-hidden bg-[#010B24]">
-      {/* ... keeping CSS styles ... */}
+    <section className="relative w-full min-h-screen pt-30 md:pt-42  pb-16 overflow-hidden bg-[#010B24]">
+      {/* Organic floating animations for particles */}
       <style>{`
         @keyframes float-a {
           0%   { transform: translate(0px, 0px);    opacity: 0; }
