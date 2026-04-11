@@ -5,6 +5,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+const navLinks = [
+  { name: "Features", href: "#features" },
+  { name: "Strategies", href: "#strategies" },
+  { name: "Testimonials", href: "#testimonials" },
+  { name: "FAQ", href: "#faq" },
+  { name: "Blog", href: "/blog" },
+];
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, i18n } = useTranslation();

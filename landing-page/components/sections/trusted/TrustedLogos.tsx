@@ -1,9 +1,6 @@
 "use client";
 import { useTranslation } from "react-i18next";
 
-// No image imports needed — logos are rendered as styled text/SVG inline
-// matching the exact Figma design
-
 const logos = [
   {
     name: "WunderTrading",
@@ -56,15 +53,9 @@ const logos = [
     name: "Cboe",
     render: () => (
       <span className="flex items-center gap-1">
-        <span style={{ fontSize: "16px", fontWeight: 600, color: "rgba(255,255,255,0.55)", letterSpacing: "0.02em" }}>
-          C
-        </span>
-        <span style={{ fontSize: "11px", fontWeight: 400, color: "rgba(255,255,255,0.55)", position: "relative", top: "-3px" }}>
-          ✦
-        </span>
-        <span style={{ fontSize: "16px", fontWeight: 600, color: "rgba(255,255,255,0.55)", letterSpacing: "0.02em" }}>
-          boe
-        </span>
+        <span style={{ fontSize: "16px", fontWeight: 600, color: "rgba(255,255,255,0.55)", letterSpacing: "0.02em" }}>C</span>
+        <span style={{ fontSize: "11px", fontWeight: 400, color: "rgba(255,255,255,0.55)", position: "relative", top: "-3px" }}>✦</span>
+        <span style={{ fontSize: "16px", fontWeight: 600, color: "rgba(255,255,255,0.55)", letterSpacing: "0.02em" }}>boe</span>
       </span>
     ),
   },
@@ -76,9 +67,7 @@ const logos = [
           <path d="M20.5 11.5C20.5 16.75 16.25 21 11 21C5.75 21 1.5 16.75 1.5 11.5C1.5 6.25 5.75 2 11 2C13.5 2 15.75 2.95 17.45 4.55" stroke="rgba(255,255,255,0.6)" strokeWidth="1.8" strokeLinecap="round"/>
           <circle cx="11" cy="11.5" r="3.5" stroke="rgba(255,255,255,0.6)" strokeWidth="1.8"/>
         </svg>
-        <span style={{ fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.55)", letterSpacing: "0.01em" }}>
-          OpenAI
-        </span>
+        <span style={{ fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.55)", letterSpacing: "0.01em" }}>OpenAI</span>
       </span>
     ),
   },
@@ -89,9 +78,7 @@ const logos = [
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
           <path d="M2 18L8 12L12 16L22 6" stroke="rgba(255,255,255,0.6)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
-        <span style={{ fontSize: "15px", fontWeight: 600, color: "rgba(255,255,255,0.55)", letterSpacing: "0.01em" }}>
-          TradingView
-        </span>
+        <span style={{ fontSize: "15px", fontWeight: 600, color: "rgba(255,255,255,0.55)", letterSpacing: "0.01em" }}>TradingView</span>
       </span>
     ),
   },
@@ -105,9 +92,7 @@ const logos = [
           <rect x="14" y="5" width="4" height="17" rx="1" fill="rgba(255,255,255,0.6)" />
           <rect x="20" y="2" width="4" height="20" rx="1" fill="rgba(255,255,255,0.6)" />
         </svg>
-        <span style={{ fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.55)", letterSpacing: "0.01em" }}>
-          Barchart
-        </span>
+        <span style={{ fontSize: "15px", fontWeight: 500, color: "rgba(255,255,255,0.55)", letterSpacing: "0.01em" }}>Barchart</span>
       </span>
     ),
   },
@@ -119,7 +104,7 @@ export default function TrustedLogos() {
   const { t } = useTranslation();
 
   return (
-    <section className="w-full py-10 overflow-hidden relative">
+    <section className="w-full pt-2 pb-10 overflow-hidden relative">
 
       {/* Label */}
       <p
@@ -135,40 +120,40 @@ export default function TrustedLogos() {
         {t("hero.integration")}
       </p>
 
-      {/* Marquee strip — fixed height matching Figma (30px content + padding) */}
+      {/* Marquee strip */}
       <div className="relative" style={{ height: "44px" }}>
 
-        {/* Left fade */}
+        {/* Left fade — wider */}
         <div
           className="absolute left-0 top-0 h-full z-10 pointer-events-none"
           style={{
-            width: "180px",
-            background: "linear-gradient(to right, #010B24 20%, transparent 100%)",
+            width: "280px",
+            background: "linear-gradient(to right, #010B24 30%, transparent 100%)",
           }}
         />
 
-        {/* Right fade */}
+        {/* Right fade — wider */}
         <div
           className="absolute right-0 top-0 h-full z-10 pointer-events-none"
           style={{
-            width: "180px",
-            background: "linear-gradient(to left, #010B24 20%, transparent 100%)",
+            width: "280px",
+            background: "linear-gradient(to left, #010B24 30%, transparent 100%)",
           }}
         />
 
-        {/* Scrolling track */}
+        {/* Scrolling track — 12s = ~2.3× faster than 28s */}
         <div
           className="flex items-center absolute top-0 left-0"
           style={{
             gap: "64px",
-            animation: "marquee 30s linear infinite",
+            animation: "marquee 12s linear infinite",
             whiteSpace: "nowrap",
           }}
         >
           {allLogos.map((logo, i) => (
             <div
               key={i}
-              className="flex-shrink-0 flex items-center transition-all duration-300"
+              className="flex-shrink-0 flex items-center"
               style={{ height: "30px", opacity: 0.9 }}
             >
               {logo.render()}
