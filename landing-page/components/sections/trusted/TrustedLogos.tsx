@@ -1,4 +1,5 @@
 "use client";
+import { useTranslation } from "react-i18next";
 
 // No image imports needed — logos are rendered as styled text/SVG inline
 // matching the exact Figma design
@@ -115,6 +116,8 @@ const logos = [
 const allLogos = [...logos, ...logos, ...logos];
 
 export default function TrustedLogos() {
+  const { t } = useTranslation();
+
   return (
     <section className="w-full py-10 overflow-hidden relative">
 
@@ -129,7 +132,7 @@ export default function TrustedLogos() {
           fontWeight: 500,
         }}
       >
-        Integrated with Top Exchanges
+        {t("hero.integration")}
       </p>
 
       {/* Marquee strip — fixed height matching Figma (30px content + padding) */}
