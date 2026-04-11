@@ -106,10 +106,11 @@ export default function TrustedLogos() {
   return (
     <section className="w-full pt-4 pb-12 overflow-hidden relative border-b border-white/[0.03]">
 
-      {/* Integrative Label */}
+      {/* Integrative Label — Localized */}
       <p className="text-center mb-8 text-[10px] md:text-xs font-mono tracking-[0.2em] md:tracking-[0.25em] uppercase text-white/20 font-medium">
         {t("hero.integration")}
       </p>
+
 
       {/* Dynamic Marquee Strip Container */}
       <div className="relative h-11 flex items-center">

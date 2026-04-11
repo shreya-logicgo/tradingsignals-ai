@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslation } from "react-i18next";
 import StrategyCard from "./StrategyCard";
 import StrategyTabs from "./StrategyTabs";
 import StrategyFilters from "./StrategyFilters";
@@ -12,109 +15,101 @@ import assistIcon from "@/assets/icons/tsai-assist.png";
 import volIcon from "@/assets/icons/tsai-vol.png";
 import hybridIcon from "@/assets/icons/tsai-hybrid.png";
 
-const strategies = [
-  {
-    icon: primeIcon,
-    name: "TSAI Prime",
-    description:
-      "Advanced AI signals powered by deep market analysis and probability models.",
-    roi: "+47.3%",
-    price: "$149/mo",
-  },
-  {
-    icon: momentumIcon,
-    name: "TSAI Momentum",
-    description: "Ride strong trends and capture powerful market expansions.",
-    roi: "+38.6%",
-    price: "$49/mo",
-  },
-  {
-    icon: coreIcon,
-    name: "TSAI Core",
-    description:
-      "Structured swing trades on major assets with high-probability setups.",
-    roi: "+24.2%",
-    price: "$49/mo",
-  },
-  {
-    icon: altsIcon,
-    name: "TSAI Alts",
-    description:
-      "AI-curated altcoin opportunities with strong momentum and liquidity.",
-    roi: "+62.8%",
-    price: "$49/mo",
-  },
-  {
-    icon: flashIcon,
-    name: "TSAI Flash",
-    description: "Ultra-fast signals for scalping and breakout opportunities.",
-    roi: "+31.4%",
-    price: "$49/mo",
-  },
-  {
-    icon: systemIcon,
-    name: "TSAI System",
-    description:
-      "Automated signals generated continuously based on algorithmic conditions.",
-    roi: "+28.9%",
-    price: "$59/mo",
-  },
-  {
-    icon: structIcon,
-    name: "TSAI Struct",
-    description:
-      "Disciplined trading with controlled risk and balanced capital allocation.",
-    roi: "+33.7%",
-    price: "$79/mo",
-  },
-  {
-    icon: assistIcon,
-    name: "TSAI Assist",
-    description:
-      "Simple, guided signals designed for easy and confident execution.",
-    roi: "+18.5%",
-    price: "$39/mo",
-  },
-  {
-    icon: volIcon,
-    name: "TSAI Vol",
-    description:
-      "Specialized signals for volatile market conditions and high-momentum opportunities.",
-    roi: "+31.4%",
-    price: "$49/mo",
-  },
-  {
-    icon: hybridIcon,
-    name: "TSAI Hybrid",
-    description:
-      "Simple, guided signals designed for easy and confident execution.",
-    roi: "+28.9%",
-    price: "$59/mo",
-  },
-];
-
 export default function Strategies() {
+  const { t } = useTranslation();
+
+  const strategies = [
+    {
+      icon: primeIcon,
+      name: t("strategy.cards.prime.title"),
+      description: t("strategy.cards.prime.desc"),
+      roi: t("strategy.cards.prime.roi"),
+      price: t("strategy.cards.prime.price"),
+    },
+    {
+      icon: momentumIcon,
+      name: t("strategy.cards.momentum.title"),
+      description: t("strategy.cards.momentum.desc"),
+      roi: t("strategy.cards.momentum.roi"),
+      price: t("strategy.cards.momentum.price"),
+    },
+    {
+      icon: coreIcon,
+      name: t("strategy.cards.core.title"),
+      description: t("strategy.cards.core.desc"),
+      roi: t("strategy.cards.core.roi"),
+      price: t("strategy.cards.core.price"),
+    },
+    {
+      icon: altsIcon,
+      name: t("strategy.cards.alts.title"),
+      description: t("strategy.cards.alts.desc"),
+      roi: t("strategy.cards.alts.roi"),
+      price: t("strategy.cards.alts.price"),
+    },
+    {
+      icon: flashIcon,
+      name: t("strategy.cards.flash.title"),
+      description: t("strategy.cards.flash.desc"),
+      roi: t("strategy.cards.flash.roi"),
+      price: t("strategy.cards.flash.price"),
+    },
+    {
+      icon: systemIcon,
+      name: t("strategy.cards.system.title"),
+      description: t("strategy.cards.system.desc"),
+      roi: t("strategy.cards.system.roi"),
+      price: t("strategy.cards.system.price"),
+    },
+    {
+      icon: structIcon,
+      name: t("strategy.cards.struct.title"),
+      description: t("strategy.cards.struct.desc"),
+      roi: t("strategy.cards.struct.roi"),
+      price: t("strategy.cards.struct.price"),
+    },
+    {
+      icon: assistIcon,
+      name: t("strategy.cards.assist.title"),
+      description: t("strategy.cards.assist.desc"),
+      roi: t("strategy.cards.assist.roi"),
+      price: t("strategy.cards.assist.price"),
+    },
+    {
+      icon: volIcon,
+      name: t("strategy.cards.vol.title"),
+      description: t("strategy.cards.vol.desc"),
+      roi: t("strategy.cards.vol.roi"),
+      price: t("strategy.cards.vol.price"),
+    },
+    {
+      icon: hybridIcon,
+      name: t("strategy.cards.hybrid.title"),
+      description: t("strategy.cards.hybrid.desc"),
+      roi: t("strategy.cards.hybrid.roi"),
+      price: t("strategy.cards.hybrid.price"),
+    },
+  ];
+
   return (
     <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         
-        {/* Header Section */}
+        {/* Header Section — Localized */}
         <div className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-12 md:mb-16 gap-6 md:gap-8">
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 shadow-inner">
             <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-[#C7CCD2]">
-              AI Strategies
+              {t("strategy.strategybadge")}
             </span>
           </div>
 
           <div className="flex flex-col items-center gap-4">
             <h2 className="text-white font-hoves font-medium text-3xl md:text-4xl lg:text-5xl leading-tight">
-              Choose Your Trading Channels
+              {t("strategy.title")}
             </h2>
             <p className="font-hoves text-[15px] md:text-base text-[#C7CCD2] leading-relaxed max-w-[600px] opacity-80">
-              Access specialized AI-driven signal streams, each built for a
-              specific strategy — from scalping and swing trading to momentum
-              and automation.
+              {t("strategy.description")}
             </p>
           </div>
         </div>
@@ -140,3 +135,4 @@ export default function Strategies() {
     </section>
   );
 }
+

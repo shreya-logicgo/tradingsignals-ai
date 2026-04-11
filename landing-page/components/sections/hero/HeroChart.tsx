@@ -1,8 +1,13 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
 import heroGif from "@/assets/images/hero.gif";
 
 export default function HeroChart() {
+  const { t } = useTranslation();
+
   return (
     <section className="w-full relative z-10 pt-2 lg:pt-[10px]">
       <Container className="flex justify-center px-4 md:px-0">
@@ -48,7 +53,7 @@ export default function HeroChart() {
               {/* Bottom depth gradient */}
               <div className="absolute bottom-0 left-0 right-0 h-[60%] pointer-events-none bg-gradient-to-t from-[#01081c] via-[#01081c]/60 to-transparent" />
 
-              {/* Interactive Play Button Overaly */}
+              {/* Interactive Play Button Overaly — Localized */}
               <div className="absolute inset-0 flex items-center justify-center p-6">
                 <button className="group flex items-center gap-4 px-4 py-2.5 md:px-6 md:py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/20 active:scale-95">
                   {/* Icon Container */}
@@ -56,13 +61,13 @@ export default function HeroChart() {
                     <div className="w-0 h-0 border-y-[5px] md:border-y-[7px] border-l-[10px] md:border-l-[13px] border-transparent border-l-white ml-1" />
                   </div>
 
-                  {/* Labels */}
+                  {/* Labels — Localized */}
                   <div className="flex flex-col text-left leading-none">
                     <span className="text-white font-medium text-sm md:text-base tracking-tight">
-                      Watch Demo
+                      {t("hero.watchDemo")}
                     </span>
                     <span className="text-white/40 text-[10px] md:text-[11px] font-mono mt-1 uppercase tracking-widest">
-                      0:58 min
+                      {t("hero.demoDuration")}
                     </span>
                   </div>
                 </button>
@@ -76,4 +81,5 @@ export default function HeroChart() {
       </Container>
     </section>
   );
-}
+}
+

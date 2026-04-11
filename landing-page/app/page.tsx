@@ -13,6 +13,7 @@ import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Traders from "@/components/sections/traders/Traders";
 import TrustedLogos from "@/components/sections/trusted/TrustedLogos";
 import glowBar from "@/assets/images/glowBars.png";
+import StartToday from "@/components/sections/starttoday/Starttoday";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       <Testimonials />
       <FAQ />
       <CTA />
+      <StartToday/>
     </main>
   );
 }
