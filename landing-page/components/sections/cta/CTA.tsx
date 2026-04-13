@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";
@@ -54,9 +53,8 @@ export default function CTA() {
             {/* Cards Grid — Dynamic mapping */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
               {posts.map((post, i) => (
-                <Link
+                <div
                   key={i}
-                  href="/blogs/2026-ai-trading-strategies-nvda"
                   className="group flex flex-col gap-6 cursor-pointer transition-transform duration-300 hover:-translate-y-2"
                 >
                   {/* Image Container */}
@@ -79,19 +77,20 @@ export default function CTA() {
                     </p>
 
                     {/* View more link — Localized */}
-                    <div className="mt-auto">
+                    <div className="mt-auto"
+                    >
                       <span className="text-sm text-white font-hoves underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all">
                         {t("blog.viewMore")}
                       </span>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
 
             {/* CTA Button — Localized */}
             <div className="flex justify-center mt-4">
-              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black cursor-pointer">
+              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black">
                 {t("blog.cta")}
               </button>
             </div>

@@ -95,7 +95,7 @@ export default function Hero() {
       `}</style>
 
       {/* ── Background Gradients ── */}
-      <div className="absolute top-[-150px] right-[-5%) md:right-[-10px] w-full max-w-[1200px] pointer-events-none z-0 opacity-80">
+      <div className="absolute top-[-150px] right-[-5%] md:right-[-10px] w-full max-w-[1200px] pointer-events-none z-0 opacity-80">
         <Image src={gradient2} alt="" aria-hidden="true" className="w-full h-auto object-contain" priority />
       </div>
 
@@ -127,18 +127,18 @@ export default function Hero() {
 
       {/* ── Main content area ── */}
       <Container className="relative z-20 flex flex-col items-center text-center gap-6 md:gap-8">
-        
+
         {/* Social Proof Badge — Localized */}
         <div className="flex items-center gap-2.5 px-4 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4">
           <Image
-            src={userslabel}  
+            src={userslabel}
             alt="TSAI Traders"
             width={100}
             height={28}
             className="h-5 md:h-6 w-auto"
           />
           <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap">
-            {t("hero.users")} 
+            {t("hero.users")}
           </span>
         </div>
 
@@ -161,7 +161,7 @@ export default function Hero() {
 
         {/* Product Visual (Chart/Dashboard) */}
         <div className="w-full mt-10 md:mt-16">
-          <HeroChart />
+          {/* <HeroChart /> */}
         </div>
 
       </Container>
