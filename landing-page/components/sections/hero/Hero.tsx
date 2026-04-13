@@ -143,7 +143,7 @@ export default function Hero() {
         </div>
 
         {/* HERO TITLE */}
-        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[1000px]" style={{ fontFamily: "var(--font-hoves)" }}>
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]" style={{ fontFamily: "var(--font-hoves)" }}>
           {t("hero.title")}
         </h1>
 
