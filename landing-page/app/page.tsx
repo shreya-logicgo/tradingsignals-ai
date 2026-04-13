@@ -20,14 +20,14 @@ export default function Home() {
 
       <section
         id="features"
-        className="scroll-mt-4 sm:scroll-mt-6 md:scroll-mt-8 lg:scroll-mt-6"
+        className="scroll-mt-18 sm:scroll-mt-6 md:scroll-mt-18 lg:scroll-mt-18"
       >
         <Features />
       </section>
 
       <section
         id="strategies"
-        className="scroll-mt-4 sm:scroll-mt-14 md:scroll-mt-8 lg:scroll-mt-6"
+        className="scroll-mt-14 sm:scroll-mt-14 md:scroll-mt-8 lg:scroll-mt-6"
       >
         <Strategies />
       </section>
@@ -39,14 +39,14 @@ export default function Home() {
 
       <section
         id="testimonials"
-        className="scroll-mt-4 sm:scroll-mt-6 md:scroll-mt-8 lg:scroll-mt-6"
+        className="scroll-mt-6 sm:scroll-mt-6 md:scroll-mt-8 lg:scroll-mt-6"
       >
         <Testimonials />
       </section>
 
       <section
         id="faq"
-        className="scroll-mt-6 sm:scroll-mt-18 md:scroll-mt-14 lg:scroll-mt-16"
+        className="scroll-mt-18 sm:scroll-mt-18 md:scroll-mt-18 lg:scroll-mt-16"
       >
         <FAQ />
       </section>
