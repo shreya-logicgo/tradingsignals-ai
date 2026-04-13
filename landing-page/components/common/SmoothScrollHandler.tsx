@@ -1,38 +1,38 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function SmoothScrollHandler() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const isFirstMount = useRef(true);
 
   useEffect(() => {
-    // Disable automatic browser scroll restoration on refresh
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
 
-    // On initial mount (page load/refresh), always start at the top
+    // Initial page load / refresh
     if (isFirstMount.current) {
       window.scrollTo(0, 0);
       isFirstMount.current = false;
-      
-      // If there's a hash, we clear it to prevent the browser/effect from jumping down
+
       if (window.location.hash) {
-          window.history.replaceState(null, "", window.location.pathname);
+        window.history.replaceState(null, "", window.location.pathname);
       }
+
       return;
     }
 
-    // Handle hash scrolling for subsequent navigations
+    // Route navigation with hash
     const hash = window.location.hash;
+
     if (hash) {
       const id = hash.replace("#", "");
 
       const timeoutId = setTimeout(() => {
         const el = document.getElementById(id);
+
         if (el) {
           el.scrollIntoView({
             behavior: "smooth",
@@ -40,12 +40,14 @@ export default function SmoothScrollHandler() {
           });
         }
       }, 100);
-      
-      return () => clearTimeout(timeoutId);
-    }
-  }, [pathname, searchParams]);
 
-  // Handle smooth scrolling for hash link clicks on the same page
+      return () => clearTimeout(timeoutId);
+    } else {
+      // Normal route navigation (like /blogs)
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }, [pathname]);
+
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -59,14 +61,15 @@ export default function SmoothScrollHandler() {
       ) {
         const id = anchor.hash.replace("#", "");
         const el = document.getElementById(id);
-        
+
         if (el) {
           e.preventDefault();
+
           el.scrollIntoView({
             behavior: "smooth",
             block: "start",
           });
-          // Update the URL hash without triggering a full navigation
+
           window.history.pushState(null, "", anchor.hash);
         }
       }
@@ -78,4 +81,3 @@ export default function SmoothScrollHandler() {
 
   return null;
 }
-

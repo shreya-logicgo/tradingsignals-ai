@@ -25,7 +25,7 @@ export default function FeatureCard({
       }}
     >
       {/* Background Overlay for better text readability */}
-      <div className="absolute inset-0 bg-[#000514]/30 group-hover:bg-[#000514]/20 transition-colors duration-500 pointer-events-none" />
+      <div className="absolute    transition-colors duration-500 pointer-events-none" />
 
       {/* Icon — elevated via z-index */}
       <div className="relative z-10 flex-shrink-0">
@@ -45,7 +45,7 @@ export default function FeatureCard({
       </div>
 
       {/* Subtle bottom-edge highlight on hover */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/0 to-transparent group-hover:via-blue-500/40 transition-all duration-700" />
+      {/* <div className=" h-px bg-gradient-to-r from-transparent via-blue-500/0 to-transparent group-hover:via-blue-500/40 transition-all duration-700" /> */}
     </div>
   );
 }
