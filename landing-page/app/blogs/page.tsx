@@ -8,6 +8,8 @@ export const metadata = {
   description: "Everything you've ever wanted to know about AI-powered trading.",
 };
 
+
+
 export default function BlogPage() {
   return (
     <main className="bg-[#010B24] min-h-screen flex flex-col mt-24"
