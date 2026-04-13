@@ -1,6 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface StrategyCardProps {
   icon: StaticImageData | string;
@@ -17,6 +18,8 @@ export default function StrategyCard({
   roi,
   price,
 }: StrategyCardProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="group relative p-[1px] rounded-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
       {/* Animated Gradient Border Overlay */}
@@ -58,7 +61,7 @@ export default function StrategyCard({
                 {roi}
               </span>
               <span className="text-[11px] text-white/30 font-hoves uppercase tracking-wider"style={{ fontFamily: "var(--font-hoves)" }}>
-                Monthly Avg
+                {t("strategy.monthlyAvg")}
               </span>
             </div>
             <span className="text-white/80 font-medium text-sm font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
@@ -68,10 +71,11 @@ export default function StrategyCard({
 
           {/* Action Button */}
           <button className="w-full h-11 rounded-full cursor-pointer text-sm font-medium transition-all duration-300 font-hoves bg-blue-600/10 text-white border border-white/10 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-600/20"style={{ fontFamily: "var(--font-hoves)" }}>
-            Trade Now
+            {t("strategy.card_cta")}
           </button>
         </div>
       </div>
     </div>
   );
 }
+

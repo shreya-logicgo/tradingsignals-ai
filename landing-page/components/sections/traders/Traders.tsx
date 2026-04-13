@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import TraderFeatureCard from "./TraderFeatureCard";
 
 /* ── Inline SVG icons ── */
@@ -43,34 +44,40 @@ const ChevronRight = () => (
   </svg>
 );
 
-const allCards = [
-  {
-    icon: <ShieldIcon />,
-    title: "Bank-Level Security",
-    description: "Your API keys are encrypted with AES-256. We never have withdrawal access to your funds.",
-  },
-  {
-    icon: <EyeIcon />,
-    title: "Full Transparency",
-    description: "Real-time performance tracking. See every trade, every P&L, every detail. No hidden fees.",
-  },
-  {
-    icon: <ChartIcon />,
-    title: "Advanced Analytics",
-    description: "Detailed reports, trade history, and performance metrics to optimize your strategy.",
-  },
-  {
-    icon: <ZapIcon />,
-    title: "Instant Execution",
-    description: "Sub-second trade execution ensures you never miss an opportunity in fast markets.",
-  },
-];
-
 export default function Traders() {
+  const { t } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(1);
 
+  // Localized data mapping
+  const items = t("whyUs.items", { returnObjects: true }) as { title: string; desc: string }[];
+  
+  const allCards = [
+    {
+      icon: <ShieldIcon />,
+      title: items[0]?.title || "Security",
+      description: items[0]?.desc || "",
+    },
+    {
+      icon: <EyeIcon />,
+      title: items[1]?.title || "Transparency",
+      description: items[1]?.desc || "",
+    },
+    {
+      icon: <ChartIcon />,
+      title: items[2]?.title || "Analytics",
+      description: items[2]?.desc || "",
+    },
+    {
+      icon: <ZapIcon />,
+      title: items[3]?.title || "Execution",
+      description: items[3]?.desc || "",
+    },
+  ];
+
   useEffect(() => {
+    setIsMounted(true);
     const handleResize = () => {
       if (window.innerWidth < 640) setVisibleCount(1);
       else if (window.innerWidth < 1024) setVisibleCount(2);
@@ -86,51 +93,66 @@ export default function Traders() {
     if (startIndex + visibleCount > allCards.length) {
       setStartIndex(Math.max(0, allCards.length - visibleCount));
     }
-  }, [visibleCount, startIndex]);
+  }, [visibleCount, startIndex, allCards.length]);
 
   const canPrev = startIndex > 0;
   const canNext = startIndex + visibleCount < allCards.length;
 
-  const visibleCards = allCards.slice(startIndex, startIndex + visibleCount);
+  // On server (SSR), we render all cards but hide extra ones via CSS
+  // On client, we use the sliced array for actual slider functionality
+  const displayCards = isMounted ? allCards.slice(startIndex, startIndex + visibleCount) : allCards;
 
   return (
     <section className="w-full bg-[#010B24] py-3 md:py-3 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex flex-col gap-12 lg:gap-16 items-center">
           
-          {/* ── Header block ── */}
+          {/* ── Header block — Localized ── */}
           <div className="flex flex-col items-center text-center gap-6 max-w-[521px]">
             {/* Badge */}
             <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
               <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
-                Why Choose Us
+                {t("whyUs.title")}
               </span>
             </div>
 
             {/* Heading */}
             <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
-              Built for Serious Traders
+              {t("whyUs.heading")}
             </h2>
 
             {/* Subtext */}
             <p className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed max-w-[480px]"style={{ fontFamily: "var(--font-hoves)" }}>
-              We obsess over the details so you can focus on what matters: profitable trading.
+              {t("whyUs.description")}
             </p>
           </div>
 
           {/* ── Cards slider ── */}
           <div className="w-full flex flex-col gap-8">
             <div className="relative w-full">
-              {/* Cards Grid */}
+              {/* Cards Grid — Responsive SSR support */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 transition-all duration-300">
-                {visibleCards.map((card, i) => (
-                  <TraderFeatureCard key={startIndex + i} {...card} />
-                ))}
+                {displayCards.map((card, i) => {
+                  {/* SSR visibility logic: 
+                      - Index >= 1: hidden on mobile, show on sm (+)
+                      - Index >= 2: hidden on sm, show on lg (+) 
+                   */}
+                  const ssrClasses = !isMounted ? `
+                    ${i >= 1 ? 'hidden sm:block' : ''} 
+                    ${i >= 2 ? 'sm:hidden lg:block' : ''}
+                  ` : '';
+
+                  return (
+                    <div key={isMounted ? startIndex + i : i} className={ssrClasses}>
+                      <TraderFeatureCard {...card} />
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
-            {/* ── Navigation arrows ── */}
-            <div className="flex justify-center items-center gap-4">
+            {/* ── Navigation arrows — Controlled visibility ── */}
+            <div className={`flex lg:hidden justify-center items-center gap-4 transition-all duration-300 ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
               <button
                 onClick={() => setStartIndex((p) => Math.max(0, p - 1))}
                 disabled={!canPrev}
@@ -144,7 +166,7 @@ export default function Traders() {
               </button>
               
               <div className="flex gap-1.5">
-                {Array.from({ length: allCards.length - visibleCount + 1 }).map((_, i) => (
+                {isMounted && Array.from({ length: allCards.length - visibleCount + 1 }).map((_, i) => (
                   <div 
                     key={i} 
                     className={`h-1.5 rounded-full transition-all duration-300 ${
@@ -172,3 +194,4 @@ export default function Traders() {
     </section>
   );
 }
+

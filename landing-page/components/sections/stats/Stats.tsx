@@ -1,13 +1,18 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import glowBar from "@/assets/images/glowBars.png";
 
-const stats = [
-  { number: "1,250+", label: "Registered Users" },
-  { number: "$4.5M", label: "Assets Under Management" },
-  { number: "$12M", label: "Total Followers PNL" },
-];
-
 export default function Stats() {
+  const { t } = useTranslation();
+
+  const stats = [
+    { number: "1,250+", label: t("stats.registeredUsers") },
+    { number: "$4.5M", label: t("stats.aum") },
+    { number: "$12M", label: t("stats.totalPnl") },
+  ];
+
   return (
     <section
       className="w-full relative lg:py-30 "
@@ -28,14 +33,14 @@ export default function Stats() {
 />
       {/* ── GlowBar Image ── */}
       <div
-        className="absolute -top-90 mx-auto inset-0 pointer-events-none lg:h-250 lg:max-w-300"
+        className="absolute md:-top-90 -top-25  mx-auto inset-0 pointer-events-none lg:h-250 lg:max-w-300 h-150 max-w-200"
         style={{ zIndex: 1 }}
       >
         <Image
           src={glowBar}
           alt=""
           fill
-          sizes="100vw" // ✅ FIXED (removes warning)
+          sizes="100vw"
           className=""
           style={{ mixBlendMode: "screen" }}
           priority
@@ -59,7 +64,7 @@ export default function Stats() {
               />
             )}
 
-            {/* Stat Block */}
+            {/* Stat Block — Localized */}
             <div className="flex flex-col items-center text-center">
               <span
                 className="text-4xl md:text-[50px] text-white tracking-[-0.5px] leading-[1.1]"
@@ -82,7 +87,6 @@ export default function Stats() {
           </div>
         ))}
       </div>
-      {/* </div> */}
     </section>
   );
 }

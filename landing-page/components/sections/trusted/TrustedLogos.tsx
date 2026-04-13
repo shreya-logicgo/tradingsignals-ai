@@ -113,6 +113,7 @@ export default function TrustedLogos() {
         {t("hero.integration")}
       </p>
 
+
       {/* 1. Increased Dynamic Marquee Strip Container Height (h-11 -> h-20) */}
       <div className="relative h-20 flex items-center">
 

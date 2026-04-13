@@ -1,68 +1,58 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";
 import blog3 from "@/assets/images/blog-3.jpg";
 
-const posts = [
-  {
-    image: blog1,
-    title: "2026 AI Trading Strategies for NVDA: Chart & AI Analytics Guide",
-    description:
-      "Discover how AI-powered analytics are reshaping trading strategies for NVDA in 2026, with real chart breakdowns and signal analysis.",
-  },
-  {
-    image: blog2,
-    title: "How to Trade XAUUSD Breakouts Using ATR and AI-empowered Tr...",
-    description:
-      "Learn how to identify high-probability XAUUSD breakout setups using ATR volatility filters combined with AI signal confirmation.",
-  },
-  {
-    image: blog3,
-    title: "PR News: Automate Trading Ideas in Seconds: TradeOS Launches...",
-    description:
-      "TradeOS introduces a new automation layer that converts raw trading ideas into executable strategies in seconds using AI.",
-  },
-];
+interface PostData {
+  title: string;
+  desc: string;
+}
 
 export default function CTA() {
+  const { t } = useTranslation();
+
+  // Blog posts from common.json
+  const blogPosts = t("blog.posts", { returnObjects: true }) as PostData[];
+  
+  const posts = [
+    { image: blog1, title: blogPosts[0]?.title || "", description: blogPosts[0]?.desc || "" },
+    { image: blog2, title: blogPosts[1]?.title || "", description: blogPosts[1]?.desc || "" },
+    { image: blog3, title: blogPosts[2]?.title || "", description: blogPosts[2]?.desc || "" },
+  ];
+
   return (
     <section className="w-full bg-[#010B24] py-10 md:py-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        <div className="flex flex-col gap-6 lg:gap-10">
-
+        <div className="flex flex-col gap-12 lg:gap-16">
+          
           {/* ── Header ── */}
-          <div className="flex flex-col items-center text-center gap-2 max-w-[500px] mx-auto">
-            <div className="px-3.5 py-0.5 flex justify-center rounded-full border border-white/20 bg-white/5">
-              <span
-                className="text-[11px] font-mono tracking-widest uppercase text-white/70"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                Blogs
+          <div className="flex flex-col items-center text-center gap-6 max-w-[500px] mx-auto">
+            {/* Badge */}
+            <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
+                {t("blog.title")}
               </span>
             </div>
 
-            <h2
-              className="font-medium text-3xl md:text-4xl text-white leading-tight"
-              style={{ fontFamily: "var(--font-hoves)" }}
-            >
-              Latest News & Insights
+            {/* Heading */}
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight">
+              {t("blog.heading")}
             </h2>
 
             <p
               className="font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed"
               style={{ fontFamily: "var(--font-hoves)" }}
             >
-              Stay ahead of the curve with our expert analysis, trading guides,
-              and major platform announcements.
+              {t("blog.description")}
             </p>
           </div>
 
           {/* ── Cards + CTA ── */}
           <div className="flex flex-col gap-12">
-
-            {/* Grid — items-stretch makes all cards same height per row */}
+            {/* Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-stretch">
               {posts.map((post, i) => (
                 <div
@@ -109,20 +99,17 @@ export default function CTA() {
                       className="text-sm text-white underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all"
                       style={{ fontFamily: "var(--font-hoves)" }}
                     >
-                      View more
+                      {t("blog.viewMore")}
                     </span>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Learn More button */}
+            {/* CTA Button — Localized */}
             <div className="flex justify-center mt-4">
-              <button
-                className="px-8 py-3 rounded-full cursor-pointer border border-white text-white text-sm font-medium transition-all duration-300 hover:bg-white hover:text-black"
-                style={{ fontFamily: "var(--font-hoves)" }}
-              >
-                Learn More
+              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black">
+                {t("blog.cta")}
               </button>
             </div>
           </div>

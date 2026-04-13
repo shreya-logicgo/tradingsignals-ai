@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
 import HeroChart from "./HeroChart";
 
@@ -8,8 +9,9 @@ import gradient1 from "@/assets/images/gradient_1_.png";
 import gradient2 from "@/assets/images/gradient_2_.png";
 import userslabel from "@/assets/images/avatars.png";
 
+// ... particulates data ...
 const PARTICLES = [
-  // Zone A — top-right teal (x: 62–96, y: 2–58)
+  // ... (keeping same particle data)
   { id: 1, x: 83.7, y: 3.4, s: 1.4, o: 0.32, dur: 5.9, del: 3.4 },
   { id: 2, x: 92.3, y: 6.9, s: 1.6, o: 0.26, dur: 3.9, del: 2.5 },
   { id: 3, x: 62.9, y: 13.1, s: 2.0, o: 0.41, dur: 3.9, del: 2.9 },
@@ -40,7 +42,6 @@ const PARTICLES = [
   { id: 28, x: 69.8, y: 52.7, s: 2.3, o: 0.27, dur: 4.0, del: 3.3 },
   { id: 29, x: 69.3, y: 9.4, s: 2.4, o: 0.42, dur: 4.9, del: 3.9 },
   { id: 30, x: 89.5, y: 12.7, s: 1.1, o: 0.38, dur: 4.7, del: 2.3 },
-  // Zone B — top-left blue (x: 2–38, y: 2–52)
   { id: 31, x: 28.2, y: 35.7, s: 2.5, o: 0.28, dur: 4.6, del: 1.7 },
   { id: 32, x: 33.0, y: 14.4, s: 1.3, o: 0.38, dur: 4.7, del: 1.4 },
   { id: 33, x: 11.0, y: 48.2, s: 1.7, o: 0.51, dur: 5.2, del: 0.3 },
@@ -64,6 +65,8 @@ const PARTICLES = [
 ] as const;
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative w-full min-h-screen pt-30 md:pt-42  pb-16 overflow-hidden bg-[#010B24]">
       {/* Organic floating animations for particles */}
@@ -91,28 +94,16 @@ export default function Hero() {
         }
       `}</style>
 
-      {/* ── Background Gradients — scaling responsively to prevent overflow ── */}
-      <div className="absolute top-[-150px] right-[-5%) md:right-[-10px] w-full max-w-[1200px] pointer-events-none z-0 opacity-80">
-        <Image
-          src={gradient2}
-          alt=""
-          aria-hidden="true"
-          className="w-full h-auto object-contain"
-          priority
-        />
+      {/* ── Background Gradients ── */}
+      <div className="absolute top-[-150px] right-[-5%] md:right-[-10px] w-full max-w-[1200px] pointer-events-none z-0 opacity-80">
+        <Image src={gradient2} alt="" aria-hidden="true" className="w-full h-auto object-contain" priority />
       </div>
 
       <div className="absolute top-0 left-0 w-full md:w-[70%] lg:w-[55%] pointer-events-none z-0 opacity-70">
-        <Image
-          src={gradient1}
-          alt=""
-          aria-hidden="true"
-          className="w-full h-auto object-contain"
-          priority
-        />
+        <Image src={gradient1} alt="" aria-hidden="true" className="w-full h-auto object-contain" priority />
       </div>
 
-      {/* ── Particles Layer — CSS animated, absolute positioned ── */}
+      {/* ── Particles Layer ── */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         {PARTICLES.map((p, i) => {
           const anim = i % 3 === 0 ? "float-a" : i % 3 === 1 ? "float-b" : "float-c";
@@ -136,63 +127,63 @@ export default function Hero() {
 
       {/* ── Main content area ── */}
       <Container className="relative z-20 flex flex-col items-center text-center gap-6 md:gap-8">
-        
-        {/* Social Proof Badge — Scaled down for mobile balance */}
+
+        {/* Social Proof Badge — Localized */}
         <div className="flex items-center gap-2.5 px-4 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4">
           <Image
-            src={userslabel}  
+            src={userslabel}
             alt="TSAI Traders"
             width={100}
             height={28}
             className="h-5 md:h-6 w-auto"
           />
-          <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap"style={{ fontFamily: "var(--font-hoves)" }}>
-            Used by over <span className="text-white ">10,000+</span> traders
+          <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap" style={{ fontFamily: "var(--font-hoves)" }}>
+            {t("hero.users")}
           </span>
         </div>
 
         {/* HERO TITLE */}
-        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[1000px]"style={{ fontFamily: "var(--font-hoves)" }}>
-          Trade Smarter, Grow Faster <br className="hidden md:block" />
-          with Trading Signal AI
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[1000px]" style={{ fontFamily: "var(--font-hoves)" }}>
+          {t("hero.title")}
         </h1>
 
         {/* SUPPORTING TEXT */}
-        <p className="text-white/80 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0"style={{ fontFamily: "var(--font-hoves)" }}>
-          Trade smarter with AI-driven signals, structured strategies, and real-time analytics — all in one unified platform.
+        <p className="text-white/80 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0" style={{ fontFamily: "var(--font-hoves)" }}>
+          {t("hero.description")}
         </p>
 
-        {/* PRIMARY CTA — Optimized mobile height and width */}
+        {/* PRIMARY CTA — Localized */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
-  <button
-    className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300"
-    style={{ fontFamily: "var(--font-hoves)" }}
-    
-    onMouseEnter={(e) => {
-      const btn = e.currentTarget as HTMLButtonElement;
-      btn.style.background = "#FFFFFF";
-      btn.style.color = "#000000";
-      btn.style.borderColor = "#FFFFFF";
-    }}
+          <button
+            className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300"
+            style={{ fontFamily: "var(--font-hoves)" }}
 
-    onMouseLeave={(e) => {
-      const btn = e.currentTarget as HTMLButtonElement;
-      btn.style.background = "transparent";
-      btn.style.color = "#FFFFFF";
-      btn.style.borderColor = "rgb(255, 255, 255)";
-    }}
-  >
-    Start Trading Now
-  </button>
-</div>
+            onMouseEnter={(e) => {
+              const btn = e.currentTarget as HTMLButtonElement;
+              btn.style.background = "#FFFFFF";
+              btn.style.color = "#000000";
+              btn.style.borderColor = "#FFFFFF";
+            }}
+
+            onMouseLeave={(e) => {
+              const btn = e.currentTarget as HTMLButtonElement;
+              btn.style.background = "transparent";
+              btn.style.color = "#FFFFFF";
+              btn.style.borderColor = "rgb(255, 255, 255)";
+            }}
+          >
+            {t("hero.cta")}
+          </button>
+        </div>
 
 
         {/* Product Visual (Chart/Dashboard) */}
         <div className="w-full mt-10 md:mt-16">
-          <HeroChart />
+          {/* <HeroChart /> */}
         </div>
 
       </Container>
     </section>
   );
 }
+

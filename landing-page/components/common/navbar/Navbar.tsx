@@ -5,14 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const navLinks = [
-  { name: "Features", href: "#features" },
-  { name: "Strategies", href: "#strategies" },
-  { name: "Testimonials", href: "#testimonials" },
-  { name: "FAQ", href: "#faq" },
-  { name: "Blog", href: "/blog" },
-];
-
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, i18n } = useTranslation();
@@ -30,12 +22,11 @@ export default function Navbar() {
   ];
 
   return (
-    // <nav className="w-full bg-[#0a0e1a] border-b border-white/5 sticky top-0 z-50 py-2">
-    <nav className="w-full  border-b border-white/5 lg:fixed sticky top-0 z-50 py-2 lg:bg-transparent bg-[#010B24]">
+    <nav className="w-full border-b border-white/5 lg:fixed sticky top-0 z-50 py-2 bg-white/5 backdrop-blur-xl transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          
+
           <Image
             src="/logof.png"
             alt="Trading Signals AI"
@@ -115,9 +106,9 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — Semi-transparent build */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#0a0e1a] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
+        <div className="lg:hidden bg-[#0a0e1a]/95 backdrop-blur-2xl border-t border-white/5 px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.label}

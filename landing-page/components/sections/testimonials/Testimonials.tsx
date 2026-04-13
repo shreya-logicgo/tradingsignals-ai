@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import TestimonialCard from "./TestimonialCard";
 import img1 from "@/assets/images/testimonial-1.jpg";
 import img2 from "@/assets/images/testimonial-2.jpg";
@@ -7,33 +8,22 @@ import img3 from "@/assets/images/testimonial-3.jpg";
 import img4 from "@/assets/images/testimonial-4.jpg";
 import img5 from "@/assets/images/testimonial-5.jpg";
 
-const leftCards = [
-  {
-    image: img1,
-    quote:
-      '"Trading Signals AI has been a game-changer for me as a beginner in the world of crypto trading. Before joining, I was hesitant to explore into the market, fearing I\'d make costly mistakes."',
-  },
-  {
-    image: img2,
-    quote:
-      '"Their platform is intuitive and user-friendly, and their signals provide clear entry and exit points, making it easy for beginners like me to follow."',
-  },
-];
-
-const rightCards = [
-  {
-    image: img4,
-    quote:
-      '"With Trading Signals AI, I found a welcoming community and a wealth of resources to guide me on my trading journey."',
-  },
-  {
-    image: img5,
-    quote:
-      '"Trading Signals AI has been a game-changer for me as a beginner in the world of crypto trading. Before joining, I was hesitant to explore into the market, fearing I\'d make costly mistakes."',
-  },
-];
-
 export default function Testimonials() {
+  const { t } = useTranslation();
+
+  // Testimonial quotes from common.json
+  const quotes = t("testimonials.quotes", { returnObjects: true }) as string[];
+
+  const leftCards = [
+    { image: img1, quote: quotes[0] },
+    { image: img2, quote: quotes[1] },
+  ];
+
+  const rightCards = [
+    { image: img4, quote: quotes[3] },
+    { image: img5, quote: quotes[4] },
+  ];
+
   return (
     <section className="w-full relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-[#0028ff40] via-[#0012b826] via-[#000a5014] to-transparent">
 
@@ -71,7 +61,7 @@ export default function Testimonials() {
                 className="text-[11px] font-mono tracking-widest uppercase text-white/70"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
-                Testimonials
+                {t("testimonials.title")}
               </span>
             </div>
 
@@ -80,7 +70,7 @@ export default function Testimonials() {
               className="text-3xl md:text-4xl font-medium leading-tight text-white"
               style={{ fontFamily: "var(--font-hoves)" }}
             >
-              Trusted by 1k+ <br className="hidden md:block" /> Traders
+              {t("testimonials.heading")}
             </h2>
 
             {/* Subtext */}
@@ -88,7 +78,7 @@ export default function Testimonials() {
               className="text-sm md:text-base text-white/65 leading-relaxed max-w-xs"
               style={{ fontFamily: "var(--font-hoves)" }}
             >
-              Real results from real traders using Trading Signals AI
+              {t("testimonials.description")}
             </p>
 
             {/* Featured card — flex-1 makes it grow to fill remaining height */}
@@ -96,7 +86,7 @@ export default function Testimonials() {
               <div className="flex-1">
                 <TestimonialCard
                   image={img3}
-                  quote="Trading Signals AI has transformed my trading experience. The platform is user-friendly, and the signals are accurate and timely. I've seen a significant improvement in my trading performance since I started using it."
+                  quote={quotes[2]}
                 />
               </div>
             </div>
