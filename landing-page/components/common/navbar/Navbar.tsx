@@ -14,12 +14,14 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { label: t("navbar.features"), href: "#features" },
-    { label: t("navbar.strategies"), href: "#strategies" },
-    { label: t("navbar.testimonials"), href: "#testimonials" },
-    { label: t("navbar.faq"), href: "#faq" },
-    { label: t("navbar.blog"), href: "/blogs" },
-  ];
+  { label: t("navbar.features"), href: "/#features" },
+  { label: t("navbar.strategies"), href: "/#strategies" },
+  { label: t("navbar.testimonials"), href: "/#testimonials" },
+  { label: t("navbar.faq"), href: "/#faq" },
+  { label: t("navbar.blog"), href: "/blogs"  },
+];
+
+
 
   return (
     <nav className="w-full border-b border-white/5 lg:fixed sticky top-0 z-50 py-2 bg-white/5 backdrop-blur-xl transition-all duration-300">
@@ -40,15 +42,20 @@ export default function Navbar() {
         {/* Desktop Nav Links */}
         <ul className="hidden lg:flex items-center gap-8"style={{ fontFamily: "var(--font-hoves)" }}>
           {navLinks.map((link) => (
-            <li key={link.label}>
-              <Link
-                href={link.href}
-                className="text-sm text-gray-300 hover:text-white transition-colors duration-200 font-medium"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+  <li key={link.label}>
+    <Link
+      href={link.href}
+      className="text-sm text-gray-300 hover:text-white transition-colors duration-200 font-medium"
+      onClick={() => {
+        if (link.href === "/blogs") {
+          window.scrollTo({ top: 0 });
+        }
+      }}
+    >
+      {link.label}
+    </Link>
+  </li>
+))}
         </ul>
 
         {/* Auth Buttons */}
@@ -110,15 +117,20 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="lg:hidden bg-[#0a0e1a]/95 backdrop-blur-2xl border-t border-white/5 px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="text-gray-300 hover:text-white text-sm font-medium"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+  <Link
+    key={link.label}
+    href={link.href}
+    className="text-gray-300 hover:text-white text-sm font-medium"
+    onClick={() => {
+      setMobileOpen(false);
+      if (link.href === "/blogs") {
+        window.scrollTo({ top: 0 });
+      }
+    }}
+  >
+    {link.label}
+  </Link>
+))}
           <div className="flex gap-3 pt-2">
             <Link
               href="/login"
