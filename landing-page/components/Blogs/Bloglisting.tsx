@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
 // 1. Define your types for the multilingual fields
 type MultilingualText = {
@@ -189,6 +190,14 @@ function BlogCard({ post }: { post: BlogPost }) {
 
 export default function BlogListing() {
   const { t } = useTranslation();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Small delay lets the scroll settle before fading in
+    const timer = setTimeout(() => setVisible(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="bg-[#0a0e1a] min-h-screen py-12 px-7"

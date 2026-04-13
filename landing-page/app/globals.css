@@ -44,3 +44,9 @@ body {
   --font-mono: 'Space Mono', monospace;
   --font-hoves: "TT Hoves Pro Trial", sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+

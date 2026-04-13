@@ -1,5 +1,3 @@
-
-
 import Navbar from "@/components/common/navbar/Navbar";
 import Categories from "@/components/sections/categories/Categories";
 import CTA from "@/components/sections/cta/CTA";
@@ -12,7 +10,6 @@ import Strategies from "@/components/sections/strategies/Strategies";
 import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Traders from "@/components/sections/traders/Traders";
 import TrustedLogos from "@/components/sections/trusted/TrustedLogos";
-import glowBar from "@/assets/images/glowBars.png";
 import StartToday from "@/components/sections/starttoday/Starttoday";
 
 export default function Home() {
@@ -20,16 +17,42 @@ export default function Home() {
     <main>
       <Hero />
       <TrustedLogos />
-      <Features />
-      <Strategies />
+
+      <section
+        id="features"
+        className="scroll-mt-18 sm:scroll-mt-6 md:scroll-mt-18 lg:scroll-mt-18"
+      >
+        <Features />
+      </section>
+
+      <section
+        id="strategies"
+        className="scroll-mt-14 sm:scroll-mt-14 md:scroll-mt-8 lg:scroll-mt-6"
+      >
+        <Strategies />
+      </section>
+
       <Steps />
       <Stats />
       <Categories />
       <Traders />
-      <Testimonials />
-      <FAQ />
+
+      <section
+        id="testimonials"
+        className="scroll-mt-6 sm:scroll-mt-6 md:scroll-mt-8 lg:scroll-mt-6"
+      >
+        <Testimonials />
+      </section>
+
+      <section
+        id="faq"
+        className="scroll-mt-18 sm:scroll-mt-18 md:scroll-mt-18 lg:scroll-mt-16"
+      >
+        <FAQ />
+      </section>
+
       <CTA />
-      <StartToday/>
+      <StartToday />
     </main>
   );
 }

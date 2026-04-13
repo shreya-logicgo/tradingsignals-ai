@@ -179,7 +179,7 @@ export default function Hero() {
 
         {/* Product Visual (Chart/Dashboard) */}
         <div className="w-full mt-10 md:mt-16">
-          <HeroChart />
+          {/* <HeroChart /> */}
         </div>
 
       </Container>
