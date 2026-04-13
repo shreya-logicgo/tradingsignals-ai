@@ -68,8 +68,8 @@ export default function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative w-full min-h-screen pt-24 md:pt-32 pb-16 overflow-hidden bg-[#010B24]">
-      {/* ... keeping CSS styles ... */}
+    <section className="relative w-full min-h-screen pt-30 md:pt-42  pb-16 overflow-hidden bg-[#010B24]">
+      {/* Organic floating animations for particles */}
       <style>{`
         @keyframes float-a {
           0%   { transform: translate(0px, 0px);    opacity: 0; }
@@ -137,27 +137,45 @@ export default function Hero() {
             height={28}
             className="h-5 md:h-6 w-auto"
           />
-          <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap">
+          <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap" style={{ fontFamily: "var(--font-hoves)" }}>
             {t("hero.users")}
           </span>
         </div>
 
-        {/* HERO TITLE — Localized */}
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[72px] font-semibold leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[1000px]">
+        {/* HERO TITLE */}
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[1000px]" style={{ fontFamily: "var(--font-hoves)" }}>
           {t("hero.title")}
         </h1>
 
-        {/* SUPPORTING TEXT — Localized */}
-        <p className="text-gray-400 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0">
+        {/* SUPPORTING TEXT */}
+        <p className="text-white/80 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0" style={{ fontFamily: "var(--font-hoves)" }}>
           {t("hero.description")}
         </p>
 
         {/* PRIMARY CTA — Localized */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
-          <button className="w-full sm:w-[220px] h-12 md:h-14 rounded-full text-sm md:text-[15px] font-medium transition-all duration-300 bg-white text-black hover:bg-gray-100 hover:scale-105 active:scale-95 shadow-xl">
+          <button
+            className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300"
+            style={{ fontFamily: "var(--font-hoves)" }}
+
+            onMouseEnter={(e) => {
+              const btn = e.currentTarget as HTMLButtonElement;
+              btn.style.background = "#FFFFFF";
+              btn.style.color = "#000000";
+              btn.style.borderColor = "#FFFFFF";
+            }}
+
+            onMouseLeave={(e) => {
+              const btn = e.currentTarget as HTMLButtonElement;
+              btn.style.background = "transparent";
+              btn.style.color = "#FFFFFF";
+              btn.style.borderColor = "rgb(255, 255, 255)";
+            }}
+          >
             {t("hero.cta")}
           </button>
         </div>
+
 
         {/* Product Visual (Chart/Dashboard) */}
         <div className="w-full mt-10 md:mt-16">

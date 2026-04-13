@@ -35,7 +35,7 @@ export default function Features() {
   ];
 
   return (
-    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+    <section className="w-full bg-[#010B24] py-5 md:py-5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         
         {/* Header Section — Localized */}
@@ -51,14 +51,14 @@ export default function Features() {
             </div>
 
             {/* Main Section Heading */}
-            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-medium text-white leading-tight md:leading-[1.15] font-hoves max-w-[520px]">
+            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-medium text-white leading-tight md:leading-[1.15] font-hoves max-w-[520px]"style={{ fontFamily: "var(--font-hoves)" }}>
               {t("features.heading")}
             </h2>
           </div>
 
           {/* Right: Supporting brief */}
           <div className="lg:max-w-[420px] lg:mb-2 flex-shrink-0">
-            <p className="text-[15px] md:text-base font-normal text-white/50 leading-relaxed font-hoves">
+            <p className="text-[15px] md:text-base font-normal text-white/80 leading-relaxed font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
               {t("features.description")}
             </p>
           </div>
@@ -91,4 +91,4 @@ export default function Features() {
     </section>
   );
 }
-
+

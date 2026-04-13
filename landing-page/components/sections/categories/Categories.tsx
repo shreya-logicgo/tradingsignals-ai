@@ -71,8 +71,8 @@ export default function Categories() {
             </div>
           </div>
 
-          {/* ── Cards Grid — Localized ── */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {/* ── Cards Grid ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
             {categories.map((cat) => (
               <CategoryCard key={cat.title} {...cat} />
             ))}
@@ -90,4 +90,4 @@ export default function Categories() {
     </section>
   );
 }
-
+

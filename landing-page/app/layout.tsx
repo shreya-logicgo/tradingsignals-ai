@@ -19,12 +19,9 @@ const spaceMono = Space_Mono({
 const ttHoves = localFont({
   src: [
     {
-      path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial Medium.ttf",
-      weight: "500",
-    },
-    {
-      path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial Bold.ttf",
-      weight: "700",
+      path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial Regular.ttf",
+      weight: "400",
+      style: "normal",
     },
   ],
   variable: "--font-hoves",

@@ -17,14 +17,9 @@ export default function Steps() {
   const stepPrefix = t("gettingStarted.stepbadge");
 
   return (
-    <section className="w-full py-16 md:py-24 relative overflow-hidden bg-[#010B24]">
+    <section className="w-full py-10 md:py-14 relative overflow-hidden bg-[#010B24]">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        {/*
-          Triptych Layout for Large Screens:
-          Col 1 | Col 2   | Col 3
-          S1    | Heading | S3
-                | S2      |
-        */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-x-12 lg:gap-y-0 items-start">
           
           {/* ── HEADING (Center on Desktop, Top on Mobile) ── */}
@@ -36,13 +31,13 @@ export default function Steps() {
               </span>
             </div>
 
-            {/* Heading — Localized */}
-            <h2 className="text-4xl md:text-[40px] font-medium leading-tight md:leading-[1.1] text-white font-hoves mb-6 lg:max-w-md">
+            {/* Heading */}
+            <h2 className="text-4xl md:text-[40px] font-medium leading-tight md:leading-[1.1] text-white font-hoves mb-2 lg:max-w-md"style={{ fontFamily: "var(--font-hoves)" }}>
               {t("gettingStarted.heading")}
             </h2>
 
-            {/* Subtitle — Localized */}
-            <p className="text-sm md:text-base font-light leading-relaxed text-[#c7ccd2] font-hoves max-w-[280px]">
+            {/* Subtitle */}
+            <p className="text-sm md:text-base font-light leading-relaxed text-[#c7ccd2] font-hoves max-w-[280px]"style={{ fontFamily: "var(--font-hoves)" }}>
               {t("gettingStarted.description")}
             </p>
           </div>
@@ -88,4 +83,4 @@ export default function Steps() {
     </section>
   );
 }
-
+
