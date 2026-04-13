@@ -78,10 +78,10 @@ export default function HeroChart() {
                     </div>
 
                     <div className="flex flex-col text-left leading-none">
-                      <span className="text-white font-medium text-sm md:text-base tracking-tight">
+                      <span className="text-white font-medium text-sm md:text-base tracking-tight"style={{ fontFamily: "var(--font-hoves)" }}>
                         Watch Demo
                       </span>
-                      <span className="text-white/40 text-[10px] md:text-[11px] font-mono mt-1 uppercase tracking-widest">
+                      <span className="text-white/40 text-[10px] md:text-[11px] mt-1 uppercase tracking-widest"style={{ fontFamily: "var(--font-hoves)" }}>
                         0:58 min
                       </span>
                     </div>
