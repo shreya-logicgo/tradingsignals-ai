@@ -26,7 +26,7 @@ export default function HeroChart() {
           <div className="absolute -inset-4 -z-10 rounded-3xl bg-[radial-gradient(ellipse_at_50%_40%,_rgba(0,120,255,0.25)_0%,_rgba(0,60,180,0.1)_50%,_transparent_75%)] blur-[40px] pointer-events-none" />
 
           {/* Glass card */}
-          <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden bg-[#02081e]/45 backdrop-blur-2xl ring-1 ring-inset ring-white/10 shadow-[0_32px_100px_rgba(0,0,0,0.8),_0_0_60px_rgba(0,80,255,0.12)]">
+          <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden bg-[#02081e]/45 backdrop-blur-2xl border border-transparent/10 shadow-[0_32px_100px_rgba(0,0,0,0.8),_0_0_60px_rgba(0,80,255,0.12)]">
 
             {/* Browser top-bar */}
             <div className="flex items-center gap-2 px-4 py-3 md:py-3.5 bg-white/[0.03] border-b border-white/[0.06]">
@@ -54,13 +54,17 @@ export default function HeroChart() {
                 playsInline
                 className="w-full h-auto block cursor-pointer"
                 onEnded={() => setIsPlaying(false)}
-                onClick={isPlaying ? handlePause : handlePlay} 
+                onClick={isPlaying ? handlePause : handlePlay}
               >
                 <source src="/videos/hero-video.mp4" type="video/mp4" />
               </video>
 
               {/* Bottom depth gradient */}
-              <div className="absolute bottom-0 left-0 right-0 h-[60%] pointer-events-none bg-gradient-to-t from-[#01081c] via-[#01081c]/60 to-transparent" />
+              {/* Bottom depth gradient — extend higher to cover edge glitch */}
+              <div className="absolute bottom-0 left-0 right-0 h-[70%] pointer-events-none bg-gradient-to-t from-[#01081c] via-[#01081c]/50 to-transparent" />
+
+              {/* Add this — solid 1px cover at the very bottom edge */}
+              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#01081c] pointer-events-none" />
 
               {/* Play button — shown when paused */}
               {!isPlaying && (
