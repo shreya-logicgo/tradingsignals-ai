@@ -85,12 +85,9 @@ export default function Hero() {
           88%  { opacity: 1; }
           100% { transform: translate(4px, -24px);  opacity: 0; }
         }
-        @keyframes float-c {
-          0%   { transform: translate(0px, 0px);    opacity: 0; }
-          12%  { opacity: 1; }
-          40%  { transform: translate(8px, -10px);  }
-          88%  { opacity: 1; }
-          100% { transform: translate(3px, -28px);  opacity: 0; }
+        @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
 
@@ -154,29 +151,19 @@ export default function Hero() {
 
         {/* PRIMARY CTA — Localized */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
-          <button
-            className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300"
-            style={{ fontFamily: "var(--font-hoves)" }}
-
-            onMouseEnter={(e) => {
-              const btn = e.currentTarget as HTMLButtonElement;
-              btn.style.background = "#FFFFFF";
-              btn.style.color = "#000000";
-              btn.style.borderColor = "#FFFFFF";
-            }}
-
-            onMouseLeave={(e) => {
-              const btn = e.currentTarget as HTMLButtonElement;
-              btn.style.background = "transparent";
-              btn.style.color = "#FFFFFF";
-              btn.style.borderColor = "rgb(255, 255, 255)";
-            }}
-          >
-            {t("hero.cta")}
+          <button className="relative w-full sm:w-[180px] h-10 md:h-[48px] p-[2px] rounded-full overflow-hidden group transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,240,255,0.2)] cursor-pointer">
+            <div className="absolute inset-[-1000%] animate-[rotate_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00F0FF_0%,#0012B8_50%,#00F0FF_100%)]" />
+            <span 
+              className="relative flex items-center justify-center w-full h-full bg-[#010B24] rounded-full text-white text-sm md:text-[15px] font-medium transition-all duration-300 group-hover:bg-transparent group-hover:text-white backdrop-blur-3xl"
+              style={{ fontFamily: "var(--font-hoves)" }}
+            >
+              {t("hero.cta")}
+            </span>
           </button>
         </div>
 
 
+       
         {/* Product Visual (Chart/Dashboard) */}
         <div className="w-full mt-10 md:mt-16">
           {/* <HeroChart /> */}
