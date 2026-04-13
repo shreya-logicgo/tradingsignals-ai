@@ -1,6 +1,6 @@
 // components/BlogContent.tsx
 import Image from "next/image";
-import type { BlogContentBlock } from "@/types/blog";
+import type { BlogContentBlock } from "./blog";
 
 interface Props {
   blocks: BlogContentBlock[];

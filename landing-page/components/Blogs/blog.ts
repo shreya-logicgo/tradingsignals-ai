@@ -1,4 +1,5 @@
 // types/blog.ts
+import type { StaticImageData } from "next/image";
 
 export type BlogContentBlock =
   | { type: "paragraph"; text: string }
@@ -25,7 +26,7 @@ type ContentBlock =
 export interface BlogPostDetail {
   slug: string; // Slugs usually stay in English for URL consistency
   title: MultilingualText;
-  author: { name: string; avatar: string };
+ author: { name: string; avatar: StaticImageData | string };
   publishedAt: string;
   content: ContentBlock[];
   tags: MultilingualText[]; 
