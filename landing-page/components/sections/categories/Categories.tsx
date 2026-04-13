@@ -45,7 +45,7 @@ export default function Categories() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         {/* Main content container */}
         <div className="flex flex-col gap-12 lg:gap-16">
-          
+
           {/* Header Block — Localized */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12">
             {/* Left: Badge + Heading */}
@@ -58,14 +58,16 @@ export default function Categories() {
               </div>
 
               {/* Heading */}
-              <h2 className="text-3xl md:text-4xl font-normal leading-tight md:leading-[40px] font-hoves text-white">
+              <h2 className="text-3xl md:text-4xl font-normal leading-tight md:leading-[40px] font-hoves text-white"
+              style={{ fontFamily: "var(--font-hoves)" }}>
                 {t("tradingChannels.heading")}
               </h2>
             </div>
 
             {/* Right: Description */}
             <div className="max-w-[540px] lg:self-end">
-              <p className="text-sm md:text-base leading-relaxed text-white/65 font-hoves lg:text-right">
+              <p className="text-sm md:text-base leading-relaxed text-white/65 font-hoves lg:text-right"
+              style={{ fontFamily: "var(--font-hoves)" }}>
                 {t("tradingChannels.description")}
               </p>
             </div>
@@ -80,9 +82,9 @@ export default function Categories() {
 
           {/* ── Explore Button — Localized ── */}
           <div className="flex justify-center pt-4">
-            <button className="group relative px-10 py-3 rounded-full border border-white text-white text-xs font-medium uppercase tracking-widest font-hoves transition-all duration-500 overflow-hidden hover:border-transparent">
-              <span className="relative z-10">{t("tradingChannels.cta")}</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <button className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest font-hoves transition-colors duration-300 hover:bg-white hover:text-black hover:border-white"
+            style={{ fontFamily: "var(--font-hoves)" }}>
+              <span>{t("tradingChannels.cta")}</span>
             </button>
           </div>
         </div>

@@ -25,21 +25,25 @@ export default function StartToday() {
 
                     <div className="relative flex flex-col items-center gap-5">
                         {/* Badge */}
-                        <span className="inline-flex items-center px-5 py-1.5 rounded-full border border-white/25 text-white/80 text-xs font-medium tracking-[0.18em] uppercase">
+                        <span className="inline-flex items-center px-5 py-1.5 rounded-full border border-white/25 text-white/80 text-xs font-medium tracking-[0.18em] uppercase"
+                        style={{ fontFamily: "var(--font-mono)" }}>
                             {t("starttoday.badge")}
                         </span>
 
-                        <h2 className="text-white text-3xl sm:text-[2.6rem] font-semibold leading-tight">
+                        <h2 className="text-white text-3xl sm:text-[2.6rem] font-semibold leading-tight"
+                        style={{ fontFamily: "var(--font-hoves)" }}>
                             {t("starttoday.heading")}
                         </h2>
 
-                        <p className="text-white/60 text-sm sm:text-base leading-relaxed max-w-sm">
+                        <p className="text-white/60 text-sm sm:text-base leading-relaxed max-w-sm"
+                        style={{ fontFamily: "var(--font-hoves)" }}>
                             {t("starttoday.description")}
                         </p>
 
                         <button
                             className="mt-2 px-8 py-2.5 rounded-full border border-white/40 text-white text-sm font-medium
                          hover:bg-white hover:text-[#060d1f] transition-all duration-200 cursor-pointer"
+                            style={{ fontFamily: "var(--font-hoves)" }}
                         >
                             {t("starttoday.cta")}
                         </button>

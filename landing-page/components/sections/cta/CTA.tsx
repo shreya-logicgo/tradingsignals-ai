@@ -38,7 +38,8 @@ export default function CTA() {
             </div>
 
             {/* Heading */}
-            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight">
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight"
+            style={{ fontFamily: "var(--font-hoves)" }}>
               {t("blog.heading")}
             </h2>
 
@@ -108,7 +109,8 @@ export default function CTA() {
 
             {/* CTA Button — Localized */}
             <div className="flex justify-center mt-4">
-              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black">
+              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black"
+              style={{ fontFamily: "var(--font-hoves)" }}>
                 {t("blog.cta")}
               </button>
             </div>

@@ -47,7 +47,8 @@ export default function Footer() {
               </Link>
 
               {/* Description */}
-              <p className="text-gray-400 text-sm leading-relaxed text-center sm:text-start">
+              <p className="text-gray-400 text-sm leading-relaxed text-center sm:text-start"
+              style={{ fontFamily: "var(--font-hoves)" }}>
                 {t("footer.description")}
               </p>
 
@@ -82,7 +83,8 @@ export default function Footer() {
             <div className="flex gap-16 md:gap-24 lg:gap-24 lg:justify-start justify-center">
               {/* Product */}
               <div className="flex flex-col gap-5">
-                <h4 className="text-white text-[11px] font-semibold tracking-[0.2em] uppercase opacity-90">
+                <h4 className="text-white text-[11px] font-semibold tracking-[0.2em] uppercase opacity-90"
+                style={{ fontFamily: "var(--font-hoves)" }}>
                   {t("footer.sections.product")}
                 </h4>
                 <ul className="flex flex-col gap-3.5">
@@ -91,6 +93,7 @@ export default function Footer() {
                       <Link
                         href={link.href}
                         className="text-gray-400 text-[13.5px] hover:text-white transition-all duration-200"
+                        style={{ fontFamily: "var(--font-hoves)" }}
                       >
                         {t(`footer.links.${link.key}`)}
                       </Link>
@@ -101,7 +104,8 @@ export default function Footer() {
 
               {/* Legal */}
               <div className="flex flex-col gap-5">
-                <h4 className="text-white text-[11px] font-semibold tracking-[0.2em] uppercase opacity-90">
+                <h4 className="text-white text-[11px] font-semibold tracking-[0.2em] uppercase opacity-90"
+                style={{ fontFamily: "var(--font-hoves)" }}>
                   {t("footer.sections.legal")}
                 </h4>
                 <ul className="flex flex-col gap-3.5">
@@ -110,6 +114,7 @@ export default function Footer() {
                       <Link
                         href={link.href}
                         className="text-gray-400 text-[13.5px] hover:text-white transition-all duration-200"
+                        style={{ fontFamily: "var(--font-hoves)" }}
                       >
                         {t(`footer.links.${link.key}`)}
                       </Link>
@@ -124,10 +129,12 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t max-w-7xl mx-auto border-[#343445] border-dashed relative z-10">
           <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-            <p className="text-gray-500 text-xs">
+            <p className="text-gray-500 text-xs"
+            style={{ fontFamily: "var(--font-hoves)" }}>
               {t("footer.copyright")}
             </p>
-            <p className="text-gray-500 text-xs sm:text-right  leading-relaxed">
+            <p className="text-gray-500 text-xs sm:text-right  leading-relaxed"
+            style={{ fontFamily: "var(--font-hoves)" }}>
               {t("footer.disclaimer")}
             </p>
           </div>
