@@ -103,7 +103,7 @@ export default function Traders() {
   const displayCards = isMounted ? allCards.slice(startIndex, startIndex + visibleCount) : allCards;
 
   return (
-    <section className="w-full bg-[#010B24] py-3 md:py-3 relative overflow-hidden">
+    <section className="w-full bg-[#010B24] py-3 md:py-3 relative overflow-hidden mb-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex flex-col gap-12 lg:gap-16 items-center">
           
@@ -152,7 +152,7 @@ export default function Traders() {
             </div>
 
             {/* ── Navigation arrows — Controlled visibility ── */}
-            <div className={`flex lg:hidden justify-center items-center gap-4 transition-all duration-300 ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+            <div className={`flex  justify-center items-center gap-4 transition-all duration-300 ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
               <button
                 onClick={() => setStartIndex((p) => Math.max(0, p - 1))}
                 disabled={!canPrev}
