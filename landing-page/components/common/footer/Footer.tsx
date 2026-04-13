@@ -122,7 +122,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/5 relative z-10">
+        <div className="border-t max-w-7xl mx-auto border-[#343445] border-dashed relative z-10">
           <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
             <p className="text-gray-500 text-xs">
               {t("footer.copyright")}
