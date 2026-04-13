@@ -1,0 +1,295 @@
+{
+    "navbar": {
+        "features": "Features",
+        "strategies": "Strategies",
+        "testimonials": "Testimonials",
+        "blog": "Blog",
+        "faq": "FAQ",
+        "login": "Login",
+        "signup": "Sign Up",
+        "cta": "Start Trading Now"
+    },
+    "hero": {
+        "users": "Used by over 10,000+ traders",
+        "title": "Trade Smarter, Grow Faster with Trading Signal AI",
+        "description": "Join thousands of traders getting AI-powered signals for Forex, Crypto & the Indian Market — backed by real-time analysis and live results.",
+        "integration": "Integrated with top exchanges",
+        "cta": "Start Trading Now",
+        "watchDemo": "Watch Demo",
+        "demoDuration": "0:58 min"
+    },
+    "features": {
+        "title": "Platform Features",
+        "heading": "Everything You Need to Trade Profitably",
+        "description": "A complete trading ecosystem built for modern crypto traders. From signals to execution to analytics.",
+        "cards": {
+            "aiSignals": {
+                "title": "AI-Powered Signals",
+                "desc": "Advanced machine learning models analyze market patterns, sentiment, and on-chain data to generate high-probability trading signals."
+            },
+            "multiExchange": {
+                "title": "Multi-Exchange Integration",
+                "desc": "Connect to Binance, Coinbase, Kraken, Bybit, OKX and more. Trade across all major exchanges from a single dashboard."
+            },
+            "automation": {
+                "title": "Automation + Manual Trading",
+                "desc": "Execute trades automatically or use our signals for manual trading. Full control over your trading style and risk management."
+            },
+            "analytics": {
+                "title": "Real-Time Analytics",
+                "desc": "Track performance, analyze trades, and optimize strategies with our comprehensive analytics dashboard and reporting tools."
+            }
+        }
+    },
+    "strategy": {
+        "strategybadge": "AI Strategies",
+        "title": "Choose Your Trading Channels",
+        "description": "Access specialized AI-driven signal streams, each built for a specific strategy — from scalping and swing trading to momentum and automation.",
+        "popular": "Most Popular",
+        "card_cta": "Trade Now",
+        "monthlyAvg": "Monthly Avg",
+        "cards": {
+            "prime": {
+                "title": "TSAI Prime",
+                "desc": "Advanced AI signals powered by deep market analysis and probability models.",
+                "roi": "+47.3%",
+                "price": "$149/mo"
+            },
+            "momentum": {
+                "title": "TSAI Momentum",
+                "desc": "Ride strong trends and capture powerful market expansions.",
+                "roi": "+38.6%",
+                "price": "$49/mo"
+            },
+            "core": {
+                "title": "TSAI Core",
+                "desc": "Structured swing trades on major assets with high-probability setups.",
+                "roi": "+24.2%",
+                "price": "$49/mo"
+            },
+            "alts": {
+                "title": "TSAI Alts",
+                "desc": "AI-curated altcoin opportunities with strong momentum and liquidity.",
+                "roi": "+62.8%",
+                "price": "$49/mo"
+            },
+            "flash": {
+                "title": "TSAI Flash",
+                "desc": "Ultra-fast trades for scalping and volatile market conditions.",
+                "roi": "+31.4%",
+                "price": "$49/mo"
+            },
+            "system": {
+                "title": "TSAI System",
+                "desc": "Automated signals for consistent and passive trading.",
+                "roi": "+28.9%",
+                "price": "$59/mo"
+            },
+            "struct": {
+                "title": "TSAI Struct",
+                "desc": "Disciplined trading with controlled risk management.",
+                "roi": "+33.7%",
+                "price": "$79/mo"
+            },
+            "assist": {
+                "title": "TSAI Assist",
+                "desc": "Simple guided signals designed for new traders.",
+                "roi": "+18.5%",
+                "price": "$39/mo"
+            },
+            "vol": {
+                "title": "TSAI Vol",
+                "desc": "Capture high-volatility moves across multiple timeframes.",
+                "roi": "+31.4%",
+                "price": "$49/mo"
+            },
+            "hybrid": {
+                "title": "TSAI Hybrid",
+                "desc": "Flexible strategy combining short- and mid-term trading approaches.",
+                "roi": "+28.9%",
+                "price": "$59/mo"
+            }
+        }
+    },
+    "gettingStarted": {
+        "stepbadge": "Step",
+        "title": "Getting Started",
+        "heading": "Start Trading in 3 Simple Steps",
+        "description": "Get up and running in minutes. No complex setup required.",
+        "stepsList": [
+            {
+                "title": "Register & Connect",
+                "desc": "Securely link your exchange account via API. We support Binance, Coinbase, Kraken, Bybit, OKX, and more. Your funds stay on your exchange."
+            },
+            {
+                "title": "Choose Signal Channels",
+                "desc": "Select from 8 AI-powered strategies based on your risk tolerance and trading goals. Combine multiple strategies for diversification."
+            },
+            {
+                "title": "Trade & Monitor",
+                "desc": "Execute trades automatically or manually. Track performance in real-time with our advanced analytics dashboard."
+            }
+        ],
+        "stats": {
+            "registeredUsers": "Registered Users",
+            "aum": "Assets Under Management",
+            "pnl": "Total Followers PNL"
+        }
+    },
+    "stats": {
+        "registeredUsers": "Registered Users",
+        "aum": "Assets Under Management",
+        "totalPnl": "Total Followers PNL"
+    },
+    "tradingChannels": {
+        "title": "Trading Channels",
+        "heading": "Trade with Purpose, Not Guesswork",
+        "description": "Structured strategies powered by AI, designed to capture opportunities across volatility, trends, and market momentum.",
+        "cards": {
+            "scalping": {
+                "title": "Scalping",
+                "desc": "Fast-response strategies built to capture short-term price movements and volatility spikes with rapid execution.",
+                "badges": ["TSAI Vol", "TSAI Flash"]
+            },
+            "swing": {
+                "title": "Swing Trading",
+                "desc": "Structured strategies focused on medium-term trends and high-probability opportunities across major and altcoin markets.",
+                "badges": ["TSAI Core", "TSAI Alts"]
+            },
+            "aiStrategy": {
+                "title": "AI Strategy",
+                "desc": "Flagship AI-driven strategy analyzing market structure, sentiment, and volatility to identify dominant market setups.",
+                "badges": ["TSAI Prime"]
+            },
+            "lowRisk": {
+                "title": "Low Risk",
+                "desc": "Simplified trading signals designed for guided execution and controlled exposure, ideal for beginners and steady trading.",
+                "badges": ["TSAI Assist"]
+            },
+            "highRisk": {
+                "title": "High Risk High Reward",
+                "desc": "Aggressive strategies targeting strong price expansions and high-momentum trading opportunities.",
+                "badges": ["TSAI Momentum", "TSAI Hybrid"]
+            },
+            "futures": {
+                "title": "Futures",
+                "desc": "Advanced strategies focused on structured execution, systematic signals, and portfolio-level risk control.",
+                "badges": ["TSAI Struct", "TSAI System"]
+            }
+        },
+        "cta": "Explore"
+    },
+    "whyUs": {
+        "title": "Why Choose Us",
+        "heading": "Built for Serious Traders",
+        "description": "We obsess over the details so you can focus on what matters: profitable trading.",
+        "items": [
+            {
+                "title": "Bank-Level Security",
+                "desc": "Your API keys are encrypted with AES-256. We never have withdrawal access to your funds."
+            },
+            {
+                "title": "Full Transparency",
+                "desc": "Real-time performance tracking. See every trade, every P&L, every detail. No hidden fees."
+            },
+            {
+                "title": "Advanced Analytics",
+                "desc": "Detailed reports, trade history, and performance metrics to optimize your strategy."
+            },
+            {
+                "title": "Instant Execution",
+                "desc": "Sub-second trade execution ensures you never miss an opportunity in fast markets."
+            }
+        ]
+    },
+    "testimonials": {
+        "title": "Testimonials",
+        "heading": "Trusted by 1k+ Traders",
+        "description": "Real results from real traders using Trading Signals AI",
+        "quotes": [
+            "\"Trading Signals AI has been a game-changer for me as a beginner in the world of crypto trading. Before joining, I was hesitant to explore into the market, fearing I'd make costly mistakes.\"",
+            "\"Their platform is intuitive and user-friendly, and their signals provide clear entry and exit points, making it easy for beginners like me to follow.\"",
+            "\"Trading Signals AI has transformed my trading experience. The platform is user-friendly, and the signals are accurate and timely. I've seen a significant improvement in my trading performance since I started using it.\"",
+            "\"With Trading Signals AI, I found a welcoming community and a wealth of resources to guide me on my trading journey.\"",
+            "\"Trading Signals AI has been a game-changer for me as a beginner in the world of crypto trading. Before joining, I was hesitant to explore into the market, fearing I'd make costly mistakes.\""
+        ]
+    },
+    "faq": {
+        "badge": "FAQ",
+        "title": "Frequently Asked Questions",
+        "description": "Everything you need to know about Trading Signals AI",
+        "questions": [
+            {
+                "q": "What is Trading Signals AI?",
+                "a": "Trading Signals AI is an advanced algorithmic platform that provides institutional-grade signals and automated trading solutions powered by deep learning models."
+            },
+            {
+                "q": "What are signal channels?",
+                "a": "Signal channels are specialized algorithmic streams designed for specific market conditions like scalping, momentum, or trend-following."
+            },
+            {
+                "q": "Can I automate my trades?",
+                "a": "Yes, our platform supports full automation via API integration with major exchanges like Binance, Bybit, and OKX."
+            },
+            {
+                "q": "Is the platform suitable for beginners?",
+                "a": "Absolutely. While powerful, our TSAI Assist channel is specifically designed with simple, guided signals for those new to trading."
+            },
+            {
+                "q": "Are performance results transparent?",
+                "a": "Yes. We pride ourselves on full transparency. Every signal's performance is tracked in real-time and visible on our dashboard."
+            },
+            {
+                "q": "Is my account secure?",
+                "a": "We use AES-256 encryption for API keys and only require 'Trade' permissions. We never have access to withdraw your funds."
+            }
+        ]
+    },
+    "blog": {
+        "title": "Blogs",
+        "heading": "Latest News & Insights",
+        "description": "Stay ahead of the curve with our expert analysis, trading guides, and major platform announcements.",
+        "posts": [
+            {
+                "title": "2026 AI Trading Strategies for NVDA: Chart & AI Analytics Guide",
+                "desc": "Discover how AI-powered analytics are reshaping trading strategies for NVDA in 2026, with real chart breakdowns and signal analysis."
+            },
+            {
+                "title": "How to Trade XAUUSD Breakouts Using ATR and AI-empowered Tr...",
+                "desc": "Learn how to identify high-probability XAUUSD breakout setups using ATR volatility filters combined with AI signal confirmation."
+            },
+            {
+                "title": "PR News: Automate Trading Ideas in Seconds: TradeOS Launches...",
+                "desc": "TradeOS introduces a new automation layer that converts raw trading ideas into executable strategies in seconds using AI."
+            }
+        ],
+        "viewMore": "View more",
+        "cta": "Learn More"
+    },
+    "starttoday": {
+        "badge": "Start Today",
+        "heading": "Ready to Transform Your Trading?",
+        "description": "Join thousands of profitable traders using AI-powered signals to make smarter decisions every day.",
+        "cta": "Start Trading Now"
+    },
+    "footer": {
+        "description": "AI-powered crypto trading signals for smarter decisions. Trusted by 12,000+ traders worldwide.",
+        "sections": {
+            "product": "Product",
+            "legal": "Legal"
+        },
+        "links": {
+            "features": "Features",
+            "strategies": "Strategies",
+            "testimonials": "Testimonials",
+            "faq": "FAQ",
+            "contact": "Contact",
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Service",
+            "risk": "Risk Disclosure",
+            "cookie": "Cookie Policy"
+        },
+        "copyright": "© 2026 Trading Signals AI. All rights reserved.",
+        "disclaimer": "Trading involves substantial risk and is not suitable for every investor. Past performance is not indicative of future results. This is not financial advice."
+    }
+}
