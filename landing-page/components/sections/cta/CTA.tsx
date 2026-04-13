@@ -119,7 +119,7 @@ export default function CTA() {
             {/* Learn More button */}
             <div className="flex justify-center mt-4">
               <button
-                className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium transition-all duration-300 hover:bg-white hover:text-black"
+                className="px-8 py-3 rounded-full cursor-pointer border border-white text-white text-sm font-medium transition-all duration-300 hover:bg-white hover:text-black"
                 style={{ fontFamily: "var(--font-hoves)" }}
               >
                 Learn More

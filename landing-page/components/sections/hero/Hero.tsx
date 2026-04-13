@@ -165,7 +165,8 @@ export default function Hero() {
         {/* PRIMARY CTA — Optimized mobile height and width */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
   <button
-    className="w-full sm:w-[160px] h-5 md:h-8 rounded-full border border-white/30 font-mono bg-transparent text-white text-sm md:text-[13px] font-medium flex items-center justify-center transition-all duration-300"
+    className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300"
+    style={{ fontFamily: "var(--font-hoves)" }}
     
     onMouseEnter={(e) => {
       const btn = e.currentTarget as HTMLButtonElement;
@@ -178,7 +179,7 @@ export default function Hero() {
       const btn = e.currentTarget as HTMLButtonElement;
       btn.style.background = "transparent";
       btn.style.color = "#FFFFFF";
-      btn.style.borderColor = "rgba(255,255,255,0.3)";
+      btn.style.borderColor = "rgb(255, 255, 255)";
     }}
   >
     Start Trading Now

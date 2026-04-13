@@ -85,7 +85,7 @@ export default function Categories() {
           {/* ── Explore Button ── */}
           <div className="flex justify-center ">
             <button
-              className="w-[110px] h-[32px] rounded-full border border-white/30 bg-transparent text-white text-xs font-medium uppercase tracking-widest font-hoves flex items-center justify-center transition-all duration-300"
+              className="w-[110px] h-[48px] cursor-pointer rounded-full border border-white bg-transparent text-white text-xs font-medium uppercase tracking-widest font-hoves flex items-center justify-center transition-all duration-300"
               style={{ fontFamily: "var(--font-hoves)" }}
               onMouseEnter={(e) => {
                 const btn = e.currentTarget as HTMLButtonElement;
@@ -97,7 +97,7 @@ export default function Categories() {
                 const btn = e.currentTarget as HTMLButtonElement;
                 btn.style.background = "transparent";
                 btn.style.color = "#FFFFFF";
-                btn.style.borderColor = "rgba(255,255,255,0.3)";
+                btn.style.borderColor = "rgb(255, 255, 255)";
               }}
             >
               Explore

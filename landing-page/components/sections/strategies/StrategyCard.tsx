@@ -67,7 +67,7 @@ export default function StrategyCard({
           </div>
 
           {/* Action Button */}
-          <button className="w-full h-11 rounded-full text-sm font-medium transition-all duration-300 font-hoves bg-blue-600/10 text-white border border-white/10 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-600/20"style={{ fontFamily: "var(--font-hoves)" }}>
+          <button className="w-full h-11 rounded-full cursor-pointer text-sm font-medium transition-all duration-300 font-hoves bg-blue-600/10 text-white border border-white/10 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-600/20"style={{ fontFamily: "var(--font-hoves)" }}>
             Trade Now
           </button>
         </div>
