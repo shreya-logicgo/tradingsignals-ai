@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function BlogPage() {
   return (
-    <main className="bg-[#010B24] min-h-screen flex flex-col mt-24"
+    <main className="bg-[#010B24] min-h-screen flex flex-col lg:mt-24 mt-10"
       style={{ fontFamily: "var(--font-hoves)" }}
     >
       <BlogListing />
