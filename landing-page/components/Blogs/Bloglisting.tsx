@@ -219,7 +219,7 @@ export default function BlogListing() {
 
         {/* Learn More button */}
         <div className="flex justify-center">
-          <button className="px-8 py-2.5 rounded-full border border-white/40 text-white text-sm font-medium hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+          <button className="px-8 py-2.5 h-14 rounded-full border border-white text-white text-md font-medium hover:bg-white/10 transition-colors duration-200 cursor-pointer">
             {t("blog.cta")}
           </button>
         </div>
