@@ -11,6 +11,7 @@ import Testimonials from "@/components/sections/testimonials/Testimonials";
 import Traders from "@/components/sections/traders/Traders";
 import TrustedLogos from "@/components/sections/trusted/TrustedLogos";
 import StartToday from "@/components/sections/starttoday/Starttoday";
+import Container from "@/components/common/container/Container";
 
 export default function Home() {
   return (
@@ -52,7 +53,11 @@ export default function Home() {
       </section>
 
       <CTA />
-      <StartToday />
+      {/* <Container className="max-w-4xl mx-auto"> */}
+      <Container>
+        <StartToday />
+      </Container>
+      {/* </Container> */}
     </main>
   );
 }

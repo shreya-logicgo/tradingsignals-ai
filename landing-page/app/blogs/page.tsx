@@ -1,6 +1,7 @@
 // app/blog/page.tsx  (or pages/blog.tsx if using Pages Router)
 
 import BlogListing from "@/components/Blogs/Bloglisting";
+import Container from "@/components/common/container/Container";
 import StartToday from "@/components/sections/starttoday/Starttoday";
 
 export const metadata = {
@@ -12,10 +13,12 @@ export const metadata = {
 
 export default function BlogPage() {
   return (
-    <main className="bg-[#010B24] min-h-screen flex flex-col lg:mt-24 mt-10"
+    <main className="bg-[#010B24] min-h-screen flex flex-col lg:mt-24 mt-10 max-w-7xl mx-auto"
       style={{ fontFamily: "var(--font-hoves)" }}
     >
-      <BlogListing />
+      <Container>
+        <BlogListing />
+      </Container>
       <StartToday />
     </main>
   );
