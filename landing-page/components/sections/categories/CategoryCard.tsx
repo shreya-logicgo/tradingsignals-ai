@@ -16,13 +16,20 @@ export default function CategoryCard({ title, description, tags, index }: Catego
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 1.0, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
       
       // Idle "Breath": Slower 8-second cycle
       animate={{
         y: [0, -5, 0],
       }}
+
+      // MERGED TRANSITION OBJECT
       transition={{
+        // Default transition (for opacity and initial y entrance)
+        duration: 1.0,
+        delay: index * 0.15,
+        ease: [0.16, 1, 0.3, 1],
+        
+        // Specific transition for the repeating "y" breath effect
         y: {
           duration: 8,
           repeat: Infinity,
