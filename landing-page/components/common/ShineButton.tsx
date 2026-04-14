@@ -1,6 +1,6 @@
 // components/ShineButton.tsx
 import Link from "next/link";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 interface ShineButtonProps {
   children: string;
@@ -11,65 +11,53 @@ interface ShineButtonProps {
 }
 
 function ShineTextStack({ text }: { text: string }) {
+  const baseStyle: React.CSSProperties = {
+    color: "#adb1b8",
+    fontWeight: 500,
+    lineHeight: "1.2",
+    fontFamily: "var(--font-hoves)",
+    margin: 0,
+    textAlign: "center",
+    whiteSpace: "nowrap",
+  };
+
   return (
-    <div
-      className="relative flex flex-col items-center justify-center w-min h-min z-[3]"
-      style={{
-        color: "#adb1b8",
-        fontWeight: 500,
-        lineHeight: "1.7em",
-        fontFamily: "var(--font-hoves)",
-      }}
-    >
+    <div className="grid grid-cols-1 grid-rows-1 place-items-center z-[3] relative">
       {/* Layer 1 — dim base, always visible */}
-      <div className="select-none">
-        <p className="whitespace-nowrap text-[#adb1b8]" style={{ margin: 0 }}>
-          {text}
-        </p>
+      <div style={{ gridArea: "1/1" }} className="select-none">
+        <p style={baseStyle}>{text}</p>
       </div>
 
-      {/* Layer 2 — blur 3px + shine, white */}
+      {/* Layer 2 — blur 4px + shine, white */}
       <div
-        className="shine absolute select-none"
+        className="shine select-none pointer-events-none opacity-80"
         style={{
-          zIndex: 1,
-          filter: "blur(3px)",
-          top: "51%", left: "50%",
-          transform: "translate(-50%, -50%)",
+          gridArea: "1/1",
+          filter: "blur(4px)",
         }}
       >
-        <p className="whitespace-nowrap text-white" style={{ margin: 0 }}>
-          {text}
-        </p>
+        <p style={{ ...baseStyle, color: "#fff" }}>{text}</p>
       </div>
 
-      {/* Layer 3 — blur 6px + shine, white */}
+      {/* Layer 3 — blur 8px + shine, white */}
       <div
-        className="shine absolute select-none"
+        className="shine select-none pointer-events-none opacity-60"
         style={{
-          zIndex: 1,
-          filter: "blur(6px)",
-          top: "51%", left: "50%",
-          transform: "translate(-50%, -50%)",
+          gridArea: "1/1",
+          filter: "blur(8px)",
         }}
       >
-        <p className="whitespace-nowrap text-white" style={{ margin: 0 }}>
-          {text}
-        </p>
+        <p style={{ ...baseStyle, color: "#fff" }}>{text}</p>
       </div>
 
       {/* Layer 4 — no blur + shine, #c7c7c7 — crisp top layer */}
       <div
-        className="shine absolute select-none"
+        className="shine select-none pointer-events-none"
         style={{
-          zIndex: 2,
-          top: "51%", left: "50%",
-          transform: "translate(-50%, -50%)",
+          gridArea: "1/1",
         }}
       >
-        <p className="whitespace-nowrap" style={{ color: "#c7c7c7", margin: 0 }}>
-          {text}
-        </p>
+        <p style={{ ...baseStyle, color: "#c7c7c7" }}>{text}</p>
       </div>
     </div>
   );
@@ -84,7 +72,7 @@ export default function ShineButton({
 }: ShineButtonProps) {
   const inner = (
     <>
-      {/* BG Layer 1 — dark gray base fill */}
+      {/* BG Layer 1 — dark base fill */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ backgroundColor: "#3c3f44" }}
@@ -96,37 +84,39 @@ export default function ShineButton({
         style={{ backgroundColor: "#9b9999" }}
       />
 
-      {/* BG Layer 3 — near-black inner pill, 1px inset → exposes 1px border */}
+      {/* BG Layer 3 — theme inner pill, 1.5px inset → exposes border */}
       <div
         className="absolute overflow-hidden transition-all duration-300 ease-in-out"
         style={{
           backgroundColor: "#010B24",
           borderRadius: "99px",
-          inset: "1px",
+          inset: "1.5px",
         }}
       />
 
-      {/* Icon */}
-      {icon && (
-        <div
-          className="relative z-[3] flex-shrink-0"
-          style={{ color: "#b6b6b9" }}
-        >
-          {icon}
-        </div>
-      )}
+      {/* Content wrapper */}
+      <div className="relative z-[3] flex items-center justify-center gap-2.5">
+        {/* Icon */}
+        {icon && (
+          <div
+            className="flex-shrink-0"
+            style={{ color: "#b6b6b9" }}
+          >
+            {icon}
+          </div>
+        )}
 
-      {/* 4-layer shine text */}
-      <ShineTextStack text={children} />
+        {/* 4-layer shine text */}
+        <ShineTextStack text={children} />
+      </div>
     </>
   );
 
   const sharedClass = [
     "relative flex items-center justify-center overflow-hidden",
-    "rounded-[99px] w-min h-min",
-    "px-7 py-5 gap-[10px]",
+    "rounded-full transition-all duration-200",
+    "px-6 py-3.5 md:px-8 md:py-4.5",
     "cursor-pointer no-underline",
-    "transition-transform duration-200",
     "hover:scale-[1.03] active:scale-[0.98]",
     className,
   ].join(" ");
