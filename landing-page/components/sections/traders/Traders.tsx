@@ -52,7 +52,7 @@ export default function Traders() {
 
   // Localized data mapping
   const items = t("whyUs.items", { returnObjects: true }) as { title: string; desc: string }[];
-  
+
   const allCards = [
     {
       icon: <ShieldIcon />,
@@ -106,7 +106,7 @@ export default function Traders() {
     <section className="w-full bg-[#010B24] py-3 md:py-3 relative overflow-hidden mb-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         <div className="flex flex-col gap-12 lg:gap-16 items-center">
-          
+
           {/* ── Header block — Localized ── */}
           <div className="flex flex-col items-center text-center gap-6 max-w-[521px]">
             {/* Badge */}
@@ -117,12 +117,12 @@ export default function Traders() {
             </div>
 
             {/* Heading */}
-            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight" style={{ fontFamily: "var(--font-hoves)" }}>
               {t("whyUs.heading")}
             </h2>
 
             {/* Subtext */}
-            <p className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed max-w-[480px]"style={{ fontFamily: "var(--font-hoves)" }}>
+            <p className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed max-w-[480px]" style={{ fontFamily: "var(--font-hoves)" }}>
               {t("whyUs.description")}
             </p>
           </div>
@@ -156,22 +156,20 @@ export default function Traders() {
               <button
                 onClick={() => setStartIndex((p) => Math.max(0, p - 1))}
                 disabled={!canPrev}
-                className={`w-10 h-10 rounded-full border border-white/10 flex items-center justify-center transition-all duration-200 ${
-                  canPrev 
-                    ? "bg-white/10 text-white cursor-pointer hover:bg-white/20" 
+                className={`w-10 h-10 rounded-full border border-white/10 flex items-center justify-center transition-all duration-200 ${canPrev
+                    ? "bg-white/10 text-white cursor-pointer hover:bg-white/20"
                     : "bg-white/5 text-white/20 cursor-not-allowed"
-                }`}
+                  }`}
               >
                 <ChevronLeft />
               </button>
-              
+
               <div className="flex gap-1.5">
                 {isMounted && Array.from({ length: allCards.length - visibleCount + 1 }).map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      i === startIndex ? "w-6 bg-[#00F0FF]" : "w-1.5 bg-white/20"
-                    }`}
+                  <div
+                    key={i}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${i === startIndex ? "w-6 bg-[#00F0FF]" : "w-1.5 bg-white/20"
+                      }`}
                   />
                 ))}
               </div>
@@ -179,11 +177,10 @@ export default function Traders() {
               <button
                 onClick={() => setStartIndex((p) => Math.min(allCards.length - visibleCount, p + 1))}
                 disabled={!canNext}
-                className={`w-10 h-10 rounded-full border border-white/10 flex items-center justify-center transition-all duration-200 ${
-                  canNext 
-                    ? "bg-white/10 text-white cursor-pointer hover:bg-white/20" 
+                className={`w-10 h-10 rounded-full border border-white/10 flex items-center justify-center transition-all duration-200 ${canNext
+                    ? "bg-white/10 text-white cursor-pointer hover:bg-white/20"
                     : "bg-white/5 text-white/20 cursor-not-allowed"
-                }`}
+                  }`}
               >
                 <ChevronRight />
               </button>

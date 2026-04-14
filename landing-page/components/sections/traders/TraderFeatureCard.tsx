@@ -21,10 +21,10 @@ export default function TraderFeatureCard({ icon, title, description }: TraderFe
 
         {/* Text content */}
         <div className="flex flex-col gap-2 w-full">
-          <h3 className="font-hoves font-medium text-base text-left leading-none text-white m-0"style={{ fontFamily: "var(--font-hoves)" }}>
+          <h3 className="font-hoves font-medium text-base text-left leading-none text-white m-0" style={{ fontFamily: "var(--font-hoves)" }}>
             {title}
           </h3>
-          <p className="font-hoves font-extralight text-left text-xs leading-relaxed text-[#c7ccd2]"style={{ fontFamily: "var(--font-hoves)" }}>
+          <p className="font-hoves font-extralight text-left text-xs leading-relaxed text-[#c7ccd2]" style={{ fontFamily: "var(--font-hoves)" }}>
             {description}
           </p>
         </div>
