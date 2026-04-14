@@ -11,7 +11,9 @@ import userslabel from "@/assets/images/avatars.png";
 import ShineText from "@/components/common/ShineText";
 import ShineButton from "@/components/common/ShineButton";
 
+// ... particulates data ...
 const PARTICLES = [
+  // ... (keeping same particle data)
   { id: 1, x: 83.7, y: 3.4, s: 1.4, o: 0.32, dur: 5.9, del: 3.4 },
   { id: 2, x: 92.3, y: 6.9, s: 1.6, o: 0.26, dur: 3.9, del: 2.5 },
   { id: 3, x: 62.9, y: 13.1, s: 2.0, o: 0.41, dur: 3.9, del: 2.9 },
@@ -68,98 +70,16 @@ export default function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative w-full min-h-screen pt-30 md:pt-42 pb-16 overflow-hidden bg-[#010B24]">
-      <style>{`
-        @keyframes float-a { 0% { transform: translate(0,0); opacity: 0; } 12% { opacity: 1; } 100% { transform: translate(-3px, -26px); opacity: 0; } }
-        @keyframes float-b { 0% { transform: translate(0,0); opacity: 0; } 12% { opacity: 1; } 100% { transform: translate(4px, -24px); opacity: 0; } }
-        @keyframes float-c { 0% { transform: translate(0,0); opacity: 0; } 12% { opacity: 1; } 100% { transform: translate(3px, -28px); opacity: 0; } }
+    <section className="relative w-full min-h-screen pt-30 md:pt-42  pb-16 overflow-hidden bg-[#010B24]">
 
-        /* ULTRA-SMOOTH LIQUID FLOW */
-        @keyframes liquid-glide {
-          0% { transform: translate(-15%, -15%) rotate(0deg); }
-          33% { transform: translate(10%, -10%) rotate(5deg); }
-          66% { transform: translate(-5%, 15%) rotate(-5deg); }
-          100% { transform: translate(-15%, -15%) rotate(0deg); }
-        }
 
-        @keyframes liquid-glide-reverse {
-          0% { transform: translate(10%, 10%) rotate(0deg); }
-          50% { transform: translate(-15%, -5%) rotate(-8deg); }
-          100% { transform: translate(10%, 10%) rotate(0deg); }
-        }
-      `}</style>
-
-      {/* ── Top-Right Gradient Layer (Vivid Blue/Cyan Flow) ── */}
-      <div className="absolute top-[-150px] right-[-5%] md:right-[-10px] w-full max-w-[1200px] pointer-events-none z-0 opacity-100 overflow-hidden">
-        <Image src={gradient2} alt="" aria-hidden="true" className="w-full h-auto object-contain relative z-10" priority />
-        
-        <div 
-          className="absolute inset-0 z-20"
-          style={{
-            WebkitMaskImage: `url(${gradient2.src})`,
-            WebkitMaskSize: "contain",
-            WebkitMaskRepeat: "no-repeat",
-            WebkitMaskPosition: "center",
-            maskImage: `url(${gradient2.src})`,
-            maskSize: "contain",
-          }}
-        >
-          {/* Base High-Intensity Cyan */}
-          <div 
-            className="absolute inset-[-60%] blur-[80px]"
-            style={{
-              background: "radial-gradient(circle at center, #00F0FF 0%, transparent 60%)",
-              animation: "liquid-glide 6s ease-in-out infinite",
-              mixBlendMode: "screen",
-              opacity: 0.9
-            }}
-          />
-          {/* High-Intensity Blue Drifting Over */}
-          <div 
-            className="absolute inset-[-60%] blur-[90px]"
-            style={{
-              background: "radial-gradient(circle at center, #0012B8 0%, transparent 60%)",
-              animation: "liquid-glide-reverse 4s ease-in-out infinite",
-              mixBlendMode: "screen",
-              opacity: 0.85
-            }}
-          />
-          {/* Vibrant Core Glow */}
-          <div 
-            className="absolute inset-[-20%] blur-[50px]"
-            style={{
-              background: "radial-gradient(circle at center, rgba(0, 18, 184, 0.4) 0%, transparent 70%)",
-              mixBlendMode: "plus-lighter"
-            }}
-          />
-        </div>
+      {/* ── Background Gradients ── */}
+      <div className="absolute top-[-150px] right-[-5%] md:right-[-10px] w-full max-w-[1200px] pointer-events-none z-0 opacity-80">
+        <Image src={gradient2} alt="" aria-hidden="true" className="w-full h-auto object-contain" priority />
       </div>
 
-      {/* ── Left Gradient Layer (Smooth Flow) ── */}
-      <div className="absolute top-0 left-0 w-full md:w-[70%] lg:w-[55%] pointer-events-none z-0 opacity-90 overflow-hidden">
-        <Image src={gradient1} alt="" aria-hidden="true" className="w-full h-auto object-contain relative z-10" priority />
-        
-        <div 
-          className="absolute inset-0 z-20"
-          style={{
-            WebkitMaskImage: `url(${gradient1.src})`,
-            WebkitMaskSize: "contain",
-            WebkitMaskRepeat: "no-repeat",
-            WebkitMaskPosition: "center",
-            maskImage: `url(${gradient1.src})`,
-            maskSize: "contain",
-          }}
-        >
-          <div 
-            className="absolute inset-[-60%] blur-[80px]"
-            style={{
-              background: "radial-gradient(circle at center, #0012B8 0%, #00F0FF 50%, transparent 80%)",
-              animation: "liquid-glide 8s ease-in-out infinite",
-              mixBlendMode: "screen",
-              opacity: 0.8
-            }}
-          />
-        </div>
+      <div className="absolute top-0 left-0 w-full md:w-[70%] lg:w-[55%] pointer-events-none z-0 opacity-70">
+        <Image src={gradient1} alt="" aria-hidden="true" className="w-full h-auto object-contain" priority />
       </div>
 
       {/* ── Particles Layer ── */}
@@ -184,29 +104,49 @@ export default function Hero() {
         })}
       </div>
 
+      {/* ── Main content area ── */}
       <Container className="relative z-20 flex flex-col items-center text-center gap-6 md:gap-8">
+
+        {/* Social Proof Badge — Localized */}
         <div className="flex items-center gap-2.5 px-4 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4">
-          <Image src={userslabel} alt="TSAI Traders" width={100} height={28} className="h-5 md:h-6 w-auto" />
+          <Image
+            src={userslabel}
+            alt="TSAI Traders"
+            width={100}
+            height={28}
+            className="h-5 md:h-6 w-auto"
+          />
           <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap" style={{ fontFamily: "var(--font-hoves)" }}>
             {t("hero.users")}
           </span>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]" style={{ fontFamily: "var(--font-hoves)" }}>
+        {/* HERO TITLE */}
+        {/* <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]" style={{ fontFamily: "var(--font-hoves)" }}> */}
+
+        <ShineText
+          className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]"
+          style={{ fontFamily: "var(--font-hoves)" }}
+        >
           {t("hero.title")}
         </ShineText>
         {/* </h1> */}
 
+        {/* SUPPORTING TEXT */}
         <p className="text-white/80 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0" style={{ fontFamily: "var(--font-hoves)" }}>
           {t("hero.description")}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
-          <button
-            className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-black"
-            style={{ fontFamily: "var(--font-hoves)" }}
-          >
-            {t("hero.cta")}
+        {/* PRIMARY CTA — Localized */}
+        {/* <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
+          <button className="relative w-full sm:w-[180px] h-10 md:h-[48px] p-[2px] rounded-full overflow-hidden group transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,240,255,0.2)] cursor-pointer">
+            <div className="absolute inset-[-1000%] animate-[rotate_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00F0FF_0%,#0012B8_50%,#00F0FF_100%)]" />
+            <span
+              className="relative flex items-center justify-center w-full h-full bg-[#010B24] rounded-full text-white text-sm md:text-[15px] font-medium transition-all duration-300 group-hover:bg-transparent group-hover:text-white backdrop-blur-3xl"
+              style={{ fontFamily: "var(--font-hoves)" }}
+            >
+              {t("hero.cta")}
+            </span>
           </button>
         </div> */}
         <ShineButton onClick={() => {}}>
@@ -214,10 +154,14 @@ export default function Hero() {
         </ShineButton>
 
 
+
+        {/* Product Visual (Chart/Dashboard) */}
         <div className="w-full mt-10 md:mt-16">
           <HeroChart />
         </div>
+
       </Container>
     </section>
   );
 }
+
