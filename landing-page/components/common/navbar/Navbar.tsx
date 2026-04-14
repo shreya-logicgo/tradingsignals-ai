@@ -62,7 +62,7 @@ export default function Navbar() {
       }`}
     >
       {/* 1. Use flex items-center and a consistent max-width */}
-      <Container className="h-11 flex items-center px-30 ">
+      <Container className="h-16 flex items-center px-6 md:px-18 lg:px-32 xl:px-30 2xl:px-40">
 
         {/* LOGO - Wrapped in a div to control width if needed */}
         <div className="flex-none">
@@ -70,15 +70,14 @@ export default function Navbar() {
             <Image
               src="/logof.png"
               alt="Trading Signals AI"
-              width={150}
-              height={40}
-              className="w-32 md:w-40"
-              priority
+              width={120}
+              height={120}
+              className="shrink-0 w-28 md:w-36 lg:w-40 xl:w-48 2xl:w-56"
             />
           </Link>
         </div>
 
-        {/* 2. NAVIGATION LINKS - Using flex-1 and justify-center to force the center */}
+        {/* 2. NAVIGATION LINKS - Desktop */}
         <ul className="hidden lg:flex flex-1 items-center justify-center gap-3 xl:gap-8 2xl:gap-10">
           {navLinks.map((link) => (
             <li key={link.label}>
@@ -92,38 +91,21 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* 3. ACTIONS - Using flex-none so it doesn't grow and stays on the right */}
+        {/* 3. ACTIONS - Desktop */}
         <div className="hidden lg:flex items-center flex-none gap-4">
-          {/* <Link
-            href="/login"
-            className="px-6 py-2 rounded-full border border-white/20 text-white text-sm hover:bg-white/5 transition-all"
-          >
-            {t("navbar.login")}
-          </Link> */}
-
-
           <Link
             href="/"
             className="relative p-[1px] overflow-hidden rounded-full flex items-center justify-center group"
           >
-            {/* The Moving Border (The "Snake") */}
             <div
               className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]"
             />
-
             <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-transparent px-6 py-2 text-sm font-medium text-white backdrop-blur-3xl transition-all group-hover:bg-black/40">
               {t("navbar.login")}
             </span>
           </Link>
 
-          {/* <Link
-            href="/"
-            className="px-4 py-1.5 xl:px-5 xl:py-1 2xl:px-6 2xl:py-2 rounded-full bg-white text-black text-[12px] xl:text-sm 2xl:text-base font-bold hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
-          >
-            {t("navbar.signup")}
-          </Link> */}
-
-          {/* Language Selector */}
+          {/* Language Selector Desktop */}
           <div className="relative flex items-center" ref={langRef}>
             <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
@@ -145,7 +127,6 @@ export default function Navbar() {
               </svg>
             </button>
 
-            {/* Dropdown Menu */}
             <AnimatePresence>
               {langMenuOpen && (
                 <motion.div
@@ -181,7 +162,10 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <div className="lg:hidden ml-auto">
-          <button className="text-white p-2" onClick={() => setMobileOpen(!mobileOpen)}>
+          <button 
+            className="text-white p-2 hover:bg-white/5 rounded-full transition-colors" 
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               {mobileOpen ? (
                 <path d="M6 18L18 6M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -198,64 +182,73 @@ export default function Navbar() {
       </Container>
 
       {/* Mobile Menu Content */}
-      {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-[#010B24]/95 backdrop-blur-2xl border-t border-white/5 px-6 py-6 flex flex-col gap-5"
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="text-gray-300 hover:text-white text-lg font-medium"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
-            <Link
-              href="/"
-              className="w-full text-center px-6 py-3 rounded-full border border-white/20 text-white font-medium"
-              onClick={() => setMobileOpen(false)}
-            >
-              {t("navbar.login")}
-            </Link>
-            {/* <Link
-              href="/"
-              className="w-full text-center px-6 py-3 rounded-full bg-white text-black font-bold"
-              onClick={() => setMobileOpen(false)}
-            >
-              {t("navbar.signup")}
-            </Link> */}
-          </div>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 top-[64px] lg:hidden bg-[#010B24]/98 backdrop-blur-2xl z-40 flex flex-col h-[calc(100vh-64px)] overflow-y-auto"
+          >
+            <div className="flex flex-col gap-1 p-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-gray-300 hover:text-white text-xl font-medium py-3 border-b border-white/5"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
 
-          {/* Mobile Language Selector */}
-          <div className="flex justify-center gap-8 pt-4 border-t border-white/10">
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => {
-                  i18n.changeLanguage(lang.code);
-                  setMobileOpen(false);
-                }}
-                className={`transition-all duration-300 active:scale-110 ${
-                  (i18n.language?.split('-')[0] || "en") === lang.code 
-                    ? "scale-125 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
-                    : "opacity-40 grayscale hover:opacity-100 hover:grayscale-0"
-                }`}
-              >
-                <img 
-                  src={lang.flag} 
-                  alt={lang.code} 
-                  className="w-10 h-6 object-cover rounded shadow-sm"
-                />
-              </button>
-            ))}
-          </div>
-        </motion.div>
-      )}
+            <div className="mt-auto p-6 flex flex-col gap-6">
+              <div className="flex flex-col gap-3">
+                <Link
+                  href="/"
+                  className="w-full text-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {t("navbar.login")}
+                </Link>
+                <Link
+                  href="/"
+                  className="w-full text-center px-6 py-4 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-all"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {t("navbar.signup")}
+                </Link>
+              </div>
+
+              {/* Mobile Language Selector */}
+              <div className="flex justify-center gap-6 py-6 border-t border-white/10">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      i18n.changeLanguage(lang.code);
+                      setMobileOpen(false);
+                    }}
+                    className={`transition-all duration-300 active:scale-110 p-1 rounded-lg ${
+                      (i18n.language?.split('-')[0] || "en") === lang.code 
+                        ? "bg-white/10 scale-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" 
+                        : "opacity-40 grayscale hover:opacity-100 hover:grayscale-0"
+                    }`}
+                  >
+                    <img 
+                      src={lang.flag} 
+                      alt={lang.code} 
+                      className="w-12 h-8 object-cover rounded shadow-sm"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
