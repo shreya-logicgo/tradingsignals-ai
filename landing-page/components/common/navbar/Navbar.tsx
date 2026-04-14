@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
 import { AnimatePresence, motion } from 'framer-motion';
@@ -21,6 +21,7 @@ export default function Navbar() {
   const langRef = useRef<HTMLDivElement>(null);
 
   const [scrolled, setScrolled] = useState(false);
+  const ticking = useRef(false);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -57,23 +58,26 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/60 backdrop-blur-lg py-3 border-b border-white/10" : "bg-transparent py-5"
-      }`}
+      className={[
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out",
+        !scrolled && "bg-transparent py-5 border-b border-transparent",
+        scrolled && "bg-transparent/70 backdrop-blur-xl py-3 border-b border-white/10",
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       {/* 1. Use flex items-center and a consistent max-width */}
       <Container className="h-11 flex items-center px-30 ">
 
         {/* LOGO - Wrapped in a div to control width if needed */}
         <div className="flex-none">
-          <Link href="/">
+          <Link href="/" className="flex items-center gap-2">
             <Image
               src="/logof.png"
               alt="Trading Signals AI"
-              width={150}
-              height={40}
-              className="w-32 md:w-40"
-              priority
+              width={130}
+              height={130}
+              className="shrink-0 w-32 md:w-36 lg:w-40 xl:w-48 2xl:w-56"
             />
           </Link>
         </div>
@@ -84,7 +88,7 @@ export default function Navbar() {
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors whitespace-nowrap"
+                className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
@@ -103,18 +107,29 @@ export default function Navbar() {
 
 
           <Link
-            href="/"
-            className="relative p-[1px] overflow-hidden rounded-full flex items-center justify-center group"
-          >
-            {/* The Moving Border (The "Snake") */}
-            <div
-              className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]"
-            />
+  href="/"
+  className="relative inline-flex items-center justify-center px-6 py-2 rounded-full group"
+>
+  {/* The Masked Border Container */}
+  <div
+    className="absolute inset-0 rounded-full pointer-events-none p-[1px]"
+    style={{
+      // This CSS mask subtracts the inner area from the outer area, creating a perfect 1px transparent hollow ring.
+      WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+      WebkitMaskComposite: "xor",
+      mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+      maskComposite: "exclude",
+    }}
+  >
+    {/* The Moving Border (The "Snake") */}
+    <div className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]" />
+  </div>
 
-            <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-transparent px-6 py-2 text-sm font-medium text-white backdrop-blur-3xl transition-all group-hover:bg-black/40">
-              {t("navbar.login")}
-            </span>
-          </Link>
+  {/* Button Content */}
+  <span className="relative z-10 text-sm font-medium text-white transition-all">
+    {t("navbar.login")}
+  </span>
+</Link>
 
           {/* <Link
             href="/"
