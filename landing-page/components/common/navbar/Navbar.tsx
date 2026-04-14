@@ -54,7 +54,7 @@ export default function Navbar() {
         .filter(Boolean)
         .join(" ")}
     >
-      <Container className="h-11 flex items-center justify-between px-6 md:px-18 lg:px-32 xl:px-36 2xl:px-40">
+      <Container className="h-11 flex items-center justify-between px-6 md:px-18 lg:px-32 xl:px-30 2xl:px-40">
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
             src="/logof.png"
@@ -66,7 +66,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden lg:flex items-center lg:gap-4 xl:gap-8 2xl:gap-12">
+        <ul className="hidden lg:flex items-center lg:gap-2 xl:gap-8 2xl:gap-6 px-8 md:px-6 lg:px-8 xl:px-19 2xl:px-10">
           {navLinks.map((link) => (
             <li key={link.label}>
               <Link
@@ -80,7 +80,7 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center lg:gap-4">
+        <div className="hidden lg:flex items-center lg:gap-2 px-6 md:px-10 lg:px-12 xl:px-19 2xl:px-40">
           <Link
             href="/login"
             className="px-6 py-2 rounded-full border border-white/20 text-white text-sm hover:bg-white/5 transition-all"
@@ -94,6 +94,22 @@ export default function Navbar() {
           >
             {t("navbar.signup")}
           </Link>
+          <div className="relative flex items-center"style={{ fontFamily: "var(--font-hoves)" }}>
+            <select
+              value={i18n.language || "en"}
+              onChange={handleLanguageChange}
+              className="appearance-none bg-transparent text-white text-sm xl:text-base 2xl:text-lg font-medium pr-8 pl-3 py-1.5 xl:py-2 border border-white/20 rounded-lg hover:border-white/50 focus:outline-none transition-colors cursor-pointer"
+            >
+              <option value="en" className="text-black">EN</option>
+              <option value="pl" className="text-black">PL</option>
+              <option value="th" className="text-black">TH</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+              </svg>
+            </div>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
