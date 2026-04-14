@@ -1,26 +1,37 @@
 @import "tailwindcss";
 
+@custom-variant 3xl (@media (width >=1620px));
+
+@theme {
+  /* fonts */
+  --font-hoves: var(--font-hoves), sans-serif;
+}
+
 body {
-  background-color: #010B24;
+  background-color: #010b24;
   color: white; /* optional, but looks better */
 }
 
 @keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
 }
- 
+
 .animate-marquee {
   animation: marquee 20s linear infinite;
 }
- 
+
 .animate-marquee:hover {
   animation-play-state: paused;
 }
- 
+
 /* ── Base ── */
 body {
-  background-color: #010B24;
+  background-color: #010b24;
   color: white;
 }
 
@@ -37,11 +48,10 @@ body {
     padding-right: 20px !important;
   }
 }
- 
 
 :root {
-  --font-inter: 'Inter', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-inter: "Inter", sans-serif;
+  --font-mono: "Space Mono", monospace;
   --font-hoves: "TT Hoves Pro Trial", sans-serif;
 }
 
@@ -49,13 +59,16 @@ html {
   scroll-behavior: smooth;
 }
 
-
 .glow-btn {
   position: relative;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
-  background: linear-gradient(135deg, rgba(13, 20, 35, 0.9) 0%, rgba(8, 14, 25, 0.95) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(13, 20, 35, 0.9) 0%,
+    rgba(8, 14, 25, 0.95) 100%
+  );
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -95,8 +108,12 @@ html {
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes shine-sweep {
@@ -136,25 +153,61 @@ html {
 }
 
 @keyframes float-a {
-  0% { transform: translate(0px, 0px); opacity: 0; }
-  12% { opacity: 1; }
-  50% { transform: translate(5px, -14px); }
-  88% { opacity: 1; }
-  100% { transform: translate(-3px, -26px); opacity: 0; }
+  0% {
+    transform: translate(0px, 0px);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(5px, -14px);
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-3px, -26px);
+    opacity: 0;
+  }
 }
 @keyframes float-b {
-  0% { transform: translate(0px, 0px); opacity: 0; }
-  12% { opacity: 1; }
-  45% { transform: translate(-7px, -12px); }
-  88% { opacity: 1; }
-  100% { transform: translate(4px, -24px); opacity: 0; }
+  0% {
+    transform: translate(0px, 0px);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  45% {
+    transform: translate(-7px, -12px);
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(4px, -24px);
+    opacity: 0;
+  }
 }
 @keyframes float-c {
-  0% { transform: translate(0px, 0px); opacity: 0; }
-  15% { opacity: 1; }
-  50% { transform: translate(8px, -18px); }
-  85% { opacity: 1; }
-  100% { transform: translate(-2px, -30px); opacity: 0; }
+  0% {
+    transform: translate(0px, 0px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(8px, -18px);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-2px, -30px);
+    opacity: 0;
+  }
 }
 
 @keyframes textSweep {
@@ -176,10 +229,15 @@ html {
   animation: textSweep 4s linear infinite;
 }
 
-
 @keyframes shine {
-  0%   { mask-position: 200%; -webkit-mask-position: 200%; }
-  100% { mask-position: -100%; -webkit-mask-position: -100%; }
+  0% {
+    mask-position: 200%;
+    -webkit-mask-position: 200%;
+  }
+  100% {
+    mask-position: -100%;
+    -webkit-mask-position: -100%;
+  }
 }
 
 .shine {
@@ -188,5 +246,22 @@ html {
   -webkit-mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
   mask-size: 150%;
   -webkit-mask-size: 150%;
-} 
+}
 
+.blog-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #979da1 transparent;
+}
+
+.blog-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.blog-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.blog-scrollbar::-webkit-scrollbar-thumb {
+  background: #979da1;
+  border-radius: 9999px;
+}
