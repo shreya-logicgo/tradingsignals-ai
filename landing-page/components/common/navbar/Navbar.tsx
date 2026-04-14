@@ -99,7 +99,7 @@ export default function Navbar() {
         {/* 3. ACTIONS - Desktop */}
         <div className="hidden lg:flex items-center flex-none gap-4">
           <Link
-  href="/"
+  href="https://crypto.tradingsignals.ai/login"
   className="relative inline-flex items-center justify-center px-6 py-2 rounded-full group"
 >
   {/* The Masked Border Container */}
@@ -225,7 +225,7 @@ export default function Navbar() {
             <div className="mt-auto p-6 flex flex-col gap-6">
               <div className="flex flex-col gap-3">
                 <Link
-                  href="/"
+                  href="https://crypto.tradingsignals.ai/login"
                   className="w-full text-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all"
                   onClick={() => setMobileOpen(false)}
                 >
