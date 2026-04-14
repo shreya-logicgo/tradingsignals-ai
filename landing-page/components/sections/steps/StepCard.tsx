@@ -1,45 +1,145 @@
 "use client";
 
 import { LucideIcon } from "lucide-react";
+import { useRef, useCallback, useContext } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { HoverContext } from "./Steps";
 
 interface StepCardProps {
+  id: string;
   step: string;
   title: string;
   description: string;
   Icon: LucideIcon;
 }
 
+const TILT_SPRING = { stiffness: 200, damping: 28, mass: 0.6 };
+const LIFT_SPRING = { stiffness: 180, damping: 24, mass: 0.7 };
+const GLOW_SPRING = { stiffness: 100, damping: 22 };
+
 export default function StepCard({
+  id,
   step,
   title,
   description,
   Icon,
 }: StepCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { hoveredId, setHoveredId } = useContext(HoverContext);
+  const isHovered = hoveredId === id;
+  const isDimmed = hoveredId !== null && !isHovered;
+
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const rotateY = useSpring(useTransform(rawX, [-0.5, 0.5], [-8, 8]), TILT_SPRING);
+  const rotateX = useSpring(useTransform(rawY, [-0.5, 0.5], [6, -6]), TILT_SPRING);
+
+  const cardY = useSpring(useMotionValue(0), LIFT_SPRING);
+  const cardScale = useSpring(useMotionValue(1), LIFT_SPRING);
+  const glowOpacity = useSpring(useMotionValue(0), GLOW_SPRING);
+  const borderOpacity = useSpring(useMotionValue(0), GLOW_SPRING);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const { left, top, width, height } = el.getBoundingClientRect();
+    rawX.set((e.clientX - left) / width - 0.5);
+    rawY.set((e.clientY - top) / height - 0.5);
+  }, [rawX, rawY]);
+
+  const handleMouseEnter = useCallback(() => {
+    cardY.set(-10);
+    cardScale.set(1.03);
+    glowOpacity.set(1);
+    borderOpacity.set(1);
+    setHoveredId(id);
+  }, [cardY, cardScale, glowOpacity, borderOpacity, id, setHoveredId]);
+
+  const handleMouseLeave = useCallback(() => {
+    rawX.set(0); rawY.set(0);
+    cardY.set(0); cardScale.set(1);
+    glowOpacity.set(0); borderOpacity.set(0);
+    setHoveredId(null);
+  }, [rawX, rawY, cardY, cardScale, glowOpacity, borderOpacity, setHoveredId]);
+
   return (
-    <div className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-[330px] group">
-      {/* Step badge — floats above top-right of card */}
-      <div className="absolute -top-3 -right-2 px-5 py-1.5 rounded-full bg-blue-700 text-white text-[12px]  font-hoves z-20 shadow-lg border border-white/10 tracking-wider"style={{ fontFamily: "var(--font-hoves)" }}>
-        {step}
-      </div>
+    <motion.div
+      className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-[330px] isolate"
+      style={{ 
+        opacity: isDimmed ? 0.6 : 1, 
+        scale: isDimmed ? 0.98 : 1,
+        transition: "all 0.4s ease" 
+      }}
+    >
+      {/* ── Background Glow ── */}
+      <motion.div
+        className="absolute inset-[-20px] rounded-2xl bg-blue-600/20 blur-[40px] pointer-events-none z-0"
+        style={{ opacity: glowOpacity }}
+      />
 
-      {/* Card Body */}
-      <div className="flex flex-col h-full min-h-[260px] p-8 gap-8 rounded-xl bg-[#0b1224] border border-white/[0.05] shadow-2xl transition-all duration-500 group-hover:border-white/10 group-hover:bg-[#0d152b]">
-        {/* Icon container */}
-        <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-black/40 border border-white/[0.05] shadow-inner flex-shrink-0">
-          <Icon size={26} className="text-white/80" />
+      <motion.div
+        ref={cardRef}
+        className="relative w-full"
+        style={{
+          y: cardY,
+          scale: cardScale,
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* ── Step Badge: Forced to top with high Z-index ── */}
+        <motion.div
+          className="absolute -top-3 -right-2 px-5 py-1.5 rounded-full bg-blue-600 text-white text-[12px] font-bold z-50 shadow-[0_4px_12px_rgba(0,0,0,0.5)] border border-white/20 tracking-wider pointer-events-none"
+          animate={{ 
+            scale: isHovered ? 1.1 : 1,
+            rotate: isHovered ? [0, -5, 5, 0] : 0 
+          }}
+          transition={{ duration: 0.4 }}
+        >
+          {step}
+        </motion.div>
+
+        {/* ── Card body ── */}
+        <div className="relative flex flex-col h-full min-h-[260px] p-8 gap-8 rounded-2xl bg-[#0b1224] border border-white/[0.08] shadow-2xl overflow-hidden z-10">
+          
+          {/* Internal Highlight on Hover */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent pointer-events-none"
+            style={{ opacity: borderOpacity }}
+          />
+
+          {/* Icon */}
+          <motion.div
+            className="flex items-center justify-center w-14 h-14 rounded-xl bg-black/40 border border-white/[0.1] shadow-inner relative z-20"
+            animate={{ scale: isHovered ? 1.1 : 1 }}
+          >
+            <Icon size={26} className="text-white" />
+          </motion.div>
+
+          {/* Text content */}
+          <div className="flex flex-col gap-2 relative z-20">
+            <h3 className="text-white text-lg font-semibold leading-tight">
+              {title}
+            </h3>
+            <p className="text-[13px] font-light text-white/70 leading-relaxed">
+              {description}
+            </p>
+          </div>
         </div>
 
-        {/* Text content */}
-        <div className="flex flex-col gap-2">
-          <h3 className="text-white text-lg font-medium font-hoves leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
-            {title}
-          </h3>
-          <p className="text-[13px] font-light text-white/70 leading-relaxed font-hoves"style={{ fontFamily: "var(--font-hoves)" }}>
-            {description}
-          </p>
-        </div>
-      </div>
-    </div>
+        {/* Outer Border Glow */}
+        <motion.div
+          className="absolute inset-0 rounded-2xl pointer-events-none z-30"
+          style={{
+            opacity: borderOpacity,
+            boxShadow: "inset 0 0 0 1px rgba(99,160,255,0.5), 0 0 30px rgba(59,130,246,0.3)",
+          }}
+        />
+      </motion.div>
+    </motion.div>
   );
 }
-

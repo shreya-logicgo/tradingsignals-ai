@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import Footer from "@/components/common/footer/Footer";
 import { I18nProvider } from "@/components/I18nProvider";
 import SmoothScrollHandler from "@/components/common/SmoothScrollHandler";
+import NoiseOverlay from "@/components/NoiseOverlay";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${spaceMono.variable} ${ttHoves.variable}`}>
+        <NoiseOverlay />
         <I18nProvider>
           <SmoothScrollHandler />
           <Navbar />

@@ -200,7 +200,7 @@ export default function BlogListing() {
   }, []);
 
   return (
-    <section className="bg-[#0a0e1a] min-h-screen py-12 px-7"
+    <section className="bg-[#010B24] min-h-screen py-12 px-7"
       style={{ fontFamily: "var(--font-hoves)" }}
     >
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto">

@@ -55,6 +55,21 @@ html {
   animation-play-state: paused;
 }
 
+@layer utilities {
+  .animate-border-spin {
+    animation: border-spin 3s linear infinite;
+  }
+
+  @keyframes border-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
 /* ── Glow Button ── */
 .glow-btn {
   position: relative;
@@ -132,6 +147,45 @@ html {
   }
 }
 
+.shine {
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  mask-size: 200% 100%;
+  -webkit-mask-size: 200% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  animation: shine-sweep 3s linear infinite;
+  will-change: mask-position;
+}
+
+@keyframes particle-fall-left {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translate(120px, 750px) scale(1.2); opacity: 0; }
+}
+
+@keyframes particle-fall-right {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translate(-120px, 750px) scale(1.2); opacity: 0; }
+}
+
 /* ── Text Glow Sweep ── */
 @keyframes textSweep {
   0% {
@@ -196,6 +250,13 @@ html {
     opacity: 0;
   }
 }
+.shine {
+  animation: 9s ease-in-out infinite shine;
+  mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
+  -webkit-mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
+  mask-size: 150%;
+  -webkit-mask-size: 150%;
+} 
 
 /* ── Floating Particles ── */
 @keyframes float-a {

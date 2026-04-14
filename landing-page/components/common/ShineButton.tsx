@@ -1,6 +1,6 @@
 // components/ShineButton.tsx
 import Link from "next/link";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 interface ShineButtonProps {
   children: string;
@@ -84,7 +84,7 @@ export default function ShineButton({
 }: ShineButtonProps) {
   const inner = (
     <>
-      {/* BG Layer 1 — dark gray base fill */}
+      {/* BG Layer 1 — dark base fill */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ backgroundColor: "#3c3f44" }}
@@ -96,37 +96,39 @@ export default function ShineButton({
         style={{ backgroundColor: "#9b9999" }}
       />
 
-      {/* BG Layer 3 — near-black inner pill, 1px inset → exposes 1px border */}
+      {/* BG Layer 3 — theme inner pill, 1.5px inset → exposes border */}
       <div
         className="absolute overflow-hidden transition-all duration-300 ease-in-out"
         style={{
           backgroundColor: "#010B24",
           borderRadius: "99px",
-          inset: "1px",
+          inset: "1.5px",
         }}
       />
 
-      {/* Icon */}
-      {icon && (
-        <div
-          className="relative z-[3] flex-shrink-0"
-          style={{ color: "#b6b6b9" }}
-        >
-          {icon}
-        </div>
-      )}
+      {/* Content wrapper */}
+      <div className="relative z-[3] flex items-center justify-center gap-2.5 ">
+        {/* Icon */}
+        {icon && (
+          <div
+            className="flex-shrink-0"
+            style={{ color: "#b6b6b9" }}
+          >
+            {icon}
+          </div>
+        )}
 
-      {/* 4-layer shine text */}
-      <ShineTextStack text={children} />
+        {/* 4-layer shine text */}
+        <ShineTextStack text={children} />
+      </div>
     </>
   );
 
   const sharedClass = [
     "relative flex items-center justify-center overflow-hidden",
-    "rounded-[99px] w-min h-min",
-    "px-7 py-5 gap-[10px]",
+    "rounded-full transition-all duration-200",
+    "px-6 py-3.5 md:px-8 md:py-4.5",
     "cursor-pointer no-underline",
-    "transition-transform duration-200",
     "hover:scale-[1.03] active:scale-[0.98]",
     className,
   ].join(" ");
