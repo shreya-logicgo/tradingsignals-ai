@@ -126,10 +126,12 @@ export default function Hero() {
       </div>
 
       {/* ── Main content area ── */}
-      <Container className="relative z-20 flex flex-col items-center text-center gap-6 md:gap-8">
+      <Container className="relative z-20 flex flex-col gap-6 md:gap-8">
 
         {/* Social Proof Badge — Localized */}
-        <div className="flex items-center gap-2.5 px-4 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4">
+        <div className="flex flex-col items-center text-center">
+  {/* Social Proof Badge */}
+  <div className="flex items-center gap-2.5 px-4 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4">
           <Image
             src={userslabel}
             alt="TSAI Traders"
@@ -143,17 +145,17 @@ export default function Hero() {
         </div>
 
         {/* HERO TITLE */}
-        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]" style={{ fontFamily: "var(--font-hoves)" }}>
-          {t("hero.title")}
-        </h1>
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]">
+    {t("hero.title")}
+  </h1>
 
         {/* SUPPORTING TEXT */}
-        <p className="text-white/80 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0" style={{ fontFamily: "var(--font-hoves)" }}>
-          {t("hero.description")}
-        </p>
+        <p className="text-white/80 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0">
+    {t("hero.description")}
+  </p>
 
         {/* PRIMARY CTA — Localized */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
+         <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
           <button
             className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300"
             style={{ fontFamily: "var(--font-hoves)" }}
@@ -175,12 +177,15 @@ export default function Hero() {
             {t("hero.cta")}
           </button>
         </div>
+        </div>
 
 
         {/* Product Visual (Chart/Dashboard) */}
-        <div className="w-full mt-10 md:mt-16">
-          <HeroChart />
-        </div>
+        <div className="w-full mt-10 md:mt-16 flex justify-start">
+  <div className="lg:ml-5 xl:ml-6 w-full">
+    <HeroChart />
+  </div>
+</div>
 
       </Container>
     </section>
