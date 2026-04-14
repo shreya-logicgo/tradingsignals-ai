@@ -66,7 +66,7 @@ export default function HeroChart() {
 
   return (
     <section className="w-full relative z-10 pt-2 lg:pt-[10px]">
-      <Container className="flex justify-center px-4 md:px-0">
+      <Container className="flex justify-start">
         <div className="relative w-full max-w-[1100px]">
 
           {/* Outer ambient glow — untouched */}
