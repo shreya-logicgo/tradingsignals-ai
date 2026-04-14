@@ -2,30 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, i18n } = useTranslation();
-
   const [scrolled, setScrolled] = useState(false);
-  const ticking = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      if (ticking.current) return;
-      ticking.current = true;
-
-      requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 20);
-        ticking.current = false;
-      });
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -42,37 +31,33 @@ export default function Navbar() {
 
   return (
     <nav
-      className={[
-        "fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out",
-        !scrolled && "bg-transparent py-5 border-b border-transparent",
-        scrolled && "bg-transparent/70 backdrop-blur-xl py-3 border-b border-white/10",
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-black/60 backdrop-blur-lg py-3 border-b border-white/10" : "bg-transparent py-5"
+      }`}
     >
-      {/* 1. Use flex items-center and a consistent max-width */}
-      <Container className="h-11 flex items-center px-6 md:px-18 lg:px-32 xl:px-30 2xl:px-40">
+      <Container className="flex items-center px-6 lg:px-16 xl:px-24">
         
-        {/* LOGO - Wrapped in a div to control width if needed */}
+        {/* LOGO */}
         <div className="flex-none">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/">
             <Image
               src="/logof.png"
               alt="Trading Signals AI"
-              width={130}
-              height={130}
-              className="shrink-0 w-32 md:w-36 lg:w-40 xl:w-48 2xl:w-56"
+              width={150}
+              height={40}
+              className="w-32 md:w-40"
+              priority
             />
           </Link>
         </div>
 
-        {/* 2. NAVIGATION LINKS - Using flex-1 and justify-center to force the center */}
-        <ul className="hidden lg:flex flex-1 items-center justify-center gap-4 xl:gap-8 2xl:gap-10">
+        {/* NAV LINKS - Pushed to the right using ml-auto */}
+        <ul className="hidden lg:flex ml-auto items-center gap-8 xl:gap-10 mr-10">
           {navLinks.map((link) => (
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                className="text-sm font-medium text-gray-300 hover:text-white transition-colors whitespace-nowrap"
               >
                 {link.label}
               </Link>
@@ -80,14 +65,10 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* 3. ACTIONS - Using flex-none so it doesn't grow and stays on the right */}
-        <div className="hidden lg:flex items-center flex-none gap-4">
-          <Link
-            href="/login"
-            className="px-6 py-2 rounded-full border border-white/20 text-white text-sm hover:bg-white/5 transition-all"
-          >
-            {t("navbar.login")}
-          </Link>
+        {/* ACTIONS */}
+        <div className="hidden lg:flex items-center gap-4">
+          {/* LOGIN BUTTON with Animated Border */}
+          <Link href="https://crypto.tradingsignals.ai/login" className="relative inline-flex items-center justify-center px-6 py-2 group" > {/* 1. THE MOVING BORDER (Uses mask to stay only on the edge) */} <div className="absolute inset-0 rounded-full p-[1px] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] [mask-composite:exclude]"> <div className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]" /> </div> {/* 2. THE TEXT (Fully transparent background) */} <span className="relative z-10 text-sm font-medium text-white transition-colors group-hover:text-gray-300"> {t("navbar.login")} </span> </Link>
 
           <Link
             href="/signup"
@@ -95,29 +76,31 @@ export default function Navbar() {
           >
             {t("navbar.signup")}
           </Link>
-          
+
           {/* Language Selector */}
-          <div className="relative flex items-center" style={{ fontFamily: "var(--font-hoves)" }}>
+          <div className="relative flex items-center ml-2">
             <select
               value={i18n.language || "en"}
               onChange={handleLanguageChange}
-              className="appearance-none bg-transparent text-white text-sm font-medium pr-8 pl-3 py-1.5 border border-white/20 rounded-lg focus:outline-none cursor-pointer"
+              className="appearance-none bg-transparent text-white text-xs font-bold pr-8 pl-3 py-1.5 border border-white/20 rounded-full cursor-pointer focus:outline-none"
             >
               <option value="en" className="text-black">EN</option>
               <option value="pl" className="text-black">PL</option>
               <option value="th" className="text-black">TH</option>
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-              <svg className="fill-current h-4 w-4" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
+            <div className="pointer-events-none absolute right-2 text-white">
+              <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
             </div>
           </div>
         </div>
 
-        {/* Mobile Toggle - visible only on small screens */}
+        {/* Mobile Menu Button */}
         <div className="lg:hidden ml-auto">
-            <button className="text-white p-2" onClick={() => setMobileOpen(!mobileOpen)}>
-              {/* ... svg code ... */}
-            </button>
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-white">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
         </div>
       </Container>
     </nav>

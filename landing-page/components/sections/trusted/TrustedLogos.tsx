@@ -106,7 +106,7 @@ export default function TrustedLogos() {
   const { t } = useTranslation();
 
   return (
-    <section className="w-full pt-8 pb-16 overflow-hidden relative border-b border-white/[0.03]">
+    <section className="w-full pt-8 pb-2 overflow-hidden relative border-b border-white/[0.03]">
 
       {/* Integrative Label */}
       <p
