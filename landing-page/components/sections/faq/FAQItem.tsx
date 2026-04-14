@@ -19,7 +19,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         }`}
     >
       {/* Question row */}
-      <div className="flex items-center justify-between gap-4 py-2">
+      <div className="flex items-center justify-between gap-4 py-1">
         <span className="font-hoves font-medium text-base text-white leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
           {question}
         </span>

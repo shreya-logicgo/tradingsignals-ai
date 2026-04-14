@@ -106,12 +106,15 @@ export default function TrustedLogos() {
   const { t } = useTranslation();
 
   return (
-    <section className="w-full pt-8 pb-16 overflow-hidden relative border-b border-white/[0.03]">
+    <section className="w-full pt-8 pb-2 overflow-hidden relative">
 
       {/* Integrative Label */}
-      <p className="text-center mb-3 text-[11px] md:text-sm font-mono tracking-[0.2em] md:tracking-[0.3em] uppercase text-white/20 font-medium">
-        {t("hero.integration")}
-      </p>
+      <p
+  className="text-center mb-3 text-[22px] md:text-[20px] tracking-[0.05em] uppercase text-white/40"
+  style={{ fontFamily: "var(--font-hoves)" }}
+>
+  {t("hero.integration")}
+</p>
 
 
       {/* 1. Increased Dynamic Marquee Strip Container Height (h-11 -> h-20) */}

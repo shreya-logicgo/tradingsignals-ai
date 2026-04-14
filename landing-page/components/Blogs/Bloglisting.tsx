@@ -165,21 +165,21 @@ function BlogCard({ post }: { post: BlogPost }) {
           className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         /> */}
-          <img src={`https://picsum.photos/400/300?random=${post.id}`} alt={currentTitle} />
+          <img src={`https://picsum.photos/400/300?random=${post.id}`} alt={currentTitle} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
         </div>
       </Link>
 
       {/* Content */}
       <div className="flex flex-col gap-2">
-        <h3 className="text-white font-semibold text-[15px] leading-snug line-clamp-2">
+        <h3 className="text-white font-semibold text-[15px] xl:text-lg 2xl:text-xl leading-snug line-clamp-2">
           {currentTitle}
         </h3>
-        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+        <p className="text-gray-400 text-sm xl:text-base 2xl:text-lg leading-relaxed line-clamp-3">
           {currentExcerpt}
         </p>
         <Link
           href={`/blogs/2026-ai-trading-strategies-nvda`}
-          className="text-white text-sm font-medium underline underline-offset-2 hover:text-blue-400 transition-colors duration-200 mt-1 w-fit "
+          className="text-white text-sm xl:text-base 2xl:text-lg font-medium underline underline-offset-2 hover:text-blue-400 transition-colors duration-200 mt-1 w-fit "
         >
           {t("blog.viewMore")}
         </Link>
@@ -200,19 +200,19 @@ export default function BlogListing() {
   }, []);
 
   return (
-    <section className="bg-[#0a0e1a] min-h-screen py-12 px-7"
+    <section className="bg-[#010B24] min-h-screen py-12 px-7"
       style={{ fontFamily: "var(--font-hoves)" }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h1
-            className="text-white text-4xl font-semibold mb-3"
+            className="text-white text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-3"
             style={{ fontFamily: "var(--font-hoves)" }}
           >
             {t("blog.title")}
           </h1>
-          <p className="text-gray-400 text-sm"
+          <p className="text-gray-400 text-sm xl:text-base 2xl:text-lg"
             style={{ fontFamily: "var(--font-hoves)" }}
           >
             {t("blog.description")}
@@ -228,7 +228,7 @@ export default function BlogListing() {
 
         {/* Learn More button */}
         <div className="flex justify-center">
-          <button className="px-8 py-2.5 h-13 rounded-full border border-white text-white text-md font-medium hover:bg-white hover:text-[#000000] transition-colors duration-200 cursor-pointer">
+          <button className="px-8 py-2.5 xl:px-10 xl:py-3 h-13 xl:h-14 rounded-full border border-white text-white text-md xl:text-lg 2xl:text-xl font-medium hover:bg-white hover:text-[#000000] transition-colors duration-200 cursor-pointer">
             {t("blog.cta")}
           </button>
         </div>

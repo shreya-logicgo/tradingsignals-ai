@@ -11,7 +11,7 @@ body {
 }
  
 .animate-marquee {
-  animation: marquee 12s linear infinite;
+  animation: marquee 20s linear infinite;
 }
  
 .animate-marquee:hover {
@@ -49,4 +49,150 @@ html {
   scroll-behavior: smooth;
 }
 
+@layer utilities {
+  .animate-border-spin {
+    animation: border-spin 3s linear infinite;
+  }
+
+  @keyframes border-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.glow-btn {
+  position: relative;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(13, 20, 35, 0.9) 0%, rgba(8, 14, 25, 0.95) 100%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Text glow animation - moves left to right */
+.glow-btn .your-button {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.3) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.3) 80%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: textGlowScan 2.5s ease-in-out infinite;
+}
+
+/* Keyframes for text scanning left to right */
+@keyframes textGlowScan {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Hover effect - faster scan */
+.glow-btn:hover .your-button {
+  animation-duration: 1.5s;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shine-sweep {
+  0% {
+    mask-position: -200% 0%;
+    -webkit-mask-position: -200% 0%;
+  }
+  100% {
+    mask-position: 200% 0%;
+    -webkit-mask-position: 200% 0%;
+  }
+}
+
+.shine {
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  mask-size: 200% 100%;
+  -webkit-mask-size: 200% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  animation: shine-sweep 3s linear infinite;
+  will-change: mask-position;
+}
+
+@keyframes particle-fall-left {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translate(120px, 750px) scale(1.2); opacity: 0; }
+}
+
+@keyframes particle-fall-right {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translate(-120px, 750px) scale(1.2); opacity: 0; }
+}
+
+@keyframes textSweep {
+  0% {
+    mask-position: 10% 0%;
+    -webkit-mask-position: 150% 0%;
+  }
+  100% {
+    mask-position: -50% 0%;
+    -webkit-mask-position: -150% 0%;
+  }
+}
+
+.animate-text-glow {
+  mask-size: 200% 100%;
+  -webkit-mask-size: 200% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  animation: textSweep 4s linear infinite;
+}
+
+
+@keyframes shine {
+  0%   { mask-position: 200%; -webkit-mask-position: 200%; }
+  100% { mask-position: -100%; -webkit-mask-position: -100%; }
+}
+
+.shine {
+  animation: 9s ease-in-out infinite shine;
+  mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
+  -webkit-mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
+  mask-size: 150%;
+  -webkit-mask-size: 150%;
+} 
 
