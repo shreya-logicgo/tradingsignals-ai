@@ -3,15 +3,41 @@
 @custom-variant 3xl (@media (width >=1620px));
 
 @theme {
-  /* fonts */
   --font-hoves: var(--font-hoves), sans-serif;
 }
 
+/* ── Base ── */
 body {
   background-color: #010b24;
-  color: white; /* optional, but looks better */
+  color: white;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --font-inter: "Inter", sans-serif;
+  --font-mono: "Space Mono", monospace;
+  --font-hoves: "TT Hoves Pro Trial", sans-serif;
+}
+
+/* ── Responsive Container ── */
+@media (max-width: 1400px) {
+  .features-container {
+    padding-left: 80px !important;
+    padding-right: 80px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .features-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* ── Marquee ── */
 @keyframes marquee {
   0% {
     transform: translateX(0);
@@ -29,39 +55,9 @@ body {
   animation-play-state: paused;
 }
 
-/* ── Base ── */
-body {
-  background-color: #010b24;
-  color: white;
-}
-
-@media (max-width: 1400px) {
-  .features-container {
-    padding-left: 80px !important;
-    padding-right: 80px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .features-container {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-}
-
-:root {
-  --font-inter: "Inter", sans-serif;
-  --font-mono: "Space Mono", monospace;
-  --font-hoves: "TT Hoves Pro Trial", sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+/* ── Glow Button ── */
 .glow-btn {
   position: relative;
-  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
   background: linear-gradient(
@@ -73,7 +69,6 @@ html {
   transition: all 0.3s ease;
 }
 
-/* Text glow animation - moves left to right */
 .glow-btn .your-button {
   position: relative;
   z-index: 2;
@@ -92,7 +87,10 @@ html {
   animation: textGlowScan 2.5s ease-in-out infinite;
 }
 
-/* Keyframes for text scanning left to right */
+.glow-btn:hover .your-button {
+  animation-duration: 1.5s;
+}
+
 @keyframes textGlowScan {
   0% {
     background-position: 200% 0;
@@ -102,20 +100,27 @@ html {
   }
 }
 
-/* Hover effect - faster scan */
-.glow-btn:hover .your-button {
-  animation-duration: 1.5s;
+/* ── Shine Effect (merged clean) ── */
+.shine {
+  animation: shine 5s ease-in-out infinite;
+  mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
+  -webkit-mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
+  mask-size: 150%;
+  -webkit-mask-size: 150%;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
+@keyframes shine {
+  0% {
+    mask-position: 200%;
+    -webkit-mask-position: 200%;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    mask-position: -100%;
+    -webkit-mask-position: -100%;
   }
 }
 
+/* ── Alternate Shine Sweep ── */
 @keyframes shine-sweep {
   0% {
     mask-position: -200% 0%;
@@ -127,31 +132,72 @@ html {
   }
 }
 
-.shine {
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.2) 20%,
-    white 50%,
-    rgba(255, 255, 255, 0.2) 80%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.2) 20%,
-    white 50%,
-    rgba(255, 255, 255, 0.2) 80%,
-    transparent 100%
-  );
+/* ── Text Glow Sweep ── */
+@keyframes textSweep {
+  0% {
+    mask-position: 10% 0%;
+    -webkit-mask-position: 150% 0%;
+  }
+  100% {
+    mask-position: -50% 0%;
+    -webkit-mask-position: -150% 0%;
+  }
+}
+
+.animate-text-glow {
   mask-size: 200% 100%;
   -webkit-mask-size: 200% 100%;
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
-  animation: shine-sweep 3s linear infinite;
-  will-change: mask-position;
+  animation: textSweep 4s linear infinite;
 }
 
+/* ── Rotation ── */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Particle Animations ── */
+@keyframes particle-fall-left {
+  0% {
+    transform: translate(0, 0) scale(0.4);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(120px, 750px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-fall-right {
+  0% {
+    transform: translate(0, 0) scale(0.4);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-120px, 750px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* ── Floating Particles ── */
 @keyframes float-a {
   0% {
     transform: translate(0px, 0px);
@@ -171,6 +217,7 @@ html {
     opacity: 0;
   }
 }
+
 @keyframes float-b {
   0% {
     transform: translate(0px, 0px);
@@ -190,6 +237,7 @@ html {
     opacity: 0;
   }
 }
+
 @keyframes float-c {
   0% {
     transform: translate(0px, 0px);
@@ -210,44 +258,7 @@ html {
   }
 }
 
-@keyframes textSweep {
-  0% {
-    mask-position: 10% 0%;
-    -webkit-mask-position: 150% 0%;
-  }
-  100% {
-    mask-position: -50% 0%;
-    -webkit-mask-position: -150% 0%;
-  }
-}
-
-.animate-text-glow {
-  mask-size: 200% 100%;
-  -webkit-mask-size: 200% 100%;
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  animation: textSweep 4s linear infinite;
-}
-
-@keyframes shine {
-  0% {
-    mask-position: 200%;
-    -webkit-mask-position: 200%;
-  }
-  100% {
-    mask-position: -100%;
-    -webkit-mask-position: -100%;
-  }
-}
-
-.shine {
-  animation: 5s ease-in-out infinite shine;
-  mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
-  -webkit-mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
-  mask-size: 150%;
-  -webkit-mask-size: 150%;
-}
-
+/* ── Custom Scrollbar ── */
 .blog-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #979da1 transparent;
