@@ -15,7 +15,7 @@ export default function BlogContent({ blocks }: Props) {
             return (
               <p
                 key={i}
-                className="text-[#c8cdd8] text-[17px] leading-[1.85] mb-6"
+                className="text-[#c8cdd8] text-[17px] xl:text-lg 2xl:text-xl leading-[1.85] mb-6"
                 dangerouslySetInnerHTML={{ __html: block.text }}
               />
             );
@@ -25,7 +25,7 @@ export default function BlogContent({ blocks }: Props) {
               return (
                 <h2
                   key={i}
-                  className="text-white text-2xl font-semibold mt-10 mb-4 leading-tight"
+                  className="text-white text-2xl xl:text-3xl 2xl:text-4xl font-semibold mt-10 mb-4 leading-tight"
                 >
                   {block.text}
                 </h2>
@@ -34,7 +34,7 @@ export default function BlogContent({ blocks }: Props) {
               return (
                 <h3
                   key={i}
-                  className="text-white text-xl font-semibold mt-8 mb-3 leading-tight"
+                  className="text-white text-xl xl:text-2xl 2xl:text-3xl font-semibold mt-8 mb-3 leading-tight"
                 >
                   {block.text}
                 </h3>
@@ -42,7 +42,7 @@ export default function BlogContent({ blocks }: Props) {
             return (
               <h4
                 key={i}
-                className="text-white text-lg font-semibold mt-6 mb-2 leading-tight"
+                className="text-white text-lg xl:text-xl 2xl:text-2xl font-semibold mt-6 mb-2 leading-tight"
               >
                 {block.text}
               </h4>
@@ -83,7 +83,7 @@ export default function BlogContent({ blocks }: Props) {
                 key={i}
                 className="my-8 pl-5 border-l-2 border-blue-500"
               >
-                <p className="text-[#c8cdd8] text-lg italic leading-relaxed mb-2">
+                <p className="text-[#c8cdd8] text-lg xl:text-xl 2xl:text-2xl italic leading-relaxed mb-2">
                   {block.text}
                 </p>
                 {block.author && (
@@ -99,7 +99,7 @@ export default function BlogContent({ blocks }: Props) {
               return (
                 <ol
                   key={i}
-                  className="list-decimal list-inside text-[#c8cdd8] text-[17px] leading-[1.85] mb-6 space-y-2 pl-2"
+                  className="list-decimal list-inside text-[#c8cdd8] text-[17px] xl:text-lg 2xl:text-xl leading-[1.85] mb-6 space-y-2 pl-2"
                 >
                   {block.items.map((item, j) => (
                     <li key={j} dangerouslySetInnerHTML={{ __html: item }} />
@@ -109,7 +109,7 @@ export default function BlogContent({ blocks }: Props) {
             return (
               <ul
                 key={i}
-                className="list-disc list-inside text-[#c8cdd8] text-[17px] leading-[1.85] mb-6 space-y-2 pl-2"
+                className="list-disc list-inside text-[#c8cdd8] text-[17px] xl:text-lg 2xl:text-xl leading-[1.85] mb-6 space-y-2 pl-2"
               >
                 {block.items.map((item, j) => (
                   <li key={j} dangerouslySetInnerHTML={{ __html: item }} />
@@ -147,7 +147,7 @@ export default function BlogContent({ blocks }: Props) {
                   {calloutIcons[block.variant]}
                 </span>
                 <p
-                  className="text-[15px] leading-relaxed"
+                  className="text-[15px] xl:text-lg 2xl:text-xl leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: block.text }}
                 />
               </div>

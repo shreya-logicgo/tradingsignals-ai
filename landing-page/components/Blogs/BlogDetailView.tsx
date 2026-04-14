@@ -27,7 +27,7 @@ export default function BlogDetailView({ post, formattedDate, enrichedContent }:
   });
 
   return (
-    <article className="max-w-4xl mx-auto px-7 sm:px-6 py-10 sm:py-14">
+    <article className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-7 sm:px-6 py-10 sm:py-14">
 
       {/* Author + date */}
       <div className="flex items-center gap-3 mb-7">
@@ -47,15 +47,15 @@ export default function BlogDetailView({ post, formattedDate, enrichedContent }:
             </svg>
           )}
         </div>
-        <span className="text-white text-sm font-medium">{post.author.name}</span>
-        <span className="text-gray-500 text-sm">·</span>
-        <time className="text-gray-400 text-sm" dateTime={post.publishedAt}>
+        <span className="text-white text-sm xl:text-base 2xl:text-lg font-medium">{post.author.name}</span>
+        <span className="text-gray-500 text-sm xl:text-base 2xl:text-lg">·</span>
+        <time className="text-gray-400 text-sm xl:text-base 2xl:text-lg" dateTime={post.publishedAt}>
           {formattedDate}
         </time>
         {post.readingTime && (
           <>
-            <span className="text-gray-600 text-sm hidden sm:inline">·</span>
-            <span className="text-gray-500 text-sm hidden sm:inline">
+            <span className="text-gray-600 text-sm xl:text-base 2xl:text-lg hidden sm:inline">·</span>
+            <span className="text-gray-500 text-sm xl:text-base 2xl:text-lg hidden sm:inline">
               {post.readingTime} min read
             </span>
           </>
@@ -63,7 +63,7 @@ export default function BlogDetailView({ post, formattedDate, enrichedContent }:
       </div>
 
       {/* Title */}
-      <h1 className="text-white text-[32px] sm:text-[40px] font-bold leading-[1.15] tracking-tight mb-8">
+      <h1 className="text-white text-[32px] sm:text-[40px] xl:text-[52px] 2xl:text-[64px] font-bold leading-[1.15] tracking-tight mb-8">
         {currentTitle}
       </h1>
 
@@ -75,7 +75,7 @@ export default function BlogDetailView({ post, formattedDate, enrichedContent }:
             return (
               <span
                 key={idx}
-                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs font-medium"
+                className="px-3 py-1 xl:px-4 xl:py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs xl:text-sm font-medium"
               >
                 {currentTag}
               </span>
@@ -91,7 +91,7 @@ export default function BlogDetailView({ post, formattedDate, enrichedContent }:
       <div className="mt-14 pt-8 border-t border-white/10">
         <Link
           href="/blogs"
-          className="inline-flex items-center gap-2 text-gray-400 text-sm hover:text-white transition-colors duration-200"
+          className="inline-flex items-center gap-2 text-gray-400 text-sm xl:text-base 2xl:text-lg hover:text-white transition-colors duration-200"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

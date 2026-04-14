@@ -8,6 +8,8 @@ import HeroChart from "./HeroChart";
 import gradient1 from "@/assets/images/gradient_1_.png";
 import gradient2 from "@/assets/images/gradient_2_.png";
 import userslabel from "@/assets/images/avatars.png";
+import ShineText from "@/components/common/ShineText";
+import ShineButton from "@/components/common/ShineButton";
 
 const PARTICLES = [
   { id: 1, x: 83.7, y: 3.4, s: 1.4, o: 0.32, dur: 5.9, del: 3.4 },
@@ -192,7 +194,8 @@ export default function Hero() {
 
         <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]" style={{ fontFamily: "var(--font-hoves)" }}>
           {t("hero.title")}
-        </h1>
+        </ShineText>
+        {/* </h1> */}
 
         <p className="text-white/80 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0" style={{ fontFamily: "var(--font-hoves)" }}>
           {t("hero.description")}
@@ -205,7 +208,11 @@ export default function Hero() {
           >
             {t("hero.cta")}
           </button>
-        </div>
+        </div> */}
+        <ShineButton onClick={() => {}}>
+          {t("starttoday.cta")}
+        </ShineButton>
+
 
         <div className="w-full mt-10 md:mt-16">
           <HeroChart />
