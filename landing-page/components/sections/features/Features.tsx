@@ -2,10 +2,58 @@
 
 import { Brain, Link2, SlidersHorizontal, LineChart } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import FeatureCard from "./FeatureCard";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const headingVariant = {
+  hidden: { opacity: 0, y: 25, filter: "blur(5px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: EASE },
+  },
+};
+
+const paraVariant = {
+  hidden: { opacity: 0, x: 18 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: EASE, delay: 0.1 },
+  },
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      ease: EASE,
+      delay,
+    },
+  }),
+};
+
+const cardVariantReduced = {
+  hidden: { opacity: 0 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    transition: { duration: 0.45, delay },
+  }),
+};
 
 export default function Features() {
   const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.12 });
 
   const features = [
     {
@@ -34,61 +82,64 @@ export default function Features() {
     },
   ];
 
+  const stagger = (i: number) => i * 0.08;
+  const cv = shouldReduceMotion ? cardVariantReduced : cardVariant;
+
   return (
-    <section className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="w-full bg-[#010B24] py-16 md:py-24 relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-        
-        {/* Header Section — Localized */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12 lg:gap-20 mb-12 md:mb-16">
-          
-          {/* Left: Badge + Heading block */}
-          <div className="flex flex-col items-start gap-4 md:gap-5">
-            {/* Badge */}
+          <motion.div
+            className="flex flex-col items-start gap-4 md:gap-5"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={headingVariant}
+          >
             <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 shadow-inner">
               <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-white/50">
                 {t("features.title")}
               </span>
             </div>
 
-            {/* Main Section Heading */}
             <h2 className="text-3xl md:text-4xl lg:text-[40px] font-medium text-white leading-tight md:leading-[1.15] font-hoves max-w-[520px]">
               {t("features.heading")}
             </h2>
-          </div>
+          </motion.div>
 
-          {/* Right: Supporting brief */}
-          <div className="lg:max-w-[420px] lg:mb-2 flex-shrink-0">
+          <motion.div
+            className="lg:max-w-[420px] lg:mb-2 flex-shrink-0"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={paraVariant}
+          >
             <p className="text-[15px] md:text-base font-normal text-white/50 leading-relaxed font-hoves">
               {t("features.description")}
             </p>
-          </div>
+          </motion.div>
         </div>
 
-        {/* ── Asymmetrical Bento Grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-stretch">
-          
-          {/* Top Row: Cards 0 and 1 */}
-          <div className="md:col-span-5 h-full">
-            <FeatureCard {...features[0]} />
-          </div>
-          <div className="md:col-span-7 h-full">
-            <FeatureCard {...features[1]} />
-          </div>
-
-          {/* Bottom Row: Cards 2 and 3 */}
-          <div className="md:col-span-7 h-full">
-            <FeatureCard {...features[2]} />
-          </div>
-          <div className="md:col-span-5 h-full">
-            <FeatureCard {...features[3]} />
-          </div>
-
+          {[0, 1, 2, 3].map((i) => (
+            <motion.div
+              key={i}
+              className={
+                i === 0 || i === 3
+                  ? "md:col-span-5 h-full"
+                  : "md:col-span-7 h-full"
+              }
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={cv}
+              custom={stagger(i)}
+            >
+              <FeatureCard {...features[i]} />
+            </motion.div>
+          ))}
         </div>
       </div>
-      
-      {/* Decorative background glow for depth */}
-      <div className="absolute bottom-0 left-0 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />
     </section>
   );
 }
-
