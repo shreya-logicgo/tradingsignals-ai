@@ -5,21 +5,47 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
+import { AnimatePresence, motion } from 'framer-motion';
+
+
+const languages = [
+  { code: "en", flag: "https://flagcdn.com/us.svg" },
+  { code: "th", flag: "https://flagcdn.com/th.svg" },
+  { code: "pl", flag: "https://flagcdn.com/pl.svg" },
+];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
+
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(event.target as Node)) {
+        setLangMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    i18n.changeLanguage(e.target.value);
-  };
+  useEffect(() => {
+    const onScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 20);
+        ticking.current = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navLinks = [
     { label: t("navbar.features"), href: "/#features" },
@@ -35,9 +61,10 @@ export default function Navbar() {
         scrolled ? "bg-black/60 backdrop-blur-lg py-3 border-b border-white/10" : "bg-transparent py-5"
       }`}
     >
-      <Container className="flex items-center px-6 lg:px-16 xl:px-24">
-        
-        {/* LOGO */}
+      {/* 1. Use flex items-center and a consistent max-width */}
+      <Container className="h-11 flex items-center px-30 ">
+
+        {/* LOGO - Wrapped in a div to control width if needed */}
         <div className="flex-none">
           <Link href="/">
             <Image
@@ -51,8 +78,8 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* NAV LINKS - Pushed to the right using ml-auto */}
-        <ul className="hidden lg:flex ml-auto items-center gap-8 xl:gap-10 mr-10">
+        {/* 2. NAVIGATION LINKS - Using flex-1 and justify-center to force the center */}
+        <ul className="hidden lg:flex flex-1 items-center justify-center gap-3 xl:gap-8 2xl:gap-10">
           {navLinks.map((link) => (
             <li key={link.label}>
               <Link
@@ -65,44 +92,170 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* ACTIONS */}
-        <div className="hidden lg:flex items-center gap-4">
-          {/* LOGIN BUTTON with Animated Border */}
-          <Link href="https://crypto.tradingsignals.ai/login" className="relative inline-flex items-center justify-center px-6 py-2 group" > {/* 1. THE MOVING BORDER (Uses mask to stay only on the edge) */} <div className="absolute inset-0 rounded-full p-[1px] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] [mask-composite:exclude]"> <div className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]" /> </div> {/* 2. THE TEXT (Fully transparent background) */} <span className="relative z-10 text-sm font-medium text-white transition-colors group-hover:text-gray-300"> {t("navbar.login")} </span> </Link>
+        {/* 3. ACTIONS - Using flex-none so it doesn't grow and stays on the right */}
+        <div className="hidden lg:flex items-center flex-none gap-4">
+          {/* <Link
+            href="/login"
+            className="px-6 py-2 rounded-full border border-white/20 text-white text-sm hover:bg-white/5 transition-all"
+          >
+            {t("navbar.login")}
+          </Link> */}
+
 
           <Link
-            href="/signup"
-            className="px-6 py-2 rounded-full bg-white text-black text-sm font-bold hover:bg-gray-200 transition-all"
+            href="/"
+            className="relative p-[1px] overflow-hidden rounded-full flex items-center justify-center group"
           >
-            {t("navbar.signup")}
+            {/* The Moving Border (The "Snake") */}
+            <div
+              className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]"
+            />
+
+            <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-transparent px-6 py-2 text-sm font-medium text-white backdrop-blur-3xl transition-all group-hover:bg-black/40">
+              {t("navbar.login")}
+            </span>
           </Link>
 
+          {/* <Link
+            href="/"
+            className="px-4 py-1.5 xl:px-5 xl:py-1 2xl:px-6 2xl:py-2 rounded-full bg-white text-black text-[12px] xl:text-sm 2xl:text-base font-bold hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+          >
+            {t("navbar.signup")}
+          </Link> */}
+
           {/* Language Selector */}
-          <div className="relative flex items-center ml-2">
-            <select
-              value={i18n.language || "en"}
-              onChange={handleLanguageChange}
-              className="appearance-none bg-transparent text-white text-xs font-bold pr-8 pl-3 py-1.5 border border-white/20 rounded-full cursor-pointer focus:outline-none"
+          <div className="relative flex items-center" ref={langRef}>
+            <button
+              onClick={() => setLangMenuOpen(!langMenuOpen)}
+              className="flex items-center gap-2 px-2 py-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer backdrop-blur-sm"
+              aria-label="Select Language"
             >
-              <option value="en" className="text-black">EN</option>
-              <option value="pl" className="text-black">PL</option>
-              <option value="th" className="text-black">TH</option>
-            </select>
-            <div className="pointer-events-none absolute right-2 text-white">
-              <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
-            </div>
+              <img 
+                src={languages.find(l => l.code === (i18n.language?.split('-')[0] || "en"))?.flag || "https://flagcdn.com/us.svg"} 
+                alt="flag"
+                className="w-6 h-4 object-cover rounded-sm shadow-sm"
+              />
+              <svg 
+                className={`w-3 h-3 transition-transform duration-200 ${langMenuOpen ? 'rotate-180' : ''}`} 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {/* Dropdown Menu */}
+            <AnimatePresence>
+              {langMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full mt-2 right-0 bg-[#0A1129]/90 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl flex flex-col min-w-[70px] z-[60]"
+                >
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        i18n.changeLanguage(lang.code);
+                        setLangMenuOpen(false);
+                      }}
+                      className={`px-4 py-3 hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer ${
+                        (i18n.language?.split('-')[0] || "en") === lang.code ? "bg-white/5" : ""
+                      }`}
+                    >
+                      <img 
+                        src={lang.flag} 
+                        alt={lang.code} 
+                        className="w-8 h-5 object-cover rounded shadow-sm"
+                      />
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Toggle */}
         <div className="lg:hidden ml-auto">
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-white">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          <button className="text-white p-2" onClick={() => setMobileOpen(!mobileOpen)}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              {mobileOpen ? (
+                <path d="M6 18L18 6M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              ) : (
+                <>
+                  <path d="M4 6H20" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M4 12H20" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M4 18H20" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                </>
+              )}
             </svg>
           </button>
         </div>
       </Container>
+
+      {/* Mobile Menu Content */}
+      {mobileOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="lg:hidden bg-[#010B24]/95 backdrop-blur-2xl border-t border-white/5 px-6 py-6 flex flex-col gap-5"
+        >
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="text-gray-300 hover:text-white text-lg font-medium"
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
+            <Link
+              href="/"
+              className="w-full text-center px-6 py-3 rounded-full border border-white/20 text-white font-medium"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("navbar.login")}
+            </Link>
+            {/* <Link
+              href="/"
+              className="w-full text-center px-6 py-3 rounded-full bg-white text-black font-bold"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("navbar.signup")}
+            </Link> */}
+          </div>
+
+          {/* Mobile Language Selector */}
+          <div className="flex justify-center gap-8 pt-4 border-t border-white/10">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => {
+                  i18n.changeLanguage(lang.code);
+                  setMobileOpen(false);
+                }}
+                className={`transition-all duration-300 active:scale-110 ${
+                  (i18n.language?.split('-')[0] || "en") === lang.code 
+                    ? "scale-125 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
+                    : "opacity-40 grayscale hover:opacity-100 hover:grayscale-0"
+                }`}
+              >
+                <img 
+                  src={lang.flag} 
+                  alt={lang.code} 
+                  className="w-10 h-6 object-cover rounded shadow-sm"
+                />
+              </button>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </nav>
   );
 }
