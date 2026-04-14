@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
 import HeroChart from "./HeroChart";
@@ -27,6 +28,11 @@ const PARTICLES = Array.from({ length: 90 }).map((_, i) => ({
 
 export default function Hero() {
   const { t } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <section className="relative w-full min-h-screen pt-30 md:pt-42  pb-16 overflow-hidden bg-[#010B24]">
@@ -43,7 +49,7 @@ export default function Hero() {
 
       {/* ── Particles Layer ── */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-        {PARTICLES.map((p) => {
+        {mounted && PARTICLES.map((p) => {
           const animName = p.side === "left" ? "particle-fall-left" : "particle-fall-right";
           return (
             <div
@@ -73,15 +79,15 @@ export default function Hero() {
       <Container className="relative z-20 flex flex-col items-center text-center gap-6 md:gap-8">
 
         {/* Social Proof Badge — Localized */}
-        <div className="flex items-center gap-2.5 px-4 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4">
+        <div className="flex items-center gap-2 md:gap-2.5 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4 max-w-[90vw] sm:max-w-none">
           <Image
             src={userslabel}
             alt="TSAI Traders"
             width={100}
             height={28}
-            className="h-5 md:h-6 w-auto"
+            className="h-4 md:h-6 w-auto shrink-0"
           />
-          <span className="text-[11px] md:text-sm text-gray-300 whitespace-nowrap" style={{ fontFamily: "var(--font-hoves)" }}>
+          <span className="text-[10px] md:text-sm text-gray-300 leading-tight" style={{ fontFamily: "var(--font-hoves)" }}>
             {t("hero.users")}
           </span>
         </div>

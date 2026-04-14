@@ -28,7 +28,7 @@ export default function ShineText({
     >
       {/* Layer 1 — base dim text, always visible, no animation */}
       <div className="select-none" style={{ gridArea: "1/1" }}>
-        <p style={{ ...baseStyle, color: "#adb1b8" }}>
+        <p style={{ ...baseStyle, color: "#f9f9f9" }}>
           {children}
         </p>
       </div>

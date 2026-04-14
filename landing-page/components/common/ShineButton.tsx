@@ -11,53 +11,65 @@ interface ShineButtonProps {
 }
 
 function ShineTextStack({ text }: { text: string }) {
-  const baseStyle: React.CSSProperties = {
-    color: "#adb1b8",
-    fontWeight: 500,
-    lineHeight: "1.2",
-    fontFamily: "var(--font-hoves)",
-    margin: 0,
-    textAlign: "center",
-    whiteSpace: "nowrap",
-  };
-
   return (
-    <div className="grid grid-cols-1 grid-rows-1 place-items-center z-[3] relative">
+    <div
+      className="relative flex flex-col items-center justify-center w-min h-min z-[3]"
+      style={{
+        color: "#adb1b8",
+        fontWeight: 500,
+        lineHeight: "1.7em",
+        fontFamily: "var(--font-hoves)",
+      }}
+    >
       {/* Layer 1 — dim base, always visible */}
-      <div style={{ gridArea: "1/1" }} className="select-none">
-        <p style={baseStyle}>{text}</p>
+      <div className="select-none">
+        <p className="whitespace-nowrap text-[#adb1b8]" style={{ margin: 0 }}>
+          {text}
+        </p>
       </div>
 
-      {/* Layer 2 — blur 4px + shine, white */}
+      {/* Layer 2 — blur 3px + shine, white */}
       <div
-        className="shine select-none pointer-events-none opacity-80"
+        className="shine absolute select-none"
         style={{
-          gridArea: "1/1",
-          filter: "blur(4px)",
+          zIndex: 1,
+          filter: "blur(3px)",
+          top: "51%", left: "50%",
+          transform: "translate(-50%, -50%)",
         }}
       >
-        <p style={{ ...baseStyle, color: "#fff" }}>{text}</p>
+        <p className="whitespace-nowrap text-white" style={{ margin: 0 }}>
+          {text}
+        </p>
       </div>
 
-      {/* Layer 3 — blur 8px + shine, white */}
+      {/* Layer 3 — blur 6px + shine, white */}
       <div
-        className="shine select-none pointer-events-none opacity-60"
+        className="shine absolute select-none"
         style={{
-          gridArea: "1/1",
-          filter: "blur(8px)",
+          zIndex: 1,
+          filter: "blur(6px)",
+          top: "51%", left: "50%",
+          transform: "translate(-50%, -50%)",
         }}
       >
-        <p style={{ ...baseStyle, color: "#fff" }}>{text}</p>
+        <p className="whitespace-nowrap text-white" style={{ margin: 0 }}>
+          {text}
+        </p>
       </div>
 
       {/* Layer 4 — no blur + shine, #c7c7c7 — crisp top layer */}
       <div
-        className="shine select-none pointer-events-none"
+        className="shine absolute select-none"
         style={{
-          gridArea: "1/1",
+          zIndex: 2,
+          top: "51%", left: "50%",
+          transform: "translate(-50%, -50%)",
         }}
       >
-        <p style={{ ...baseStyle, color: "#c7c7c7" }}>{text}</p>
+        <p className="whitespace-nowrap" style={{ color: "#c7c7c7", margin: 0 }}>
+          {text}
+        </p>
       </div>
     </div>
   );
@@ -95,7 +107,7 @@ export default function ShineButton({
       />
 
       {/* Content wrapper */}
-      <div className="relative z-[3] flex items-center justify-center gap-2.5">
+      <div className="relative z-[3] flex items-center justify-center gap-2.5 ">
         {/* Icon */}
         {icon && (
           <div

@@ -5,15 +5,33 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
+
+const languages = [
+  { code: "en", flag: "https://flagcdn.com/us.svg" },
+  { code: "th", flag: "https://flagcdn.com/th.svg" },
+  { code: "pl", flag: "https://flagcdn.com/pl.svg" },
+];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
 
   const [scrolled, setScrolled] = useState(false);
   const ticking = useRef(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(event.target as Node)) {
+        setLangMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,10 +47,6 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    i18n.changeLanguage(e.target.value);
-  };
 
   const navLinks = [
     { label: t("navbar.features"), href: "/#features" },
@@ -53,7 +67,7 @@ export default function Navbar() {
         .join(" ")}
     >
       {/* 1. Use flex items-center and a consistent max-width */}
-      <Container className="h-11 flex items-center px-6 md:px-18 lg:px-32 xl:px-30 2xl:px-40">
+      <Container className="h-11 flex items-center px-30 ">
 
         {/* LOGO - Wrapped in a div to control width if needed */}
         <div className="flex-none">
@@ -94,50 +108,78 @@ export default function Navbar() {
 
           <Link
             href="/"
-            className="relative inline-block overflow-hidden rounded-full p-[1.5px] group outline-none transition-transform duration-200 active:scale-95 shadow-[0_0_15px_rgba(255,255,255,0.05)]"
-            style={{ fontFamily: "var(--font-hoves)" }}
+            className="relative p-[1px] overflow-hidden rounded-full flex items-center justify-center group"
           >
-            {/* 1. The Moving Gradient Layer */}
-            <motion.div
-              className="absolute top-0 bottom-0 w-[200%] z-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-              initial={{ left: '-150%' }}
-              animate={{ left: '100%' }}
-              transition={{
-                repeat: Infinity,
-                ease: "linear",
-                duration: 2.5,
-              }}
+            {/* The Moving Border (The "Snake") */}
+            <div
+              className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]"
             />
 
-            {/* 2. Inner Container (The Mask) */}
-            <div className="relative z-10 flex h-full w-full items-center justify-center rounded-full bg-[#010B24] group-hover:bg-white/10 transition-colors duration-200 px-4 py-1 xl:px-5 xl:py-1.5 2xl:px-6 2xl:py-2">
-              <span className="text-[12px] xl:text-sm 2xl:text-base font-medium whitespace-nowrap">
-                {t("navbar.login")}
-              </span>
-            </div>
+            <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-transparent px-6 py-2 text-sm font-medium text-white backdrop-blur-3xl transition-all group-hover:bg-black/40">
+              {t("navbar.login")}
+            </span>
           </Link>
 
-          <Link
+          {/* <Link
             href="/"
             className="px-4 py-1.5 xl:px-5 xl:py-1 2xl:px-6 2xl:py-2 rounded-full bg-white text-black text-[12px] xl:text-sm 2xl:text-base font-bold hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
           >
             {t("navbar.signup")}
-          </Link>
+          </Link> */}
 
           {/* Language Selector */}
-          <div className="relative flex items-center" style={{ fontFamily: "var(--font-hoves)" }}>
-            <select
-              value={i18n.language || "en"}
-              onChange={handleLanguageChange}
-              className="appearance-none bg-transparent text-white text-sm xl:text-base 2xl:text-lg font-medium pr-8 pl-3 py-1.5 xl:py-2 border border-white/20 rounded-lg focus:outline-none transition-colors cursor-pointer"
+          <div className="relative flex items-center" ref={langRef}>
+            <button
+              onClick={() => setLangMenuOpen(!langMenuOpen)}
+              className="flex items-center gap-2 px-2 py-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer backdrop-blur-sm"
+              aria-label="Select Language"
             >
-              <option value="en" className="text-black">EN</option>
-              <option value="pl" className="text-black">PL</option>
-              <option value="th" className="text-black">TH</option>
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-              <svg className="fill-current h-4 w-4" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
-            </div>
+              <img 
+                src={languages.find(l => l.code === (i18n.language?.split('-')[0] || "en"))?.flag || "https://flagcdn.com/us.svg"} 
+                alt="flag"
+                className="w-6 h-4 object-cover rounded-sm shadow-sm"
+              />
+              <svg 
+                className={`w-3 h-3 transition-transform duration-200 ${langMenuOpen ? 'rotate-180' : ''}`} 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {/* Dropdown Menu */}
+            <AnimatePresence>
+              {langMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full mt-2 right-0 bg-[#0A1129]/90 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl flex flex-col min-w-[70px] z-[60]"
+                >
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        i18n.changeLanguage(lang.code);
+                        setLangMenuOpen(false);
+                      }}
+                      className={`px-4 py-3 hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer ${
+                        (i18n.language?.split('-')[0] || "en") === lang.code ? "bg-white/5" : ""
+                      }`}
+                    >
+                      <img 
+                        src={lang.flag} 
+                        alt={lang.code} 
+                        className="w-8 h-5 object-cover rounded shadow-sm"
+                      />
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
@@ -178,19 +220,43 @@ export default function Navbar() {
           ))}
           <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
             <Link
-              href="/login"
+              href="/"
               className="w-full text-center px-6 py-3 rounded-full border border-white/20 text-white font-medium"
               onClick={() => setMobileOpen(false)}
             >
               {t("navbar.login")}
             </Link>
-            <Link
-              href="/signup"
+            {/* <Link
+              href="/"
               className="w-full text-center px-6 py-3 rounded-full bg-white text-black font-bold"
               onClick={() => setMobileOpen(false)}
             >
               {t("navbar.signup")}
-            </Link>
+            </Link> */}
+          </div>
+
+          {/* Mobile Language Selector */}
+          <div className="flex justify-center gap-8 pt-4 border-t border-white/10">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => {
+                  i18n.changeLanguage(lang.code);
+                  setMobileOpen(false);
+                }}
+                className={`transition-all duration-300 active:scale-110 ${
+                  (i18n.language?.split('-')[0] || "en") === lang.code 
+                    ? "scale-125 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
+                    : "opacity-40 grayscale hover:opacity-100 hover:grayscale-0"
+                }`}
+              >
+                <img 
+                  src={lang.flag} 
+                  alt={lang.code} 
+                  className="w-10 h-6 object-cover rounded shadow-sm"
+                />
+              </button>
+            ))}
           </div>
         </motion.div>
       )}

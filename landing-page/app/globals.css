@@ -139,14 +139,14 @@ html {
   0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
   20% { opacity: 0.8; }
   80% { opacity: 0.8; }
-  100% { transform: translate(250px, 850px) scale(1.2); opacity: 0; }
+  100% { transform: translate(120px, 750px) scale(1.2); opacity: 0; }
 }
 
 @keyframes particle-fall-right {
   0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
   20% { opacity: 0.8; }
   80% { opacity: 0.8; }
-  100% { transform: translate(-450px, 850px) scale(1.2); opacity: 0; }
+  100% { transform: translate(-120px, 750px) scale(1.2); opacity: 0; }
 }
 
 @keyframes textSweep {
@@ -175,7 +175,7 @@ html {
 }
 
 .shine {
-  animation: 5s ease-in-out infinite shine;
+  animation: 9s ease-in-out infinite shine;
   mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
   -webkit-mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
   mask-size: 150%;
