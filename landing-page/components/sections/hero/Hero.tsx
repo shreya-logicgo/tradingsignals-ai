@@ -8,6 +8,8 @@ import HeroChart from "./HeroChart";
 import gradient1 from "@/assets/images/gradient_1_.png";
 import gradient2 from "@/assets/images/gradient_2_.png";
 import userslabel from "@/assets/images/avatars.png";
+import ShineText from "@/components/common/ShineText";
+import ShineButton from "@/components/common/ShineButton";
 
 // ... particulates data ...
 const PARTICLES = [
@@ -69,27 +71,7 @@ export default function Hero() {
 
   return (
     <section className="relative w-full min-h-screen pt-30 md:pt-42  pb-16 overflow-hidden bg-[#010B24]">
-      {/* Organic floating animations for particles */}
-      <style>{`
-        @keyframes float-a {
-          0%   { transform: translate(0px, 0px);    opacity: 0; }
-          12%  { opacity: 1; }
-          50%  { transform: translate(5px, -14px);  }
-          88%  { opacity: 1; }
-          100% { transform: translate(-3px, -26px); opacity: 0; }
-        }
-        @keyframes float-b {
-          0%   { transform: translate(0px, 0px);    opacity: 0; }
-          12%  { opacity: 1; }
-          45%  { transform: translate(-7px, -12px); }
-          88%  { opacity: 1; }
-          100% { transform: translate(4px, -24px);  opacity: 0; }
-        }
-        @keyframes rotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
+
 
       {/* ── Background Gradients ── */}
       <div className="absolute top-[-150px] right-[-5%] md:right-[-10px] w-full max-w-[1200px] pointer-events-none z-0 opacity-80">
@@ -140,9 +122,15 @@ export default function Hero() {
         </div>
 
         {/* HERO TITLE */}
-        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]" style={{ fontFamily: "var(--font-hoves)" }}>
+        {/* <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]" style={{ fontFamily: "var(--font-hoves)" }}> */}
+
+        <ShineText
+          className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]"
+          style={{ fontFamily: "var(--font-hoves)" }}
+        >
           {t("hero.title")}
-        </h1>
+        </ShineText>
+        {/* </h1> */}
 
         {/* SUPPORTING TEXT */}
         <p className="text-white/80 text-sm md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0" style={{ fontFamily: "var(--font-hoves)" }}>
@@ -150,20 +138,23 @@ export default function Hero() {
         </p>
 
         {/* PRIMARY CTA — Localized */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
+        {/* <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
           <button className="relative w-full sm:w-[180px] h-10 md:h-[48px] p-[2px] rounded-full overflow-hidden group transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,240,255,0.2)] cursor-pointer">
             <div className="absolute inset-[-1000%] animate-[rotate_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00F0FF_0%,#0012B8_50%,#00F0FF_100%)]" />
-            <span 
+            <span
               className="relative flex items-center justify-center w-full h-full bg-[#010B24] rounded-full text-white text-sm md:text-[15px] font-medium transition-all duration-300 group-hover:bg-transparent group-hover:text-white backdrop-blur-3xl"
               style={{ fontFamily: "var(--font-hoves)" }}
             >
               {t("hero.cta")}
             </span>
           </button>
-        </div>
+        </div> */}
+        <ShineButton onClick={() => {}}>
+          {t("starttoday.cta")}
+        </ShineButton>
 
 
-       
+
         {/* Product Visual (Chart/Dashboard) */}
         <div className="w-full mt-10 md:mt-16">
           <HeroChart />

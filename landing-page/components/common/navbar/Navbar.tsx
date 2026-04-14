@@ -14,18 +14,18 @@ export default function Navbar() {
   };
 
   const navLinks = [
-  { label: t("navbar.features"), href: "/#features" },
-  { label: t("navbar.strategies"), href: "/#strategies" },
-  { label: t("navbar.testimonials"), href: "/#testimonials" },
-  { label: t("navbar.faq"), href: "/#faq" },
-  { label: t("navbar.blog"), href: "/blogs"  },
-];
+    { label: t("navbar.features"), href: "/#features" },
+    { label: t("navbar.strategies"), href: "/#strategies" },
+    { label: t("navbar.testimonials"), href: "/#testimonials" },
+    { label: t("navbar.faq"), href: "/#faq" },
+    { label: t("navbar.blog"), href: "/blogs" },
+  ];
 
 
 
   return (
     <nav className="w-full border-b border-white/5 lg:fixed sticky top-0 z-50 py-2 bg-white/5 backdrop-blur-xl transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="lg:max-w-[1400px] md:max-w-7xl  mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
 
@@ -34,52 +34,57 @@ export default function Navbar() {
             alt="Trading Signals AI"
             width={130}
             height={130}
-            className="shrink-0 sm:w-45 "
+            className="shrink-0 sm:w-45 xl:w-52 2xl:w-60"
           />
 
         </Link>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden lg:flex items-center gap-8"style={{ fontFamily: "var(--font-hoves)" }}>
+        <ul className="hidden lg:flex items-center gap-8 xl:gap-10 2xl:gap-12" style={{ fontFamily: "var(--font-hoves)" }}>
           {navLinks.map((link) => (
-  <li key={link.label}>
-    <Link
-      href={link.href}
-      className="text-sm text-gray-300 hover:text-white transition-colors duration-200 font-medium"
-      onClick={() => {
-        if (link.href === "/blogs") {
-          window.scrollTo({ top: 0 });
-        }
-      }}
-    >
-      {link.label}
-    </Link>
-  </li>
-))}
+            <li key={link.label}>
+              <Link
+                href={link.href}
+                className="text-sm xl:text-base 2xl:text-lg text-gray-300 hover:text-white transition-colors duration-200 font-medium"
+                onClick={() => {
+                  if (link.href === "/blogs") {
+                    window.scrollTo({ top: 0 });
+                  }
+                }}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* Auth Buttons */}
         <div className="hidden lg:flex items-center gap-3">
           <Link
-            href="/login"
-            className="px-5 py-1.5 rounded-full border border-white/30 text-white text-sm font-medium hover:bg-white/10 transition-colors duration-200"
-            style={{ fontFamily: "var(--font-hoves)" }}
-
+            href="/"
+            className="relative p-[1.5px] xl:p-[2px] rounded-full overflow-hidden group transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,240,255,0.15)]"
           >
-            {t("navbar.login")}
+            <div className="absolute inset-[-1000%] animate-[rotate_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00F0FF_0%,#0012B8_50%,#00F0FF_100%)]" />
+            <span
+              className="relative flex items-center justify-center px-5 py-1.5 xl:px-6 xl:py-2 2xl:px-8 2xl:py-2.5 bg-[#010B24] rounded-full text-white text-sm xl:text-base 2xl:text-lg font-medium transition-all duration-300 group-hover:bg-transparent backdrop-blur-3xl"
+              style={{ fontFamily: "var(--font-hoves)" }}
+            >
+              {t("navbar.login")}
+            </span>
           </Link>
+          
           <Link
-            href="/signup"
-            className="px-5 py-1.5 rounded-full bg-white text-[#0a0e1a] text-sm font-bold hover:bg-gray-100 transition-colors duration-200"
+            href="/"
+            className="px-5 py-1.5 xl:px-6 xl:py-2 2xl:px-8 2xl:py-2.5 rounded-full bg-white text-[#0a0e1a] text-sm xl:text-base 2xl:text-lg font-bold hover:bg-gray-100 transition-colors duration-200"
             style={{ fontFamily: "var(--font-hoves)" }}
           >
             {t("navbar.signup")}
           </Link>
-          <div className="relative flex items-center"style={{ fontFamily: "var(--font-hoves)" }}>
+          <div className="relative flex items-center" style={{ fontFamily: "var(--font-hoves)" }}>
             <select
               value={i18n.language || "en"}
               onChange={handleLanguageChange}
-              className="appearance-none bg-transparent text-white text-sm font-medium pr-6 pl-2 py-1.5 border border-white/20 rounded-lg hover:border-white/50 focus:outline-none transition-colors cursor-pointer"
+              className="appearance-none bg-transparent text-white text-sm xl:text-base 2xl:text-lg font-medium pr-8 pl-3 py-1.5 xl:py-2 border border-white/20 rounded-lg hover:border-white/50 focus:outline-none transition-colors cursor-pointer"
             >
               <option value="en" className="text-black">EN</option>
               <option value="pl" className="text-black">PL</option>
@@ -117,26 +122,29 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="lg:hidden bg-[#0a0e1a]/95 backdrop-blur-2xl border-t border-white/5 px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
-  <Link
-    key={link.label}
-    href={link.href}
-    className="text-gray-300 hover:text-white text-sm font-medium"
-    onClick={() => {
-      setMobileOpen(false);
-      if (link.href === "/blogs") {
-        window.scrollTo({ top: 0 });
-      }
-    }}
-  >
-    {link.label}
-  </Link>
-))}
+            <Link
+              key={link.label}
+              href={link.href}
+              className="text-gray-300 hover:text-white text-sm font-medium"
+              onClick={() => {
+                setMobileOpen(false);
+                if (link.href === "/blogs") {
+                  window.scrollTo({ top: 0 });
+                }
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
           <div className="flex gap-3 pt-2">
             <Link
               href="/login"
-              className="flex-1 text-center px-5 py-2 rounded-full border border-white/30 text-white text-sm font-medium"
+              className="relative flex-1 p-[1.5px] rounded-full overflow-hidden group transition-all duration-300 active:scale-95 shadow-[0_0_15px_rgba(0,240,255,0.15)]"
             >
-              {t("navbar.login")}
+              <div className="absolute inset-[-1000%] animate-[rotate_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00F0FF_0%,#0012B8_50%,#00F0FF_100%)]" />
+              <span className="relative flex items-center justify-center w-full h-full bg-[#010B24] rounded-full text-white text-sm font-medium transition-all duration-300 group-hover:bg-transparent backdrop-blur-3xl py-2">
+                {t("navbar.login")}
+              </span>
             </Link>
             <Link
               href="/signup"
