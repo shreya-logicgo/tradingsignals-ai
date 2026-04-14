@@ -189,14 +189,14 @@ export default function Hero() {
           {t("hero.description")}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
+        {/* <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
           <button
             className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-black"
             style={{ fontFamily: "var(--font-hoves)" }}
           >
             {t("hero.cta")}
           </button>
-        </div> */}
+        </div>  */}
         <ShineButton onClick={() => {}}>
           {t("starttoday.cta")}
         </ShineButton>
