@@ -4,6 +4,14 @@
 
 @theme {
   --font-hoves: var(--font-hoves), sans-serif;
+
+  /* color */
+  --color-mirage: #0b152d;
+  --color-cosmos: #1c263c;
+  --color-titan-white: #e6eeff;
+  --color-seashell-blue: #e6eeff;
+  --color-dark-blue: #0012b8;
+  --color-vivid-cyan: #00f0ff;
 }
 
 /* ── Base ── */
