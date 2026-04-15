@@ -14,19 +14,62 @@ type OpenAIResponsePayload = {
 };
 
 const extractContent = (payload: OpenAIResponsePayload) => {
-  if (payload.output_text) {
-    return payload.output_text;
-  }
+  if (payload.output_text) return payload.output_text;
 
   const outputText = payload.output
     ?.flatMap((item) => item.content ?? [])
     .find((item) => item.type === "output_text" && item.text)?.text;
 
-  if (outputText) {
-    return outputText;
-  }
+  if (outputText) return outputText;
 
   return payload.content || payload.blog || payload.result || "";
+};
+
+// ✅ Generate image (stable + safe)
+const generateImages = async (topic: string) => {
+  const apiKey = process.env.OPENAI_API_KEY;
+
+  const prompts = [
+    `${topic} hero banner, modern, high quality`,
+    `${topic} concept illustration, detailed`,
+    `${topic} workflow or process diagram`,
+    `${topic} real world example visual`,
+  ];
+
+  const results: string[] = [];
+
+  for (const p of prompts) {
+    try {
+      const res = await fetch("https://api.openai.com/v1/images/generations", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "gpt-image-1",
+          prompt: p,
+          size: "1024x1024",
+        }),
+      });
+
+      const data = await res.json();
+      const base64 = data?.data?.[0]?.b64_json;
+
+      if (base64) {
+        results.push(`data:image/png;base64,${base64}`);
+      }
+    } catch (err) {
+      console.error("Image failed:", err);
+    }
+  }
+
+  return results;
+};
+// ✅ Replace placeholders with real images
+const injectImages = (html: string, images: string[]) => {
+  let i = 0;
+  return html.replace(/IMAGE_\d+/g, () => images[i++ % images.length]);
 };
 
 export async function POST(request: Request) {
@@ -41,6 +84,7 @@ export async function POST(request: Request) {
     }
 
     const apiKey = process.env.OPENAI_API_KEY;
+
     if (!apiKey) {
       return NextResponse.json(
         { error: "OPENAI_API_KEY is not configured." },
@@ -48,18 +92,26 @@ export async function POST(request: Request) {
       );
     }
 
+    // ✅ Updated prompt (NO random images)
     const generationPrompt = [
       "Generate a complete, production-ready blog page as valid HTML.",
       "Output must be raw HTML only (no markdown, no code fences).",
       "Use inline or <style> CSS for polished styling.",
       "Do not include any JavaScript.",
-      "IMPORTANT: For images, use ONLY this URL format: https://loremflickr.com/800/400/{keyword}",
-      "Replace {keyword} with a relevant term for the image (e.g., 'coding', 'nature').",
-      "Ensure every <img> tag has a descriptive 'alt' attribute.",
+      "",
+      "LANGUAGE RULES:",
+      "Detect the user's language from the topic and follow that language for all visible blog text.",
+      "Match transliteration style if used.",
+      "",
+      "IMAGE RULES:",
+      "Do NOT use external/random image URLs.",
+      "Use placeholders like IMAGE_1, IMAGE_2 inside <img src='...'>",
+      "Each image must include alt text and figcaption.",
       "",
       `User topic: ${prompt}`,
     ].join("\n");
 
+    // 🔹 Step 1: Generate blog HTML
     const response = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
@@ -81,21 +133,34 @@ export async function POST(request: Request) {
     }
 
     const data = (await response.json()) as OpenAIResponsePayload;
-    const content = extractContent(data).trim();
+    let content = extractContent(data).trim();
 
     if (!content) {
       return NextResponse.json(
-        { error: "Empty content returned from API. Please try again." },
+        { error: "Empty content returned." },
         { status: 502 }
+      );
+    }
+
+    // 🔹 Step 2: Generate image
+    const images = await generateImages(prompt);
+
+    // 🔹 Step 3: Inject OR fallback
+    if (images.length) {
+      content = injectImages(content, images);
+    } else {
+      console.warn("Using fallback image");
+      content = content.replace(
+        /IMAGE_\d+/g,
+        "https://via.placeholder.com/800x400?text=Blog+Image"
       );
     }
 
     return NextResponse.json({ content });
   } catch (error) {
     const message =
-      error instanceof Error
-        ? error.message
-        : "Unexpected error while generating blog.";
+      error instanceof Error ? error.message : "Unexpected error occurred.";
+
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
