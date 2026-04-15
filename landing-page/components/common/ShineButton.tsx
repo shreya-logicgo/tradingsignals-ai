@@ -1,6 +1,6 @@
 // components/ShineButton.tsx
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface ShineButtonProps {
   children: string;
@@ -84,7 +84,7 @@ export default function ShineButton({
 }: ShineButtonProps) {
   const inner = (
     <>
-      {/* BG Layer 1 — dark base fill */}
+      {/* BG Layer 1 — dark gray base fill */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ backgroundColor: "#3c3f44" }}
@@ -96,35 +96,32 @@ export default function ShineButton({
         style={{ backgroundColor: "#9b9999" }}
       />
 
-      {/* BG Layer 3 — theme inner pill, 1.5px inset → exposes border */}
+      {/* BG Layer 3 — near-black inner pill, 1px inset → exposes 1px border */}
       <div
         className="absolute overflow-hidden transition-all duration-300 ease-in-out"
         style={{
-          backgroundColor: "#010B24",
+          backgroundColor: "#010203",
           borderRadius: "99px",
-          inset: "1.5px",
+          inset: "1px",
         }}
       />
 
-      {/* Content wrapper */}
-      <div className="relative z-[3] flex items-center justify-center gap-2.5 ">
-        {/* Icon */}
-        {icon && (
-          <div
-            className="flex-shrink-0"
-            style={{ color: "#b6b6b9" }}
-          >
-            {icon}
-          </div>
-        )}
+      {/* Icon */}
+      {icon && (
+        <div
+          className="relative z-[3] flex-shrink-0"
+          style={{ color: "#b6b6b9" }}
+        >
+          {icon}
+        </div>
+      )}
 
-        {/* 4-layer shine text */}
-        <ShineTextStack text={children} />
-      </div>
+      {/* 4-layer shine text */}
+      <ShineTextStack text={children} />
     </>
   );
 
-  const sharedClass = [
+    const sharedClass = [
     "relative flex items-center justify-center overflow-hidden",
     "rounded-full transition-all duration-200",
     "px-6 py-3.5 md:px-8 md:py-4.5",

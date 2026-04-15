@@ -61,7 +61,7 @@ const AnimatedLoginButton = () => {
 
     return (
         <section className=" py-16 px-4">
-            <div className="max-w-5xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto">
+            <div className="max-w-7xl px-2 md:px-8 lg:px-12 xl:px-15  mx-auto">
                 <div
                     className="relative rounded-2xl overflow-hidden px-8 py-13 text-center min-h-[300px]"
                     style={{

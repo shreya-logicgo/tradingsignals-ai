@@ -16,7 +16,9 @@ export default function BlogPage() {
     <main className="bg-[#010B24] min-h-screen flex flex-col lg:mt-24 mt-10 max-w-7xl mx-auto"
       style={{ fontFamily: "var(--font-hoves)" }}
     >
-      <Container>
+      <Container className=""
+     
+      >
         <BlogListing />
       </Container>
       <StartToday />

@@ -23,13 +23,17 @@ export default function Home() {
         id="features"
         className="scroll-mt-18 sm:scroll-mt-6 md:scroll-mt-18 lg:scroll-mt-18"
       >
-        <Features />
+        <Container>
+
+          <Features />
+        </Container>
       </section>
 
       <section
         id="strategies"
         className="scroll-mt-14 sm:scroll-mt-14 md:scroll-mt-8 lg:scroll-mt-6"
       >
+        {/* <Container></Container> */}
         <Strategies />
       </section>
 
@@ -54,9 +58,9 @@ export default function Home() {
 
       <CTA />
       {/* <Container className="max-w-4xl mx-auto"> */}
-      <Container>
-        <StartToday />
-      </Container>
+      {/* <Container>
+      </Container> */}
+      <StartToday />
       {/* </Container> */}
     </main>
   );

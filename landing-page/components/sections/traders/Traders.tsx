@@ -104,7 +104,7 @@ export default function Traders() {
 
   return (
     <section className="w-full bg-[#010B24] py-3 md:py-3 relative overflow-hidden mb-20">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
         <div className="flex flex-col gap-12 lg:gap-16 items-center">
 
           {/* ── Header block — Localized ── */}

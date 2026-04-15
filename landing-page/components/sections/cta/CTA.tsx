@@ -25,7 +25,7 @@ export default function CTA() {
 
   return (
     <section className="w-full bg-[#010B24] py-10 md:py-12 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
         <div className="flex flex-col gap-12 lg:gap-16">
           
           {/* ── Header ── */}
