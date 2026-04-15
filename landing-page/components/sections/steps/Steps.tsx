@@ -26,7 +26,7 @@ export default function Steps() {
   return (
     <HoverContext.Provider value={{ hoveredId, setHoveredId }}>
       <section className="w-full py-10 md:py-14 relative overflow-hidden bg-[#010B24]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-x-12 lg:gap-y-0 items-start">
 
             {/* ── HEADING ── */}

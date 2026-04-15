@@ -98,7 +98,7 @@ export default function Strategies() {
         background: "linear-gradient(180deg, #010B24 0%, #010B24 75%, #02164b 100%)",
       }}
     >
-      <div className="max-w-7xl mx-auto px-5 md:px-12 lg:px-24 relative z-10">
+      <div className="max-w-[1320px] mx-auto px-5 md:px-12 lg:px-15 xl:px-20 relative z-10">
 
         {/* Header Section */}
         <div className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-8 md:mb-12 gap-4 md:gap-6">
@@ -125,10 +125,10 @@ export default function Strategies() {
         </div>
 
         {/* Filters and Tabs */}
-        <div className="flex flex-col gap-4">
+        {/* <div className="flex flex-col gap-4">
           <StrategyTabs />
           <StrategyFilters />
-        </div>
+        </div> */}
 
         {/* 
           KEY FIXES:

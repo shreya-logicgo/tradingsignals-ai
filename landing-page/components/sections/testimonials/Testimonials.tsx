@@ -36,7 +36,7 @@ export default function Testimonials() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-10">
 
         {/*
           KEY FIX: use items-stretch on the grid so all 3 columns are
