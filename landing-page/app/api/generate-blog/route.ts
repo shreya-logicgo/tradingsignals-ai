@@ -20,8 +20,7 @@ const extractContent = (payload: OpenAIResponsePayload) => {
 
   const outputText = payload.output
     ?.flatMap((item) => item.content ?? [])
-    .find((item) => item.type === "output_text" && item.text)
-    ?.text;
+    .find((item) => item.type === "output_text" && item.text)?.text;
 
   if (outputText) {
     return outputText;
@@ -35,21 +34,28 @@ export async function POST(request: Request) {
     const { prompt } = (await request.json()) as { prompt?: string };
 
     if (!prompt?.trim()) {
-      return NextResponse.json({ error: "Prompt is required." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Prompt is required." },
+        { status: 400 }
+      );
     }
 
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
-      return NextResponse.json({ error: "OPENAI_API_KEY is not configured." }, { status: 500 });
+      return NextResponse.json(
+        { error: "OPENAI_API_KEY is not configured." },
+        { status: 500 }
+      );
     }
 
     const generationPrompt = [
       "Generate a complete, production-ready blog page as valid HTML.",
       "Output must be raw HTML only (no markdown, no code fences).",
       "Use inline or <style> CSS for polished styling.",
-      "Do not include any JavaScript (<script> tags or JS code).",
-      "Use semantic tags like article, section, h1-h3, p, ul/ol, figure, img where relevant.",
-      "Replace placeholders with real topic-specific content.",
+      "Do not include any JavaScript.",
+      "IMPORTANT: For images, use ONLY this URL format: https://loremflickr.com/800/400/{keyword}",
+      "Replace {keyword} with a relevant term for the image (e.g., 'coding', 'nature').",
+      "Ensure every <img> tag has a descriptive 'alt' attribute.",
       "",
       `User topic: ${prompt}`,
     ].join("\n");
@@ -68,19 +74,28 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      return NextResponse.json({ error: errorText || "OpenAI request failed." }, { status: response.status });
+      return NextResponse.json(
+        { error: errorText || "OpenAI request failed." },
+        { status: response.status }
+      );
     }
 
     const data = (await response.json()) as OpenAIResponsePayload;
     const content = extractContent(data).trim();
 
     if (!content) {
-      return NextResponse.json({ error: "Empty content returned from API. Please try again." }, { status: 502 });
+      return NextResponse.json(
+        { error: "Empty content returned from API. Please try again." },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({ content });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unexpected error while generating blog.";
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Unexpected error while generating blog.";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
