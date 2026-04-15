@@ -52,7 +52,7 @@ const GenerateBlog = () => {
   };
 
   return (
-    <div className="py-10 xl:flex gap-5 font-hoves px-6 md:px-12 xl:px-0">
+    <div className="py-18 lg:py-10 xl:flex gap-5 font-hoves px-6 md:px-12 3xl:px-0">
       <PromptInputCard
         prompt={prompt}
         onPromptChange={setPrompt}

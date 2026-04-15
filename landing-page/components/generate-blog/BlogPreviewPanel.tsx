@@ -71,7 +71,7 @@ const BlogPreviewPanel = ({
       <div className="flex-1 min-h-0">
         {isLoading ? (
           <div className="h-full flex flex-col items-center justify-center text-center px-6">
-            <GradientMagicStick className="mb-5 animate-pulse" />
+            <GradientMagicStick className="mb-5 animate-pulse w-12 md:w-14 h-12 md:h-14" />
             <h3 className="text-lg 3xl:text-[22px]">
               {t("generateBlog.loadingTitle")}
             </h3>
@@ -92,7 +92,7 @@ const BlogPreviewPanel = ({
           </div>
         ) : (
           <div className="h-full text-center flex flex-col items-center justify-center px-6">
-            <GradientMagicStick className="mb-5" />
+            <GradientMagicStick className="mb-5 w-12 md:w-14 h-12 md:h-14" />
             <h3 className="text-lg 3xl:text-[22px]">
               {t("generateBlog.emptyTitle")}
             </h3>

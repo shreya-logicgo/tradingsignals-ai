@@ -11,11 +11,17 @@ type PromptInputCardProps = {
   isLoading: boolean;
 };
 
-const PromptInputCard = ({ prompt, onPromptChange, onGenerate, isLoading }: PromptInputCardProps) => {
+const PromptInputCard = ({
+  prompt,
+  onPromptChange,
+  onGenerate,
+  isLoading,
+}: PromptInputCardProps) => {
   const { t } = useTranslation();
+  const isBtnDisbaled = isLoading || !prompt.trim();
 
   return (
-    <div className="relative xl:sticky xl:top-22.5 max-h-fit mb-5">
+    <div className="relative xl:sticky xl:top-27 max-h-fit mb-4 xl:mb-0">
       <textarea
         value={prompt}
         onChange={(event) => onPromptChange(event.target.value)}
@@ -25,18 +31,22 @@ const PromptInputCard = ({ prompt, onPromptChange, onGenerate, isLoading }: Prom
 
       <button
         type="button"
-        disabled={isLoading || !prompt.trim()}
+        disabled={isBtnDisbaled}
         onClick={onGenerate}
         className="overflow-hidden rounded-full cursor-pointer flex items-center gap-3 text-base absolute bottom-0 inset-e-0 mb-6 me-4.5 bg-dark-blue group disabled:cursor-not-allowed disabled:opacity-60"
       >
         <span className="relative px-4 py-2.75">
           {/* Gradient Layer */}
-          <span className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[linear-gradient(90deg,#0012B8_0%,#00F0FF_100%)]"></span>
+          {!isBtnDisbaled && (
+            <span className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[linear-gradient(90deg,#0012B8_0%,#00F0FF_100%)]"></span>
+          )}
 
           {/* Content */}
           <span className="relative z-10 flex items-center gap-3 text-sm md:text-base">
             <MagicStickWhite className="w-4 md:w-5 h-4 md:h-5" />{" "}
-            {isLoading ? t("generateBlog.generating") : t("generateBlog.generate")}
+            {isLoading
+              ? t("generateBlog.generating")
+              : t("generateBlog.generate")}
           </span>
         </span>
       </button>
