@@ -1,4 +1,5 @@
 import Navbar from "@/components/common/navbar/Navbar";
+import NoiseOverlay from "@/components/NoiseOverlay";
 import Categories from "@/components/sections/categories/Categories";
 import CTA from "@/components/sections/cta/CTA";
 import FAQ from "@/components/sections/faq/FAQ";
@@ -12,10 +13,20 @@ import Traders from "@/components/sections/traders/Traders";
 import TrustedLogos from "@/components/sections/trusted/TrustedLogos";
 import StartToday from "@/components/sections/starttoday/Starttoday";
 import Container from "@/components/common/container/Container";
+import noiseTexture from "@/assets/images/texture.png"; 
+
 
 export default function Home() {
   return (
     <main>
+      <div
+        className="absolute inset-0 z-[999] pointer-events-none opacity-50"
+        style={{
+          backgroundImage: `url(${noiseTexture.src})`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '900px 900px'
+        }}
+      />
       <Hero />
       <TrustedLogos />
 

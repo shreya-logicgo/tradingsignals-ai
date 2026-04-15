@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import glowBar from "@/assets/images/glowBars.png";
+import { Noise } from "@react-three/postprocessing";
+import NoiseOverlay from "@/components/NoiseOverlay";
 
 export default function Stats() {
   const { t } = useTranslation();
@@ -60,6 +62,7 @@ export default function Stats() {
       // className="w-full relative lg:py-30 overflow-hidden"
 
     >
+      <NoiseOverlay/>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

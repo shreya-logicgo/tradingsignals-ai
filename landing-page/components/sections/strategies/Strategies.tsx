@@ -1,6 +1,8 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import StrategyCard from "./StrategyCard";
 import StrategyTabs from "./StrategyTabs";
 import StrategyFilters from "./StrategyFilters";
@@ -14,6 +16,9 @@ import structIcon from "@/assets/icons/tsai-struct.png";
 import assistIcon from "@/assets/icons/tsai-assist.png";
 import volIcon from "@/assets/icons/tsai-vol.png";
 import hybridIcon from "@/assets/icons/tsai-hybrid.png";
+import noiseTexture from "@/assets/images/texture.png"; 
+import NoiseOverlay from "@/components/NoiseOverlay";
+
 
 export default function Strategies() {
   const { t } = useTranslation();
@@ -98,10 +103,27 @@ export default function Strategies() {
         background: "linear-gradient(180deg, #010B24 0%, #010B24 75%, #02164b 100%)",
       }}
     >
-      <div className="max-w-[1320px] mx-auto px-5 md:px-12 lg:px-15 xl:px-20 relative z-10">
+      {/* <div
+        className="absolute inset-0 z-[999] pointer-events-none opacity-50"
+        style={{
+          backgroundImage: `url(${noiseTexture.src})`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '900px 900px'
+        }}
+      /> */}
+      <NoiseOverlay/>
+      
+      
+      <motion.div 
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        className="max-w-[1320px] mx-auto px-5 md:px-12 lg:px-15 xl:px-20 relative z-10"
+      >
 
         {/* Header Section */}
-        <div className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-8 md:mb-12 gap-4 md:gap-6">
+        <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-8 md:mb-12 gap-4 md:gap-6">
           <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 shadow-inner">
             <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-[#C7CCD2]">
               {t("strategy.strategybadge")}
@@ -122,7 +144,7 @@ export default function Strategies() {
               {t("strategy.description")}
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Filters and Tabs */}
         {/* <div className="flex flex-col gap-4">
@@ -136,7 +158,8 @@ export default function Strategies() {
           - auto-rows-fr makes ALL rows equal height
           - The wrapper div is removed — StrategyCard itself is the grid item
         */}
-        <div
+        <motion.div
+          variants={fadeUpVariant}
           className="grid gap-4 mt-8"
           style={{
             gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
@@ -144,10 +167,12 @@ export default function Strategies() {
           }}
         >
           {strategies.map((s) => (
-            <StrategyCard key={s.name} {...s} />
+            <motion.div key={s.name} variants={fadeUpVariant} className="h-full">
+              <StrategyCard {...s} />
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />

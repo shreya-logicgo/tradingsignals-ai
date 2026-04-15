@@ -1,6 +1,8 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import TestimonialCard from "./TestimonialCard";
 import img1 from "@/assets/images/testimonial-1.jpg";
 import img2 from "@/assets/images/testimonial-2.jpg";
@@ -25,7 +27,13 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="w-full relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-[#0028ff40] via-[#0012b826] via-[#000a5014] to-transparent">
+    <motion.section 
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      className="w-full relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-[#0028ff40] via-[#0012b826] via-[#000a5014] to-transparent"
+    >
 
       {/* Radial depth glow */}
       <div
@@ -48,12 +56,14 @@ export default function Testimonials() {
           {/* ── LEFT COLUMN ── */}
           <div className="flex flex-col justify-between gap-8 order-2 lg:order-1">
             {leftCards.map((card, i) => (
-              <TestimonialCard key={i} {...card} />
+              <motion.div key={i} variants={fadeUpVariant}>
+                <TestimonialCard {...card} />
+              </motion.div>
             ))}
           </div>
 
           {/* ── CENTER: Heading + featured card ── */}
-          <div className="flex flex-col items-center text-center gap-4 order-1 lg:order-2 md:col-span-2 lg:col-span-1">
+          <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-4 order-1 lg:order-2 md:col-span-2 lg:col-span-1">
 
             {/* Badge */}
             <div className="px-3.5 py-1 flex justify-center rounded-full border border-white/20 bg-white/5">
@@ -90,17 +100,19 @@ export default function Testimonials() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* ── RIGHT COLUMN ── */}
           <div className="flex flex-col justify-between gap-8 order-3">
             {rightCards.map((card, i) => (
-              <TestimonialCard key={i} {...card} />
+              <motion.div key={i} variants={fadeUpVariant}>
+                <TestimonialCard {...card} />
+              </motion.div>
             ))}
           </div>
 
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
