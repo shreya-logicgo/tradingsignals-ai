@@ -42,8 +42,8 @@ const logos = [
     render: () => (
       <div className="flex items-center gap-3 group">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-white/40 group-hover:text-white/60 transition-colors">
-          <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M17 7H21V11" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M17 7H21V11" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         <span className="text-[16px] md:text-[20px] font-semibold text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors">
           TradersPost
@@ -66,8 +66,8 @@ const logos = [
     render: () => (
       <div className="flex items-center gap-3 group">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-white/40 group-hover:text-white/60 transition-colors">
-          <path d="M20.5 11.5C20.5 16.75 16.25 21 11 21C5.75 21 1.5 16.75 1.5 11.5C1.5 6.25 5.75 2 11 2C13.5 2 15.75 2.95 17.45 4.55" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-          <circle cx="11" cy="11.5" r="3.5" stroke="currentColor" strokeWidth="1.8"/>
+          <path d="M20.5 11.5C20.5 16.75 16.25 21 11 21C5.75 21 1.5 16.75 1.5 11.5C1.5 6.25 5.75 2 11 2C13.5 2 15.75 2.95 17.45 4.55" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="11" cy="11.5" r="3.5" stroke="currentColor" strokeWidth="1.8" />
         </svg>
         <span className="text-[16px] md:text-[20px] font-medium text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors">OpenAI</span>
       </div>
@@ -78,7 +78,7 @@ const logos = [
     render: () => (
       <div className="flex items-center gap-3 group">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-white/40 group-hover:text-white/60 transition-colors">
-          <path d="M2 18L8 12L12 16L22 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 18L8 12L12 16L22 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         <span className="text-[16px] md:text-[20px] font-semibold text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors">TradingView</span>
       </div>
@@ -110,11 +110,11 @@ export default function TrustedLogos() {
 
       {/* Integrative Label */}
       <p
-  className="text-center mb-3 text-[22px] md:text-[20px] tracking-[0.05em] uppercase text-white/40"
-  style={{ fontFamily: "var(--font-hoves)" }}
->
-  {t("hero.integration")}
-</p>
+        className="text-center mb-3 text-[22px] md:text-[20px] tracking-[0.05em] uppercase text-white/40"
+        style={{ fontFamily: "var(--font-hoves)" }}
+      >
+        {t("hero.integration")}
+      </p>
 
 
       {/* 1. Increased Dynamic Marquee Strip Container Height (h-11 -> h-20) */}
