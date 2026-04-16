@@ -2,6 +2,7 @@
 
 import BlogListing from "@/components/Blogs/Bloglisting";
 import Container from "@/components/common/container/Container";
+import NoiseOverlay from "@/components/NoiseOverlay";
 import StartToday from "@/components/sections/starttoday/Starttoday";
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function BlogPage() {
   return (
     <main className="bg-[#010B24] min-h-screen flex flex-col lg:mt-24 mt-10 max-w-7xl mx-auto font-hoves"
     >
+      <NoiseOverlay/>
       <Container className=""
      
       >
