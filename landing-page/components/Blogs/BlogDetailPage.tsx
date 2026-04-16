@@ -251,8 +251,7 @@ export default async function BlogDetailPage({
   );
 
   return (
-    <div className="bg-[#010B24] min-h-screen flex flex-col lg:mt-28"
-      style={{ fontFamily: "var(--font-hoves)" }}
+    <div className="bg-[#010B24] min-h-screen flex flex-col lg:mt-28 font-hoves"
     >
       {/* <Navbar /> */}
 

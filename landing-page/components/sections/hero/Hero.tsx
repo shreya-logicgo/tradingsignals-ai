@@ -79,7 +79,7 @@ export default function Hero() {
           <div
             className="absolute inset-[-60%] blur-[80px]"
             style={{
-              background: "radial-gradient(circle at center, #00F0FF 0%, transparent 60%)",
+              background: "radial-gradient(circle at center, var(--color-vivid-cyan) 0%, transparent 60%)",
               animation: "liquid-glide 6s ease-in-out infinite",
               mixBlendMode: "screen",
               opacity: 0.9
@@ -89,7 +89,7 @@ export default function Hero() {
           <div
             className="absolute inset-[-60%] blur-[90px]"
             style={{
-              background: "radial-gradient(circle at center, #0012B8 0%, transparent 60%)",
+              background: "radial-gradient(circle at center, var(--color-dark-blue) 0%, transparent 60%)",
               animation: "liquid-glide-reverse 4s ease-in-out infinite",
               mixBlendMode: "screen",
               opacity: 0.85
@@ -124,7 +124,7 @@ export default function Hero() {
           <div
             className="absolute inset-[-60%] blur-[80px]"
             style={{
-              background: "radial-gradient(circle at center, #0012B8 0%, #00F0FF 50%, transparent 80%)",
+              background: "radial-gradient(circle at center, var(--color-dark-blue) 0%, var(--color-vivid-cyan) 50%, transparent 80%)",
               animation: "liquid-glide 8s ease-in-out infinite",
               mixBlendMode: "screen",
               opacity: 0.8
@@ -170,7 +170,7 @@ export default function Hero() {
           className="flex flex-col items-center gap-6 md:gap-8 w-full"
         >
           {/* Social Proof Badge — Localized */}
-          <motion.div variants={fadeUpVariant} className="flex items-center gap-2 md:gap-2.5 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4 max-w-[90vw] sm:max-w-none">
+          <motion.div variants={fadeUpVariant} className="flex items-center gap-2 md:gap-2.5 px-3 py-1.5 md:px-5 md:py-2.5  uppercase mb-2 sm:mb-4 max-w-[90vw] sm:max-w-none">
             <Image
               src={userslabel}
               alt="TSAI Traders"
@@ -178,7 +178,7 @@ export default function Hero() {
               height={28}
               className="h-4 md:h-6 w-auto shrink-0"
             />
-            <span className="text-[10px] md:text-sm text-gray-300 leading-tight" style={{ fontFamily: "var(--font-hoves)" }}>
+            <span className="text-[10px] md:text-sm text-white leading-tight font-hoves">
               {t("hero.users")}
             </span>
           </motion.div>
@@ -186,15 +186,14 @@ export default function Hero() {
           {/* HERO TITLE */}
           <motion.div variants={fadeUpVariant} className="w-full flex justify-center">
             <ShineText
-              className="text-2xl sm:text-3xl md:text-5xl lg:text-[70px] max-w-[1200px]"
-              style={{ fontFamily: "var(--font-hoves)" }}
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-[70px] max-w-[1200px] font-hoves"
             >
               {t("hero.title")}
             </ShineText>
           </motion.div>
 
           {/* SUPPORTING TEXT */}
-          <motion.p variants={fadeUpVariant} className="text-white sm:text-sm text-xs md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0" style={{ fontFamily: "var(--font-hoves)" }}>
+          <motion.p variants={fadeUpVariant} className="text-white sm:text-sm text-xs md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0 font-hoves" >
             {t("hero.description")}
           </motion.p>
 

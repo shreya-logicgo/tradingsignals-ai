@@ -14,19 +14,20 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
     <div
       onClick={() => setIsOpen((p) => !p)}
       className={`group w-full transition-all duration-300 cursor-pointer rounded-2xl border ${isOpen
-          ? "bg-white/10 border-white/20 p-6"
-          : "bg-white/5 border-white/10 px-6 py-4 hover:bg-white/[0.08] hover:border-white/20"
+        ? "bg-white/10 border-white/20 p-6"
+        : "bg-white/5 border-white/10 px-6 py-3 hover:bg-white/[0.08] hover:border-white/20"
         }`}
     >
       {/* Question row */}
-      <div className="flex items-center justify-between gap-4 py-1">
-        <span className="font-hoves font-medium text-base text-white leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
+      <div className="flex items-center justify-between gap-4">
+        <span className="font-hoves font-medium text-base text-white leading-tight">
           {question}
         </span>
 
         {/* +/× icon */}
+        {/* + / × icon */}
         <div
-          className={`w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-45" : "rotate-0"
+          className={`w-8 h-8 rounded-full bg-white border border-white/20 flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-45" : "rotate-0"
             }`}
         >
           <svg
@@ -36,8 +37,24 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <line x1="7" y1="1" x2="7" y2="13" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
-            <line x1="1" y1="7" x2="13" y2="7" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
+            <line
+              x1="7"
+              y1="1"
+              x2="7"
+              y2="13"
+              stroke="black"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+            <line
+              x1="1"
+              y1="7"
+              x2="13"
+              y2="7"
+              stroke="black"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
           </svg>
         </div>
       </div>
@@ -47,7 +64,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[500px] mt-4 opacity-100" : "max-h-0 opacity-0"
           }`}
       >
-        <p className="font-hoves font-light text-[14px] text-[#c7ccd2] leading-relaxed pb-2"style={{ fontFamily: "var(--font-hoves)" }}>
+        <p className="font-hoves font-light text-[14px] text-[#c7ccd2] leading-relaxed pb-2">
           {answer}
         </p>
       </div>

@@ -124,8 +124,8 @@ export default function Strategies() {
 
         {/* Header Section */}
         <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-8 md:mb-12 gap-4 md:gap-6">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 shadow-inner">
-            <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-[#C7CCD2]">
+          <div className="inline-flex items-center px-4 py-1.5  shadow-inner">
+            <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-vivid-cyan">
               {t("strategy.strategybadge")}
             </span>
           </div>
@@ -133,13 +133,11 @@ export default function Strategies() {
           <div className="flex flex-col items-center gap-2">
             <h2
               className="text-white font-hoves font-medium text-3xl md:text-4xl lg:text-5xl leading-tight"
-              style={{ fontFamily: "var(--font-hoves)" }}
             >
               {t("strategy.title")}
             </h2>
             <p
               className="font-hoves text-[15px] md:text-base text-[#C7CCD2] leading-relaxed max-w-[600px] opacity-80"
-              style={{ fontFamily: "var(--font-hoves)" }}
             >
               {t("strategy.description")}
             </p>
