@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import TraderFeatureCard from "./TraderFeatureCard";
 
 /* ── Inline SVG icons ── */
@@ -103,12 +105,18 @@ export default function Traders() {
   const displayCards = isMounted ? allCards.slice(startIndex, startIndex + visibleCount) : allCards;
 
   return (
-    <section className="w-full bg-[#010B24] py-3 md:py-3 relative overflow-hidden mb-20">
+    <motion.section 
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      className="w-full bg-[#010B24] py-3 md:py-3 relative overflow-hidden mb-20"
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
         <div className="flex flex-col gap-12 lg:gap-16 items-center">
 
           {/* ── Header block — Localized ── */}
-          <div className="flex flex-col items-center text-center gap-6 max-w-[521px]">
+          <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-6 max-w-[521px]">
             {/* Badge */}
             <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
               <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
@@ -125,10 +133,10 @@ export default function Traders() {
             <p className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed max-w-[480px]" style={{ fontFamily: "var(--font-hoves)" }}>
               {t("whyUs.description")}
             </p>
-          </div>
+          </motion.div>
 
           {/* ── Cards slider ── */}
-          <div className="w-full flex flex-col gap-8">
+          <motion.div variants={fadeUpVariant} className="w-full flex flex-col gap-8">
             <div className="relative w-full">
               {/* Cards Grid — Responsive SSR support */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 transition-all duration-300">
@@ -185,10 +193,10 @@ export default function Traders() {
                 <ChevronRight />
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
