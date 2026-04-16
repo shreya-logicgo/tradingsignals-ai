@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+import NoiseOverlay from "../NoiseOverlay";
 
 // 1. Define your types for the multilingual fields
 type MultilingualText = {
@@ -202,6 +203,7 @@ export default function BlogListing() {
   return (
     <section className="bg-[#010B24] min-h-screen py-12 lg:px-7 font-hoves"
     >
+      <NoiseOverlay/>
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

@@ -18,6 +18,7 @@ import BlogContent from "@/components/Blogs/Blogcontent";
 import BlogDetailView from "@/components/Blogs/BlogDetailView";
 import { BlogPostDetail } from "./blog";
 import symbollogo from "@/assets/images/symbol-logo.png";
+import NoiseOverlay from "../NoiseOverlay";
 // import type { BlogPost } from "./blog";
 
 // ─── Mock data fetch (replace with real CMS / API call) ──────────────────────
@@ -254,6 +255,7 @@ export default async function BlogDetailPage({
     <div className="bg-[#010B24] min-h-screen flex flex-col lg:mt-28 font-hoves"
     >
       {/* <Navbar /> */}
+      <NoiseOverlay/>
 
       <main className="flex-1">
           {/* Client-side Translated Content Viewer */}

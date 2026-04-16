@@ -119,7 +119,7 @@ export default function Strategies() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="max-w-[1320px] mx-auto px-5 md:px-12 lg:px-15 xl:px-20 relative z-10"
+        className="max-w-[1320px] mx-auto px-6 md:px-12 lg:px-15 xl:px-20 relative z-10"
       >
 
         {/* Header Section */}
