@@ -148,7 +148,7 @@ export default function TrustedLogos() {
       {/* Integrative Label */}
       <motion.p
         variants={fadeUpVariant}
-        className="text-center mb-3 text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] tracking-[0.05em] uppercase text-white/40 font-hoves px-4"
+        className="text-center mb-3 text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] tracking-[0.05em] uppercase text-white font-hoves px-4"
       >
         {t("hero.integration")}
       </motion.p>
