@@ -30,7 +30,7 @@ function ShineTextStack({ text }: { text: string }) {
 
       {/* Layer 2 — blur 3px + shine, white */}
       <div
-        className="shine absolute select-none"
+        className="shine absolute select-none rounded-full"
         style={{
           zIndex: 1,
           filter: "blur(3px)",
@@ -45,10 +45,10 @@ function ShineTextStack({ text }: { text: string }) {
 
       {/* Layer 3 — blur 6px + shine, white */}
       <div
-        className="shine absolute select-none"
+        className="shine absolute select-none rounded-full"
         style={{
           zIndex: 1,
-          filter: "blur(6px)",
+          filter: "blur(5px)",
           top: "51%", left: "50%",
           transform: "translate(-50%, -50%)",
         }}
