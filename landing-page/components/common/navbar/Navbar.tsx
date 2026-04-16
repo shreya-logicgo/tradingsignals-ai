@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
-import { AnimatePresence, motion } from 'framer-motion';
-
+import { AnimatePresence, motion } from "framer-motion";
+import MagneticLoginButton from "@/components/common/Magneticloginbutton"; // ← adjust path as needed
 
 const languages = [
   { code: "en", name: "EN", full: "English", flag: "https://flagcdn.com/us.svg" },
@@ -37,13 +37,11 @@ export default function Navbar() {
     const onScroll = () => {
       if (ticking.current) return;
       ticking.current = true;
-
       requestAnimationFrame(() => {
         setScrolled(window.scrollY > 20);
         ticking.current = false;
       });
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -66,10 +64,9 @@ export default function Navbar() {
         .filter(Boolean)
         .join(" ")}
     >
-      {/* 1. Use flex items-center and a consistent max-width */}
       <Container className="h-16 flex items-center px-6 md:px-10 xl:px-32 2xl:px-32">
-        {/* lg:px-22 xl:px-15 */}
-        {/* LOGO - Wrapped in a div to control width if needed */}
+
+        {/* Logo */}
         <div className="flex-none">
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -77,12 +74,12 @@ export default function Navbar() {
               alt="Trading Signals AI"
               width={120}
               height={120}
-              className=" w-35 md:w-36 lg:w-40 xl:w-48 "
+              className="w-35 md:w-36 lg:w-40 xl:w-48"
             />
           </Link>
         </div>
 
-        {/* 2. NAVIGATION LINKS - Desktop */}
+        {/* Desktop Nav Links */}
         <ul className="hidden lg:flex flex-1 items-center justify-center gap-3 xl:gap-8 2xl:gap-10">
           {navLinks.map((link) => (
             <li key={link.label}>
@@ -96,32 +93,11 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* 3. ACTIONS - Desktop */}
+        {/* Desktop Actions */}
         <div className="hidden lg:flex items-center flex-none gap-4">
-          <Link
-            href="https://crypto.tradingsignals.ai/login"
-            className="relative inline-flex items-center justify-center px-6 py-2 rounded-full group"
-          >
-            {/* The Masked Border Container */}
-            <div
-              className="absolute inset-0 rounded-full pointer-events-none p-[1px]"
-              style={{
-                // This CSS mask subtracts the inner area from the outer area, creating a perfect 1px transparent hollow ring.
-                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "xor",
-                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                maskComposite: "exclude",
-              }}
-            >
-              {/* The Moving Border (The "Snake") */}
-              <div className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]" />
-            </div>
 
-            {/* Button Content */}
-            <span className="relative z-10 text-sm font-medium text-white transition-all font-hoves">
-              {t("navbar.login")}
-            </span>
-          </Link>
+          {/* ── Upgraded Login Button ── */}
+          <MagneticLoginButton href="https://crypto.tradingsignals.ai/login" />
 
           {/* Language Selector Desktop */}
           <div className="relative flex items-center" ref={langRef}>
@@ -131,15 +107,15 @@ export default function Navbar() {
               aria-label="Select Language"
             >
               <img
-                src={languages.find(l => l.code === (i18n.language?.split('-')[0] || "en"))?.flag || "https://flagcdn.com/us.svg"}
+                src={languages.find(l => l.code === (i18n.language?.split("-")[0] || "en"))?.flag || "https://flagcdn.com/us.svg"}
                 alt="flag"
                 className="w-5 h-3.5 object-cover rounded-[2px] shadow-sm"
               />
               <span className="text-sm font-medium text-white uppercase">
-                {languages.find(l => l.code === (i18n.language?.split('-')[0] || "en"))?.code || "en"}
+                {languages.find(l => l.code === (i18n.language?.split("-")[0] || "en"))?.code || "en"}
               </span>
               <svg
-                className={`w-3 h-3 text-white/70 transition-transform duration-200 ${langMenuOpen ? 'rotate-180' : ''}`}
+                className={`w-3 h-3 text-white/70 transition-transform duration-200 ${langMenuOpen ? "rotate-180" : ""}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -164,17 +140,12 @@ export default function Navbar() {
                         i18n.changeLanguage(lang.code);
                         setLangMenuOpen(false);
                       }}
-                      className={`px-5 py-3 hover:bg-white/10 transition-colors flex items-center gap-3 cursor-pointer ${(i18n.language?.split('-')[0] || "en") === lang.code ? "bg-white/5" : ""
-                        }`}
+                      className={`px-5 py-3 hover:bg-white/10 transition-colors flex items-center gap-3 cursor-pointer ${
+                        (i18n.language?.split("-")[0] || "en") === lang.code ? "bg-white/5" : ""
+                      }`}
                     >
-                      <img
-                        src={lang.flag}
-                        alt={lang.code}
-                        className="w-5 h-3.5 object-cover rounded-[2px] shadow-sm"
-                      />
-                      <span className="text-sm font-medium text-gray-200 whitespace-nowrap">
-                        {lang.name}
-                      </span>
+                      <img src={lang.flag} alt={lang.code} className="w-5 h-3.5 object-cover rounded-[2px] shadow-sm" />
+                      <span className="text-sm font-medium text-gray-200 whitespace-nowrap">{lang.name}</span>
                     </button>
                   ))}
                 </motion.div>
@@ -204,14 +175,14 @@ export default function Navbar() {
         </div>
       </Container>
 
-      {/* Mobile Menu Content */}
+      {/* Mobile Menu — static login link, no motion effects on touch ── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
+            initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 top-[64px] lg:hidden bg-[#010B24]/98 backdrop-blur-2xl z-40 flex flex-col h-[calc(100vh-64px)] overflow-y-auto"
           >
             <div className="flex flex-col gap-1 p-6">
@@ -254,15 +225,18 @@ export default function Navbar() {
                       i18n.changeLanguage(lang.code);
                       setMobileOpen(false);
                     }}
-                    className={`flex flex-col items-center gap-2 transition-all duration-300 active:scale-[0.95] p-3 rounded-xl min-w-[80px] ${(i18n.language?.split('-')[0] || "en") === lang.code
+                    className={`flex flex-col items-center gap-2 transition-all duration-300 active:scale-[0.95] p-3 rounded-xl min-w-[80px] ${
+                      (i18n.language?.split("-")[0] || "en") === lang.code
                         ? "bg-white/10 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]"
                         : "opacity-60 hover:opacity-100"
-                      }`}
+                    }`}
                   >
                     <img
                       src={lang.flag}
                       alt={lang.code}
-                      className={`w-10 h-7 object-cover rounded-[3px] shadow-sm ${(i18n.language?.split('-')[0] || "en") === lang.code ? "" : "grayscale hover:grayscale-0"}`}
+                      className={`w-10 h-7 object-cover rounded-[3px] shadow-sm ${
+                        (i18n.language?.split("-")[0] || "en") === lang.code ? "" : "grayscale hover:grayscale-0"
+                      }`}
                     />
                     <span className="text-sm font-medium text-white">{lang.name}</span>
                   </button>

@@ -101,8 +101,8 @@ export default function Features() {
             animate={isInView ? "visible" : "hidden"}
             variants={headingVariant}
           >
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 shadow-inner">
-              <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-white/50">
+            <div className="inline-flex items-center px-4 py-1.5 shadow-inner">
+              <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-vivid-cyan">
                 {t("features.title")}
               </span>
             </div>
