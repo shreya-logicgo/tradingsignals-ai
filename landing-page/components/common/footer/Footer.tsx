@@ -37,7 +37,7 @@ export default function Footer() {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute -top-3 left-1/2 -translate-x-1/2 -translate-y-1/8 w-3/4 max-w-4xl xl:max-w-5xl 2xl:max-w-6xl h-40 bg-[#0012B8] blur-[120px] rounded-full z-0 pointer-events-none"
+        className="absolute -top-3 left-1/2 -translate-x-1/2 -translate-y-1/8 w-3/4 max-w-4xl xl:max-w-5xl 2xl:max-w-6xl h-40 bg-dark-blue blur-[120px] rounded-full z-0 pointer-events-none"
       />
 
       <footer className="bg-[#010B24] border-t border-white/5 relative overflow-hidden px-6 md:px-10  2xl:px-32">
@@ -60,8 +60,7 @@ export default function Footer() {
               </Link>
 
               {/* Description */}
-              <p className="text-[#C7CCD2] text-sm xl:text-base 2xl:text-lg leading-relaxed text-center sm:text-start"
-              style={{ fontFamily: "var(--font-hoves)" }}>
+              <p className="text-[#C7CCD2] text-sm xl:text-base 2xl:text-lg leading-relaxed text-center sm:text-start font-hoves">
                 {t("footer.description")}
               </p>
 
@@ -97,8 +96,7 @@ export default function Footer() {
             <div className="flex gap-16 md:gap-24 lg:gap-24 lg:justify-start justify-center">
               {/* Product */}
               <div className="flex flex-col gap-5">
-                <h4 className="text-white text-[11px] xl:text-xs 2xl:text-sm font-semibold tracking-[0.2em] uppercase opacity-90"
-                style={{ fontFamily: "var(--font-hoves)" }}>
+                <h4 className="text-white text-[11px] xl:text-xs 2xl:text-sm font-semibold tracking-[0.2em] uppercase opacity-90 font-hoves">
                   {t("footer.sections.product")}
                 </h4>
                 <ul className="flex flex-col gap-3.5">
@@ -106,8 +104,7 @@ export default function Footer() {
                     <li key={link.key}>
                       <Link
                         href={link.href}
-                        className="text-[#C7CCD2] text-[13.5px] xl:text-base 2xl:text-lg hover:text-white transition-all duration-200"
-                        style={{ fontFamily: "var(--font-hoves)" }}
+                        className="text-[#C7CCD2] text-[13.5px] xl:text-base 2xl:text-lg hover:text-white transition-all duration-200 font-hoves"
                       >
                         {t(`footer.links.${link.key}`)}
                       </Link>
@@ -118,8 +115,7 @@ export default function Footer() {
 
               {/* Legal */}
               <div className="flex flex-col gap-5">
-                <h4 className="text-white text-[11px] xl:text-xs 2xl:text-sm font-semibold tracking-[0.2em] uppercase opacity-90"
-                style={{ fontFamily: "var(--font-hoves)" }}>
+                <h4 className="text-white text-[11px] xl:text-xs 2xl:text-sm font-semibold tracking-[0.2em] uppercase opacity-90 font-hoves">
                   {t("footer.sections.legal")}
                 </h4>
                 <ul className="flex flex-col gap-3.5">
@@ -127,8 +123,7 @@ export default function Footer() {
                     <li key={link.key}>
                       <Link
                         href={link.href}
-                        className="text-[#C7CCD2] text-[13.5px] xl:text-base 2xl:text-lg hover:text-white transition-all duration-200"
-                        style={{ fontFamily: "var(--font-hoves)" }}
+                        className="text-[#C7CCD2] text-[13.5px] xl:text-base 2xl:text-lg hover:text-white transition-all duration-200 font-hoves"
                       >
                         {t(`footer.links.${link.key}`)}
                       </Link>
@@ -143,12 +138,10 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t max-w-7xl 2xl:max-w-[1400px]  mx-auto border-[#343445] border-dashed relative z-10 ">
           <div className="max-w-7xl 2xl:max-w-[1400px] mx-auto  py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-            <p className="text-[#C7CCD2] text-xs xl:text-sm 2xl:text-base"
-            style={{ fontFamily: "var(--font-hoves)" }}>
+            <p className="text-[#C7CCD2] text-xs xl:text-sm 2xl:text-base font-hoves">
               {t("footer.copyright")}
             </p>
-            <p className="text-[#C7CCD2] text-xs xl:text-sm 2xl:text-base sm:text-right  leading-relaxed"
-            style={{ fontFamily: "var(--font-hoves)" }}>
+            <p className="text-[#C7CCD2] text-xs xl:text-sm 2xl:text-base sm:text-right  leading-relaxed font-hoves">
               {t("footer.disclaimer")}
             </p>
           </div>

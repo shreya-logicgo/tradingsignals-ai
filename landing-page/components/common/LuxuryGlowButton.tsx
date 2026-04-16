@@ -57,7 +57,7 @@ const PremiumGlowButton = () => {
           </div>
 
           {/* Button Text */}
-          <span className="text-sm sm:text-base font-medium tracking-wide text-[#e0e0e0] group-hover:text-white transition-colors duration-300">
+          <span className="text-sm sm:text-base font-medium tracking-wide text-[#e0e0e0] group-hover:text-white transition-colors duration-300 font-hoves">
             Get Lifetime Now
           </span>
           

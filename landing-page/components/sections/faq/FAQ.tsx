@@ -13,43 +13,38 @@ interface FAQData {
 export default function FAQ() {
   const { t } = useTranslation();
 
-  // FAQ questions from common.json
   const questions = t("faq.questions", { returnObjects: true }) as FAQData[];
 
   return (
-    <motion.section 
+   <motion.section 
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full bg-[#010B24] pt-5 md:py-5 relative overflow-hidden"
-    >
+      className="w-full bg-transparent pt-10 md:py-20 relative overflow-hidden">
       {/* Outer container — responsive horizontal padding */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        <div className="flex flex-col items-center gap-12 lg:gap-16">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+        <div className="flex flex-col items-center gap-10 lg:gap-12">
           
           {/* ── Header Block — Localized ── */}
-          <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-6 max-w-[619px]">
+          <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-3 max-w-[619px]">
             {/* Badge */}
-            <div className="px-3.5 py-0.5 flex justify-center rounded-full border border-white/20 bg-white/5">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
+            <div className="px-3.5 py-0.5 flex justify-center rounded-full  backdrop-blur-md">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-vivid-cyan">
                 {t("faq.badge")}
               </span>
             </div>
 
-            {/* Heading */}
-            <h2 className="font-hoves font-medium text-3xl md:text-4xl lg:text-5xl text-white leading-tight"style={{ fontFamily: "var(--font-hoves)" }}>
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
               {t("faq.title")}
             </h2>
 
-            {/* Subtext */}
-            <p className="font-hoves font-light text-sm md:text-base text-[#C7CCD2] leading-relaxed max-w-[500px]"style={{ fontFamily: "var(--font-hoves)" }}>
+            <p className="font-hoves font-light text-sm md:text-base text-[#C7CCD2] leading-relaxed max-w-[500px]">
               {t("faq.description")}
             </p>
           </motion.div>
 
-          {/* ── FAQ Accordion List — Localized ── */}
-          <div className="w-full max-w-3xl flex flex-col gap-4">
+          <div className="w-full max-w-2xl flex flex-col gap-4">
             {questions.map((faq, i) => (
               <motion.div key={i} variants={fadeUpVariant}>
                 <FAQItem question={faq.q} answer={faq.a} />
@@ -61,4 +56,3 @@ export default function FAQ() {
     </motion.section>
   );
 }
-

@@ -18,7 +18,7 @@ function ShineTextStack({ text }: { text: string }) {
         color: "#adb1b8",
         fontWeight: 500,
         lineHeight: "1.7em",
-        fontFamily: "var(--font-hoves)",
+        fontFamily: "inherit",
       }}
     >
       {/* Layer 1 — dim base, always visible */}
@@ -122,7 +122,7 @@ export default function ShineButton({
   );
 
     const sharedClass = [
-    "relative flex items-center justify-center overflow-hidden",
+    "relative flex items-center justify-center overflow-hidden font-hoves",
     "rounded-full transition-all duration-200",
     "px-6 py-3.5 md:px-8 md:py-4.5",
     "cursor-pointer no-underline",

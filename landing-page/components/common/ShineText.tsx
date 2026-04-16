@@ -13,7 +13,7 @@ export default function ShineText({
   style,
 }: ShineTextProps) {
   const baseStyle: React.CSSProperties = {
-    fontFamily: "var(--font-hoves)",
+    fontFamily: "inherit",
     fontWeight: 600,
     lineHeight: "1.3",         // Balanced line height for wrapped titles
     textAlign: "center",
@@ -23,7 +23,7 @@ export default function ShineText({
 
   return (
     <div 
-      className={`grid grid-cols-1 grid-rows-1 place-items-center w-full ${className}`}
+      className={`grid grid-cols-1 grid-rows-1 place-items-center w-full font-hoves ${className}`}
       style={{ color: "#adb1b8" }}
     >
       {/* Layer 1 — base dim text, always visible, no animation */}
