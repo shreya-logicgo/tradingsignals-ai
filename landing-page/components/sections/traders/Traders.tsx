@@ -75,7 +75,7 @@ export default function Traders() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full bg-transparent py-3 md:py-3  relative overflow-hidden mb-20"
+      className="w-full bg-transparent py-3 md:py-3  relative overflow-hidden mb-12  mt-4"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-20">
         <div className="flex flex-col gap-12 lg:gap-16 items-center">
