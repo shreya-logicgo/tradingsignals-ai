@@ -9,9 +9,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 
 const languages = [
-  { code: "en", flag: "https://flagcdn.com/us.svg" },
-  { code: "th", flag: "https://flagcdn.com/th.svg" },
-  { code: "pl", flag: "https://flagcdn.com/pl.svg" },
+  { code: "en", name: "EN", full: "English", flag: "https://flagcdn.com/us.svg" },
+  { code: "th", name: "TH", full: "ภาษาไทย", flag: "https://flagcdn.com/th.svg" },
+  { code: "pl", name: "PL", full: "Polski", flag: "https://flagcdn.com/pl.svg" },
 ];
 
 export default function Navbar() {
@@ -67,13 +67,13 @@ export default function Navbar() {
         .join(" ")}
     >
       {/* 1. Use flex items-center and a consistent max-width */}
-      <Container className="h-16 flex items-center px-6 md:px-10  2xl:px-32">
+      <Container className="h-16 flex items-center px-6 md:px-10 xl:px-32 2xl:px-32">
         {/* lg:px-22 xl:px-15 */}
         {/* LOGO - Wrapped in a div to control width if needed */}
         <div className="flex-none">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logof.png"
+              src="/logofi.svg"
               alt="Trading Signals AI"
               width={120}
               height={120}
@@ -127,16 +127,19 @@ export default function Navbar() {
           <div className="relative flex items-center" ref={langRef}>
             <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
-              className="flex items-center gap-2 px-2 py-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer backdrop-blur-sm"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer backdrop-blur-sm"
               aria-label="Select Language"
             >
               <img
                 src={languages.find(l => l.code === (i18n.language?.split('-')[0] || "en"))?.flag || "https://flagcdn.com/us.svg"}
                 alt="flag"
-                className="w-6 h-4 object-cover rounded-sm shadow-sm"
+                className="w-5 h-3.5 object-cover rounded-[2px] shadow-sm"
               />
+              <span className="text-sm font-medium text-white uppercase">
+                {languages.find(l => l.code === (i18n.language?.split('-')[0] || "en"))?.code || "en"}
+              </span>
               <svg
-                className={`w-3 h-3 transition-transform duration-200 ${langMenuOpen ? 'rotate-180' : ''}`}
+                className={`w-3 h-3 text-white/70 transition-transform duration-200 ${langMenuOpen ? 'rotate-180' : ''}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -161,14 +164,17 @@ export default function Navbar() {
                         i18n.changeLanguage(lang.code);
                         setLangMenuOpen(false);
                       }}
-                      className={`px-4 py-3 hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer ${(i18n.language?.split('-')[0] || "en") === lang.code ? "bg-white/5" : ""
+                      className={`px-5 py-3 hover:bg-white/10 transition-colors flex items-center gap-3 cursor-pointer ${(i18n.language?.split('-')[0] || "en") === lang.code ? "bg-white/5" : ""
                         }`}
                     >
                       <img
                         src={lang.flag}
                         alt={lang.code}
-                        className="w-8 h-5 object-cover rounded shadow-sm"
+                        className="w-5 h-3.5 object-cover rounded-[2px] shadow-sm"
                       />
+                      <span className="text-sm font-medium text-gray-200 whitespace-nowrap">
+                        {lang.name}
+                      </span>
                     </button>
                   ))}
                 </motion.div>
@@ -240,7 +246,7 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Language Selector */}
-              <div className="flex justify-center gap-6 py-6 border-t border-white/10">
+              <div className="flex justify-center gap-4 py-6 border-t border-white/10">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -248,16 +254,17 @@ export default function Navbar() {
                       i18n.changeLanguage(lang.code);
                       setMobileOpen(false);
                     }}
-                    className={`transition-all duration-300 active:scale-110 p-1 rounded-lg ${(i18n.language?.split('-')[0] || "en") === lang.code
-                        ? "bg-white/10 scale-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]"
-                        : "opacity-40 grayscale hover:opacity-100 hover:grayscale-0"
+                    className={`flex flex-col items-center gap-2 transition-all duration-300 active:scale-[0.95] p-3 rounded-xl min-w-[80px] ${(i18n.language?.split('-')[0] || "en") === lang.code
+                        ? "bg-white/10 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]"
+                        : "opacity-60 hover:opacity-100"
                       }`}
                   >
                     <img
                       src={lang.flag}
                       alt={lang.code}
-                      className="w-12 h-8 object-cover rounded shadow-sm"
+                      className={`w-10 h-7 object-cover rounded-[3px] shadow-sm ${(i18n.language?.split('-')[0] || "en") === lang.code ? "" : "grayscale hover:grayscale-0"}`}
                     />
+                    <span className="text-sm font-medium text-white">{lang.name}</span>
                   </button>
                 ))}
               </div>

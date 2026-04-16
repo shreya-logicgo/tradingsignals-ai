@@ -1,5 +1,7 @@
 "use client";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUpVariant, fadeVariant } from "@/utils/animations";
 
 const logos = [
   {
@@ -106,18 +108,25 @@ export default function TrustedLogos() {
   const { t } = useTranslation();
 
   return (
-    <section className="w-full pt-8 pb-2 overflow-hidden relative">
+    <motion.section 
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      className="w-full pt-8 pb-2 overflow-hidden relative"
+    >
 
       {/* Integrative Label */}
-      <p
-        className="text-center mb-3 text-[22px] md:text-[20px] tracking-[0.05em] uppercase text-white/40 font-hoves"
+      <motion.p
+        variants={fadeUpVariant}
+        className="text-center mb-3 text-[22px] md:text-[20px] tracking-[0.05em] uppercase text-white/20 font-hoves"
       >
         {t("hero.integration")}
-      </p>
+      </motion.p>
 
 
       {/* 1. Increased Dynamic Marquee Strip Container Height (h-11 -> h-20) */}
-      <div className="relative h-20 flex items-center">
+      <motion.div variants={fadeVariant} className="relative h-20 flex items-center">
 
         {/* Left Side Responsive Fade */}
         <div className="absolute left-0 top-0 h-full z-10 pointer-events-none w-16 sm:w-32 md:w-64 bg-gradient-to-r from-[#010B24] to-transparent" />
@@ -136,8 +145,8 @@ export default function TrustedLogos() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-    </section>
+    </motion.section>
   );
 }

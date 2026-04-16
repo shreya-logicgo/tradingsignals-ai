@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
+import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import TraderFeatureCard from "./TraderFeatureCard";
 
 /* ── Inline SVG icons (Preserved) ── */
@@ -69,16 +70,19 @@ export default function Traders() {
   const displayCards = isMounted ? allCards.slice(startIndex, startIndex + visibleCount) : allCards;
 
   return (
-    // bg-transparent so the parent AmbientTradingSection gradient shows through.
-    // overflow-hidden removed — parent handles clipping.
-    // Removed: the absolute background animation div with its 3 child gradient layers.
-    <section className="w-full bg-transparent py-20 relative mb-20">
-
+    <motion.section 
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      className="w-full bg-transparent py-3 md:py-3  relative overflow-hidden mb-20"
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-20">
         <div className="flex flex-col gap-12 lg:gap-16 items-center">
 
-          {/* Header block */}
-          <div className="flex flex-col items-center text-center gap-6 max-w-[521px]">
+          {/* ── Header block — Localized ── */}
+          <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-6 max-w-[521px]">
+            {/* Badge */}
             <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
               <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
                 {t("whyUs.title")}
@@ -90,10 +94,10 @@ export default function Traders() {
             <p className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed max-w-[480px]">
               {t("whyUs.description")}
             </p>
-          </div>
+          </motion.div>
 
-          {/* Cards slider */}
-          <div className="w-full flex flex-col gap-8">
+          {/* ── Cards slider ── */}
+          <motion.div variants={fadeUpVariant} className="w-full flex flex-col gap-8">
             <div className="relative w-full">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {displayCards.map((card, i) => (
@@ -126,9 +130,9 @@ export default function Traders() {
                 <ChevronRight />
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

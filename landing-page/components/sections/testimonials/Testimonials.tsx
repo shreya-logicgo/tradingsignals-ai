@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import TestimonialCard from "./TestimonialCard";
 
 import img1 from "@/assets/images/testimonial-1.jpg";
@@ -29,9 +31,14 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="w-full relative py-16 md:py-24 bg-transparent overflow-visible">
-      
-      {/* Refined Smoky Gradient Background */}
+    <motion.section 
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      className="w-full relative overflow-hidden py-16 md:py-24 bg-transparent overflow-visible">
+
+      {/* Radial depth glow */}
       <div className="absolute inset-x-0 -top-1/4 -bottom-1/4 z-0 pointer-events-none overflow-hidden select-none">
   <Image
     src={gradientBg}
@@ -42,19 +49,21 @@ export default function Testimonials() {
   />
 </div>
 
-      {/* Content */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-12 relative z-10">
+
+     <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-12 relative z-10">
         <div className="flex flex-col lg:flex-row justify-center items-stretch gap-8 md:gap-12">
 
           {/* LEFT COLUMN */}
           <div className="flex flex-col justify-between gap-8 order-2 lg:order-1 items-center lg:items-start">
             {leftCards.map((card, i) => (
-              <TestimonialCard key={i} {...card} />
+              <motion.div key={i} variants={fadeUpVariant}>
+                <TestimonialCard {...card} />
+              </motion.div>
             ))}
           </div>
 
           {/* CENTER COLUMN */}
-          <div className="flex flex-col items-center text-center gap-4 order-1 lg:order-2 flex-1 max-w-[440px]">
+          <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-4 order-1 lg:order-2 md:col-span-2 lg:col-span-1 flex-1 max-w-[440px]">
 
             <div className="px-3.5 py-1 flex justify-center rounded-full border border-white/20 bg-white/5">
               <span
@@ -85,18 +94,20 @@ export default function Testimonials() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* RIGHT COLUMN */}
           <div className="flex flex-col justify-between gap-8 order-3 items-center lg:items-start">
             {rightCards.map((card, i) => (
-              <TestimonialCard key={i} {...card} />
+              <motion.div key={i} variants={fadeUpVariant}>
+                <TestimonialCard {...card} />
+              </motion.div>
             ))}
           </div>
 
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
  

@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import glowBar from "@/assets/images/glowBars.png";
+import { Noise } from "@react-three/postprocessing";
+import NoiseOverlay from "@/components/NoiseOverlay";
 
 export default function Stats() {
   const { t } = useTranslation();
@@ -57,7 +59,24 @@ export default function Stats() {
     <section
       className="w-full relative lg:py-30 bg-transparent"
       ref={sectionRef}
+      // className="w-full relative lg:py-30 overflow-hidden"
+
     >
+      <NoiseOverlay/>
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 0,
+          background: `radial-gradient(
+            ellipse 27% 52% at 50% 50%,
+            rgba(0, 18, 184, 0.50) 0%,
+            rgba(0, 18, 184, 0.25) 30%,
+            rgba(0, 18, 184, 0.08) 55%,
+            transparent 70%
+          )`,
+        }}
+      />
+
       {/* ── GlowBar Image with Interactive Motion ── */}
       <motion.div
         className="absolute md:-top-90 -top-25 mx-auto inset-0 pointer-events-none lg:h-250 lg:max-w-300 h-150 max-w-200"
