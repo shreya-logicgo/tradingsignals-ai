@@ -98,7 +98,7 @@ export default function Strategies() {
 
   return (
     <section
-      className="w-full py-10 md:py-16 relative overflow-hidden"
+      className="w-full py-8 md:py-16 relative overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #010B24 0%, #010B24 75%, #02164b 100%)",
       }}
