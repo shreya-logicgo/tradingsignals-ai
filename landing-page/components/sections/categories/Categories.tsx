@@ -44,7 +44,7 @@ export default function Categories() {
     // bg-transparent so the parent AmbientTradingSection gradient shows through.
     // overflow-visible keeps the shared layer unclipped.
     // Removed: unified-energy-field div and all its children.
-    <section className="w-full bg-transparent py-16 md:py-18 relative overflow-visible">
+    <section className="w-full bg-transparent py-6 md:py-10 relative overflow-visible">
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-10">
         <div className="flex flex-col gap-8 lg:gap-10">

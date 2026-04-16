@@ -97,7 +97,7 @@ export default function AmbientFAQCTASection() {
           <FAQ />
         </div>
 
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        {/* <div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" /> */}
 
         <CTA />
       </div>
