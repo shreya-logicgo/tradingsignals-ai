@@ -73,7 +73,7 @@ export default function StepCard({
     >
       {/* ── Background Glow ── */}
       <motion.div
-        className="absolute inset-[-20px] rounded-2xl bg-blue-600/20 blur-[40px] pointer-events-none z-0"
+        className="absolute inset-[-20px] rounded-2xl blur-[40px] pointer-events-none z-0"
         style={{ opacity: glowOpacity }}
       />
 
@@ -104,17 +104,17 @@ export default function StepCard({
         </motion.div>
 
         {/* ── Card body ── */}
-        <div className="relative flex flex-col h-full min-h-[260px] p-8 gap-8 rounded-2xl bg-[#0b1224] border border-white/[0.08] shadow-2xl overflow-hidden z-10">
+        <div className="relative flex flex-col h-full min-h-[260px] p-8 gap-8  bg-white/5 border border-white/[0.08] shadow-2xl overflow-hidden z-10">
           
           {/* Internal Highlight on Hover */}
           <motion.div 
-            className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent pointer-events-none"
+            className="absolute inset-0 pointer-events-none"
             style={{ opacity: borderOpacity }}
           />
 
           {/* Icon */}
           <motion.div
-            className="flex items-center justify-center w-14 h-14 rounded-xl bg-black/40 border border-white/[0.1] shadow-inner relative z-20"
+            className="flex items-center justify-center w-14 h-14  bg-black/40 border border-white/[0.1] shadow-inner relative z-20"
             animate={{ scale: isHovered ? 1.1 : 1 }}
           >
             <Icon size={26} className="text-white" />
@@ -122,10 +122,10 @@ export default function StepCard({
 
           {/* Text content */}
           <div className="flex flex-col gap-2 relative z-20">
-            <h3 className="text-white text-lg font-semibold leading-tight font-hoves">
+            <h3 className="text-white text-lg font leading-tight font-hoves">
               {title}
             </h3>
-            <p className="text-[13px] font-light text-white/70 leading-relaxed font-hoves">
+            <p className="text-[14px] font-light text-white/70 leading-relaxed font-hoves">
               {description}
             </p>
           </div>
@@ -133,7 +133,7 @@ export default function StepCard({
 
         {/* Outer Border Glow */}
         <motion.div
-          className="absolute inset-0 rounded-2xl pointer-events-none z-30"
+          className="absolute inset-0  pointer-events-none z-30"
           style={{
             opacity: borderOpacity,
             boxShadow: "inset 0 0 0 1px rgba(99,160,255,0.5), 0 0 30px rgba(59,130,246,0.3)",
