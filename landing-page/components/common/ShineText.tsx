@@ -42,7 +42,7 @@ export default function ShineText({
           filter: "blur(4px)",
         }}
       >
-        <p className="shine" style={{ ...baseStyle, color: "#fff" }}>
+        <p className="shine" style={{ ...baseStyle, color: "#f9f9f9" }}>
           {children}
         </p>
       </div>
@@ -56,7 +56,7 @@ export default function ShineText({
           filter: "blur(8px)",
         }}
       >
-        <p className="shine" style={{ ...baseStyle, color: "#fff" }}>
+        <p className="shine" style={{ ...baseStyle, color: "#c7c7c7" }}>
           {children}
         </p>
       </div>

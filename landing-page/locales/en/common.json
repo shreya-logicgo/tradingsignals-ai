@@ -266,6 +266,26 @@
         "viewMore": "View more",
         "cta": "Learn More"
     },
+    "generateBlog": {
+        "promptPlaceholder": "Enter a blog topic or prompt…",
+        "generate": "Generate blog",
+        "generating": "Generating…",
+        "loadingTitle": "Generating your blog…",
+        "loadingHint": "This can take a few seconds.",
+        "emptyTitle": "Your AI blog will appear here",
+        "emptyHint": "Enter a topic in the prompt box and click Generate blog.",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "copyAria": "Copy blog HTML",
+        "regenerate": "Regenerate",
+        "regenerateAria": "Regenerate blog",
+        "publish": "Publish blog",
+        "errors": {
+            "generateFailed": "Failed to generate blog. Please try again.",
+            "emptyResponse": "Empty content returned from the server. Please try again.",
+            "generic": "Something went wrong."
+        }
+    },
     "starttoday": {
         "badge": "Start Today",
         "heading": "Ready to Transform Your Trading?",

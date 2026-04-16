@@ -27,7 +27,7 @@ export default function BlogDetailView({ post, formattedDate, enrichedContent }:
   });
 
   return (
-    <article className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-7 sm:px-6 py-10 sm:py-14">
+    <article className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-6 sm:px-10 lg:px-0 py-10 sm:py-14  mt-10 lg:mt-0">
 
       {/* Author + date */}
       <div className="flex items-center gap-3 mb-7">

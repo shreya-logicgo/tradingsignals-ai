@@ -266,6 +266,26 @@
         "viewMore": "Wyświetl więcej",
         "cta": "Dowiedz się więcej"
     },
+    "generateBlog": {
+        "promptPlaceholder": "Wpisz temat lub treść promptu na bloga…",
+        "generate": "Wygeneruj blog",
+        "generating": "Generowanie…",
+        "loadingTitle": "Generujemy Twój blog…",
+        "loadingHint": "To może potrwać kilka sekund.",
+        "emptyTitle": "Twój blog AI pojawi się tutaj",
+        "emptyHint": "Wpisz temat w polu poniżej i kliknij Wygeneruj blog.",
+        "copy": "Kopiuj",
+        "copied": "Skopiowano!",
+        "copyAria": "Skopiuj HTML bloga",
+        "regenerate": "Wygeneruj ponownie",
+        "regenerateAria": "Wygeneruj blog ponownie",
+        "publish": "Opublikuj blog",
+        "errors": {
+            "generateFailed": "Nie udało się wygenerować bloga. Spróbuj ponownie.",
+            "emptyResponse": "Serwer zwrócił pustą treść. Spróbuj ponownie.",
+            "generic": "Coś poszło nie tak."
+        }
+    },
     "starttoday": {
         "badge": "Zacznij już dziś",
         "heading": "Gotowy na transformację swojego handlu?",
