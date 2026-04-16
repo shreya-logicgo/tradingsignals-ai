@@ -55,25 +55,9 @@ export default function Stats() {
 
   return (
     <section
-      className="w-full relative lg:py-30 "
+      className="w-full relative lg:py-30 bg-transparent"
       ref={sectionRef}
-      // className="w-full relative lg:py-30 overflow-hidden"
-
     >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 0,
-          background: `radial-gradient(
-            ellipse 27% 52% at 50% 50%,
-            rgba(0, 18, 184, 0.50) 0%,
-            rgba(0, 18, 184, 0.25) 30%,
-            rgba(0, 18, 184, 0.08) 55%,
-            transparent 70%
-          )`,
-        }}
-      />
-
       {/* ── GlowBar Image with Interactive Motion ── */}
       <motion.div
         className="absolute md:-top-90 -top-25 mx-auto inset-0 pointer-events-none lg:h-250 lg:max-w-300 h-150 max-w-200"
@@ -108,19 +92,13 @@ export default function Stats() {
             {/* Stat Block — Localized */}
             <div className="flex flex-col items-center text-center">
               <span
-                className="text-4xl md:text-[50px] text-white tracking-[-0.5px] leading-[1.1]"
-                style={{
-                  fontFamily: "var(--font-hoves)",
-                }}
+                className="text-4xl md:text-[50px] text-white tracking-[-0.5px] leading-[1.1] font-hoves"
               >
                 {stat.number}
               </span>
 
               <span
-                className="text-xs md:text-[14px] text-white/70 mt-2 md:mt-[10px] whitespace-nowrap"
-                style={{
-                  fontFamily: "var(--font-hoves)",
-                }}
+                className="text-xs md:text-[14px] text-white/70 mt-2 md:mt-[10px] whitespace-nowrap font-hoves"
               >
                 {stat.label}
               </span>

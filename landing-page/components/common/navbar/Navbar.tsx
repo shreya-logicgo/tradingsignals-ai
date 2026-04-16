@@ -88,7 +88,7 @@ export default function Navbar() {
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                className="text-sm font-medium text-gray-300 hover:text-white transition-colors font-hoves"
               >
                 {link.label}
               </Link>
@@ -118,7 +118,7 @@ export default function Navbar() {
             </div>
 
             {/* Button Content */}
-            <span className="relative z-10 text-sm font-medium text-white transition-all">
+            <span className="relative z-10 text-sm font-medium text-white transition-all font-hoves">
               {t("navbar.login")}
             </span>
           </Link>
@@ -213,7 +213,7 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-gray-300 hover:text-white text-xl font-medium py-3 border-b border-white/5"
+                  className="text-gray-300 hover:text-white text-xl font-medium py-3 border-b border-white/5 font-hoves"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -225,14 +225,14 @@ export default function Navbar() {
               <div className="flex flex-col gap-3">
                 <Link
                   href="https://crypto.tradingsignals.ai/login"
-                  className="w-full text-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all"
+                  className="w-full text-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all font-hoves"
                   onClick={() => setMobileOpen(false)}
                 >
                   {t("navbar.login")}
                 </Link>
                 <Link
                   href="/"
-                  className="w-full text-center px-6 py-4 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-all"
+                  className="w-full text-center px-6 py-4 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-all font-hoves"
                   onClick={() => setMobileOpen(false)}
                 >
                   {t("navbar.signup")}

@@ -1,16 +1,14 @@
 import Navbar from "@/components/common/navbar/Navbar";
-import Categories from "@/components/sections/categories/Categories";
 import CTA from "@/components/sections/cta/CTA";
-import FAQ from "@/components/sections/faq/FAQ";
 import Features from "@/components/sections/features/Features";
 import Hero from "@/components/sections/hero/Hero";
-import Stats from "@/components/sections/stats/Stats";
-import Steps from "@/components/sections/steps/Steps";
 import Strategies from "@/components/sections/strategies/Strategies";
-import Testimonials from "@/components/sections/testimonials/Testimonials";
-import Traders from "@/components/sections/traders/Traders";
 import TrustedLogos from "@/components/sections/trusted/TrustedLogos";
 import StartToday from "@/components/sections/starttoday/Starttoday";
+import AmbientTradingSection from "@/components/ui/Ambienttradingsection";
+import AmbientStatsStepsSection from "@/components/ui/AmbientStatsStepsSection";
+import AmbientTestimonialsSection from "@/components/ui/AmbientTestimonialsSection";
+import AmbientFAQCTASection from "@/components/ui/AmbientFAQCTASection";
 import Container from "@/components/common/container/Container";
 
 export default function Home() {
@@ -37,26 +35,11 @@ export default function Home() {
         <Strategies />
       </section>
 
-      <Steps />
-      <Stats />
-      <Categories />
-      <Traders />
+      <AmbientStatsStepsSection />
+      <AmbientTradingSection />
 
-      <section
-        id="testimonials"
-        className="scroll-mt-6 sm:scroll-mt-6 md:scroll-mt-8 lg:scroll-mt-6"
-      >
-        <Testimonials />
-      </section>
-
-      <section
-        id="faq"
-        className="scroll-mt-18 sm:scroll-mt-18 md:scroll-mt-18 lg:scroll-mt-16"
-      >
-        <FAQ />
-      </section>
-
-      <CTA />
+      <AmbientTestimonialsSection />
+      <AmbientFAQCTASection />
       {/* <Container className="max-w-4xl mx-auto"> */}
       {/* <Container>
       </Container> */}

@@ -111,13 +111,11 @@ export default function Strategies() {
           <div className="flex flex-col items-center gap-2">
             <h2
               className="text-white font-hoves font-medium text-3xl md:text-4xl lg:text-5xl leading-tight"
-              style={{ fontFamily: "var(--font-hoves)" }}
             >
               {t("strategy.title")}
             </h2>
             <p
               className="font-hoves text-[15px] md:text-base text-[#C7CCD2] leading-relaxed max-w-[600px] opacity-80"
-              style={{ fontFamily: "var(--font-hoves)" }}
             >
               {t("strategy.description")}
             </p>

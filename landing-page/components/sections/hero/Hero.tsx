@@ -75,7 +75,7 @@ export default function Hero() {
           <div 
             className="absolute inset-[-60%] blur-[80px]"
             style={{
-              background: "radial-gradient(circle at center, #00F0FF 0%, transparent 60%)",
+              background: "radial-gradient(circle at center, var(--color-vivid-cyan) 0%, transparent 60%)",
               animation: "liquid-glide 6s ease-in-out infinite",
               mixBlendMode: "screen",
               opacity: 0.9
@@ -85,7 +85,7 @@ export default function Hero() {
           <div 
             className="absolute inset-[-60%] blur-[90px]"
             style={{
-              background: "radial-gradient(circle at center, #0012B8 0%, transparent 60%)",
+              background: "radial-gradient(circle at center, var(--color-dark-blue) 0%, transparent 60%)",
               animation: "liquid-glide-reverse 4s ease-in-out infinite",
               mixBlendMode: "screen",
               opacity: 0.85
@@ -120,7 +120,7 @@ export default function Hero() {
           <div 
             className="absolute inset-[-60%] blur-[80px]"
             style={{
-              background: "radial-gradient(circle at center, #0012B8 0%, #00F0FF 50%, transparent 80%)",
+              background: "radial-gradient(circle at center, var(--color-dark-blue) 0%, var(--color-vivid-cyan) 50%, transparent 80%)",
               animation: "liquid-glide 8s ease-in-out infinite",
               mixBlendMode: "screen",
               opacity: 0.8
@@ -168,31 +168,28 @@ export default function Hero() {
             height={28}
             className="h-4 md:h-6 w-auto shrink-0"
           />
-          <span className="text-[10px] md:text-sm text-gray-300 leading-tight" style={{ fontFamily: "var(--font-hoves)" }}>
+          <span className="text-[10px] md:text-sm text-gray-300 leading-tight font-hoves">
             {t("hero.users")}
           </span>
         </div>
 
         {/* HERO TITLE */}
-        {/* <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]" style={{ fontFamily: "var(--font-hoves)" }}> */}
 
         <ShineText
-          className="text-2xl sm:text-3xl md:text-5xl lg:text-[70px] max-w-[1200px]"
-          style={{ fontFamily: "var(--font-hoves)" }}
+          className="text-2xl sm:text-3xl md:text-5xl lg:text-[70px] max-w-[1200px] font-hoves"
         >
           {t("hero.title")}
         </ShineText>
         {/* </h1> */}
 
         {/* SUPPORTING TEXT */}
-        <p className="text-white sm:text-sm text-xs md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0" style={{ fontFamily: "var(--font-hoves)" }}>
+        <p className="text-white sm:text-sm text-xs md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0 font-hoves">
           {t("hero.description")}
         </p>
 
         {/* <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
           <button
             className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-black"
-            style={{ fontFamily: "var(--font-hoves)" }}
           >
             {t("hero.cta")}
           </button>

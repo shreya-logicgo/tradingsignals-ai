@@ -24,7 +24,7 @@ export default function CTA() {
   ];
 
   return (
-    <section className="w-full bg-[#010B24] py-10 md:py-12 relative overflow-hidden">
+    <section className="w-full bg-transparent py-10 md:py-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
         <div className="flex flex-col gap-12 lg:gap-16">
           
@@ -38,14 +38,12 @@ export default function CTA() {
             </div>
 
             {/* Heading */}
-            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight"
-            style={{ fontFamily: "var(--font-hoves)" }}>
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight">
               {t("blog.heading")}
             </h2>
 
             <p
-              className="font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed"
-              style={{ fontFamily: "var(--font-hoves)" }}
+              className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed"
             >
               {t("blog.description")}
             </p>
@@ -81,15 +79,13 @@ export default function CTA() {
                     {/* Top: title + description */}
                     <div className="flex flex-col gap-3">
                       <h3
-                        className="text-xl text-white leading-tight line-clamp-2"
-                        style={{ fontFamily: "var(--font-hoves)" }}
+                        className="text-xl text-white leading-tight line-clamp-2 font-hoves"
                       >
                         {post.title}
                       </h3>
 
                       <p
-                        className="text-sm md:text-base text-[#c7ccd2] leading-relaxed line-clamp-3"
-                        style={{ fontFamily: "var(--font-hoves)" }}
+                        className="text-sm md:text-base text-[#c7ccd2] leading-relaxed line-clamp-3 font-hoves"
                       >
                         {post.description}
                       </p>
@@ -97,8 +93,7 @@ export default function CTA() {
 
                     {/* Bottom: View more — pinned to bottom by justify-between */}
                     <span
-                      className="text-sm text-white underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all"
-                      style={{ fontFamily: "var(--font-hoves)" }}
+                      className="text-sm text-white underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all font-hoves"
                     >
                       {t("blog.viewMore")}
                     </span>
@@ -109,8 +104,7 @@ export default function CTA() {
 
             {/* CTA Button — Localized */}
             <div className="flex justify-center mt-4">
-              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black"
-              style={{ fontFamily: "var(--font-hoves)" }}>
+              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black">
                 {t("blog.cta")}
               </button>
             </div>

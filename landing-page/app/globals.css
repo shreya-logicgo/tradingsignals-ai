@@ -345,3 +345,33 @@ html {
   background: #979da1;
   border-radius: 9999px;
 }
+
+/* ── UNIFIED ENERGY FIELD SYSTEM ── */
+@keyframes unified-drift {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.18; }
+  50% { transform: translate(-8%, -4%) scale(1.15); opacity: 0.35; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.18; }
+}
+
+.ambient-glow-wrapper {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  width: 80%;
+  height: 120%;
+  right: -10%;
+}
+
+.glow-core {
+  position: absolute;
+  inset: 0;
+  filter: blur(90px);
+  animation: unified-drift 12s ease-in-out infinite;
+}
+
+.glow-bloom {
+  position: absolute;
+  inset: 0;
+  filter: blur(130px);
+  animation: unified-drift 15s ease-in-out infinite reverse;
+}

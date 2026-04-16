@@ -110,8 +110,7 @@ export default function TrustedLogos() {
 
       {/* Integrative Label */}
       <p
-        className="text-center mb-3 text-[22px] md:text-[20px] tracking-[0.05em] uppercase text-white/40"
-        style={{ fontFamily: "var(--font-hoves)" }}
+        className="text-center mb-3 text-[22px] md:text-[20px] tracking-[0.05em] uppercase text-white/40 font-hoves"
       >
         {t("hero.integration")}
       </p>
