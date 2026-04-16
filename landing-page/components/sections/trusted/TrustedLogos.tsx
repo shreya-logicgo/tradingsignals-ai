@@ -1,5 +1,7 @@
 "use client";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUpVariant, fadeVariant } from "@/utils/animations";
 
 const logos = [
   {
@@ -42,8 +44,8 @@ const logos = [
     render: () => (
       <div className="flex items-center gap-3 group">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-white/40 group-hover:text-white/60 transition-colors">
-          <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M17 7H21V11" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M17 7H21V11" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         <span className="text-[16px] md:text-[20px] font-semibold text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors">
           TradersPost
@@ -66,8 +68,8 @@ const logos = [
     render: () => (
       <div className="flex items-center gap-3 group">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-white/40 group-hover:text-white/60 transition-colors">
-          <path d="M20.5 11.5C20.5 16.75 16.25 21 11 21C5.75 21 1.5 16.75 1.5 11.5C1.5 6.25 5.75 2 11 2C13.5 2 15.75 2.95 17.45 4.55" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-          <circle cx="11" cy="11.5" r="3.5" stroke="currentColor" strokeWidth="1.8"/>
+          <path d="M20.5 11.5C20.5 16.75 16.25 21 11 21C5.75 21 1.5 16.75 1.5 11.5C1.5 6.25 5.75 2 11 2C13.5 2 15.75 2.95 17.45 4.55" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="11" cy="11.5" r="3.5" stroke="currentColor" strokeWidth="1.8" />
         </svg>
         <span className="text-[16px] md:text-[20px] font-medium text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors">OpenAI</span>
       </div>
@@ -78,7 +80,7 @@ const logos = [
     render: () => (
       <div className="flex items-center gap-3 group">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-white/40 group-hover:text-white/60 transition-colors">
-          <path d="M2 18L8 12L12 16L22 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 18L8 12L12 16L22 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         <span className="text-[16px] md:text-[20px] font-semibold text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors">TradingView</span>
       </div>
@@ -106,19 +108,25 @@ export default function TrustedLogos() {
   const { t } = useTranslation();
 
   return (
-    <section className="w-full pt-8 pb-2 overflow-hidden relative">
+    <motion.section 
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      className="w-full pt-8 pb-2 overflow-hidden relative"
+    >
 
       {/* Integrative Label */}
-      <p
-  className="text-center mb-3 text-[22px] md:text-[20px] tracking-[0.05em] uppercase text-white/40"
-  style={{ fontFamily: "var(--font-hoves)" }}
->
-  {t("hero.integration")}
-</p>
+      <motion.p
+        variants={fadeUpVariant}
+        className="text-center mb-3 text-[22px] md:text-[20px] tracking-[0.05em] uppercase text-white/40 font-hoves"
+      >
+        {t("hero.integration")}
+      </motion.p>
 
 
       {/* 1. Increased Dynamic Marquee Strip Container Height (h-11 -> h-20) */}
-      <div className="relative h-20 flex items-center">
+      <motion.div variants={fadeVariant} className="relative h-20 flex items-center">
 
         {/* Left Side Responsive Fade */}
         <div className="absolute left-0 top-0 h-full z-10 pointer-events-none w-16 sm:w-32 md:w-64 bg-gradient-to-r from-[#010B24] to-transparent" />
@@ -137,8 +145,8 @@ export default function TrustedLogos() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-    </section>
+    </motion.section>
   );
 }

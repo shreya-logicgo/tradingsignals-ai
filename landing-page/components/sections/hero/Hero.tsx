@@ -5,24 +5,28 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
 import HeroChart from "./HeroChart";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 
 import gradient1 from "@/assets/images/gradient_1_.png";
 import gradient2 from "@/assets/images/gradient_2_.png";
 import userslabel from "@/assets/images/avatars.png";
 import ShineText from "@/components/common/ShineText";
 import ShineButton from "@/components/common/ShineButton";
+import GetAccessButton from "@/components/common/GetAccessButton";
+
 
 // ... particulates data ...
-const PARTICLES = Array.from({ length: 90 }).map((_, i) => ({
+const PARTICLES = Array.from({ length: 111 }).map((_, i) => ({
   id: i,
   side: i % 2 === 0 ? "left" : "right",
   // Left starts near 0%, Right starts at 80px from the right edge
-  left: i % 2 === 0 ? -10+ Math.random() * 20 : undefined,
+  left: i % 2 === 0 ? -10 + Math.random() * 20 : undefined,
   right: i % 2 !== 0 ? 400 + Math.random() * 150 : undefined,
   y: -15 + Math.random() * 1, // Constrained to the top of the section
   s: 1.5 + Math.random() * 3,
   o: 0.3 + Math.random() * 0.4,
-  dur: 9 + Math.random() * 50,
+  dur: 7 + Math.random() * 50,
   del: -(Math.random() * 8), // Widened negative delay for continuous flow
 }));
 
@@ -59,8 +63,8 @@ export default function Hero() {
       {/* ── Top-Right Gradient Layer (Vivid Blue/Cyan Flow) ── */}
       <div className="absolute top-[-150px] right-[-5%] md:right-[-10px] w-full max-w-[1200px] pointer-events-none z-0 opacity-100 overflow-hidden">
         <Image src={gradient2} alt="" aria-hidden="true" className="w-full h-auto object-contain relative z-10" priority />
-        
-        <div 
+
+        <div
           className="absolute inset-0 z-20"
           style={{
             WebkitMaskImage: `url(${gradient2.src})`,
@@ -72,27 +76,27 @@ export default function Hero() {
           }}
         >
           {/* Base High-Intensity Cyan */}
-          <div 
+          <div
             className="absolute inset-[-60%] blur-[80px]"
             style={{
-              background: "radial-gradient(circle at center, #00F0FF 0%, transparent 60%)",
+              background: "radial-gradient(circle at center, var(--color-vivid-cyan) 0%, transparent 60%)",
               animation: "liquid-glide 6s ease-in-out infinite",
               mixBlendMode: "screen",
               opacity: 0.9
             }}
           />
           {/* High-Intensity Blue Drifting Over */}
-          <div 
+          <div
             className="absolute inset-[-60%] blur-[90px]"
             style={{
-              background: "radial-gradient(circle at center, #0012B8 0%, transparent 60%)",
+              background: "radial-gradient(circle at center, var(--color-dark-blue) 0%, transparent 60%)",
               animation: "liquid-glide-reverse 4s ease-in-out infinite",
               mixBlendMode: "screen",
               opacity: 0.85
             }}
           />
           {/* Vibrant Core Glow */}
-          <div 
+          <div
             className="absolute inset-[-20%] blur-[50px]"
             style={{
               background: "radial-gradient(circle at center, rgba(0, 18, 184, 0.4) 0%, transparent 70%)",
@@ -105,8 +109,8 @@ export default function Hero() {
       {/* ── Left Gradient Layer (Smooth Flow) ── */}
       <div className="absolute top-0 left-0 w-full md:w-[70%] lg:w-[55%] pointer-events-none z-0 opacity-90 overflow-hidden">
         <Image src={gradient1} alt="" aria-hidden="true" className="w-full h-auto object-contain relative z-10" priority />
-        
-        <div 
+
+        <div
           className="absolute inset-0 z-20"
           style={{
             WebkitMaskImage: `url(${gradient1.src})`,
@@ -117,10 +121,10 @@ export default function Hero() {
             maskSize: "contain",
           }}
         >
-          <div 
+          <div
             className="absolute inset-[-60%] blur-[80px]"
             style={{
-              background: "radial-gradient(circle at center, #0012B8 0%, #00F0FF 50%, transparent 80%)",
+              background: "radial-gradient(circle at center, var(--color-dark-blue) 0%, var(--color-vivid-cyan) 50%, transparent 80%)",
               animation: "liquid-glide 8s ease-in-out infinite",
               mixBlendMode: "screen",
               opacity: 0.8
@@ -157,54 +161,52 @@ export default function Hero() {
         })}
       </div>
 
-      <Container className="relative z-20 flex flex-col items-center text-center gap-6 md:gap-8">
-
-        {/* Social Proof Badge — Localized */}
-        <div className="flex items-center gap-2 md:gap-2.5 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4 max-w-[90vw] sm:max-w-none">
-          <Image
-            src={userslabel}
-            alt="TSAI Traders"
-            width={100}
-            height={28}
-            className="h-4 md:h-6 w-auto shrink-0"
-          />
-          <span className="text-[10px] md:text-sm text-gray-300 leading-tight" style={{ fontFamily: "var(--font-hoves)" }}>
-            {t("hero.users")}
-          </span>
-        </div>
-
-        {/* HERO TITLE */}
-        {/* <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px]  leading-[1.2] md:leading-[1.1] text-white tracking-tight max-w-[650px]" style={{ fontFamily: "var(--font-hoves)" }}> */}
-
-        <ShineText
-          className="text-2xl sm:text-3xl md:text-5xl lg:text-[70px]"
-          style={{ fontFamily: "var(--font-hoves)" }}
+      <Container className="relative z-20 flex flex-col items-center text-center px-0">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="flex flex-col items-center gap-6 md:gap-8 w-full"
         >
-          {t("hero.title")}
-        </ShineText>
-        {/* </h1> */}
+          {/* Social Proof Badge — Localized */}
+          <motion.div variants={fadeUpVariant} className="flex items-center gap-2 md:gap-2.5 px-3 py-1.5 md:px-5 md:py-2.5  uppercase mb-2 sm:mb-4 max-w-[90vw] sm:max-w-none">
+            <Image
+              src={userslabel}
+              alt="TSAI Traders"
+              width={100}
+              height={28}
+              className="h-4 md:h-6 w-auto shrink-0"
+            />
+            <span className="text-[10px] md:text-sm text-white leading-tight font-hoves">
+              {t("hero.users")}
+            </span>
+          </motion.div>
 
-        {/* SUPPORTING TEXT */}
-        <p className="text-white sm:text-sm text-xs md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0" style={{ fontFamily: "var(--font-hoves)" }}>
-          {t("hero.description")}
-        </p>
+          {/* HERO TITLE */}
+          <motion.div variants={fadeUpVariant} className="w-full flex justify-center">
+            <ShineText
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-[70px] max-w-[1200px] font-hoves"
+            >
+              {t("hero.title")}
+            </ShineText>
+          </motion.div>
 
-        {/* <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto px-10 sm:px-0">
-          <button
-            className="w-full sm:w-[160px] h-7 md:h-11 cursor-pointer rounded-full border border-white font-mono bg-transparent text-white text-sm md:text-[13px] flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-black"
-            style={{ fontFamily: "var(--font-hoves)" }}
-          >
-            {t("hero.cta")}
-          </button>
-        </div>  */}
-        <ShineButton onClick={() => {}}>
-          {t("starttoday.cta")}
-        </ShineButton>
+          {/* SUPPORTING TEXT */}
+          <motion.p variants={fadeUpVariant} className="text-white sm:text-sm text-xs md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0 font-hoves" >
+            {t("hero.description")}
+          </motion.p>
 
+          <motion.div variants={fadeUpVariant}>
+            <GetAccessButton onClick={() => {}}>
+              {t("hero.cta")}
+            </GetAccessButton>
+          </motion.div>
 
-        <div className="w-full mt-10 md:mt-16">
-          <HeroChart />
-        </div>
+          <motion.div variants={fadeUpVariant} className="w-full mt-10 md:mt-16">
+            <HeroChart />
+          </motion.div>
+        </motion.div>
       </Container>
     </section>
   );

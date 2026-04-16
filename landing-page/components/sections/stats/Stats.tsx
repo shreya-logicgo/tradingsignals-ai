@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import glowBar from "@/assets/images/glowBars.png";
+import { Noise } from "@react-three/postprocessing";
+import NoiseOverlay from "@/components/NoiseOverlay";
 
 export default function Stats() {
   const { t } = useTranslation();
@@ -55,11 +57,12 @@ export default function Stats() {
 
   return (
     <section
-      className="w-full relative lg:py-30 "
+      className="w-full relative lg:py-30 bg-transparent"
       ref={sectionRef}
       // className="w-full relative lg:py-30 overflow-hidden"
 
     >
+      <NoiseOverlay/>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -108,19 +111,13 @@ export default function Stats() {
             {/* Stat Block — Localized */}
             <div className="flex flex-col items-center text-center">
               <span
-                className="text-4xl md:text-[50px] text-white tracking-[-0.5px] leading-[1.1]"
-                style={{
-                  fontFamily: "var(--font-hoves)",
-                }}
+                className="text-4xl md:text-[50px] text-white tracking-[-0.5px] leading-[1.1] font-hoves"
               >
                 {stat.number}
               </span>
 
               <span
-                className="text-xs md:text-[14px] text-white/70 mt-2 md:mt-[10px] whitespace-nowrap"
-                style={{
-                  fontFamily: "var(--font-hoves)",
-                }}
+                className="text-xs md:text-[14px] text-white/70 mt-2 md:mt-[10px] whitespace-nowrap font-hoves"
               >
                 {stat.label}
               </span>

@@ -1,10 +1,12 @@
- "use client";
+"use client";
 
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import PromptInputCard from "./PromptInputCard";
 import BlogPreviewPanel from "./BlogPreviewPanel";
 
 const GenerateBlog = () => {
+  const { t, i18n } = useTranslation();
   const [prompt, setPrompt] = useState("");
   const [blogContent, setBlogContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -25,23 +27,24 @@ const GenerateBlog = () => {
       const response = await fetch("/api/generate-blog", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: selectedPrompt }),
+        body: JSON.stringify({ prompt: selectedPrompt, locale: i18n.language }),
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || "Failed to generate blog. Please try again.");
+        await response.json().catch(() => ({}));
+        throw new Error(t("generateBlog.errors.generateFailed"));
       }
 
       const data = await response.json();
       const generatedContent = data.content || data.blog || data.result || "";
       if (!generatedContent) {
-        throw new Error("Empty content returned from API. Please try again.");
+        throw new Error(t("generateBlog.errors.emptyResponse"));
       }
       setBlogContent(generatedContent);
       setLastPrompt(selectedPrompt);
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Something went wrong.";
+      const message =
+        error instanceof Error ? error.message : t("generateBlog.errors.generic");
       window.alert(message);
     } finally {
       setIsLoading(false);

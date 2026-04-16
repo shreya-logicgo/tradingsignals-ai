@@ -9,9 +9,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 
 const languages = [
-  { code: "en", flag: "https://flagcdn.com/us.svg" },
-  { code: "th", flag: "https://flagcdn.com/th.svg" },
-  { code: "pl", flag: "https://flagcdn.com/pl.svg" },
+  { code: "en", name: "EN", full: "English", flag: "https://flagcdn.com/us.svg" },
+  { code: "th", name: "TH", full: "ภาษาไทย", flag: "https://flagcdn.com/th.svg" },
+  { code: "pl", name: "PL", full: "Polski", flag: "https://flagcdn.com/pl.svg" },
 ];
 
 export default function Navbar() {
@@ -67,17 +67,17 @@ export default function Navbar() {
         .join(" ")}
     >
       {/* 1. Use flex items-center and a consistent max-width */}
-      <Container className="h-16 flex items-center px-6 md:px-18 lg:px-32 xl:px-30 2xl:px-40">
-
+      <Container className="h-16 flex items-center px-6 md:px-10 xl:px-32 2xl:px-32">
+        {/* lg:px-22 xl:px-15 */}
         {/* LOGO - Wrapped in a div to control width if needed */}
         <div className="flex-none">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logof.png"
+              src="/logofi.svg"
               alt="Trading Signals AI"
               width={120}
               height={120}
-              className="shrink-0 w-28 md:w-36 lg:w-40 xl:w-48 2xl:w-56"
+              className=" w-35 md:w-36 lg:w-40 xl:w-48 "
             />
           </Link>
         </div>
@@ -88,7 +88,7 @@ export default function Navbar() {
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                className="text-sm font-medium text-gray-300 hover:text-white transition-colors font-hoves"
               >
                 {link.label}
               </Link>
@@ -99,46 +99,49 @@ export default function Navbar() {
         {/* 3. ACTIONS - Desktop */}
         <div className="hidden lg:flex items-center flex-none gap-4">
           <Link
-  href="https://crypto.tradingsignals.ai/login"
-  className="relative inline-flex items-center justify-center px-6 py-2 rounded-full group"
->
-  {/* The Masked Border Container */}
-  <div
-    className="absolute inset-0 rounded-full pointer-events-none p-[1px]"
-    style={{
-      // This CSS mask subtracts the inner area from the outer area, creating a perfect 1px transparent hollow ring.
-      WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-      WebkitMaskComposite: "xor",
-      mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-      maskComposite: "exclude",
-    }}
-  >
-    {/* The Moving Border (The "Snake") */}
-    <div className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]" />
-  </div>
+            href="https://crypto.tradingsignals.ai/login"
+            className="relative inline-flex items-center justify-center px-6 py-2 rounded-full group"
+          >
+            {/* The Masked Border Container */}
+            <div
+              className="absolute inset-0 rounded-full pointer-events-none p-[1px]"
+              style={{
+                // This CSS mask subtracts the inner area from the outer area, creating a perfect 1px transparent hollow ring.
+                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                maskComposite: "exclude",
+              }}
+            >
+              {/* The Moving Border (The "Snake") */}
+              <div className="absolute inset-[-1000%] animate-spin [animation-duration:4s] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#ffffff_100%)]" />
+            </div>
 
-  {/* Button Content */}
-  <span className="relative z-10 text-sm font-medium text-white transition-all">
-    {t("navbar.login")}
-  </span>
-</Link>
+            {/* Button Content */}
+            <span className="relative z-10 text-sm font-medium text-white transition-all font-hoves">
+              {t("navbar.login")}
+            </span>
+          </Link>
 
           {/* Language Selector Desktop */}
           <div className="relative flex items-center" ref={langRef}>
             <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
-              className="flex items-center gap-2 px-2 py-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer backdrop-blur-sm"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer backdrop-blur-sm"
               aria-label="Select Language"
             >
-              <img 
-                src={languages.find(l => l.code === (i18n.language?.split('-')[0] || "en"))?.flag || "https://flagcdn.com/us.svg"} 
+              <img
+                src={languages.find(l => l.code === (i18n.language?.split('-')[0] || "en"))?.flag || "https://flagcdn.com/us.svg"}
                 alt="flag"
-                className="w-6 h-4 object-cover rounded-sm shadow-sm"
+                className="w-5 h-3.5 object-cover rounded-[2px] shadow-sm"
               />
-              <svg 
-                className={`w-3 h-3 transition-transform duration-200 ${langMenuOpen ? 'rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <span className="text-sm font-medium text-white uppercase">
+                {languages.find(l => l.code === (i18n.language?.split('-')[0] || "en"))?.code || "en"}
+              </span>
+              <svg
+                className={`w-3 h-3 text-white/70 transition-transform duration-200 ${langMenuOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
@@ -161,15 +164,17 @@ export default function Navbar() {
                         i18n.changeLanguage(lang.code);
                         setLangMenuOpen(false);
                       }}
-                      className={`px-4 py-3 hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer ${
-                        (i18n.language?.split('-')[0] || "en") === lang.code ? "bg-white/5" : ""
-                      }`}
+                      className={`px-5 py-3 hover:bg-white/10 transition-colors flex items-center gap-3 cursor-pointer ${(i18n.language?.split('-')[0] || "en") === lang.code ? "bg-white/5" : ""
+                        }`}
                     >
-                      <img 
-                        src={lang.flag} 
-                        alt={lang.code} 
-                        className="w-8 h-5 object-cover rounded shadow-sm"
+                      <img
+                        src={lang.flag}
+                        alt={lang.code}
+                        className="w-5 h-3.5 object-cover rounded-[2px] shadow-sm"
                       />
+                      <span className="text-sm font-medium text-gray-200 whitespace-nowrap">
+                        {lang.name}
+                      </span>
                     </button>
                   ))}
                 </motion.div>
@@ -180,8 +185,8 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <div className="lg:hidden ml-auto">
-          <button 
-            className="text-white p-2 hover:bg-white/5 rounded-full transition-colors" 
+          <button
+            className="text-white p-2 hover:bg-white/5 rounded-full transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -214,7 +219,7 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-gray-300 hover:text-white text-xl font-medium py-3 border-b border-white/5"
+                  className="text-gray-300 hover:text-white text-xl font-medium py-3 border-b border-white/5 font-hoves"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -226,14 +231,14 @@ export default function Navbar() {
               <div className="flex flex-col gap-3">
                 <Link
                   href="https://crypto.tradingsignals.ai/login"
-                  className="w-full text-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all"
+                  className="w-full text-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all font-hoves"
                   onClick={() => setMobileOpen(false)}
                 >
                   {t("navbar.login")}
                 </Link>
                 <Link
                   href="/"
-                  className="w-full text-center px-6 py-4 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-all"
+                  className="w-full text-center px-6 py-4 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-all font-hoves"
                   onClick={() => setMobileOpen(false)}
                 >
                   {t("navbar.signup")}
@@ -241,7 +246,7 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Language Selector */}
-              <div className="flex justify-center gap-6 py-6 border-t border-white/10">
+              <div className="flex justify-center gap-4 py-6 border-t border-white/10">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -249,17 +254,17 @@ export default function Navbar() {
                       i18n.changeLanguage(lang.code);
                       setMobileOpen(false);
                     }}
-                    className={`transition-all duration-300 active:scale-110 p-1 rounded-lg ${
-                      (i18n.language?.split('-')[0] || "en") === lang.code 
-                        ? "bg-white/10 scale-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" 
-                        : "opacity-40 grayscale hover:opacity-100 hover:grayscale-0"
-                    }`}
+                    className={`flex flex-col items-center gap-2 transition-all duration-300 active:scale-[0.95] p-3 rounded-xl min-w-[80px] ${(i18n.language?.split('-')[0] || "en") === lang.code
+                        ? "bg-white/10 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]"
+                        : "opacity-60 hover:opacity-100"
+                      }`}
                   >
-                    <img 
-                      src={lang.flag} 
-                      alt={lang.code} 
-                      className="w-12 h-8 object-cover rounded shadow-sm"
+                    <img
+                      src={lang.flag}
+                      alt={lang.code}
+                      className={`w-10 h-7 object-cover rounded-[3px] shadow-sm ${(i18n.language?.split('-')[0] || "en") === lang.code ? "" : "grayscale hover:grayscale-0"}`}
                     />
+                    <span className="text-sm font-medium text-white">{lang.name}</span>
                   </button>
                 ))}
               </div>

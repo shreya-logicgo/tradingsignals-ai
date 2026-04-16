@@ -152,7 +152,7 @@ function BlogCard({ post }: { post: BlogPost }) {
   const currentExcerpt = post.excerpt[lang] || post.excerpt.en;
 
   return (
-    <div className="flex flex-col gap-3 group ">
+    <div className="flex flex-col gap-3 group h-full">
       {/* Image */}
       <Link href="/blogs/2026-ai-trading-strategies-nvda">
 
@@ -170,16 +170,16 @@ function BlogCard({ post }: { post: BlogPost }) {
       </Link>
 
       {/* Content */}
-      <div className="flex flex-col gap-2">
-        <h3 className="text-white font-semibold text-[15px] xl:text-lg 2xl:text-xl leading-snug line-clamp-2">
+      <div className="flex flex-col gap-2 flex-grow">
+        <h3 className="text-white font-semibold text-[15px] xl:text-lg 2xl:text-xl leading-snug line-clamp-2 text-justify">
           {currentTitle}
         </h3>
-        <p className="text-gray-400 text-sm xl:text-base 2xl:text-lg leading-relaxed line-clamp-3">
+        <p className="text-gray-400 text-sm xl:text-base 2xl:text-lg leading-snug line-clamp-3 text-justify">
           {currentExcerpt}
         </p>
         <Link
           href={`/blogs/2026-ai-trading-strategies-nvda`}
-          className="text-white text-sm xl:text-base 2xl:text-lg font-medium underline underline-offset-2 hover:text-blue-400 transition-colors duration-200 mt-1 w-fit "
+          className="text-white text-sm xl:text-base 2xl:text-lg font-medium underline underline-offset-2 hover:text-blue-400 transition-colors duration-200 mt-auto pt-2 w-fit inline-block"
         >
           {t("blog.viewMore")}
         </Link>
@@ -200,20 +200,17 @@ export default function BlogListing() {
   }, []);
 
   return (
-    <section className="bg-[#010B24] min-h-screen py-12 px-7"
-      style={{ fontFamily: "var(--font-hoves)" }}
+    <section className="bg-[#010B24] min-h-screen py-12 lg:px-7 font-hoves"
     >
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h1
-            className="text-white text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-3"
-            style={{ fontFamily: "var(--font-hoves)" }}
+            className="text-white text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-3 font-hoves"
           >
             {t("blog.title")}
           </h1>
-          <p className="text-gray-400 text-sm xl:text-base 2xl:text-lg"
-            style={{ fontFamily: "var(--font-hoves)" }}
+          <p className="text-gray-400 text-sm xl:text-base 2xl:text-lg font-hoves"
           >
             {t("blog.description")}
           </p>
