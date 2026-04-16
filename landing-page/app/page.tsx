@@ -17,7 +17,7 @@ import noiseTexture from "@/assets/images/texture.png";
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <div
         className="absolute inset-0 z-[999] pointer-events-none opacity-50"
         style={{

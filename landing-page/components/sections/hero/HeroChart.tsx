@@ -65,8 +65,8 @@ export default function HeroChart() {
   const handlePause = () => { videoRef.current?.pause(); setIsPlaying(false); };
 
   return (
-    <section className="w-full relative z-10 pt-2 lg:pt-[10px]">
-      <Container className="flex justify-start">
+    <section className="w-full relative z-10 pt-2 lg:pt-[10px] mx-auto">
+      <Container className="flex justify-center">
         <div className="relative w-full max-w-[1100px]">
 
           {/* Outer ambient glow — untouched */}

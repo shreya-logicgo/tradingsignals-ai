@@ -157,7 +157,6 @@ export default function Strategies() {
           - The wrapper div is removed — StrategyCard itself is the grid item
         */}
         <motion.div
-          variants={fadeUpVariant}
           className="grid gap-4 mt-8"
           style={{
             gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
@@ -165,7 +164,13 @@ export default function Strategies() {
           }}
         >
           {strategies.map((s) => (
-            <motion.div key={s.name} variants={fadeUpVariant} className="h-full">
+            <motion.div 
+              key={s.name} 
+              variants={fadeUpVariant} 
+              className="h-full"
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <StrategyCard {...s} />
             </motion.div>
           ))}

@@ -88,7 +88,10 @@ export default function Features() {
   return (
     <section
       ref={sectionRef}
-           className="w-screen bg-[#010B24] py-16 md:py-24 relative overflow-hidden max-w-7xl left-1/2 -translate-x-1/2"
+      style={{
+        overflowBlock:"hidden"
+      }}
+           className="w-screen bg-[#010B24] py-16 md:py-24 relative  max-w-7xl left-1/2 -translate-x-1/2 overflow-hidden overflow-x-hidden"
     >
       <div className="w-full lg:px-16 md:px-12 sm:px-6 px-6   relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12 lg:gap-20 mb-12 md:mb-16">
