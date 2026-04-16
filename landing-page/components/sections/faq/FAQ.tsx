@@ -21,7 +21,7 @@ export default function FAQ() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full bg-transparent pt-10 md:py-20 relative overflow-hidden">
+      className="w-full bg-transparent pt-10 md:py-14 relative overflow-hidden">
       {/* Outer container — responsive horizontal padding */}
             <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         <div className="flex flex-col items-center gap-10 lg:gap-12">
@@ -29,8 +29,8 @@ export default function FAQ() {
           {/* ── Header Block — Localized ── */}
           <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-3 max-w-[619px]">
             {/* Badge */}
-            <div className="px-3.5 py-0.5 flex justify-center rounded-full  backdrop-blur-md">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-vivid-cyan">
+            <div className="px-3.5 py-0.5 flex justify-center  backdrop-blur-md">
+              <span className="text-[15px] font-mono tracking-widest uppercase text-vivid-cyan">
                 {t("faq.badge")}
               </span>
             </div>
