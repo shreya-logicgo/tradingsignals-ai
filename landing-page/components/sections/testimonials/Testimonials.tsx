@@ -65,9 +65,9 @@ export default function Testimonials() {
           {/* CENTER COLUMN */}
           <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-4 order-1 lg:order-2 md:col-span-2 lg:col-span-1 flex-1 max-w-[440px]">
 
-            <div className="px-3.5 py-1 flex justify-center rounded-full border border-white/20 bg-white/5">
+            <div className="px-3.5 py-1 flex justify-center rounded-full ">
               <span
-                className="text-[11px] font-mono tracking-widest uppercase text-white/70"
+                className="text-[11px] font-mono tracking-widest uppercase text-vivid-cyan"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 {t("testimonials.title")}

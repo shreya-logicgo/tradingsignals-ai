@@ -31,8 +31,8 @@ export default function CTA() {
           {/* ── Header ── */}
           <div className="flex flex-col items-center text-center gap-6 max-w-[500px] mx-auto">
             {/* Badge */}
-            <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
+            <div className="px-3.5 py-1.5 rounded-full">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-vivid-cyan">
                 {t("blog.title")}
               </span>
             </div>

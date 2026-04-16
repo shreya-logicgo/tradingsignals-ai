@@ -57,8 +57,8 @@ export default function Categories() {
             className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12"
           >
             <div className="flex flex-col gap-4 max-w-[439px]">
-              <div className="inline-flex self-start items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5">
-                <span className="text-[11px] font-mono tracking-widest uppercase text-[#C7CCD2]">
+              <div className="inline-flex self-start items-center px-4 py-1.5 ">
+                <span className="text-[11px] font-mono tracking-widest uppercase text-vivid-cyan">
                   {t("tradingChannels.title")}
                 </span>
               </div>

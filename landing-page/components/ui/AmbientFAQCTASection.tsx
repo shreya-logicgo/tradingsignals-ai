@@ -9,6 +9,23 @@ export default function AmbientFAQCTASection() {
     <div className="relative overflow-hidden bg-[#010B24] w-full">
       {/* ── AMBIENT BACKGROUND LAYERS (LEFT SIDE ONLY) ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden h-full w-full">
+        {/* Cyan Top Transition Glow (Bleed from Testimonials) */}
+        <motion.div
+          animate={{
+            opacity: [0.15, 0.25, 0.15],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute right-[60%] -top-[15%] w-[50%] h-[30%] rounded-full"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(0,240,255,0.25) 0%, transparent 70%)",
+            filter: "blur(90px)",
+          }}
+        />
 
         {/* Main Left Deep Blue Glow */}
         <motion.div
@@ -23,7 +40,7 @@ export default function AmbientFAQCTASection() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -left-[35%] top-[8%] w-[90%] h-[75%] rounded-full"
+          className="absolute -right-[35%] top-[8%] w-[90%] h-[75%] rounded-full"
           style={{
             background:
               "radial-gradient(ellipse at center, rgba(0,18,184,1) 0%, transparent 72%)",
@@ -44,7 +61,7 @@ export default function AmbientFAQCTASection() {
             ease: "easeInOut",
             delay: 2,
           }}
-          className="absolute -left-[40%] bottom-[5%] w-[65%] h-[55%] rounded-full"
+          className="absolute -right-[40%] bottom-[5%] w-[65%] h-[55%] rounded-full"
           style={{
             background:
               "radial-gradient(ellipse at center, rgba(0,18,184,0.72) 0%, transparent 75%)",
@@ -62,7 +79,7 @@ export default function AmbientFAQCTASection() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-[8%] top-[42%] w-[42%] h-[30%] rounded-full"
+          className="absolute right-[8%] top-[42%] w-[42%] h-[30%] rounded-full"
           style={{
             background:
               "radial-gradient(ellipse at center, rgba(0,240,255,0.38) 0%, transparent 62%)",

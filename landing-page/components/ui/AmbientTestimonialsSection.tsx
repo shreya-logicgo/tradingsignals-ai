@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Testimonials from "../sections/testimonials/Testimonials";
-import FAQ from "../sections/faq/FAQ";
 
 export default function AmbientTestimonialsSection() {
   return (
@@ -46,7 +45,7 @@ export default function AmbientTestimonialsSection() {
             ease: "easeInOut",
             delay: 2,
           }}
-          className="absolute -right-[15%] top-[30%] w-[75%] h-[60%] rounded-full"
+          className="absolute -left-[15%] top-[30%] w-[75%] h-[60%] rounded-full"
           style={{
             background:
               "radial-gradient(ellipse at center, rgba(0,240,255,0.1) 0%, transparent 75%)",
@@ -95,9 +94,8 @@ export default function AmbientTestimonialsSection() {
 
       {/* ── CONTENT ── */}
       <div className="relative z-10">
-              <Testimonials />
-              <FAQ />
-            </div>
+        <Testimonials />
+      </div>
     </div>
   );
 }

@@ -29,8 +29,8 @@ export default function FAQ() {
           {/* ── Header Block — Localized ── */}
           <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-3 max-w-[619px]">
             {/* Badge */}
-            <div className="px-3.5 py-0.5 flex justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
+            <div className="px-3.5 py-0.5 flex justify-center rounded-full  backdrop-blur-md">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-vivid-cyan">
                 {t("faq.badge")}
               </span>
             </div>

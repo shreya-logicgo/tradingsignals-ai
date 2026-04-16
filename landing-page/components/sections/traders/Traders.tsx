@@ -83,8 +83,8 @@ export default function Traders() {
           {/* ── Header block — Localized ── */}
           <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center gap-6 max-w-[521px]">
             {/* Badge */}
-            <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
+            <div className="px-3.5 py-1.5 rounded-full  backdrop-blur-sm">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-vivid-cyan">
                 {t("whyUs.title")}
               </span>
             </div>

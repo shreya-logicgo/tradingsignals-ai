@@ -170,7 +170,7 @@ export default function Hero() {
           className="flex flex-col items-center gap-6 md:gap-8 w-full"
         >
           {/* Social Proof Badge — Localized */}
-          <motion.div variants={fadeUpVariant} className="flex items-center gap-2 md:gap-2.5 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl mb-2 sm:mb-4 max-w-[90vw] sm:max-w-none">
+          <motion.div variants={fadeUpVariant} className="flex items-center gap-2 md:gap-2.5 px-3 py-1.5 md:px-5 md:py-2.5  uppercase mb-2 sm:mb-4 max-w-[90vw] sm:max-w-none">
             <Image
               src={userslabel}
               alt="TSAI Traders"
@@ -178,7 +178,7 @@ export default function Hero() {
               height={28}
               className="h-4 md:h-6 w-auto shrink-0"
             />
-            <span className="text-[10px] md:text-sm text-gray-300 leading-tight font-hoves">
+            <span className="text-[10px] md:text-sm text-white leading-tight font-hoves">
               {t("hero.users")}
             </span>
           </motion.div>
