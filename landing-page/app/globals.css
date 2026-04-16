@@ -260,8 +260,8 @@ html {
 }
 .shine {
   animation: 7s ease-in-out infinite shine;
-  mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
-  -webkit-mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
+  mask-image: linear-gradient(to right, #0000 30%, #eeeeeeb6 50%, #0000 70%);
+  -webkit-mask-image: linear-gradient(to right, #0000 30%, #eeeeeeb6 50%, #0000 70%);
   mask-size: 150%;
   -webkit-mask-size: 150%;
 } 
