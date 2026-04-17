@@ -40,7 +40,7 @@ export default function GetAccessButton({ children, href, onClick, icon, classNa
   );
 
   const base = `relative flex items-center justify-center gap-2 rounded-[99px] px-7 py-5 cursor-pointer no-underline hover:scale-[1.03] active:scale-[0.97] transition-transform duration-200 ${className}`;
-  const style = { backgroundColor: "#ffffff0d" } as const;
+  const style = {} as const;
 
   return href
     ? <Link href={href} className={base} style={style}>{inner}</Link>

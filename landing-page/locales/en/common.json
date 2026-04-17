@@ -218,6 +218,8 @@
         "badge": "FAQ",
         "title": "Frequently Asked Questions",
         "description": "Everything you need to know about Trading Signals AI",
+        "searchPlaceholder": "Search FAQ...",
+        "noResults": "No FAQs found matching \"{{query}}\"",
         "questions": [
             {
                 "q": "What is Trading Signals AI?",
