@@ -56,6 +56,7 @@ export default function Footer() {
                   width={130}
                   height={130}
                   className="shrink-0 sm:w-45 xl:w-52 2xl:w-60"
+                  priority
                 />
               </Link>
 

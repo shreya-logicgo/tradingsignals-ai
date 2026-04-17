@@ -112,7 +112,7 @@ export default function Hero() {
           {/* Badge */}
           <motion.div
             variants={fadeUpVariant}
-            className="flex items-center gap-2 md:gap-2.5 px-3 py-1.5 md:px-5 md:py-2.5 uppercase mb-2 sm:mb-4 max-w-[90vw]"
+            className="flex items-center gap-2 md:gap-2.5 px-3 py-1 md:px-5 md:py-2.5 uppercase mb-2 sm:mb-2 max-w-[90vw]"
           >
             <Image
               src={userslabel}
