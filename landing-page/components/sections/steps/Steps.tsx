@@ -41,7 +41,7 @@ export default function Steps() {
         
       <NoiseOverlay/>
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-x-12 lg:gap-y-0 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-x-12 lg:gap-y-0 items-start relative z-2">
 
             {/* ── HEADING ── */}
             <motion.div variants={fadeUpVariant} className="lg:col-start-2 lg:row-start-1 flex flex-col items-center text-center lg:pt-14 mb-8 lg:mb-0 order-1">

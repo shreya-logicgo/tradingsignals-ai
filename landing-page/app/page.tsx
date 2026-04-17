@@ -48,7 +48,7 @@ export default function Home() {
         <Strategies />
       </section>
 
-      <Steps />
+      {/* <Steps /> */}
       <Stats />
       <Categories />
       <Traders />

@@ -264,7 +264,7 @@ html {
   -webkit-mask-image: linear-gradient(to right, #0000 30%, #eee 50%, #0000 70%);
   mask-size: 150%;
   -webkit-mask-size: 150%;
-} 
+}
 
 /* ── Floating Particles ── */
 @keyframes float-a {
@@ -346,13 +346,22 @@ html {
   border-radius: 9999px;
 }
 
-
 @keyframes radialGlow {
-  0%   { background-position: -4rem -1.5rem; }
-  25%  { background-position:  4rem -1.5rem; }
-  50%  { background-position:  4rem  1.5rem; }
-  75%  { background-position: -4rem  1.5rem; }
-  100% { background-position: -4rem -1.5rem; }
+  0% {
+    background-position: -4rem -1.5rem;
+  }
+  25% {
+    background-position: 4rem -1.5rem;
+  }
+  50% {
+    background-position: 4rem 1.5rem;
+  }
+  75% {
+    background-position: -4rem 1.5rem;
+  }
+  100% {
+    background-position: -4rem -1.5rem;
+  }
 }
 
 .get-access-glow {
@@ -362,16 +371,26 @@ html {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: radial-gradient(25% 50%, rgb(255,255,255) 0%, rgba(255,255,255,0) 100%);
+  background: radial-gradient(
+    25% 50%,
+    rgb(255, 255, 255) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: -4rem -1.5rem;
-  transition: background-position 0.5s ease-in-out, background-size 0.5s ease-in-out;
+  transition:
+    background-position 0.5s ease-in-out,
+    background-size 0.5s ease-in-out;
   animation: radialGlow 4s linear infinite;
 }
 
-.get-access-glow.outter { filter: blur(15px); }
-.get-access-glow.inner  { filter: none; }
+.get-access-glow.outter {
+  filter: blur(15px);
+}
+.get-access-glow.inner {
+  filter: none;
+}
 
 .get-access-btn-bg {
   z-index: 0;
@@ -381,4 +400,12 @@ html {
   position: absolute;
   inset: 2px;
   overflow: hidden;
+}
+
+.dust {
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  position: absolute;
+  pointer-events: none;
 }
