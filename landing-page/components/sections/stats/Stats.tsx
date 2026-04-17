@@ -25,16 +25,16 @@ export default function Stats() {
     const handleMouseMove = (e: MouseEvent) => {
       // Calculate normalized mouse position (-0.5 to 0.5)
       const relativeY = (e.clientY / window.innerHeight) - 0.5;
-      // Map to a ±60px range of vertical influence
-      mouseTranslateY.set(relativeY * 120);
+      // Map to a ±150px range of vertical influence for faster response
+      mouseTranslateY.set(relativeY * 300);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseTranslateY]);
 
-  // Transform scroll progress to vertical offset (-120px to 120px)
-  const scrollTranslateY = useTransform(scrollYProgress, [0, 1], [-120, 120]);
+  // Transform scroll progress to vertical offset (-400px to 400px) - Accelerated motion
+  const scrollTranslateY = useTransform(scrollYProgress, [0, 1], [-400, 400]);
 
   // Combine scroll and mouse movement into one value
   const combinedY = useTransform(
@@ -42,11 +42,11 @@ export default function Stats() {
     ([scroll, mouse]) => (scroll as number) + (mouse as number)
   );
 
-  // Apply spring smoothing for a premium feel
+  // Apply snappy spring smoothing
   const smoothY = useSpring(combinedY, {
-    stiffness: 40,
-    damping: 25,
-    mass: 0.5,
+    stiffness: 80,
+    damping: 30,
+    mass: 0.4,
   });
 
   const stats = [
@@ -59,8 +59,6 @@ export default function Stats() {
     <section
       className="w-full relative lg:py-30 bg-transparent"
       ref={sectionRef}
-      // className="w-full relative lg:py-30 overflow-hidden"
-
     >
       <NoiseOverlay/>
       <div
@@ -77,11 +75,11 @@ export default function Stats() {
         }}
       />
 
-      {/* ── GlowBar Image with Interactive Motion ── */}
+      {/* ── GlowBar Image with Accelerated Motion ── */}
       <motion.div
-        className="absolute md:-top-90 -top-25 mx-auto inset-0 pointer-events-none lg:h-250 lg:max-w-300 h-150 max-w-200"
+        className="absolute md:-top-[25rem] -top-[20rem] mx-auto inset-0 pointer-events-none lg:h-[150vh] lg:max-w-300 h-[120vh] max-w-200"
         style={{ 
-          zIndex: 1,
+          zIndex: -1,
           y: smoothY,
         }}
       >
