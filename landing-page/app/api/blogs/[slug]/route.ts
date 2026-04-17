@@ -2,16 +2,27 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Blog from '@/models/Blog';
 import { validateBlogData } from '@/lib/validation_middleware/validate';
+import mongoose from 'mongoose';
 
-// GET: Retrieve a single blog by ID from MongoDB
+// GET: Retrieve a single blog by ID or Slug from MongoDB
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
     await dbConnect();
-    const { id } = await params;
-    const blog = await Blog.findById(id);
+    const { slug } = await params;
+    
+    let blog;
+    // 1. Try to find by ID if it's a valid MongoDB ID
+    if (mongoose.Types.ObjectId.isValid(slug)) {
+      blog = await Blog.findById(slug);
+    }
+    
+    // 2. If not found by ID, try finding by Slug
+    if (!blog) {
+      blog = await Blog.findOne({ slug });
+    }
     
     if (!blog) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
@@ -24,13 +35,13 @@ export async function GET(
   }
 }
 
-// PUT: Edit a specific blog by ID in MongoDB
+// PUT: Edit a specific blog by ID or Slug in MongoDB
 export async function PUT(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { slug: identifier } = await params;
     const body = await request.json();
 
     // Validation Middleware
@@ -39,11 +50,19 @@ export async function PUT(
 
     await dbConnect();
     
-    const updatedBlog = await Blog.findByIdAndUpdate(
-      id,
+    let query = {};
+    if (mongoose.Types.ObjectId.isValid(identifier)) {
+      query = { _id: identifier };
+    } else {
+      query = { slug: identifier };
+    }
+
+    const updatedBlog = await Blog.findOneAndUpdate(
+      query,
       {
         ...(body.title && { title: body.title }),
-        ...(body.content && { content: body.content })
+        ...(body.content && { content: body.content }),
+        ...(body.coverImage && { coverImage: body.coverImage })
       },
       { new: true } // Return the updated document
     );
@@ -59,15 +78,23 @@ export async function PUT(
   }
 }
 
-// DELETE: Remove a blog by ID from MongoDB
+// DELETE: Remove a blog by ID or Slug from MongoDB
 export async function DELETE(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
     await dbConnect();
-    const { id } = await params;
-    const deletedBlog = await Blog.findByIdAndDelete(id);
+    const { slug: identifier } = await params;
+
+    let query = {};
+    if (mongoose.Types.ObjectId.isValid(identifier)) {
+      query = { _id: identifier };
+    } else {
+      query = { slug: identifier };
+    }
+
+    const deletedBlog = await Blog.findOneAndDelete(query);
     
     if (!deletedBlog) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });

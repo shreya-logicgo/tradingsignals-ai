@@ -18,29 +18,55 @@ export async function GET() {
 // POST: Save a new blog to MongoDB
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = await request.json().catch(() => {
+      throw new Error("Invalid JSON format in request body.");
+    });
     
     // Validation Middleware
     const validationError = validateBlogData(body);
     if (validationError) return validationError;
 
     await dbConnect();
-
+    
     // Smartly extract the title from the first <h1> tag in the raw HTML if no explicit title is provided
     let extractedTitle = body.title;
     if (!extractedTitle) {
       const h1Match = body.content.match(/<h1[^>]*>(.*?)<\/h1>/i);
       extractedTitle = h1Match ? h1Match[1].replace(/<[^>]+>/g, '').trim() : "Untitled Generated Blog";
     }
+    
+    // Generate a unique slug from title
+    let baseSlug = extractedTitle
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '') // Remove special characters but keep letters/numbers (basic)
+      .replace(/[\s_-]+/g, '-') // Replace spaces/underscores/multiple dashes with single dash
+      .replace(/^-+|-+$/g, ''); // Remove leading/trailing dashes
+    
+    // Fallback for non-latin titles (if baseSlug is empty after cleaning)
+    if (!baseSlug) {
+      baseSlug = "post-" + Math.random().toString(36).substring(2, 7);
+    }
+    
+    let slug = baseSlug;
+    let exists = await Blog.findOne({ slug });
+    if (exists) {
+      const randomSuffix = Math.random().toString(36).substring(2, 6);
+      slug = `${baseSlug}-${randomSuffix}`;
+    }
 
     const newBlog = await Blog.create({
       title: extractedTitle,
       content: body.content,
+      coverImage: body.coverImage,
+      slug: slug
     });
 
     return NextResponse.json(newBlog, { status: 201 });
   } catch (error) {
     console.error("Error saving blog:", error);
-    return NextResponse.json({ error: "Failed to save blog" }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Failed to save blog";
+    const status = message.includes("JSON") ? 400 : 500;
+    return NextResponse.json({ error: message }, { status });
   }
 }

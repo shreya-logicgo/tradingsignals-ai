@@ -4,27 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import BlogContent from "@/components/Blogs/Blogcontent";
-import { BlogPostDetail } from "./blog";
-
-interface Props {
-  post: BlogPostDetail;
-  formattedDate: string;
-  enrichedContent: any[];
+import DOMPurify from "dompurify";
+interface BlogPost {
+  _id: string;
+  title: string;
+  slug: string;
+  content: string;
+  coverImage?: string;
+  createdAt: string;
 }
 
-export default function BlogDetailView({ post, formattedDate, enrichedContent }: Props) {
-  const { t, i18n } = useTranslation();
-  const lang = (i18n.language || "en").split("-")[0] as keyof BlogPostDetail["title"];
+interface Props {
+  post: BlogPost;
+  formattedDate: string;
+}
 
-  const currentTitle = post.title[lang] || post.title.en;
-
-  // Localize content blocks that have multilingual text objects
-  const localizedContent = enrichedContent.map((block) => {
-    if (block.text && typeof block.text === "object" && block.text.en) {
-      return { ...block, text: block.text[lang] || block.text.en };
-    }
-    return block;
-  });
+export default function BlogDetailView({ post, formattedDate }: Props) {
+  const { t } = useTranslation();
 
   return (
     <article className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-6 sm:px-10 lg:px-0 py-10 sm:py-14  mt-10 lg:mt-0">
@@ -32,60 +28,101 @@ export default function BlogDetailView({ post, formattedDate, enrichedContent }:
       {/* Author + date */}
       <div className="flex items-center gap-3 mb-7">
         <div className="w-8 h-8 rounded-full bg-[linear-gradient(276deg,_rgba(0,240,255,1)_15%,_rgba(0,18,184,1)_76%)] flex items-center justify-center overflow-hidden shrink-0">
-          {post.author.avatar ? (
-            <Image
-              src={post.author.avatar}
-              alt={post.author.name}
-              width={22}
-              height={22}
-              className="object-cover flex justify-center items-center mx-auto"
-            />
-          ) : (
-            <svg width="18" height="18" viewBox="0 0 36 36" fill="none">
-              <path d="M10 26L18 10L26 26" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M13 21H23" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-            </svg>
-          )}
+          <svg width="18" height="18" viewBox="0 0 36 36" fill="none">
+            <path d="M10 26L18 10L26 26" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M13 21H23" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+          </svg>
         </div>
-        <span className="text-white text-sm xl:text-base 2xl:text-lg font-medium">{post.author.name}</span>
+        <span className="text-white text-sm xl:text-base 2xl:text-lg font-medium">TradingSignals AI</span>
         <span className="text-gray-500 text-sm xl:text-base 2xl:text-lg">·</span>
-        <time className="text-gray-400 text-sm xl:text-base 2xl:text-lg" dateTime={post.publishedAt}>
+        <time className="text-gray-400 text-sm xl:text-base 2xl:text-lg" dateTime={post.createdAt}>
           {formattedDate}
         </time>
-        {post.readingTime && (
-          <>
-            <span className="text-gray-600 text-sm xl:text-base 2xl:text-lg hidden sm:inline">·</span>
-            <span className="text-gray-500 text-sm xl:text-base 2xl:text-lg hidden sm:inline">
-              {post.readingTime} min read
-            </span>
-          </>
-        )}
+        
+        <Link
+          href={`/blogs/edit/${post.slug}`}
+          className="ml-auto flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-white text-sm xl:text-base hover:bg-white/10 transition-colors"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+          {t("blog.edit", { defaultValue: "Edit Blog" })}
+        </Link>
       </div>
 
       {/* Title */}
       <h1 className="text-white text-[32px] sm:text-[40px] xl:text-[52px] 2xl:text-[64px] font-bold leading-[1.15] tracking-tight mb-8">
-        {currentTitle}
+        {post.title}
       </h1>
 
-      {/* Tags */}
-      {post.tags && post.tags.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-8">
-          {post.tags.map((tag: any, idx) => {
-            const currentTag = tag[lang] || tag.en;
-            return (
-              <span
-                key={idx}
-                className="px-3 py-1 xl:px-4 xl:py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs xl:text-sm font-medium"
-              >
-                {currentTag}
-              </span>
-            );
-          })}
+      {/* Cover Image */}
+      {post.coverImage && (
+        <div className="w-full aspect-video rounded-2xl overflow-hidden mb-10 border border-white/10">
+          <img 
+            src={post.coverImage} 
+            alt={post.title} 
+            className="w-full h-full object-cover"
+          />
         </div>
       )}
 
-      {/* Blog body */}
-      <BlogContent blocks={localizedContent} />
+      {/* Blog body - Render content string as HTML */}
+      <div 
+        className="blog-prose text-[#c8cdd8] text-[15px] md:text-[17px] xl:text-lg 2xl:text-xl leading-relaxed text-justify overflow-hidden break-words min-w-0"
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
+      />
+
+      <style jsx global>{`
+        .blog-prose img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 12px;
+          margin: 2rem 0;
+        }
+        .blog-prose pre {
+          max-width: 100%;
+          overflow-x: auto;
+          background: #0d121f;
+          padding: 1.5rem;
+          border-radius: 12px;
+          border: 1px solid rgba(0, 240, 255, 0.15);
+          margin: 2.5rem 0;
+          font-family: 'Space Mono', monospace;
+          font-size: 0.9em;
+          line-height: 1.6;
+          white-space: pre;
+          tab-size: 4;
+        }
+        .blog-prose pre code {
+          background: transparent;
+          padding: 0;
+          border-radius: 0;
+          border: none;
+          color: #7dd3fc;
+          white-space: pre-wrap;
+          word-break: normal;
+          overflow-wrap: normal;
+        }
+        .blog-prose :not(pre) > code {
+          background: rgba(0, 240, 255, 0.1);
+          color: #00f0ff;
+          padding: 0.2rem 0.4rem;
+          border-radius: 6px;
+          font-size: 0.9em;
+        }
+        .blog-prose table {
+          display: block;
+          max-width: 100%;
+          overflow-x: auto;
+          border-collapse: collapse;
+          margin: 2rem 0;
+        }
+        .blog-prose iframe {
+          max-width: 100%;
+          border-radius: 12px;
+        }
+      `}</style>
 
       {/* Back link */}
       <div className="mt-14 pt-8 border-t border-white/10">

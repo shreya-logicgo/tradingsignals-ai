@@ -2,23 +2,27 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Copy, GradientMagicStick, Plane, ReSpin } from "../icons";
+import { Copy, GradientMagicStick, Plane, ReSpin, Save } from "../icons";
 
 type BlogPreviewPanelProps = {
   content: string;
   isLoading: boolean;
   onRegenerate: () => void;
+  coverImage?: string;
 };
 
 const BlogPreviewPanel = ({
   content,
   isLoading,
   onRegenerate,
+  coverImage,
 }: BlogPreviewPanelProps) => {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  
   const hasContent = Boolean(content.trim());
-  const controlsDisabled = isLoading || !hasContent;
+  const controlsDisabled = isLoading || !hasContent || isSaving;
 
   const renderedHtml = useMemo(() => {
     const fencedBlockMatch = content.match(/```(?:html)?\s*([\s\S]*?)```/i);
@@ -33,6 +37,34 @@ const BlogPreviewPanel = ({
       .replace(/<\/?(html|body)[^>]*>/gi, "")
       .trim();
   }, [content]);
+
+  const handleSave = async () => {
+    if (controlsDisabled) return;
+    
+    setIsSaving(true);
+    try {
+      const response = await fetch("/api/blogs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: renderedHtml,
+          coverImage: coverImage, // Now sending the selected/generated image
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save blog");
+      }
+
+      // Redirect to blog listing on success
+      window.location.href = "/blogs";
+    } catch (error) {
+      console.error("Save error:", error);
+      alert("Failed to save blog. Please try again.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const handleCopy = async () => {
     if (controlsDisabled) {
@@ -143,15 +175,24 @@ const BlogPreviewPanel = ({
             </span>
           )}
         </div>
-        <div>
+        <div className="flex items-center gap-3">
           <button
             type="button"
+            onClick={handleSave}
             disabled={controlsDisabled}
-            className={`bg-white text-sm md:text-base text-mirage flex items-center gap-2 px-3.5 py-2.75 rounded-full transition-colors duration-300 ${
+            className={`bg-white text-sm md:text-base text-mirage flex items-center gap-2 px-4 py-2.75 rounded-full transition-colors duration-300 ${
               controlsDisabled
                 ? "cursor-not-allowed opacity-60"
                 : "cursor-pointer hover:bg-white/90"
             }`}
+          >
+            <Save className={`w-4 md:w-5 h-4 md:h-5 ${isSaving ? "animate-pulse" : ""}`} />{" "}
+            {isSaving ? "Saving..." : "Save Blog"}
+          </button>
+          <button
+            type="button"
+            disabled={true}
+            className="bg-white/10 text-sm md:text-base text-white/50 flex items-center gap-2 px-5 py-2.75 rounded-full cursor-not-allowed border border-white/10"
           >
             <Plane className="w-4 md:w-5 h-4 md:h-5" />{" "}
             {t("generateBlog.publish")}
