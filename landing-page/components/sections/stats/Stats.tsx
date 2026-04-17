@@ -57,7 +57,7 @@ export default function Stats() {
 
   return (
     <section
-      className="w-full relative lg:py-30 bg-transparent"
+      className="w-full relative py-20 lg:py-30 bg-transparent min-h-screen"
       ref={sectionRef}
     >
       <NoiseOverlay/>

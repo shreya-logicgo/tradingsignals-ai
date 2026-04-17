@@ -50,61 +50,61 @@
         "monthlyAvg": "Monthly Avg",
         "cards": {
             "prime": {
-                "title": "TSAI Prime",
+                "title": "Prime",
                 "desc": "Advanced AI signals powered by deep market analysis and probability models.",
                 "roi": "+47.3%",
                 "price": "$149/mo"
             },
             "momentum": {
-                "title": "TSAI Momentum",
+                "title": "Momentum",
                 "desc": "Ride strong trends and capture powerful market expansions.",
                 "roi": "+38.6%",
                 "price": "$49/mo"
             },
             "core": {
-                "title": "TSAI Core",
+                "title": "Core",
                 "desc": "Structured swing trades on major assets with high-probability setups.",
                 "roi": "+24.2%",
                 "price": "$49/mo"
             },
             "alts": {
-                "title": "TSAI Alts",
+                "title": "Alts",
                 "desc": "AI-curated altcoin opportunities with strong momentum and liquidity.",
                 "roi": "+62.8%",
                 "price": "$49/mo"
             },
             "flash": {
-                "title": "TSAI Flash",
+                "title": "Flash",
                 "desc": "Ultra-fast trades for scalping and volatile market conditions.",
                 "roi": "+31.4%",
                 "price": "$49/mo"
             },
             "system": {
-                "title": "TSAI System",
+                "title": "System",
                 "desc": "Automated signals for consistent and passive trading.",
                 "roi": "+28.9%",
                 "price": "$59/mo"
             },
             "struct": {
-                "title": "TSAI Struct",
+                "title": "Struct",
                 "desc": "Disciplined trading with controlled risk management.",
                 "roi": "+33.7%",
                 "price": "$79/mo"
             },
             "assist": {
-                "title": "TSAI Assist",
+                "title": "Assist",
                 "desc": "Simple guided signals designed for new traders.",
                 "roi": "+18.5%",
                 "price": "$39/mo"
             },
             "vol": {
-                "title": "TSAI Vol",
+                "title": "Vol",
                 "desc": "Capture high-volatility moves across multiple timeframes.",
                 "roi": "+31.4%",
                 "price": "$49/mo"
             },
             "hybrid": {
-                "title": "TSAI Hybrid",
+                "title": "Hybrid",
                 "desc": "Flexible strategy combining short- and mid-term trading approaches.",
                 "roi": "+28.9%",
                 "price": "$59/mo"
@@ -149,32 +149,32 @@
             "scalping": {
                 "title": "Scalping",
                 "desc": "Fast-response strategies built to capture short-term price movements and volatility spikes with rapid execution.",
-                "badges": ["TSAI Vol", "TSAI Flash"]
+                "badges": ["Vol", "Flash"]
             },
             "swing": {
                 "title": "Swing Trading",
                 "desc": "Structured strategies focused on medium-term trends and high-probability opportunities across major and altcoin markets.",
-                "badges": ["TSAI Core", "TSAI Alts"]
+                "badges": ["Core", "Alts"]
             },
             "aiStrategy": {
                 "title": "AI Strategy",
                 "desc": "Flagship AI-driven strategy analyzing market structure, sentiment, and volatility to identify dominant market setups.",
-                "badges": ["TSAI Prime"]
+                "badges": ["Prime"]
             },
             "lowRisk": {
                 "title": "Low Risk",
                 "desc": "Simplified trading signals designed for guided execution and controlled exposure, ideal for beginners and steady trading.",
-                "badges": ["TSAI Assist"]
+                "badges": ["Assist"]
             },
             "highRisk": {
                 "title": "High Risk High Reward",
                 "desc": "Aggressive strategies targeting strong price expansions and high-momentum trading opportunities.",
-                "badges": ["TSAI Momentum", "TSAI Hybrid"]
+                "badges": ["Momentum", "Hybrid"]
             },
             "futures": {
                 "title": "Futures",
                 "desc": "Advanced strategies focused on structured execution, systematic signals, and portfolio-level risk control.",
-                "badges": ["TSAI Struct", "TSAI System"]
+                "badges": ["Struct", "System"]
             }
         },
         "cta": "Explore"
@@ -233,7 +233,7 @@
             },
             {
                 "q": "Is the platform suitable for beginners?",
-                "a": "Absolutely. While powerful, our TSAI Assist channel is specifically designed with simple, guided signals for those new to trading."
+                "a": "Absolutely. While powerful, our Assist channel is specifically designed with simple, guided signals for those new to trading."
             },
             {
                 "q": "Are performance results transparent?",

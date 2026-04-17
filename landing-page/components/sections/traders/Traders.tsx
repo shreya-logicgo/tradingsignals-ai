@@ -52,7 +52,7 @@ export default function Traders() {
         </div>
 
         {/* Carousel Container */}
-        <div className="overflow-hidden" ref={emblaRef}>
+        <div className="relative overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-5"> 
             {cards.map((card, i) => (
               <div 

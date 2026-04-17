@@ -147,7 +147,11 @@ export default function Hero() {
 
           {/* CTA */}
           <motion.div variants={fadeUpVariant}>
-            <GetAccessButton onClick={() => {}}>
+            <GetAccessButton
+              onClick={() => {
+                window.location.href = "https://crypto.tradingsignals.ai/login";
+              }}
+            >
               {t("hero.cta")}
             </GetAccessButton>
           </motion.div>
