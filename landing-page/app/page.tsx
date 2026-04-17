@@ -13,11 +13,13 @@ import AmbientTestimonialsSection from "@/components/ui/AmbientTestimonialsSecti
 import AmbientFAQCTASection from "@/components/ui/AmbientFAQCTASection";
 import Container from "@/components/common/container/Container";
 import noiseTexture from "@/assets/images/texture.png"; 
+import AutoRefreshOnReturn from "@/components/AutoRefreshOnReturn";
 
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="relative overflow-x-hidden">
+        <AutoRefreshOnReturn />
       <div
         className="absolute inset-0 z-[999] pointer-events-none opacity-50"
         style={{

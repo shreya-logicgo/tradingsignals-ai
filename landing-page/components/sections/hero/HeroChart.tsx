@@ -215,7 +215,8 @@ export default function HeroChart() {
             </div>
           </motion.div>
 
-          <div className="absolute -bottom-px left-1/2 -translate-x-1/2 w-4/5 h-[1.5px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent blur-sm" />
+         <div className="absolute -bottom-px left-1/2 -translate-x-1/2 w-4/5 h-[1.5px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent blur-sm" />
+
           <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#010B24] via-[#010B24]/50 to-transparent pointer-events-none rounded-b-3xl z-20" />
         </div>
       </Container>

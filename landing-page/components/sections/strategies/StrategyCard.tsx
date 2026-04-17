@@ -2,6 +2,7 @@
 
 import Image, { StaticImageData } from "next/image";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 interface StrategyCardProps {
   icon: StaticImageData | string;
@@ -34,13 +35,13 @@ export default function StrategyCard({
 
       {/* Animated Border */}
       <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none z-0">
-   <div className="absolute inset-0 rounded-xl bg-white/5 transition-opacity duration-500 group-hover:opacity-0" />
-   <div className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[conic-gradient(from_0deg_at_50%_50%,#2563EB_0%,#06B6D4_25%,#8B5CF6_50%,#06B6D4_75%,#2563EB_100%)]" />
-   <div
-     className="absolute pointer-events-none bg-[#0a1124]"
-     style={{ inset: "2px", borderRadius: "13px" }}
-   />
- </div>
+        <div className="absolute inset-0 rounded-xl bg-white/5 transition-opacity duration-500 group-hover:opacity-0" />
+        <div className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[conic-gradient(from_0deg_at_50%_50%,#2563EB_0%,#06B6D4_25%,#8B5CF6_50%,#06B6D4_75%,#2563EB_100%)]" />
+        <div
+          className="absolute pointer-events-none bg-[#0a1124]"
+          style={{ inset: "2px", borderRadius: "13px" }}
+        />
+      </div>
 
       {/* Inner Card */}
       <div className="relative flex flex-col w-full flex-1 p-3 gap-2 rounded-[10px] bg-white/5 z-10 overflow-hidden backdrop-blur-sm">
@@ -96,11 +97,12 @@ export default function StrategyCard({
             </span>
           </div>
 
-          <button
-            className="w-full h-11 rounded-full cursor-pointer text-sm font-medium transition-all duration-300 bg-blue-600/10 text-white  group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-600/30 font-hoves"
+          <Link
+            href="https://crypto.tradingsignals.ai/login"
+            className="w-full h-11 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300 bg-blue-600/10 text-white group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 font-hoves"
           >
             {t("strategy.card_cta")}
-          </button>
+          </Link>
         </div>
       </div>
     </div>

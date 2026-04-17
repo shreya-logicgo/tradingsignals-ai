@@ -96,13 +96,13 @@ export default function Features() {
       <div className="w-full lg:px-16 md:px-12 sm:px-6 px-6   relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12 lg:gap-20 mb-12 md:mb-16">
           <motion.div
-            className="flex flex-col items-start gap-4 md:gap-5"
+            className="flex flex-col items-start gap-4 md:gap-6"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={headingVariant}
           >
-            <div className="inline-flex items-center px-4 py-1.5 shadow-inner">
-              <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-vivid-cyan">
+            <div className="inline-flex items-center  py-1.5 shadow-inner">
+              <span className="text-[15px] font-mono font-medium tracking-widest uppercase text-vivid-cyan">
                 {t("features.title")}
               </span>
             </div>
