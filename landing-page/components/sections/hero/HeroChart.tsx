@@ -1,14 +1,15 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react"; // Added useEffect
+import { useRef, useState, useEffect } from "react";
 import {
   motion,
   useMotionValue,
   useSpring,
   useTransform,
-  useInView, // Added useInView
+  useInView,
 } from "framer-motion";
 import Container from "@/components/common/container/Container";
+import { Play } from "lucide-react";
 
 export default function HeroChart() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -16,24 +17,18 @@ export default function HeroChart() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Check if user is currently looking at the hero section
   const isInView = useInView(cardRef, { amount: 0.4 });
 
-  // ── AUTOPLAY LOGIC ──
   useEffect(() => {
     let timer: NodeJS.Timeout;
-
     if (isInView && !isPlaying) {
-      // Start 3s countdown if in view and not already playing
       timer = setTimeout(() => {
         handlePlay();
       }, 3000);
     }
-
-    return () => clearTimeout(timer); // Cleanup if they scroll away before 3s
+    return () => clearTimeout(timer);
   }, [isInView]);
 
-  // ── Raw mouse values ──
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
   const glowX = useMotionValue(50);
@@ -48,9 +43,9 @@ export default function HeroChart() {
 
   const videoX = useTransform(springX, [-0.5, 0.5], [-8, 8]);
   const videoY = useTransform(springY, [-0.5, 0.5], [-6, 6]);
-  const playX  = useTransform(springX, [-0.5, 0.5], [-12, 12]);
-  const playY  = useTransform(springY, [-0.5, 0.5], [-10, 10]);
-  const barX   = useTransform(springX, [-0.5, 0.5], [-3, 3]);
+  const playX = useTransform(springX, [-0.5, 0.5], [-12, 12]);
+  const playY = useTransform(springY, [-0.5, 0.5], [-10, 10]);
+  const barX = useTransform(springX, [-0.5, 0.5], [-3, 3]);
 
   const glowSpring = { stiffness: 30, damping: 35, mass: 2 };
   const glowXSpring = useSpring(glowX, glowSpring);
@@ -75,14 +70,14 @@ export default function HeroChart() {
     setIsHovered(false);
   };
 
-  const handlePlay = () => { 
+  const handlePlay = () => {
     videoRef.current?.play().catch(err => console.log("Autoplay blocked by browser", err));
-    setIsPlaying(true); 
+    setIsPlaying(true);
   };
   const handlePause = () => { videoRef.current?.pause(); setIsPlaying(false); };
 
   return (
-    <section className="w-full relative z-10 pt-2 lg:pt-[10px] mx-auto">
+    <section className="w-full relative z-10 mx-auto">
       <Container className="flex justify-center">
         <div className="relative w-full max-w-[1100px]">
           <div className="absolute -inset-4 -z-10 rounded-3xl bg-[radial-gradient(ellipse_at_50%_40%,_rgba(0,120,255,0.25)_0%,_rgba(0,60,180,0.1)_50%,_transparent_75%)] blur-[40px] pointer-events-none" />
@@ -101,7 +96,7 @@ export default function HeroChart() {
             }}
           >
             <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden bg-[#02081e]/45 backdrop-blur-2xl border border-transparent/10">
-              
+
               <motion.div
                 aria-hidden="true"
                 style={{
@@ -170,7 +165,13 @@ export default function HeroChart() {
                   </video>
                 </motion.div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-[70%] pointer-events-none bg-gradient-to-t from-[#01081c] via-[#01081c]/50 to-transparent" />
+                {/* ── Bottom fade: fades out while playing, fades in when paused ── */}
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-[70%] pointer-events-none bg-gradient-to-t from-[#01081c] via-[#01081c]/50 to-transparent"
+                  animate={{ opacity: isPlaying ? 0 : 1 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                />
+
                 <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#01081c] pointer-events-none" />
 
                 {!isPlaying && (
@@ -181,17 +182,17 @@ export default function HeroChart() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                        className="group flex items-center gap-4 px-4 py-2.5 md:px-6 md:py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/20 active:scale-95"
+                        className="inline-flex items-center gap-[10px] w-[178px] h-[56px] rounded-[90px] px-[20px] pl-[8px] py-[8px] bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.18)] hover:scale-[1.03] transition-all duration-300"
                       >
-                        <div className="flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-full bg-gradient-to-br from-blue-600 to-sky-500 shadow-[0_0_25px_rgba(37,99,235,0.6)] group-hover:shadow-[0_0_35px_rgba(37,99,235,0.8)] transition-all duration-500">
-                          <div className="w-0 h-0 border-y-[5px] md:border-y-[7px] border-l-[10px] md:border-l-[13px] border-transparent border-l-white ml-1" />
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r from-[#123DFF] to-[#12D7F5] shrink-0">
+                          <Play className="w-4 h-4 fill-white text-white ml-[1px]" />
                         </div>
-                        <div className="flex flex-col text-left leading-none">
-                          <span className="text-white font-medium text-sm md:text-base tracking-tight font-hoves">
+                        <div className="flex flex-col leading-none text-left">
+                          <span className="text-sm font-semibold text-black">
                             Watch Demo
                           </span>
-                          <span className="text-white/40 text-[10px] md:text-[11px] mt-1 uppercase tracking-widest font-hoves">
-                            0:58 min
+                          <span className="text-[11px] text-[#5D5D5D] mt-1">
+                            1:00 min
                           </span>
                         </div>
                       </motion.button>
@@ -215,7 +216,7 @@ export default function HeroChart() {
             </div>
           </motion.div>
 
-         <div className="absolute -bottom-px left-1/2 -translate-x-1/2 w-4/5 h-[1.5px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent blur-sm" />
+          <div className="absolute -bottom-px left-1/2 -translate-x-1/2 w-4/5 h-[1.5px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent blur-sm" />
 
           <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#010B24] via-[#010B24]/50 to-transparent pointer-events-none rounded-b-3xl z-20" />
         </div>

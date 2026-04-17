@@ -34,7 +34,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen pt-30 md:pt-42 pb-16 overflow-hidden bg-[#010B24]">
+    <section className="relative w-full min-h-screen pt-30 md:pt-32  overflow-hidden bg-[#010B24]">
       <style>{`
         @keyframes particle-fall-left {
           0% { transform: translate3d(0,0,0); opacity: 0; }
@@ -107,7 +107,7 @@ export default function Hero() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="flex flex-col items-center gap-6 md:gap-8 w-full"
+          className="flex flex-col items-center gap-1 md:gap-1 w-full"
         >
           {/* Badge */}
           <motion.div
@@ -122,7 +122,7 @@ export default function Hero() {
               className="h-4 md:h-6 w-auto shrink-0"
             />
 
-            <span className="text-[10px] md:text-sm text-white leading-tight font-hoves">
+            <span className="text-[17px] text-white leading-0.5 font-hoves">
               {t("hero.users")}
             </span>
           </motion.div>
@@ -132,7 +132,7 @@ export default function Hero() {
             variants={fadeUpVariant}
             className="w-full flex justify-center"
           >
-            <ShineText className="text-2xl sm:text-3xl md:text-5xl lg:text-[70px] max-w-[1200px] font-hoves">
+            <ShineText className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] max-w-[650px]  font-hoves">
               {t("hero.title")}
             </ShineText>
           </motion.div>
@@ -140,7 +140,7 @@ export default function Hero() {
           {/* Description */}
           <motion.p
             variants={fadeUpVariant}
-            className="text-white sm:text-sm text-xs md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0 font-hoves"
+            className="text-white sm:text-sm text-xs md:text-lg leading-relaxed max-w-[640px] px-2 md:px-0 py-4 font-hoves"
           >
             {t("hero.description")}
           </motion.p>
@@ -159,7 +159,7 @@ export default function Hero() {
           {/* Chart */}
           <motion.div
             variants={fadeUpVariant}
-            className="w-full mt-10 md:mt-16"
+            className="w-full mt-17"
           >
             <HeroChart />
           </motion.div>
