@@ -75,6 +75,7 @@ export default function Navbar() {
               width={120}
               height={120}
               className="w-35 md:w-36 lg:w-40 xl:w-48"
+              priority
             />
           </Link>
         </div>
@@ -85,7 +86,7 @@ export default function Navbar() {
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors font-hoves"
+                className="text-sm font-medium text-white font-medium hover:text-white transition-colors font-hoves"
               >
                 {link.label}
               </Link>

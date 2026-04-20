@@ -3,6 +3,7 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import CategoryCard from "./CategoryCard";
+import Link from "next/link";
 
 export default function Categories() {
   const { t } = useTranslation();
@@ -44,21 +45,21 @@ export default function Categories() {
     // bg-transparent so the parent AmbientTradingSection gradient shows through.
     // overflow-visible keeps the shared layer unclipped.
     // Removed: unified-energy-field div and all its children.
-    <section className="w-full bg-transparent py-6 md:py-10 relative overflow-visible">
+    <section className="w-full bg-transparent pt-46 md:pt-50 pb-8 md:pb-10 relative z-10 overflow-visible -mt-24">
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-[2]">
         <div className="flex flex-col gap-8 lg:gap-10">
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12"
+            className="flex flex-col lg:flex-row lg:items-end justify-between gap-1 md:gap-3"
           >
             <div className="flex flex-col gap-4 max-w-[439px]">
-              <div className="inline-flex self-start items-center px-4 py-1.5 ">
-                <span className="text-[11px] font-mono tracking-widest uppercase text-vivid-cyan">
+              <div className="inline-flex self-start items-center  py-1.5 ">
+                <span className="text-[15px] font-mono tracking-widest  uppercase text-vivid-cyan">
                   {t("tradingChannels.title")}
                 </span>
               </div>
@@ -74,20 +75,24 @@ export default function Categories() {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 relative z-[2]">
             {categories.map((cat, index) => (
               <CategoryCard key={cat.title} {...cat} index={index} />
             ))}
           </div>
 
           <div className="flex justify-center relative z-10">
-            <motion.button 
+            <motion.div
               whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.98 }}
-              className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black"
             >
-              <span>{t("tradingChannels.cta")}</span>
-            </motion.button>
+              <Link
+                href="https://crypto.tradingsignals.ai/login"
+                className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
+              >
+                <span>{t("tradingChannels.cta")}</span>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>

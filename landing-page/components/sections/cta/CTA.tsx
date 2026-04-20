@@ -5,6 +5,9 @@ import { useTranslation } from "react-i18next";
 import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";
 import blog3 from "@/assets/images/blog-3.jpg";
+import Link from "next/link";
+import HoverFxButton from "@/components/common/HoverFxButton";
+import { motion } from "framer-motion";
 
 interface PostData {
   title: string;
@@ -16,7 +19,7 @@ export default function CTA() {
 
   // Blog posts from common.json
   const blogPosts = t("blog.posts", { returnObjects: true }) as PostData[];
-  
+
   const posts = [
     { image: blog1, title: blogPosts[0]?.title || "", description: blogPosts[0]?.desc || "" },
     { image: blog2, title: blogPosts[1]?.title || "", description: blogPosts[1]?.desc || "" },
@@ -27,12 +30,12 @@ export default function CTA() {
     <section className="w-full bg-transparent py-10 md:py-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
         <div className="flex flex-col gap-12 lg:gap-16">
-          
+
           {/* ── Header ── */}
           <div className="flex flex-col items-center text-center gap-6 max-w-[500px] mx-auto">
             {/* Badge */}
             <div className="px-3.5 py-1.5 rounded-full">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-vivid-cyan">
+              <span className="text-[15px] font-mono tracking-widest uppercase text-vivid-cyan">
                 {t("blog.title")}
               </span>
             </div>
@@ -64,6 +67,7 @@ export default function CTA() {
                       src={post.image}
                       alt={post.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
@@ -104,9 +108,14 @@ export default function CTA() {
 
             {/* CTA Button — Localized */}
             <div className="flex justify-center mt-4">
-              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black">
+              <motion.div whileTap={{ scale: 0.98 }}>
+              <HoverFxButton
+                href="https://crypto.tradingsignals.ai/login"
+                className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
+              >
                 {t("blog.cta")}
-              </button>
+              </HoverFxButton>
+            </motion.div>
             </div>
           </div>
         </div>
@@ -114,3 +123,5 @@ export default function CTA() {
     </section>
   );
 }
+
+

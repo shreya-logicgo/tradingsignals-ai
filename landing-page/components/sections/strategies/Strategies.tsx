@@ -98,7 +98,7 @@ export default function Strategies() {
 
   return (
     <section
-      className="w-full py-8 md:py-16 relative overflow-hidden"
+      className="w-full py-8 md:py-10 relative overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #010B24 0%, #010B24 75%, #02164b 100%)",
       }}
@@ -123,9 +123,9 @@ export default function Strategies() {
       >
 
         {/* Header Section */}
-        <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-8 md:mb-12 gap-4 md:gap-6">
-          <div className="inline-flex items-center px-4 py-1.5  shadow-inner">
-            <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-vivid-cyan">
+        <motion.div variants={fadeUpVariant} className="flex flex-col items-center text-center max-w-[740px] mx-auto mb-8 md:mb-12 gap-1 md:gap-3">
+          <div className="inline-flex items-center  shadow-inner">
+            <span className="text-[15px] font-mono font-medium tracking-widest uppercase text-vivid-cyan">
               {t("strategy.strategybadge")}
             </span>
           </div>

@@ -132,10 +132,24 @@ const logos = [
   },
 ];
 
-const allLogos = [...logos, ...logos, ...logos];
+const loopLogos = [...logos, ...logos];
 
 export default function TrustedLogos() {
   const { t } = useTranslation();
+
+  // Shared track content to ensure identical alignment
+  const LogoTrack = ({ className }: { className?: string }) => (
+    <div 
+      className={`flex items-center gap-10 sm:gap-12 md:gap-14 lg:gap-15 xl:gap-17 whitespace-nowrap animate-marquee will-change-transform ${className}`}
+      style={{ width: "max-content" }}
+    >
+      {loopLogos.map((logo, i) => (
+        <div key={i} className="flex-shrink-0 flex items-center pointer-events-none select-none">
+          {logo.render()}
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <motion.section
@@ -143,41 +157,38 @@ export default function TrustedLogos() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="w-full pt-2 sm:pt-3 pb-2 overflow-hidden relative"
+      className="w-full bg-transparent py-8 md:py-10 relative overflow-hidden"
     >
-      {/* Integrative Label */}
       <motion.p
         variants={fadeUpVariant}
-        className="text-center mb-3 text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] tracking-[0.05em] uppercase text-white font-hoves px-4"
+        className="text-center text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] tracking-[0.05em] uppercase text-white/80 font-hoves px-4"
       >
         {t("hero.integration")}
       </motion.p>
 
-      {/* Marquee Strip */}
-      <motion.div
-        variants={fadeVariant}
-        className="relative h-10 sm:h-12 md:h-16 lg:h-20 flex items-center"
-      >
-        {/* Left Fade */}
-        <div className="absolute left-0 top-0 h-full z-10 pointer-events-none w-8 xs:w-12 sm:w-20 md:w-40 lg:w-64 bg-gradient-to-r from-[#010B24] to-transparent" />
-
-        {/* Right Fade */}
-        <div className="absolute right-0 top-0 h-full z-10 pointer-events-none w-8 xs:w-12 sm:w-20 md:w-40 lg:w-64 bg-gradient-to-l from-[#010B24] to-transparent" />
-
-        {/* Scrolling Track */}
-        <div
-          className={[
-            "flex items-center absolute top-1/2 -translate-y-1/2 left-0",
-            "gap-8 xs:gap-10 sm:gap-14 md:gap-20 lg:gap-28 xl:gap-32",
-            "animate-marquee whitespace-nowrap will-change-transform",
-          ].join(" ")}
-        >
-          {allLogos.map((logo, i) => (
-            <div key={i} className="flex-shrink-0 flex items-center">
-              {logo.render()}
-            </div>
-          ))}
+      <motion.div variants={fadeVariant} className="relative group">
+        
+        {/* ── 1. BACKGROUND (MUTED) LAYER ── */}
+        <div className="flex items-center h-10 sm:h-12 md:h-16 lg:h-20 overflow-hidden opacity-30">
+           <LogoTrack className="brightness-100 grayscale" />
         </div>
+
+        {/* ── 2. FOREGROUND (WHITE SPOTLIGHT) LAYER ── */}
+        <div 
+          className="absolute inset-0 flex items-center h-10 sm:h-12 md:h-16 lg:h-20 overflow-hidden z-20 pointer-events-none"
+          style={{
+            WebkitMaskImage: "radial-gradient(circle at 50% 50%, white 0%, transparent 40%)",
+            maskImage: "radial-gradient(circle at 50% 50%, white 0%, transparent 40%)",
+          }}
+        >
+          {/* This track is set to full brightness */}
+          <LogoTrack className="brightness-200" />
+        </div>
+
+        {/* ── 3. EDGE FADES (Final Polish) ── */}
+        <div className="absolute left-0 top-0 h-full z-30 pointer-events-none w-24 sm:w-48 bg-gradient-to-r from-[#010B24] to-transparent" />
+        <div className="absolute right-0 top-0 h-full z-30 pointer-events-none w-24 sm:w-48 bg-gradient-to-l from-[#010B24] to-transparent" />
+
       </motion.div>
     </motion.section>
   );

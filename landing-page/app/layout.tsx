@@ -4,6 +4,7 @@ import { Inter, Space_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import Footer from "@/components/common/footer/Footer";
 import { I18nProvider } from "@/components/I18nProvider";
+import QueryProvider from "@/components/providers/QueryProvider";
 import SmoothScrollHandler from "@/components/common/SmoothScrollHandler";
 
 const inter = Inter({
@@ -37,10 +38,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${spaceMono.variable} ${ttHoves.variable}`}>
         <I18nProvider>
-          <SmoothScrollHandler />
-          <Navbar />
-          {children}
-          <Footer />
+          <QueryProvider>
+            <SmoothScrollHandler />
+            <Navbar />
+            {children}
+            <Footer />
+          </QueryProvider>
         </I18nProvider>
       </body>
     </html>
