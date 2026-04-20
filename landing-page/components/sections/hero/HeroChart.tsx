@@ -97,41 +97,48 @@ export default function HeroChart() {
           >
             <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden bg-[#02081e]/65 backdrop-blur-3xl border border-white/5">
 
-              <motion.div
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "inherit",
-                  pointerEvents: "none",
-                  zIndex: 20,
-                  opacity: isHovered ? 1 : 0,
-                  transition: "opacity 0.8s ease",
-                  background: useTransform(
-                    [glowXSpring, glowYSpring],
-                    ([x, y]: number[]) =>
-                      `radial-gradient(circle at ${x}% ${y}%, rgba(59,130,246,0.12) 0%, transparent 60%)`
-                  ),
-                }}
-              />
+              {/* ── CLEAN HOVER GLOW (Blue Tint) ── */}
+<motion.div
+  aria-hidden="true"
+  style={{
+    position: "absolute",
+    inset: "1px", // Inset by 1px to prevent edge bleeding
+    borderRadius: "inherit",
+    pointerEvents: "none",
+    zIndex: 20,
+    opacity: isHovered ? 1 : 0,
+    transition: "opacity 0.8s ease",
+    background: useTransform(
+      [glowXSpring, glowYSpring],
+      ([x, y]: number[]) =>
+        `radial-gradient(circle at ${x}% ${y}%, rgba(59,130,246,0.15) 0%, transparent 50%)`
+    ),
+    // Masking ensures the glow never touches the sharp edges
+    WebkitMaskImage: "radial-gradient(circle, white 70%, transparent 100%)",
+    maskImage: "radial-gradient(circle, white 70%, transparent 100%)",
+  }}
+/>
 
-              <motion.div
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "inherit",
-                  pointerEvents: "none",
-                  zIndex: 19,
-                  opacity: isHovered ? 1 : 0,
-                  transition: "opacity 1s ease",
-                  background: useTransform(
-                    [glowXSpring, glowYSpring],
-                    ([x, y]: number[]) =>
-                      `radial-gradient(ellipse at ${x}% ${y}%, rgba(255,255,255,0.04) 0%, transparent 55%)`
-                  ),
-                }}
-              />
+{/* ── CLEAN HOVER GLOW (Soft White/Sheen) ── */}
+<motion.div
+  aria-hidden="true"
+  style={{
+    position: "absolute",
+    inset: "1px", // Inset by 1px
+    borderRadius: "inherit",
+    pointerEvents: "none",
+    zIndex: 19,
+    opacity: isHovered ? 1 : 0,
+    transition: "opacity 1s ease",
+    background: useTransform(
+      [glowXSpring, glowYSpring],
+      ([x, y]: number[]) =>
+        `radial-gradient(ellipse at ${x}% ${y}%, rgba(255,255,255,0.06) 0%, transparent 45%)`
+    ),
+    WebkitMaskImage: "radial-gradient(circle, white 70%, transparent 100%)",
+    maskImage: "radial-gradient(circle, white 70%, transparent 100%)",
+  }}
+/>
 
               <motion.div
                 style={{ x: barX }}
