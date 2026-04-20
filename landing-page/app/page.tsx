@@ -12,14 +12,14 @@ import AmbientStatsStepsSection from "@/components/ui/AmbientStatsStepsSection";
 import AmbientTestimonialsSection from "@/components/ui/AmbientTestimonialsSection";
 import AmbientFAQCTASection from "@/components/ui/AmbientFAQCTASection";
 import Container from "@/components/common/container/Container";
-import noiseTexture from "@/assets/images/texture.png"; 
+import noiseTexture from "@/assets/images/texture.png";
 import AutoRefreshOnReturn from "@/components/AutoRefreshOnReturn";
 
 
 export default function Home() {
   return (
     <main className="relative overflow-x-hidden">
-        <AutoRefreshOnReturn />
+      <AutoRefreshOnReturn />
       <div
         className="absolute inset-0 z-[999] pointer-events-none opacity-50"
         style={{
@@ -52,7 +52,12 @@ export default function Home() {
       <AmbientStatsStepsSection />
       <AmbientTradingSection />
 
-      <AmbientTestimonialsSection />
+      <section
+        id="testimonials"
+        className="scroll-mt-14 sm:scroll-mt-14 md:scroll-mt-22 lg:scroll-mt-20"
+      >
+        <AmbientTestimonialsSection />
+      </section>
       <AmbientFAQCTASection />
       {/* <Container className="max-w-4xl mx-auto"> */}
       {/* <Container>
