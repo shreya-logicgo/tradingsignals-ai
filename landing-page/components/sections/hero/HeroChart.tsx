@@ -95,43 +95,50 @@ export default function HeroChart() {
               willChange: "transform",
             }}
           >
-            <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden bg-[#02081e]/45 backdrop-blur-2xl border border-transparent/10">
+            <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden bg-[#02081e]/65 backdrop-blur-3xl border border-white/5">
 
-              <motion.div
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "inherit",
-                  pointerEvents: "none",
-                  zIndex: 20,
-                  opacity: isHovered ? 1 : 0,
-                  transition: "opacity 0.8s ease",
-                  background: useTransform(
-                    [glowXSpring, glowYSpring],
-                    ([x, y]: number[]) =>
-                      `radial-gradient(circle at ${x}% ${y}%, rgba(59,130,246,0.12) 0%, transparent 60%)`
-                  ),
-                }}
-              />
+              {/* ── CLEAN HOVER GLOW (Blue Tint) ── */}
+<motion.div
+  aria-hidden="true"
+  style={{
+    position: "absolute",
+    inset: "1px", // Inset by 1px to prevent edge bleeding
+    borderRadius: "inherit",
+    pointerEvents: "none",
+    zIndex: 20,
+    opacity: isHovered ? 1 : 0,
+    transition: "opacity 0.8s ease",
+    background: useTransform(
+      [glowXSpring, glowYSpring],
+      ([x, y]: number[]) =>
+        `radial-gradient(circle at ${x}% ${y}%, rgba(59,130,246,0.15) 0%, transparent 50%)`
+    ),
+    // Masking ensures the glow never touches the sharp edges
+    WebkitMaskImage: "radial-gradient(circle, white 70%, transparent 100%)",
+    maskImage: "radial-gradient(circle, white 70%, transparent 100%)",
+  }}
+/>
 
-              <motion.div
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "inherit",
-                  pointerEvents: "none",
-                  zIndex: 19,
-                  opacity: isHovered ? 1 : 0,
-                  transition: "opacity 1s ease",
-                  background: useTransform(
-                    [glowXSpring, glowYSpring],
-                    ([x, y]: number[]) =>
-                      `radial-gradient(ellipse at ${x}% ${y}%, rgba(255,255,255,0.04) 0%, transparent 55%)`
-                  ),
-                }}
-              />
+{/* ── CLEAN HOVER GLOW (Soft White/Sheen) ── */}
+<motion.div
+  aria-hidden="true"
+  style={{
+    position: "absolute",
+    inset: "1px", // Inset by 1px
+    borderRadius: "inherit",
+    pointerEvents: "none",
+    zIndex: 19,
+    opacity: isHovered ? 1 : 0,
+    transition: "opacity 1s ease",
+    background: useTransform(
+      [glowXSpring, glowYSpring],
+      ([x, y]: number[]) =>
+        `radial-gradient(ellipse at ${x}% ${y}%, rgba(255,255,255,0.06) 0%, transparent 45%)`
+    ),
+    WebkitMaskImage: "radial-gradient(circle, white 70%, transparent 100%)",
+    maskImage: "radial-gradient(circle, white 70%, transparent 100%)",
+  }}
+/>
 
               <motion.div
                 style={{ x: barX }}
@@ -167,12 +174,12 @@ export default function HeroChart() {
 
                 {/* ── Bottom fade: fades out while playing, fades in when paused ── */}
                 <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-[70%] pointer-events-none bg-gradient-to-t from-[#01081c] via-[#01081c]/50 to-transparent"
+                  className="absolute bottom-0 left-0 right-0 h-[70%] pointer-events-none bg-gradient-to-t from-[#010B24] via-[#010B24]/40 to-transparent"
                   animate={{ opacity: isPlaying ? 0 : 1 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
                 />
 
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#01081c] pointer-events-none" />
+                {/* Removed hard line bg-[#01081c] */}
 
                 {!isPlaying && (
                   <div className="absolute inset-0 flex items-center justify-center p-6">
@@ -216,9 +223,9 @@ export default function HeroChart() {
             </div>
           </motion.div>
 
-          <div className="absolute -bottom-px left-1/2 -translate-x-1/2 w-4/5 h-[1.5px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent blur-sm" />
+          <div className="absolute -bottom-[2px] left-1/2 -translate-x-1/2 w-4/5 h-[2px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent blur-md" />
 
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#010B24] via-[#010B24]/50 to-transparent pointer-events-none rounded-b-3xl z-20" />
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#010B24] via-[#010B24]/70 to-transparent pointer-events-none rounded-b-3xl z-20" />
         </div>
       </Container>
     </section>

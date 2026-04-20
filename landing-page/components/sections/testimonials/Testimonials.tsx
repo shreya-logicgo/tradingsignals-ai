@@ -12,6 +12,7 @@ import img3 from "@/assets/images/testimonial-3.jpg";
 import img4 from "@/assets/images/testimonial-4.jpg";
 import img5 from "@/assets/images/testimonial-5.jpg";
 import gradientBg from "@/assets/images/Gradient.png";
+import ExchangePartners from "../crypto/Exchangepartners";
 
 export default function Testimonials() {
   const { t } = useTranslation();
@@ -37,6 +38,7 @@ export default function Testimonials() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
       className="w-full relative overflow-hidden py-8 md:py-10 bg-transparent overflow-visible">
+      <ExchangePartners />
 
       {/* Radial depth glow */}
       <div className="absolute inset-x-0 -top-1/4 -bottom-1/4 z-0 pointer-events-none overflow-hidden select-none">

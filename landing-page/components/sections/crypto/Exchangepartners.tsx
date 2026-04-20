@@ -1,102 +1,107 @@
+"use client";
+
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 
 interface Exchange {
   name: string;
-  desc: string;
+  descKey: string;
   logo: string;
   link: string;
 }
 
 const exchanges: Exchange[] = [
-  {
-    name: "Binance",
-    desc: "World's largest crypto exchange with high liquidity and advanced trading tools.",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png",
-    link: "https://www.binance.com/en/register?ref=YOUR_REF",
-  },
-  {
-    name: "Bitget",
-    desc: "Known for copy trading and powerful crypto derivatives trading.",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/513.png",
-    link: "https://www.bitget.com/en/referral?from=YOUR_REF",
-  },
-  {
-    name: "Bybit",
-    desc: "A popular platform for fast crypto derivatives trading and professional tools.",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/521.png",
-    link: "https://www.bybit.com/en/invite?ref=YOUR_REF",
-  },
-  {
-    name: "Gate.io",
-    desc: "A secure platform offering a wide range of digital asset trading options.",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/302.png",
-    link: "https://www.gate.io/signup/YOUR_REF",
-  },
-  {
-    name: "OKX",
-    desc: "A global crypto exchange offering spot, futures, and DeFi trading services.",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/294.png",
-    link: "https://www.okx.com/join/YOUR_REF",
-  },
-  {
-    name: "MEXC",
-    desc: "A fast-growing exchange offering diverse crypto assets and low trading fees.",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/544.png",
-    link: "https://www.mexc.com/register?inviteCode=YOUR_REF",
-  },
-  {
-    name: "KuCoin",
-    desc: "A trusted exchange with hundreds of cryptocurrencies and advanced features.",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/311.png",
-    link: "https://www.kucoin.com/ucenter/signup?rcode=YOUR_REF",
-  },
-  {
-    name: "Kraken",
-    desc: "A reliable crypto exchange known for strong security and transparency.",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/24.png",
-    link: "https://www.kraken.com/sign-up?ref=YOUR_REF",
-  },
+ {
+  name: "Binance",
+  descKey: "exchangePartners.exchanges.binance",
+  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png",
+  link: "https://accounts.binance.com/en/register",
+},
+{
+  name: "Bitget",
+  descKey: "exchangePartners.exchanges.bitget",
+  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/513.png",
+  link: "https://www.bitget.com/en/register",
+},
+{
+  name: "Bybit",
+  descKey: "exchangePartners.exchanges.bybit",
+  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/521.png",
+  link: "https://www.bybitglobal.com/en/register",
+},
+{
+  name: "Gate.io",
+  descKey: "exchangePartners.exchanges.gate",
+  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/302.png",
+  link: "https://www.gate.com/signup",
+},
+{
+  name: "OKX",
+  descKey: "exchangePartners.exchanges.okx",
+  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/294.png",
+  link: "https://www.okx.com/account/login",
+},
+{
+  name: "MEXC",
+  descKey: "exchangePartners.exchanges.mexc",
+  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/544.png",
+  link: "https://www.mexc.co/en-IN/registe",
+},
+{
+  name: "KuCoin",
+  descKey: "exchangePartners.exchanges.kucoin",
+  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/311.png",
+  link: "https://www.kucoin.com/ucenter/signup",
+},
+{
+  name: "Kraken",
+  descKey: "exchangePartners.exchanges.kraken",
+  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/24.png",
+  link: "https://www.kraken.com/sign-up",
+},
   {
     name: "Coinbase",
-    desc: "A leading regulated exchange trusted by millions for simple crypto investing.",
+    descKey: "exchangePartners.exchanges.coinbase",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/89.png",
     link: "https://www.coinbase.com/join/YOUR_REF",
   },
   {
     name: "Huobi",
-    desc: "A veteran exchange with deep liquidity and comprehensive trading products.",
+    descKey: "exchangePartners.exchanges.huobi",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/102.png",
-    link: "https://www.huobi.com/en-us/register/?invite_code=YOUR_REF",
+    link: "http://htx.com/login",
   },
   {
     name: "Crypto.com",
-    desc: "Pay, trade, and earn crypto rewards with one of the most feature-rich platforms.",
+    descKey: "exchangePartners.exchanges.cryptocom",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/338.png",
-    link: "https://crypto.com/app/YOUR_REF",
+    link: "https://accounts.crypto.com/en/signup",
   },
   {
     name: "Bitfinex",
-    desc: "Advanced trading tools and deep liquidity for professional crypto traders.",
+    descKey: "exchangePartners.exchanges.bitfinex",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/37.png",
-    link: "https://www.bitfinex.com/sign-up?refcode=YOUR_REF",
+    link: "https://www.bitfinex.com/sign-up/",
   },
   {
     name: "Gemini",
-    desc: "A SOC 2-certified exchange built with institutional-grade security and compliance.",
+    descKey: "exchangePartners.exchanges.gemini",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/151.png",
-    link: "https://www.gemini.com/share/YOUR_REF",
+    link: "https://www.gemini.com/",
   },
   {
     name: "Phemex",
-    desc: "High-speed derivatives and spot trading with zero fees on select pairs.",
+    descKey: "exchangePartners.exchanges.phemex",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/524.png",
-    link: "https://phemex.com/register?referralCode=YOUR_REF",
+    link: "https://phemex.com/login",
   },
   {
     name: "Poloniex",
-    desc: "A seasoned exchange offering margin trading and a wide selection of altcoins.",
+    descKey: "exchangePartners.exchanges.poloniex",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/22.png",
-    link: "https://poloniex.com/signup?c=YOUR_REF",
+    link: "https://www.poloniex.com/signup",
   },
 ];
 
@@ -104,9 +109,11 @@ const exchanges: Exchange[] = [
 
 function ExchangeCard({ exchange }: { exchange: Exchange }) {
   const [imgError, setImgError] = useState(false);
+  const { t } = useTranslation();
 
   return (
-    <a
+    <motion.a
+      variants={fadeUpVariant}
       href={exchange.link}
       target="_blank"
       rel="noopener noreferrer"
@@ -116,9 +123,9 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         w-full h-[276px] p-6 rounded-[10px]
         bg-[#0E172F] border border-[#182138]
         transition-all duration-200 ease-out
-        hover:-translate-y-1 hover:border-[#2E4278]
+        hover:-translate-y-1 hover:border-[#182853]
         hover:shadow-[0_12px_40px_rgba(0,0,0,0.45)]
-        no-underline
+        no-underline  font-hoves
       "
     >
       {/* Top content */}
@@ -126,9 +133,9 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         {/* Logo */}
         <div
           className="
-            w-[52px] h-[52px] rounded-[14px] mb-[18px] shrink-0
+            w-[52px] h-[52px] rounded-full mb-[18px] shrink-0
             flex items-center justify-center
-            bg-[#131E38] border border-[#1E2E4A] overflow-hidden
+            bg-[#000000] overflow-hidden
           "
         >
           {imgError ? (
@@ -141,77 +148,89 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
               alt={`${exchange.name} logo`}
               width={36}
               height={36}
-              className="object-contain"
+               className="w-full h-full object-cover"
               onError={() => setImgError(true)}
             />
           )}
         </div>
 
         {/* Name */}
-        <p className="text-[16px] font-semibold text-[#E8EDF7] mb-2 tracking-tight">
+        <div className="text-[20px] font-semibold text-white font-hoves mb-2 tracking-tight">
           {exchange.name}
-        </p>
+        </div>
 
         {/* Description */}
-        <p className="text-[12.5px] text-[#5A7099] leading-[1.65]">
-          {exchange.desc}
+        <p className="text-[16px] text-[#C7CCD2] font-hoves tracking-tighter leading-5 sm:h-min-16 max-h-16 overflow-clip">
+          {t(exchange.descKey)}
         </p>
       </div>
 
       {/* CTA Button */}
       <span
         className="
-          flex items-center justify-center w-full py-[11px] mt-4
-          rounded-lg text-[13px] font-medium text-[#C8D6F0]
-          bg-[#111D35] border border-[#1E2E50]
-          transition-all duration-150
-          group-hover:bg-[#1A2D52] group-hover:border-[#2E4478] group-hover:text-white
-        "
+          flex items-center justify-center w-full py-[11px] mt-2 mb-1
+         text-[18px] font-medium text-[#FFFFFF]
+          bg-[#010B24] border border-[#FFFFFF1A]
+          transition-all duration-150 rounded-full  "
       >
-        Create Account
+        {t("exchangePartners.cta")}
       </span>
-    </a>
+    </motion.a>
   );
 }
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 
 export default function ExchangePartners() {
+  const { t } = useTranslation();
+
   return (
-    <section className="bg-[#060D1F] w-full px-5 sm:px-8 lg:px-10 py-14 lg:py-16">
-      <div className="max-w-[1440px] mx-auto">
+    <motion.section
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      className=" max-w-[1250px] mx-auto px-5 sm:px-8 lg:px-10 py-8 md:py-10 sm:mb-24"
+    >
+      <div className=" mx-auto">
 
         {/* Badge */}
-        <span
+        <motion.span
+          variants={fadeUpVariant}
           className="
-            inline-block mb-5 px-3.5 py-1
-            text-[11px] tracking-[0.12em] uppercase text-[#8A9BBE]
-            border border-[#2A3A5C] rounded-full
+            inline-block mb-5  pb-1 
+            text-[15px] tracking-[0.12em] uppercase text-vivid-cyan lg:text-start w-fit text-center
+            rounded-full font-mono
           "
         >
-          Exchange Partners
-        </span>
+          {t("exchangePartners.badge")}
+        </motion.span>
 
         {/* Header row */}
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-10 mb-2">
-          <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-bold text-white leading-tight tracking-tight">
-            Supported Crypto<br />Exchanges
+        <motion.div
+          variants={fadeUpVariant}
+          className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-10 mb-2"
+        >
+          <h2 className="text-[30px] max-w-80 font-hoves sm:text-[34px] lg:text-[38px] font-bold text-white leading-tight tracking-tight">
+            {t("exchangePartners.title")}
           </h2>
-          <p className="sm:max-w-[380px] text-[#8A9BBE] text-[13px] sm:text-[13.5px] leading-relaxed italic sm:pt-1 shrink-0">
-            "If you don't have a crypto account, you can sign up using our
-            supported exchange partners"
+          <p className="sm:max-w-[480px] text-[#C7CCD2] font-hoves text-[13px] sm:text-[20px] tracking-tight ">
+            {t("exchangePartners.desc")}
           </p>
-        </div>
+        </motion.div>
 
         {/* Subtitle */}
-        <p className="text-[#4E6080] text-[13px] mb-10 lg:mb-11">
-          Our platform is connected with 15 different exchanges
-        </p>
+        <motion.p
+          variants={fadeUpVariant}
+          className="text-[#C7CCD2]  text-[13px] sm:text-[20px] mb-10 lg:mb-11 font-hoves tracking-tighter"
+        >
+          {t("exchangePartners.subtitle")}
+        </motion.p>
 
         {/* Grid */}
         <div
           className="
-            grid gap-[25px]
+            grid gap-[13px]
             grid-cols-1
             sm:grid-cols-2
             md:grid-cols-3
@@ -223,22 +242,7 @@ export default function ExchangePartners() {
           ))}
         </div>
 
-        {/* Explore More */}
-        <div className="flex justify-center mt-12">
-          <button
-            className="
-              px-9 py-3 rounded-full text-[14px] text-[#8A9BBE]
-              border border-[#2A3A5C] bg-transparent
-              transition-all duration-200
-              hover:border-[#4A6AA0] hover:text-white hover:bg-[#0E172F]
-              cursor-pointer
-            "
-          >
-            Explore More
-          </button>
-        </div>
-
       </div>
-    </section>
+    </motion.section>
   );
 }

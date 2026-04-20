@@ -28,18 +28,17 @@ export default function Traders() {
     { icon: <EyeIcon />, title: items[1]?.title ?? "Transparency", description: items[1]?.desc ?? "" },
   ];
 
-  const {
-    emblaRef,
-    selectedIndex,
-    scrollPrev,
-    scrollNext,
-    scrollTo,
-  } = useCarousel({
-    loop: true,
-    autoplay: true,
-    autoplayDelay: 4000,
-    speed: 25, 
-  });
+ const {
+  emblaRef,
+  selectedIndex,
+  scrollPrev,
+  scrollNext,
+  scrollTo,
+} = useCarousel({
+  loop: true,
+  autoplay: true,
+  autoplayDelay: 4000,
+});
 
   return (
     <section className="w-full py-16 bg-transparent">
