@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Blog from '@/models/Blog';
 import { validateBlogData } from '@/lib/validation_middleware/validate';
+import { saveUpload } from '@/lib/upload';
 
 // GET: Retrieve all blogs from MongoDB
 export async function GET() {
@@ -19,9 +20,23 @@ export async function GET() {
 // POST: Save a new blog to MongoDB
 export async function POST(request: Request) {
   try {
-    const body = await request.json().catch(() => {
-      throw new Error("Invalid JSON format in request body.");
-    });
+    const contentType = request.headers.get("content-type") || "";
+    let body: any = {};
+
+    if (contentType.includes("multipart/form-data")) {
+      const formData = await request.formData();
+      body = Object.fromEntries(formData.entries());
+
+      // Special handling for file uploads
+      const coverImageFile = formData.get("coverImage");
+      if (coverImageFile instanceof File) {
+        body.coverImage = await saveUpload(coverImageFile);
+      }
+    } else {
+      body = await request.json().catch(() => {
+        throw new Error("Invalid JSON format in request body. Use application/json or multipart/form-data.");
+      });
+    }
     
     // Validation Middleware
     const validationError = validateBlogData(body);
