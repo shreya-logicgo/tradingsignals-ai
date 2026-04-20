@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Blog from '@/models/Blog';
 import { validateBlogData } from '@/lib/validation_middleware/validate';
@@ -62,6 +63,7 @@ export async function POST(request: Request) {
       slug: slug
     });
 
+    revalidatePath('/blogs');
     return NextResponse.json(newBlog, { status: 201 });
   } catch (error) {
     console.error("Error saving blog:", error);

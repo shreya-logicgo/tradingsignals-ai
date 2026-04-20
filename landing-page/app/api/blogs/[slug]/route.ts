@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Blog from '@/models/Blog';
 import { validateBlogData } from '@/lib/validation_middleware/validate';
@@ -71,6 +72,9 @@ export async function PUT(
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
 
+    revalidatePath('/blogs');
+    revalidatePath(`/blogs/${updatedBlog.slug}`);
+    
     return NextResponse.json(updatedBlog);
   } catch (error) {
     console.error("Error updating blog:", error);
@@ -99,6 +103,9 @@ export async function DELETE(
     if (!deletedBlog) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
+
+    revalidatePath('/blogs');
+    revalidatePath(`/blogs/${identifier}`);
 
     return NextResponse.json({ message: "Blog deleted successfully" });
   } catch (error) {

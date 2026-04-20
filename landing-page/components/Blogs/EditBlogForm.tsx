@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CoverImageSelector from "@/components/generate-blog/CoverImageSelector";
@@ -84,6 +85,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
 export default function EditBlogForm({ post }: EditBlogFormProps) {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [title, setTitle] = useState(post.title);
   const [coverImage, setCoverImage] = useState(post.coverImage || "");
   const [isSaving, setIsSaving] = useState(false);
@@ -141,6 +143,11 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
         body: JSON.stringify({ title, content: htmlContent, coverImage }),
       });
       if (!response.ok) throw new Error("Failed to update blog");
+      
+      // Invalidate the query for this specific blog to ensure fresh data is fetched
+      queryClient.invalidateQueries({ queryKey: ["blog", post.slug] });
+      queryClient.invalidateQueries({ queryKey: ["blog", post._id] });
+      
       router.push(`/blogs/${post.slug}`);
       router.refresh();
     } catch (error) {

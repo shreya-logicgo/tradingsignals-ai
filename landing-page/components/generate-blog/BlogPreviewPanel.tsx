@@ -11,7 +11,7 @@ type BlogPreviewPanelProps = {
   coverImage?: string;
 };
 
-const BlogPreviewPanel = ({
+const   BlogPreviewPanel = ({
   content,
   isLoading,
   onRegenerate,
