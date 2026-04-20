@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
+
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
-import glowBar from "@/assets/images/glowBars.png";
 import NoiseOverlay from "@/components/NoiseOverlay";
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -299,30 +298,15 @@ export default function Stats() {
 
   return (
     <section
-      className="w-full relative py-20 lg:py-30 bg-transparent min-h-screen"
+      className="relative h-auto overflow-visible pt-6 pb-6 bg-transparent"
       ref={sectionRef}
     >
       <NoiseOverlay />
 
-      {/* Background radial gradient */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 0,
-          background: `radial-gradient(
-            ellipse 27% 52% at 50% 50%,
-            rgba(0, 18, 184, 0.50) 0%,
-            rgba(0, 18, 184, 0.25) 30%,
-            rgba(0, 18, 184, 0.08) 55%,
-            transparent 70%
-          )`,
-        }}
-      />
-
       {/* GlowBar parallax image */}
-      <motion.div
+      {/* <motion.div
         className="absolute md:-top-[25rem] -top-[20rem] mx-auto inset-0 pointer-events-none lg:h-[150vh] lg:max-w-300 h-[120vh] max-w-200"
-        style={{ zIndex: -1, y: smoothY }}
+        style={{ zIndex: 5, y: smoothY }}
       >
         <Image
           src={glowBar}
@@ -332,7 +316,7 @@ export default function Stats() {
           style={{ mixBlendMode: "screen" }}
           priority
         />
-      </motion.div>
+      </motion.div> */}
 
       {/* Stats Content */}
       <div
