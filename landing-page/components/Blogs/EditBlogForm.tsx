@@ -7,7 +7,7 @@ import StarterKit from "@tiptap/starter-kit";
 import CoverImageSelector from "@/components/generate-blog/CoverImageSelector";
 import {
   Bold, Italic, List, ListOrdered, Heading1, Heading2, Quote,
-  Undo, Redo, Save, X, ArrowLeft, Sparkles, Clock, Hash, Code
+  Undo, Redo, Save, X, ArrowLeft, Sparkles, Clock, Hash, Code, Image
 } from "lucide-react";
 
 interface BlogPost {
@@ -26,10 +26,9 @@ const MenuBar = ({ editor }: { editor: any }) => {
   if (!editor) return null;
 
   const btnClass = (active: boolean) =>
-    `w-8 h-8 rounded-lg transition-all duration-150 flex items-center justify-center text-sm ${
-      active
-        ? "bg-cyan-400/20 text-cyan-400 ring-1 ring-cyan-400/40"
-        : "text-slate-500 hover:text-slate-200 hover:bg-white/5"
+    `w-8 h-8 rounded-lg transition-all duration-150 flex items-center justify-center text-sm ${active
+      ? "bg-cyan-400/20 text-cyan-400 ring-1 ring-cyan-400/40"
+      : "text-slate-500 hover:text-slate-200 hover:bg-white/5"
     }`;
 
   return (
@@ -181,11 +180,10 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
           <button
             onClick={handleSave}
             disabled={isSaving}
-            className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
-              isSaving
+            className={`flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${isSaving
                 ? "bg-white/10 text-white/40 cursor-not-allowed"
                 : "bg-cyan-400 text-[#010B24] hover:bg-cyan-300 active:scale-95 shadow-[0_0_24px_rgba(34,211,238,0.25)]"
-            }`}
+              }`}
           >
             {isSaving ? (
               <div className="w-3.5 h-3.5 border-2 border-current/30 border-t-current animate-spin rounded-full" />
@@ -234,7 +232,7 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
           </div>
 
           {/* Rich-text editor */}
-          <div className="rounded-2xl border border-white/7 bg-[#08111f] overflow-hidden ring-0 focus-within:ring-1 focus-within:ring-cyan-400/20 transition-all duration-300">
+          <div className="rounded-2xl border border-cosmos bg-[#08111f] overflow-hidden ring-0 focus-within:ring-1 focus-within:ring-cyan-400/20 transition-all duration-300">
             <MenuBar editor={editor} />
             <div className="max-h-[65vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
               <EditorContent editor={editor} />
@@ -243,45 +241,49 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
         </div>
 
         {/* ── Sidebar ── */}
-        <aside className="xl:w-72 shrink-0 space-y-4">
-          <div className="rounded-2xl border  bg-[#08111f] overflow-hidden">
-
-            {/* Section: Cover */}
-            <div className="px-5 pt-5 pb-4 ">
-              {/* <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-4">Cover Image</p> */}
-              <CoverImageSelector
-                coverImage={coverImage}
-                onImageChange={setCoverImage}
-                onGenerate={handleImageGenerate}
-                isLoading={isGeneratingImage}
-                regenCount={regenCount}
-                maxRegen={MAX_REGEN}
-              />
-            </div>
-
-
-            {/* Regen hint */}
-            {regenCount > 0 && (
-              <div className="mx-4 mb-4 flex items-center gap-2 text-[11px] text-slate-500 bg-white/3 rounded-xl px-3 py-2">
-                <Sparkles className="w-3 h-3 text-cyan-400/60 shrink-0" />
-                {MAX_REGEN - regenCount} image {MAX_REGEN - regenCount === 1 ? "generation" : "generations"} left
+        <aside className="lg:w-80 xl:w-96 shrink-0 space-y-6">
+          <div className="rounded-2xl bg-[#08111f] border border-white/5 overflow-hidden shadow-2xl shadow-black/40 transition-all duration-300">
+            {/* Section: Cover & Actions */}
+            <div className="p-6 space-y-6">
+              {/* Image Selector Section */}
+              <div className="-mt-6"> {/* Offsets internal CoverImageSelector margin */}
+                <CoverImageSelector
+                  coverImage={coverImage}
+                  onImageChange={setCoverImage}
+                  onGenerate={handleImageGenerate}
+                  isLoading={isGeneratingImage}
+                  regenCount={regenCount}
+                  maxRegen={MAX_REGEN}
+                />
               </div>
-            )}
-          </div>
 
-          {/* Mobile save button */}
-          <button
-            onClick={handleSave}
-            disabled={isSaving}
-            className="xl:hidden w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-semibold bg-cyan-400 text-[#010B24] hover:bg-cyan-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-[0.98]"
-          >
-            {isSaving ? (
-              <div className="w-4 h-4 border-2 border-current/30 border-t-current animate-spin rounded-full" />
-            ) : (
-              <Save className="w-4 h-4" />
-            )}
-            {isSaving ? "Saving…" : "Save Changes"}
-          </button>
+              {/* Extras & Hints */}
+              <div className="space-y-4">
+                {regenCount > 0 && (
+                  <div className="flex items-center gap-2 text-[11px] text-slate-400 bg-white/5 rounded-xl px-3 py-2 border border-white/5">
+                    <Sparkles className="w-3 h-3 text-cyan-400/60 shrink-0" />
+                    <span>
+                      {MAX_REGEN - regenCount} {MAX_REGEN - regenCount === 1 ? "generation" : "generations"} remaining
+                    </span>
+                  </div>
+                )}
+
+                {/* Main Save Action */}
+                <button
+                  onClick={handleSave}
+                  disabled={isSaving}
+                  className="w-full flex lg:mt-5 mt-2 items-center justify-center gap-2 py-3.5 rounded-xl border border-cosmos bg-cyan-400 text-[#010B24] hover:bg-cyan-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-bold text-sm active:scale-[0.98] shadow-[0_0_20px_rgba(34,211,238,0.15)] group"
+                >
+                  {isSaving ? (
+                    <div className="w-3.5 h-3.5 border-2 border-current/30 border-t-current animate-spin rounded-full" />
+                  ) : (
+                    <Save className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                  )}
+                  {isSaving ? "Saving…" : "Save Changes"}
+                </button>
+              </div>
+            </div>
+          </div>
         </aside>
       </div>
 

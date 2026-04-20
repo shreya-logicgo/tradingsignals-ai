@@ -92,35 +92,30 @@ const CoverImageSelector = ({
         )}
       </div>
 
-      <div className="flex justify-center items-center gap-4 mt-4">
+      <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row lg:gap-3 gap-2 lg:mt-6 mt-3">
         <button
           type="button"
           onClick={handleUploadClick}
           disabled={isLoading}
-          className="flex w-full items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-cosmos bg-mirage text-titan-white text-sm hover:bg-cosmos/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="flex-1 cursor-pointer flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl border border-cosmos bg-mirage/50 text-titan-white text-sm hover:bg-cosmos/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed group shadow-sm active:scale-[0.98]"
         >
-          <Upload className="w-4 h-4" />
-          {t("generateBlog.upload", { defaultValue: "Upload" })}
+          <Upload className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+          <span className="font-medium">{t("generateBlog.upload", { defaultValue: "Upload" })}</span>
         </button>
 
         <button
           type="button"
           onClick={onGenerate}
           disabled={isLoading || regenCount >= maxRegen}
-          className="flex w-full items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-mirage border border-cosmos text-vivid-cyan text-sm hover:bg-vivid-cyan/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:grayscale cursor-pointer"
+          className="flex-1 cursor-pointer  flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl bg-mirage/50 border border-cosmos text-vivid-cyan text-sm hover:bg-vivid-cyan/10 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:grayscale group shadow-sm active:scale-[0.98]"
         >
-          <ReSpin className={`w-4 h-4 ${isLoading ? "animate-spin" : ""}`} />
-          {regenCount > 0 ? t("generateBlog.regenerate", { defaultValue: "Regenerate" }) : t("generateBlog.generateAI", { defaultValue: "AI Generate" })}
+          <ReSpin className={`w-4 h-4 ${isLoading ? "animate-spin" : "group-hover:rotate-180 transition-transform duration-500"}`} />
+          <span className="font-bold whitespace-nowrap">
+            {regenCount > 0 ? t("generateBlog.regenerate", { defaultValue: "Regenerate" }) : t("generateBlog.generateAI", { defaultValue: "AI Generate" })}
+          </span>
         </button>
       </div>
 
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleFileChange}
-        accept="image/*"
-        className="hidden"
-      />
     </div>
   );
 };
