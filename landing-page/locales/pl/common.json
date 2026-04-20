@@ -37,7 +37,7 @@
             },
             "analytics": {
                 "title": "Analityka w czasie rzeczywistym",
-                "desc": "Śledź wyniki, analizuj transakcje i optymalizuj strategie dzięki naszemu wszechstronnemu panelowi analitycznemu i narzędziom raportowania."
+                "desc": "Śledź wyniki, analizuj transakcje i optymalizizuj strategie dzięki naszemu wszechstronnemu panelowi analitycznemu i narzędziom raportowania."
             }
         }
     },
@@ -313,5 +313,29 @@
         },
         "copyright": "© 2026 Trading Signals AI. Wszelkie prawa zastrzeżone.",
         "disclaimer": "Handel wiąże się ze znacznym ryzykiem i nie jest odpowiedni dla każdego inwestora. Wyniki z przeszłości nie są gwarancją przyszłych rezultatów. To nie jest porada finansowa."
+    },
+    "exchangePartners": {
+        "badge": "Partnerzy giełdowi",
+        "title": "Obsługiwane giełdy kryptowalut",
+        "desc": "„Jeśli nie masz konta krypto, możesz zarejestrować się u naszych obsługiwanych partnerów giełdowych”",
+        "subtitle": "Nasza platforma jest połączona z 15 różnymi giełdami",
+        "cta": "Utwórz konto",
+        "exchanges": {
+            "binance": "Największa na świecie giełda kryptowalut z wysoką płynnością i zaawansowanymi narzędziami handlowymi.",
+            "bitget": "Znana z copy tradingu i potężnego handlu pochodnymi krypto.",
+            "bybit": "Popularna platforma do szybkiego handlu pochodnymi krypto i profesjonalnych narzędzi.",
+            "gate": "Bezpieczna platforma oferująca szeroką gamę opcji handlu aktywami cyfrowymi.",
+            "okx": "Globalna giełda krypto oferująca handel spot, futures i usługi DeFi.",
+            "mexc": "Szybko rozwijająca się giełda oferująca różnorodne aktywa krypto i niskie opłaty handlowe.",
+            "kucoin": "Zaufana giełda z setkami kryptowalut i zaawansowanymi funkcjami.",
+            "kraken": "Niezawodna giełda krypto znana z silnego bezpieczeństwa i przejrzystości.",
+            "coinbase": "Wiodąca regulowana giełda, której ufają miliony osób dzięki prostemu inwestowaniu w kryptowaluty.",
+            "huobi": "Weteran wśród giełd z głęboką płynnością i kompleksowymi produktami handlowymi.",
+            "cryptocom": "Płać, handluj i zdobywaj nagrody krypto na jednej z najbardziej rozbudowanych platform.",
+            "bitfinex": "Zaawansowane narzędzia handlowe i głęboka płynność dla profesjonalnych traderów krypto.",
+            "gemini": "Giełda z certyfikatem SOC 2, zbudowana z myślą o bezpieczeństwie i zgodności klasy instytucjonalnej.",
+            "phemex": "Szybkie transakcje na pochodnych i spot z zerowymi opłatami na wybranych parach.",
+            "poloniex": "Doświadczona giełda oferująca handel z depozytem zabezpieczającym i szeroki wybór altcoinów."
+        }
     }
 }
