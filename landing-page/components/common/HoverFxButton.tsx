@@ -22,7 +22,7 @@ export default function HoverFxButton({ href, children }: { href: string, childr
           scale: 1,
           filter: "blur(0px)",
         }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
       />
 
       <Link
