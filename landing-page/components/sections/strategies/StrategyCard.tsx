@@ -38,13 +38,13 @@ export default function StrategyCard({
         <div className="absolute inset-0 rounded-xl bg-white/5 transition-opacity duration-500 group-hover:opacity-0" />
         <div className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[conic-gradient(from_0deg_at_50%_50%,#2563EB_0%,#06B6D4_25%,#8B5CF6_50%,#06B6D4_75%,#2563EB_100%)]" />
         <div
-          className="absolute pointer-events-none bg-[#0a1124]"
+          className="absolute pointer-events-none bg-[#010b24]"
           style={{ inset: "2px", borderRadius: "13px" }}
         />
       </div>
 
       {/* Inner Card */}
-      <div className="relative flex flex-col w-full flex-1 p-3 gap-2 rounded-[10px] bg-white/5 z-10 overflow-hidden backdrop-blur-sm">
+      <div className="relative flex flex-col w-full flex-1 p-4 gap-3 rounded-[10px] bg-white/5 z-10 overflow-hidden backdrop-blur-sm">
 
         {/* Internal Glow */}
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -61,9 +61,9 @@ export default function StrategyCard({
         </div>
 
         {/* Text — flex-grow so footer is always pushed to bottom */}
-        <div className="flex flex-col gap-2 relative z-10 flex-grow">
+        <div className="flex flex-col gap-2 relative z-10 flex-grow pt-2">
           <h3
-            className="text-white text-[15px] font-medium leading-snug font-hoves"
+            className="text-white text-[17px] font-medium leading-snug font-hoves"
           >
             {name}
           </h3>
@@ -80,18 +80,18 @@ export default function StrategyCard({
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
               <span
-                className="text-lg font-semibold text-green-500 leading-tight tracking-tight font-hoves"
+                className="text-[25px] text-[#43C251] leading-tight tracking-tight font-hoves"
               >
                 {roi}
               </span>
               <span
-                className="text-[11px] text-white/30 uppercase tracking-wider font-hoves"
+                className="text-[11px] text-white/70 tracking-wider font-hoves"
               >
                 {t("strategy.monthlyAvg")}
               </span>
             </div>
             <span
-              className="text-white/80 font-medium text-sm font-hoves"
+              className="text-white font-medium text-[19px] font-hoves"
             >
               {price}
             </span>
@@ -99,7 +99,7 @@ export default function StrategyCard({
 
           <Link
             href="https://crypto.tradingsignals.ai/login"
-            className="w-full h-11 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300 bg-blue-600/10 text-white group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 font-hoves"
+            className="w-full h-11 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300 bg-[#010B24] text-white group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 font-hoves"
           >
             {t("strategy.card_cta")}
           </Link>

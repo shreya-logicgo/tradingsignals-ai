@@ -45,9 +45,9 @@ export default function Categories() {
     // bg-transparent so the parent AmbientTradingSection gradient shows through.
     // overflow-visible keeps the shared layer unclipped.
     // Removed: unified-energy-field div and all its children.
-    <section className="w-full bg-transparent py-6 md:py-10 relative overflow-visible">
+    <section className="w-full bg-transparent pt-46 md:pt-50 pb-8 md:pb-10 relative z-10 overflow-visible -mt-24">
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-[2]">
         <div className="flex flex-col gap-8 lg:gap-10">
 
           <motion.div
@@ -55,7 +55,7 @@ export default function Categories() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12"
+            className="flex flex-col lg:flex-row lg:items-end justify-between gap-1 md:gap-3"
           >
             <div className="flex flex-col gap-4 max-w-[439px]">
               <div className="inline-flex self-start items-center  py-1.5 ">
@@ -75,7 +75,7 @@ export default function Categories() {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 relative z-[2]">
             {categories.map((cat, index) => (
               <CategoryCard key={cat.title} {...cat} index={index} />
             ))}

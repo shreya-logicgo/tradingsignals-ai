@@ -35,7 +35,7 @@ export default function Steps() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="w-full py-10 md:py-14 relative bg-transparent overflow-x-clip overflow-y-visible"
+        className="w-full py-8 md:py-10 relative bg-transparent overflow-x-clip overflow-y-visible"
       >
         
       <NoiseOverlay/>
@@ -44,7 +44,7 @@ export default function Steps() {
 
             {/* ── HEADING ── */}
             <motion.div variants={fadeUpVariant} className="lg:col-start-2 lg:row-start-1 flex flex-col items-center text-center lg:pt-14 mb-8 lg:mb-0 order-1">
-              <div className="inline-flex items-center justify-center px-4 py-1.5  mb-6 backdrop-blur-md">
+              <div className="inline-flex items-center justify-center px-4 py-1.5  mb-3 backdrop-blur-md">
                 <span className="text-[15px] font-mono tracking-widest uppercase text-vivid-cyan">
                   {t("gettingStarted.title")}
                 </span>

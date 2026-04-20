@@ -36,7 +36,7 @@ export default function Testimonials() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full relative overflow-hidden py-6 md:py-12 bg-transparent overflow-visible">
+      className="w-full relative overflow-hidden py-8 md:py-10 bg-transparent overflow-visible">
 
       {/* Radial depth glow */}
       <div className="absolute inset-x-0 -top-1/4 -bottom-1/4 z-0 pointer-events-none overflow-hidden select-none">
@@ -65,7 +65,7 @@ export default function Testimonials() {
           {/* CENTER COLUMN - Title, text, and main card */}
           <motion.div
             variants={fadeUpVariant}
-            className="flex flex-col items-center text-center gap-4 md:gap-6 order-1 lg:order-2 md:col-span-2 lg:col-span-1 w-full mx-auto"
+            className="flex flex-col items-center text-center gap-1 md:gap-3 order-1 lg:order-2 md:col-span-2 lg:col-span-1 w-full mx-auto"
           >
             <div className="inline-flex items-center px-4 py-1.5 shadow-inner">
               <span
