@@ -57,13 +57,6 @@ html {
   }
 }
 
-.animate-marquee {
-  animation: marquee 20s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
 
 @layer utilities {
   .animate-border-spin {
@@ -488,3 +481,96 @@ html {
   filter: blur(130px);
   animation: unified-drift 15s ease-in-out infinite reverse;
 }
+
+/*
+ * Carousel layout — enforces horizontal-only motion for Embla loop mode.
+ *
+ * The vertical "rising card" artifact happens when:
+ *   1. The Embla viewport/container has no fixed height, so clone slides
+ *      can briefly paint at their natural document position (bottom of stack)
+ *      before Embla translates them into the track.
+ *   2. `containScroll` forces Embla to recalculate scroll bounds mid-loop,
+ *      causing a Y-axis shift on the cloned slide.
+ *
+ * These rules lock every slide to the same row height and hide any
+ * overflow so clones are invisible until Embla slides them in from the side.
+ */
+
+/* ─── Viewport ─────────────────────────────────────────────────────────────
+   overflow-hidden clips the track; without this, cloned loop slides are
+   briefly visible at their off-screen positions.                          */
+.carousel__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* ─── Track (the scrollable inner container) ────────────────────────────
+   display:flex + will-change:transform are what Embla expects.
+   backface-visibility:hidden prevents sub-pixel flicker on GPU compositing.
+   touch-action:pan-y allows vertical page scroll while Embla owns X-axis. */
+.carousel__container {
+  display: flex;
+  align-items: stretch;       /* all slides stretch to tallest sibling height */
+  touch-action: pan-y;
+  backface-visibility: hidden;
+  will-change: transform;     /* promote track to its own GPU layer */
+}
+
+/* ─── Slides ────────────────────────────────────────────────────────────
+   flex-shrink:0 is mandatory — allows slides to keep their declared width
+   and not collapse as Embla translates the track.
+
+   min-width controls how many slides are visible at once:
+     - 100%      → 1 slide  (mobile-first)
+     - 50%       → 2 slides (tablet)
+     - 33.333%   → 3 slides (desktop)
+   Adjust or use CSS custom properties to match your design.
+
+   overflow:hidden on each slide prevents internal content from expanding
+   the slide beyond its lane height.                                       */
+.carousel__slide {
+  flex: 0 0 100%;             /* 1 slide on mobile */
+  min-width: 0;               /* prevents flex blowout */
+  overflow: hidden;
+  /* Horizontal gap between slides — use padding rather than margin so
+     Embla's internal size calculations stay accurate.                    */
+  padding-right: 1rem;        /* adjust to your design token */
+}
+
+@media (min-width: 640px) {
+  .carousel__slide {
+    flex: 0 0 50%;            /* 2 slides on tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel__slide {
+    flex: 0 0 33.333%;        /* 3 slides on desktop */
+  }
+}
+
+/* ─── Slide inner card ──────────────────────────────────────────────────
+   height:100% makes the card fill its slide lane so all cards are the
+   same height regardless of content length — eliminates height-mismatch
+   as the source of vertical drift.                                        */
+.carousel__slide-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+  will-change: transform;
+}
+

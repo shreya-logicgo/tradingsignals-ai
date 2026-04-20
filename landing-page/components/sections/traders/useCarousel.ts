@@ -9,7 +9,12 @@ interface UseCarouselOptions {
   loop?: boolean;
   autoplay?: boolean;
   autoplayDelay?: number;
-  speed?: number; // Higher = slower / smoother glide
+  /**
+   * Embla duration controls scroll animation speed.
+   * Lower values = faster. Range 20–60 works well for premium feel.
+   * Default: 28 (smooth but snappy — luxury SaaS feel)
+   */
+  duration?: number;
   dragFree?: boolean;
 }
 
@@ -17,37 +22,52 @@ export function useCarousel({
   loop = true,
   autoplay = true,
   autoplayDelay = 4500,
-  speed = 55,
+  duration = 28,
   dragFree = false,
 }: UseCarouselOptions = {}) {
   /**
-   * Keep plugin stable across renders
+   * Stable autoplay plugin ref — recreating this on render causes jitter
+   * and breaks the stopOnMouseEnter / resume cycle.
    */
   const autoplayPlugin = useRef(
     Autoplay({
       delay: autoplayDelay,
-      stopOnInteraction: false,
-      stopOnMouseEnter: true,
-      stopOnFocusIn: true,
+      stopOnInteraction: false,   // don't kill autoplay on drag; resume after
+      stopOnMouseEnter: true,     // pause on hover
+      stopOnFocusIn: true,        // pause on keyboard focus
       playOnInit: true,
     })
   );
 
   /**
-   * Smoother motion settings
+   * KEY FIX — Options that produce clean horizontal-only looping:
+   *
+   * ✅ loop: true              — enables seamless infinite scroll
+   * ✅ align: "start"          — slides anchor left; avoids centering math
+   *                              that can cause fractional-pixel drift
+   * ✅ duration                — controls easing speed (not CSS transition)
+   * ✅ skipSnaps: false        — always snap to a defined slide position;
+   *                              prevents momentum overshooting to wrong index
+   * ✅ dragFree: false         — free-drag + loop = vertical drift on mobile
+   * ❌ containScroll removed   — "trimSnaps" / "keepSnaps" conflict with loop
+   *                              mode and cause the bottom-merge artifact:
+   *                              Embla shifts cloned slides on the Y axis when
+   *                              containScroll tries to trim the scroll bounds
+   *                              but loop has already repositioned the clone.
+   * ❌ watchSlides removed     — not a valid EmblaOptionsType key; harmless but
+   *                              noisy; watchResize handles DOM changes.
    */
   const options: EmblaOptionsType = useMemo(
     () => ({
       loop,
       align: "start",
-      duration: speed,
+      duration,
       skipSnaps: false,
       dragFree,
-      containScroll: "trimSnaps",
       watchDrag: true,
       watchResize: true,
     }),
-    [loop, speed, dragFree]
+    [loop, duration, dragFree]
   );
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -65,7 +85,6 @@ export function useCarousel({
     if (!emblaApi) return;
 
     updateSelected(emblaApi);
-
     emblaApi.on("select", updateSelected);
     emblaApi.on("reInit", updateSelected);
 
@@ -76,7 +95,8 @@ export function useCarousel({
   }, [emblaApi, updateSelected]);
 
   /**
-   * Restart autoplay after manual navigation
+   * After manual navigation, reset the autoplay timer so the card the user
+   * just navigated to gets its full dwell time before advancing.
    */
   const restartAutoplay = useCallback(() => {
     if (!autoplay) return;

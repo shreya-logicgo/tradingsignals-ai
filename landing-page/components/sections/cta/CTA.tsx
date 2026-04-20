@@ -6,6 +6,8 @@ import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";
 import blog3 from "@/assets/images/blog-3.jpg";
 import Link from "next/link";
+import HoverFxButton from "@/components/common/HoverFxButton";
+import { motion } from "framer-motion";
 
 interface PostData {
   title: string;
@@ -106,12 +108,14 @@ export default function CTA() {
 
             {/* CTA Button — Localized */}
             <div className="flex justify-center mt-4">
-              <Link
+              <motion.div whileTap={{ scale: 0.98 }}>
+              <HoverFxButton
                 href="https://crypto.tradingsignals.ai/login"
-                className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black inline-flex items-center justify-center"
+                className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
               >
                 {t("blog.cta")}
-              </Link>
+              </HoverFxButton>
+            </motion.div>
             </div>
           </div>
         </div>
@@ -119,3 +123,5 @@ export default function CTA() {
     </section>
   );
 }
+
+
