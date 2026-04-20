@@ -322,20 +322,20 @@
         "cta": "Utwórz konto",
         "exchanges": {
             "binance": "Największa na świecie giełda kryptowalut z wysoką płynnością i zaawansowanymi narzędziami handlowymi.",
-            "bitget": "Znana z copy tradingu i potężnego handlu pochodnymi krypto.",
-            "bybit": "Popularna platforma do szybkiego handlu pochodnymi krypto i profesjonalnych narzędzi.",
-            "gate": "Bezpieczna platforma oferująca szeroką gamę opcji handlu aktywami cyfrowymi.",
-            "okx": "Globalna giełda krypto oferująca handel spot, futures i usługi DeFi.",
-            "mexc": "Szybko rozwijająca się giełda oferująca różnorodne aktywa krypto i niskie opłaty handlowe.",
+            "binanceFutures": "Handluj kontraktami futures na krypto z dźwignią do 125x na wiodącej platformie na świecie.",
+            "bybitUta": "Jednolite konto handlowe (UTA) dla rynku spot, instrumentów pochodnych i opcji na Bybit.",
+            "bitgetSpot": "Handel spot z głęboką płynnością i szerokim wyborem par kryptowalutowych.",
+            "bitgetFutures": "Potężny handel kontraktami futures z funkcjami kopiowania transakcji i niskimi opłatami.",
+            "mexc": "Szybko rozwijająca się giełda oferująca różnorodne aktywa krypto i niskie opłaty transakcyjne.",
+            "okx": "Globalna giełda krypto oferująca handel spot, futures oraz usługi DeFi.",
             "kucoin": "Zaufana giełda z setkami kryptowalut i zaawansowanymi funkcjami.",
-            "kraken": "Niezawodna giełda krypto znana z silnego bezpieczeństwa i przejrzystości.",
-            "coinbase": "Wiodąca regulowana giełda, której ufają miliony osób dzięki prostemu inwestowaniu w kryptowaluty.",
-            "huobi": "Weteran wśród giełd z głęboką płynnością i kompleksowymi produktami handlowymi.",
-            "cryptocom": "Płać, handluj i zdobywaj nagrody krypto na jednej z najbardziej rozbudowanych platform.",
+            "htx": "Dawniej Huobi — weteran wśród giełd z głęboką płynnością i globalnym zasięgiem.",
+            "blofin": "Profesjonalna platforma handlu kontraktami futures z konkurencyjnymi opłatami i głęboką płynnością.",
             "bitfinex": "Zaawansowane narzędzia handlowe i głęboka płynność dla profesjonalnych traderów krypto.",
-            "gemini": "Giełda z certyfikatem SOC 2, zbudowana z myślą o bezpieczeństwie i zgodności klasy instytucjonalnej.",
-            "phemex": "Szybkie transakcje na pochodnych i spot z zerowymi opłatami na wybranych parach.",
-            "poloniex": "Doświadczona giełda oferująca handel z depozytem zabezpieczającym i szeroki wybór altcoinów."
+            "kraken": "Niezawodna giełda krypto znana z silnego bezpieczeństwa i przejrzystości.",
+            "gate": "Bezpieczna platforma oferująca szeroką gamę opcji handlu aktywami cyfrowymi.",
+            "exmo": "Europejska giełda krypto z obsługą walut fiat i szeroką gamą par handlowych.",
+            "xt": "Platforma handlowa zintegrowana społecznościowo z szerokim wyborem aktywów krypto."
         }
     }
 }

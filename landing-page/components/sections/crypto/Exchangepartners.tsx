@@ -13,95 +13,95 @@ interface Exchange {
 }
 
 const exchanges: Exchange[] = [
- {
-  name: "Binance",
-  descKey: "exchangePartners.exchanges.binance",
-  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png",
-  link: "https://accounts.binance.com/en/register",
-},
-{
-  name: "Bitget",
-  descKey: "exchangePartners.exchanges.bitget",
-  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/513.png",
-  link: "https://www.bitget.com/en/register",
-},
-{
-  name: "Bybit",
-  descKey: "exchangePartners.exchanges.bybit",
-  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/521.png",
-  link: "https://www.bybitglobal.com/en/register",
-},
-{
-  name: "Gate.io",
-  descKey: "exchangePartners.exchanges.gate",
-  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/302.png",
-  link: "https://www.gate.com/signup",
-},
-{
-  name: "OKX",
-  descKey: "exchangePartners.exchanges.okx",
-  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/294.png",
-  link: "https://www.okx.com/account/login",
-},
-{
-  name: "MEXC",
-  descKey: "exchangePartners.exchanges.mexc",
-  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/544.png",
-  link: "https://www.mexc.co/en-IN/registe",
-},
-{
-  name: "KuCoin",
-  descKey: "exchangePartners.exchanges.kucoin",
-  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/311.png",
-  link: "https://www.kucoin.com/ucenter/signup",
-},
-{
-  name: "Kraken",
-  descKey: "exchangePartners.exchanges.kraken",
-  logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/24.png",
-  link: "https://www.kraken.com/sign-up",
-},
   {
-    name: "Coinbase",
-    descKey: "exchangePartners.exchanges.coinbase",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/89.png",
-    link: "https://www.coinbase.com/join/YOUR_REF",
+    name: "Binance",
+    descKey: "exchangePartners.exchanges.binance",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png",
+    link: "https://accounts.binance.com/en/register?ref=38024889",
   },
   {
-    name: "Huobi",
-    descKey: "exchangePartners.exchanges.huobi",
+    name: "Binance Futures",
+    descKey: "exchangePartners.exchanges.binanceFutures",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png",
+    link: "https://accounts.binance.com/en/register?ref=38024889",
+  },
+  {
+    name: "Bybit UTA",
+    descKey: "exchangePartners.exchanges.bybitUta",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/521.png",
+    link: "https://www.bybit.com",
+  },
+  {
+    name: "Bitget Spot",
+    descKey: "exchangePartners.exchanges.bitgetSpot",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/513.png",
+    link: "https://www.bitget.com/",
+  },
+  {
+    name: "Bitget Futures",
+    descKey: "exchangePartners.exchanges.bitgetFutures",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/513.png",
+    link: "https://www.bitget.com/",
+  },
+  {
+    name: "MEXC",
+    descKey: "exchangePartners.exchanges.mexc",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/544.png",
+    link: "https://www.mexc.com/",
+  },
+  {
+    name: "OKX",
+    descKey: "exchangePartners.exchanges.okx",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/294.png",
+    link: "https://www.okx.com/join/1839944",
+  },
+  {
+    name: "KuCoin",
+    descKey: "exchangePartners.exchanges.kucoin",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/311.png",
+    link: "https://www.kucoin.com/ucenter/signup?rcode=rBBECG6",
+  },
+  {
+    name: "HTX",
+    descKey: "exchangePartners.exchanges.htx",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/102.png",
-    link: "http://htx.com/login",
+    link: "https://www.htx.com/en-us/",
   },
   {
-    name: "Crypto.com",
-    descKey: "exchangePartners.exchanges.cryptocom",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/338.png",
-    link: "https://accounts.crypto.com/en/signup",
+    name: "Blofin Futures",
+    descKey: "exchangePartners.exchanges.blofin",
+    logo: "/blofin.svg",
+    link: "https://www.blofin.com/",
   },
   {
     name: "Bitfinex",
     descKey: "exchangePartners.exchanges.bitfinex",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/37.png",
-    link: "https://www.bitfinex.com/sign-up/",
+    link: "https://bitfinex.com/?refcode=TxQqcB-OY",
   },
   {
-    name: "Gemini",
-    descKey: "exchangePartners.exchanges.gemini",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/151.png",
-    link: "https://www.gemini.com/",
+    name: "Kraken",
+    descKey: "exchangePartners.exchanges.kraken",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/24.png",
+    link: "https://www.kraken.com/en-us",
   },
   {
-    name: "Phemex",
-    descKey: "exchangePartners.exchanges.phemex",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/524.png",
-    link: "https://phemex.com/login",
+    name: "Gate.io",
+    descKey: "exchangePartners.exchanges.gate",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/302.png",
+    link: "https://www.gate.io/signup/2794924",
   },
   {
-    name: "Poloniex",
-    descKey: "exchangePartners.exchanges.poloniex",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/22.png",
-    link: "https://www.poloniex.com/signup",
+    name: "Exmo",
+    descKey: "exchangePartners.exchanges.exmo",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/50.png",
+    link: "https://exmo.com/?ref=1719109",
+  },
+  {
+    name: "XT",
+    descKey: "exchangePartners.exchanges.xt",
+    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/525.png",
+    link: "https://www.xt.com/en/accounts/register?ref=HSI5J2",
   },
 ];
 
@@ -148,7 +148,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
               alt={`${exchange.name} logo`}
               width={36}
               height={36}
-               className="w-full h-full object-cover"
+               className="w-full h-full object-contain"
               onError={() => setImgError(true)}
             />
           )}

@@ -48,12 +48,12 @@ export async function POST(request: Request) {
       );
     }
 
+    //  "IMPORTANT: For images, use ONLY this URL format: https://loremflickr.com/800/400/{keyword}",
     const generationPrompt = [
       "Generate a complete, production-ready blog page as valid HTML.",
       "Output must be raw HTML only (no markdown, no code fences).",
       "Use inline or <style> CSS for polished styling.",
       "Do not include any JavaScript.",
-      "IMPORTANT: For images, use ONLY this URL format: https://loremflickr.com/800/400/{keyword}",
       "Replace {keyword} with a relevant term for the image (e.g., 'coding', 'nature').",
       "Ensure every <img> tag has a descriptive 'alt' attribute.",
       "",

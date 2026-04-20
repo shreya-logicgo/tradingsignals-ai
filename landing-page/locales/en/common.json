@@ -322,20 +322,20 @@
         "cta": "Create Account",
         "exchanges": {
             "binance": "World's largest crypto exchange with high liquidity and advanced trading tools.",
-            "bitget": "Known for copy trading and powerful crypto derivatives trading.",
-            "bybit": "A popular platform for fast crypto derivatives trading and professional tools.",
-            "gate": "A secure platform offering a wide range of digital asset trading options.",
-            "okx": "A global crypto exchange offering spot, futures, and DeFi trading services.",
+            "binanceFutures": "Trade crypto futures with up to 125x leverage on the world's leading platform.",
+            "bybitUta": "Unified trading account for spot, derivatives, and options on Bybit.",
+            "bitgetSpot": "Spot trading with deep liquidity and a wide selection of crypto pairs.",
+            "bitgetFutures": "Powerful futures trading with copy trade features and low fees.",
             "mexc": "A fast-growing exchange offering diverse crypto assets and low trading fees.",
+            "okx": "A global crypto exchange offering spot, futures, and DeFi trading services.",
             "kucoin": "A trusted exchange with hundreds of cryptocurrencies and advanced features.",
-            "kraken": "A reliable crypto exchange known for strong security and transparency.",
-            "coinbase": "A leading regulated exchange trusted by millions for simple crypto investing.",
-            "huobi": "A veteran exchange with deep liquidity and comprehensive trading products.",
-            "cryptocom": "Pay, trade, and earn crypto rewards with one of the most feature-rich platforms.",
+            "htx": "Formerly Huobi — a veteran exchange with deep liquidity and global reach.",
+            "blofin": "Professional futures trading platform with competitive fees and deep liquidity.",
             "bitfinex": "Advanced trading tools and deep liquidity for professional crypto traders.",
-            "gemini": "A SOC 2-certified exchange built with institutional-grade security and compliance.",
-            "phemex": "High-speed derivatives and spot trading with zero fees on select pairs.",
-            "poloniex": "A seasoned exchange offering margin trading and a wide selection of altcoins."
+            "kraken": "A reliable crypto exchange known for strong security and transparency.",
+            "gate": "A secure platform offering a wide range of digital asset trading options.",
+            "exmo": "A European crypto exchange with fiat support and a wide range of trading pairs.",
+            "xt": "A social infused trading platform with a broad selection of crypto assets."
         }
     }
 }
