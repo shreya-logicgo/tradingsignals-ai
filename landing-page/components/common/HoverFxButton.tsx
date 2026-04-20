@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function HoverFxButton({ href, children }: { href: string, children: React.ReactNode }) {
+export default function HoverFxButton({ href, children, className = "" }: { href: string, children: React.ReactNode, className?: string }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -37,6 +37,7 @@ export default function HoverFxButton({ href, children }: { href: string, childr
             ? "bg-white text-black border-white" 
             : "bg-white/5 text-white border-white/20"
           }
+          ${className}
         `}
       >
         {/* ── THE CONTINUOUS FLASHY EFFECT ── */}
