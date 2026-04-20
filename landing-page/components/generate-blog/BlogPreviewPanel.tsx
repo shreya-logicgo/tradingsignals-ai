@@ -43,13 +43,15 @@ const   BlogPreviewPanel = ({
 
     setIsSaving(true);
     try {
+      const formData = new FormData();
+      formData.append("content", renderedHtml);
+      if (coverImage) {
+        formData.append("coverImage", coverImage);
+      }
+
       const response = await fetch("/api/blogs", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          content: renderedHtml,
-          coverImage: coverImage, // Now sending the selected/generated image
-        }),
+        body: formData,
       });
 
       if (!response.ok) {
