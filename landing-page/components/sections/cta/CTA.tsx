@@ -106,16 +106,21 @@ export default function CTA() {
               ))}
             </div>
 
-            {/* CTA Button — Localized */}
             <div className="flex justify-center mt-4">
-              <motion.div whileTap={{ scale: 0.98 }}>
-              <HoverFxButton
-                href="https://crypto.tradingsignals.ai/login"
-                className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 0 25px rgba(255,255,255,0.1)",
+                }}
+                whileTap={{ scale: 0.98 }}
               >
-                {t("blog.cta")}
-              </HoverFxButton>
-            </motion.div>
+                <HoverFxButton
+                  href="/blogs"
+                  className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
+                >
+                  {t("blog.cta")}
+                </HoverFxButton>
+              </motion.div>
             </div>
           </div>
         </div>
