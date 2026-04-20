@@ -11,6 +11,7 @@ import ShineButton from "@/components/common/ShineButton";
 import React from 'react';
 import NoiseOverlay from "@/components/NoiseOverlay";
 import noiseTexture from "@/assets/images/texture.png"; 
+import Link from "next/link";
 
 export default function StartToday() {
     const { t } = useTranslation();
@@ -74,9 +75,11 @@ export default function StartToday() {
                         </motion.p>
 
                         <motion.div variants={fadeUpVariant}>
+                            <Link href="https://crypto.tradingsignals.ai/login">
                             <ShineButton onClick={() => { }}>
                                 {t("starttoday.cta")}
                             </ShineButton>
+                            </Link>
                         </motion.div>
 
                         {/* <AnimatedLoginButton/> */}
