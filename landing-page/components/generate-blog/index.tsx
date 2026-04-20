@@ -11,6 +11,43 @@ const GenerateBlog = () => {
   const [blogContent, setBlogContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [lastPrompt, setLastPrompt] = useState("");
+  
+  // Cover Image State
+  const [coverImage, setCoverImage] = useState("");
+  const [isGeneratingImage, setIsGeneratingImage] = useState(false);
+  const [regenCount, setRegenCount] = useState(0);
+  const MAX_REGEN = 3;
+
+  const handleImageGenerate = async () => {
+    if (isGeneratingImage || regenCount >= MAX_REGEN) return;
+    if (!prompt.trim()) {
+      window.alert("Please enter a blog topic or prompt first.");
+      return;
+    }
+
+    setIsGeneratingImage(true);
+    try {
+      const response = await fetch("/api/generate-image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to generate image.");
+      }
+
+      const data = await response.json();
+      setCoverImage(data.url);
+      setRegenCount((prev) => prev + 1);
+    } catch (error) {
+      console.error("Image generation error:", error);
+      window.alert(error instanceof Error ? error.message : "Failed to generate AI image.");
+    } finally {
+      setIsGeneratingImage(false);
+    }
+  };
 
   const handleGenerate = async (useLastPrompt = false) => {
     if (isLoading) {
@@ -58,11 +95,18 @@ const GenerateBlog = () => {
         onPromptChange={setPrompt}
         onGenerate={handleGenerate}
         isLoading={isLoading}
+        coverImage={coverImage}
+        onImageChange={setCoverImage}
+        onImageGenerate={handleImageGenerate}
+        isGeneratingImage={isGeneratingImage}
+        regenCount={regenCount}
+        maxRegen={MAX_REGEN}
       />
       <BlogPreviewPanel
         content={blogContent}
         isLoading={isLoading}
         onRegenerate={() => handleGenerate(true)}
+        coverImage={coverImage}
       />
     </div>
   );
