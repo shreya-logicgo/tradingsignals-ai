@@ -178,26 +178,18 @@ const   BlogPreviewPanel = ({
         </div>
 
         <div
-          className="flex flex-col md:flex-row items-center gap-3 w-full">
+          className="flex flex-col md:flex-row items-center gap-3 w-full justify-end">
           <button
             type="button"
             onClick={handleSave}
             disabled={controlsDisabled}
-            className={`w-full md:w-auto bg-white text-sm md:text-base text-mirage font-bold flex items-center justify-center gap-2 px-8 py-3 rounded-full transition-all duration-300 shadow-lg shadow-white/5 ${controlsDisabled
+            className={`w-full md:w-auto bg-white text-sm md:text-base text-mirage font-bold flex items-center justify-center gap-2 px-8 py-3 rounded-full transition-all duration-300 shadow-lg shadow-white/5 whitespace-nowrap ${controlsDisabled
               ? "cursor-not-allowed opacity-60"
               : "cursor-pointer hover:bg-white/90 active:scale-[0.98]"
               }`}
           >
-            <Save className={`w-4 md:w-5 h-4 md:h-5 ${isSaving ? "animate-pulse" : ""}`} />{" "}
-            {isSaving ? "Saving..." : "Save Blog"}
-          </button>
-          <button
-            type="button"
-            disabled={true}
-            className="w-full md:w-auto bg-white/10 text-sm md:text-base text-white/50 flex items-center justify-center gap-2 px-8 py-3 rounded-full cursor-not-allowed border border-white/10 whitespace-nowrap"
-          >
-            <Plane className="w-4 md:w-5 h-4 md:h-5" />{" "}
-            {t("generateBlog.publish")}
+            <Plane className={`w-4 md:w-5 h-4 md:h-5 ${isSaving ? "animate-pulse" : ""}`} />{" "}
+            {isSaving ? "Publishing..." : t("generateBlog.publish")}
           </button>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEditor, EditorContent } from "@tiptap/react";
@@ -24,6 +25,7 @@ interface EditBlogFormProps {
 }
 
 const MenuBar = ({ editor }: { editor: any }) => {
+  const { t } = useTranslation();
   if (!editor) return null;
 
   const btnClass = (active: boolean) =>
@@ -35,10 +37,10 @@ const MenuBar = ({ editor }: { editor: any }) => {
   return (
     <div className="flex flex-wrap items-center gap-0.5 px-4 py-2.5 border-b border-white/5 bg-[#060e1e]">
       <div className="flex items-center gap-0.5">
-        <button type="button" onClick={() => editor.chain().focus().toggleBold().run()} className={btnClass(editor.isActive("bold"))} title="Bold">
+        <button type="button" onClick={() => editor.chain().focus().toggleBold().run()} className={btnClass(editor.isActive("bold"))} title={t("editBlog.tooltips.bold")}>
           <Bold className="w-3.5 h-3.5" />
         </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleItalic().run()} className={btnClass(editor.isActive("italic"))} title="Italic">
+        <button type="button" onClick={() => editor.chain().focus().toggleItalic().run()} className={btnClass(editor.isActive("italic"))} title={t("editBlog.tooltips.italic")}>
           <Italic className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -46,10 +48,10 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <div className="w-px h-4 bg-white/10 mx-2" />
 
       <div className="flex items-center gap-0.5">
-        <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} className={btnClass(editor.isActive("heading", { level: 1 }))} title="Heading 1">
+        <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} className={btnClass(editor.isActive("heading", { level: 1 }))} title={t("editBlog.tooltips.h1")}>
           <Heading1 className="w-3.5 h-3.5" />
         </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={btnClass(editor.isActive("heading", { level: 2 }))} title="Heading 2">
+        <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={btnClass(editor.isActive("heading", { level: 2 }))} title={t("editBlog.tooltips.h2")}>
           <Heading2 className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -57,25 +59,25 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <div className="w-px h-4 bg-white/10 mx-2" />
 
       <div className="flex items-center gap-0.5">
-        <button type="button" onClick={() => editor.chain().focus().toggleBulletList().run()} className={btnClass(editor.isActive("bulletList"))} title="Bullet List">
+        <button type="button" onClick={() => editor.chain().focus().toggleBulletList().run()} className={btnClass(editor.isActive("bulletList"))} title={t("editBlog.tooltips.list")}>
           <List className="w-3.5 h-3.5" />
         </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleOrderedList().run()} className={btnClass(editor.isActive("orderedList"))} title="Numbered List">
+        <button type="button" onClick={() => editor.chain().focus().toggleOrderedList().run()} className={btnClass(editor.isActive("orderedList"))} title={t("editBlog.tooltips.orderedList")}>
           <ListOrdered className="w-3.5 h-3.5" />
         </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleCodeBlock().run()} className={btnClass(editor.isActive("codeBlock"))} title="Code Block">
+        <button type="button" onClick={() => editor.chain().focus().toggleCodeBlock().run()} className={btnClass(editor.isActive("codeBlock"))} title={t("editBlog.tooltips.code")}>
           <Code className="w-3.5 h-3.5" />
         </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleBlockquote().run()} className={btnClass(editor.isActive("blockquote"))} title="Blockquote">
+        <button type="button" onClick={() => editor.chain().focus().toggleBlockquote().run()} className={btnClass(editor.isActive("blockquote"))} title={t("editBlog.tooltips.quote")}>
           <Quote className="w-3.5 h-3.5" />
         </button>
       </div>
 
       <div className="ml-auto flex items-center gap-0.5">
-        <button type="button" onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()} className={`${btnClass(false)} disabled:opacity-25 disabled:cursor-not-allowed`} title="Undo">
+        <button type="button" onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()} className={`${btnClass(false)} disabled:opacity-25 disabled:cursor-not-allowed`} title={t("editBlog.tooltips.undo")}>
           <Undo className="w-3.5 h-3.5" />
         </button>
-        <button type="button" onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().redo()} className={`${btnClass(false)} disabled:opacity-25 disabled:cursor-not-allowed`} title="Redo">
+        <button type="button" onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().redo()} className={`${btnClass(false)} disabled:opacity-25 disabled:cursor-not-allowed`} title={t("editBlog.tooltips.redo")}>
           <Redo className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -84,6 +86,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
 };
 
 export default function EditBlogForm({ post }: EditBlogFormProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const queryClient = useQueryClient();
   const [title, setTitle] = useState(post.title);
@@ -175,25 +178,25 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
       <div className="sticky top-0 z-40 flex items-center justify-between gap-4 px-4 sm:px-6 py-3 bg-[#010B24]/90 backdrop-blur-xl border-b border-white/5">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors text-sm group"
+          className="flex items-center gap-1.5 text-white hover:text-white transition-colors text-sm group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          <span className="hidden sm:inline">Exit Editor</span>
+          <span className="hidden sm:inline">{t("editBlog.exitEditor")}</span>
         </button>
 
         {/* Centre label */}
-        <span className="absolute left-1/2 -translate-x-1/2 text-xs font-medium text-slate-500 tracking-widest uppercase hidden sm:block">
-          Editing Draft
+        <span className="absolute left-1/2 -translate-x-1/2 text-xs font-medium text-white tracking-widest uppercase hidden sm:block">
+          {t("editBlog.editingDraft")}
         </span>
 
         <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             disabled={isSaving}
-            className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-lg text-slate-400 hover:text-white text-sm transition-colors hover:bg-white/5"
+            className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-lg text-white hover:text-white text-sm transition-colors hover:bg-white/5"
           >
             <X className="w-3.5 h-3.5" />
-            Discard
+            {t("editBlog.discard")}
           </button>
           <button
             onClick={handleSave}
@@ -208,7 +211,7 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
             ) : (
               <Save className="w-3.5 h-3.5" />
             )}
-            {isSaving ? "Saving…" : "Publish"}
+            {isSaving ? t("editBlog.saving") : t("editBlog.publish")}
           </button>
         </div>
       </div>
@@ -224,7 +227,7 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
             <textarea
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Your blog title…"
+              placeholder={t("editBlog.titlePlaceholder")}
               rows={2}
               onInput={(e) => {
                 const t = e.target as HTMLTextAreaElement;
@@ -238,14 +241,14 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
           </div>
 
           {/* Stats row */}
-          <div className="flex items-center gap-4 text-xs text-slate-600">
+          <div className="flex items-center gap-4 text-xs text-slate-200">
             <span className="flex items-center gap-1.5">
               <Hash className="w-3 h-3" />
-              {wordCount.toLocaleString()} words
+              {t("editBlog.words", { count: wordCount })}
             </span>
             <span className="flex items-center gap-1.5">
               <Clock className="w-3 h-3" />
-              {readTime} min read
+              {t("editBlog.readTime", { count: readTime })}
             </span>
           </div>
 
@@ -278,9 +281,9 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
               {/* Actions & Insights */}
               <div className="flex flex-col justify-center h-full space-y-6">
                 <div className="space-y-4">
-                  <h4 className="text-white font-semibold text-lg">Finalize Update</h4>
+                  <h4 className="text-white font-semibold text-lg">{t("editBlog.finalizeUpdate")}</h4>
                   <p className="text-slate-400 text-sm leading-relaxed">
-                    Review your changes above. Once saved, the blog will be updated across the platform and the cache will be refreshed.
+                    {t("editBlog.finalizeDesc")}
                   </p>
                 </div>
 
@@ -289,7 +292,7 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
                     <div className="inline-flex items-center gap-2 text-[11px] text-slate-400 bg-white/5 rounded-xl px-3 py-2 border border-white/5">
                       <Sparkles className="w-3 h-3 text-cyan-400/60 shrink-0" />
                       <span>
-                        {MAX_REGEN - regenCount} {MAX_REGEN - regenCount === 1 ? "generation" : "generations"} remaining
+                        {t("editBlog.generationsRemaining", { count: MAX_REGEN - regenCount })}
                       </span>
                     </div>
                   )}
@@ -304,7 +307,7 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
                     ) : (
                       <Save className="w-4 h-4 group-hover:scale-110 transition-transform" />
                     )}
-                    {isSaving ? "Saving Changes…" : "Update Blog Post"}
+                    {isSaving ? t("editBlog.savingChanges") : t("editBlog.updateBlogPost")}
                   </button>
                 </div>
               </div>
