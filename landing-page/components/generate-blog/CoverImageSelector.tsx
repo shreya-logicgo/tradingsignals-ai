@@ -7,6 +7,7 @@ import { Image as ImageIcon, ReSpin, Upload } from "../icons";
 type CoverImageSelectorProps = {
   coverImage: string;
   onImageChange: (url: string) => void;
+  onFileSelect?: (file: File) => void;
   onGenerate: () => Promise<void>;
   isLoading: boolean;
   regenCount: number;
@@ -16,6 +17,7 @@ type CoverImageSelectorProps = {
 const CoverImageSelector = ({
   coverImage,
   onImageChange,
+  onFileSelect,
   onGenerate,
   isLoading,
   regenCount,
@@ -31,6 +33,7 @@ const CoverImageSelector = ({
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      if (onFileSelect) onFileSelect(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         onImageChange(reader.result as string);
@@ -41,6 +44,13 @@ const CoverImageSelector = ({
 
   return (
     <div className="mt-6 border-t border-cosmos pt-6">
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        accept="image/*"
+        className="hidden"
+      />
       <div className="flex items-center justify-between mb-4">
         <h4 className="text-titan-white font-semibold text-sm md:text-base flex items-center gap-2">
           <ImageIcon className="w-4 h-4 text-vivid-cyan" />
