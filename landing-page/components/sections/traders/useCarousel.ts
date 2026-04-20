@@ -9,11 +9,6 @@ interface UseCarouselOptions {
   loop?: boolean;
   autoplay?: boolean;
   autoplayDelay?: number;
-  /**
-   * Embla duration controls scroll animation speed.
-   * Lower values = faster. Range 20–60 works well for premium feel.
-   * Default: 28 (smooth but snappy — luxury SaaS feel)
-   */
   duration?: number;
   dragFree?: boolean;
 }
@@ -39,24 +34,6 @@ export function useCarousel({
     })
   );
 
-  /**
-   * KEY FIX — Options that produce clean horizontal-only looping:
-   *
-   * ✅ loop: true              — enables seamless infinite scroll
-   * ✅ align: "start"          — slides anchor left; avoids centering math
-   *                              that can cause fractional-pixel drift
-   * ✅ duration                — controls easing speed (not CSS transition)
-   * ✅ skipSnaps: false        — always snap to a defined slide position;
-   *                              prevents momentum overshooting to wrong index
-   * ✅ dragFree: false         — free-drag + loop = vertical drift on mobile
-   * ❌ containScroll removed   — "trimSnaps" / "keepSnaps" conflict with loop
-   *                              mode and cause the bottom-merge artifact:
-   *                              Embla shifts cloned slides on the Y axis when
-   *                              containScroll tries to trim the scroll bounds
-   *                              but loop has already repositioned the clone.
-   * ❌ watchSlides removed     — not a valid EmblaOptionsType key; harmless but
-   *                              noisy; watchResize handles DOM changes.
-   */
   const options: EmblaOptionsType = useMemo(
     () => ({
       loop,

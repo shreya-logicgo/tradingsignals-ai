@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import CategoryCard from "./CategoryCard";
 import Link from "next/link";
+import HoverFxButton from "@/components/common/HoverFxButton";
 
 export default function Categories() {
   const { t } = useTranslation();
@@ -82,18 +83,21 @@ export default function Categories() {
           </div>
 
           <div className="flex justify-center relative z-10">
-            <motion.div
-              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(255,255,255,0.1)" }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Link
-                href="https://crypto.tradingsignals.ai/login"
-                className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
-              >
-                <span>{t("tradingChannels.cta")}</span>
-              </Link>
-            </motion.div>
-          </div>
+  <motion.div
+    whileHover={{
+      scale: 1.05,
+      boxShadow: "0 0 25px rgba(255,255,255,0.1)",
+    }}
+    whileTap={{ scale: 0.98 }}
+  >
+    <HoverFxButton
+      href="https://crypto.tradingsignals.ai/login"
+      className="px-7 py-3"
+    >
+      {t("tradingChannels.cta")}
+    </HoverFxButton>
+  </motion.div>
+</div>
         </div>
       </div>
     </section>
