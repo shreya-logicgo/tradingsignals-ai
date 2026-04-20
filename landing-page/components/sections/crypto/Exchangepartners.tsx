@@ -120,7 +120,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       className="
         group
         flex flex-col justify-between
-        w-full h-[276px] p-6 rounded-[10px]
+        w-full h-[245px] p-5 rounded-[10px]
         bg-[#0E172F] border border-[#182138]
         transition-all duration-200 ease-out
         hover:-translate-y-1 hover:border-[#182853]
@@ -133,7 +133,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         {/* Logo */}
         <div
           className="
-            w-[52px] h-[52px] rounded-full mb-[18px] shrink-0
+            w-[50px] h-[50px] rounded-full mb-[10px] shrink-0
             flex items-center justify-center
             bg-[#000000] overflow-hidden
           "
@@ -155,12 +155,12 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         </div>
 
         {/* Name */}
-        <div className="text-[20px] font-semibold text-white font-hoves mb-2 tracking-tight">
+        <div className="text-[19px] text-white font-hoves mb-1 ">
           {exchange.name}
         </div>
 
         {/* Description */}
-        <p className="text-[16px] text-[#C7CCD2] font-hoves tracking-tighter leading-5 sm:h-min-16 max-h-16 overflow-clip">
+        <p className="text-[13px] text-[#C7CCD2] font-hoves leading-5 sm:h-min-12 max-h-14 overflow-clip">
           {t(exchange.descKey)}
         </p>
       </div>
@@ -168,8 +168,8 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       {/* CTA Button */}
       <span
         className="
-          flex items-center justify-center w-full py-[11px] mt-2 mb-1
-         text-[18px] font-medium text-[#FFFFFF]
+          flex items-center justify-center w-full py-[11px]  
+         text-[15px] text-[#FFFFFF]
           bg-[#010B24] border border-[#FFFFFF1A]
           transition-all duration-150 rounded-full  "
       >
@@ -198,7 +198,7 @@ export default function ExchangePartners() {
         <motion.span
           variants={fadeUpVariant}
           className="
-            inline-block mb-5  pb-1 
+            inline-block mb-3  pb-1 
             text-[15px] tracking-[0.12em] uppercase text-vivid-cyan lg:text-start w-fit text-center
             rounded-full font-mono
           "
@@ -209,12 +209,12 @@ export default function ExchangePartners() {
         {/* Header row */}
         <motion.div
           variants={fadeUpVariant}
-          className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-10 mb-2"
+          className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-8 mb-2"
         >
-          <h2 className="text-[30px] max-w-80 font-hoves sm:text-[34px] lg:text-[38px] font-bold text-white leading-tight tracking-tight">
+          <h2 className="text-[30px] max-w-80 font-hoves sm:text-[34px] lg:text-[40px] text-white leading-tight tracking-tight">
             {t("exchangePartners.title")}
           </h2>
-          <p className="sm:max-w-[480px] text-[#C7CCD2] font-hoves text-[13px] sm:text-[20px] tracking-tight ">
+          <p className="sm:max-w-[480px] text-[#C7CCD2] font-hoves text-[13px] sm:text-[18px]  ">
             {t("exchangePartners.desc")}
           </p>
         </motion.div>
@@ -222,7 +222,7 @@ export default function ExchangePartners() {
         {/* Subtitle */}
         <motion.p
           variants={fadeUpVariant}
-          className="text-[#C7CCD2]  text-[13px] sm:text-[20px] mb-10 lg:mb-11 font-hoves tracking-tighter"
+          className="text-[#C7CCD2]  text-[13px] sm:text-[18px] mb-10 lg:mb-11 font-hoves "
         >
           {t("exchangePartners.subtitle")}
         </motion.p>
