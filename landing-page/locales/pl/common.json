@@ -282,6 +282,14 @@
         "regenerate": "Wygeneruj ponownie",
         "regenerateAria": "Wygeneruj blog ponownie",
         "publish": "Opublikuj blog",
+        "coverImage": "Obraz okładki",
+        "aiTries": "Regeneracje AI: {{count}}/{{max}}",
+        "uploadNew": "Prześlij nowy",
+        "noImage": "Nie wybrano obrazu okładki",
+        "imageHint": "Prześlij własny lub wygeneruj go za pomocą AI",
+        "generatingImage": "Tworzenie Twojego arcydzieła...",
+        "upload": "Prześlij",
+        "generateAI": "Generuj AI",
         "errors": {
             "generateFailed": "Nie udało się wygenerować bloga. Spróbuj ponownie.",
             "emptyResponse": "Serwer zwrócił pustą treść. Spróbuj ponownie.",
@@ -295,10 +303,10 @@
         "cta": "Rozpocznij handel"
     },
     "footer": {
-        "description": "Sygnały handlowe krypto oparte na AI dla lepszych decyzji. Zaufało nam ponad 12 000 traderów na całym świecie.",
+        "description": "Sygnały kryptowalutowe oparte na AI dla mądrzejszych decyzji. Zaufało nam ponad 12 000 traderów na całym świecie.",
         "sections": {
             "product": "Produkt",
-            "legal": "Kwestie prawne"
+            "legal": "Prawne"
         },
         "links": {
             "features": "Funkcje",
@@ -306,13 +314,41 @@
             "testimonials": "Opinie",
             "faq": "FAQ",
             "contact": "Kontakt",
-            "privacy": "Polityka prywatności",
-            "terms": "Warunki świadczenia usług",
-            "risk": "Deklaracja ryzyka",
-            "cookie": "Polityka plików cookie"
+            "privacy": "Polityka Prywatności",
+            "terms": "Warunki Korzystania",
+            "risk": "Ujawnienie Ryzyka",
+            "cookie": "Polityka Cookies"
         },
         "copyright": "© 2026 Trading Signals AI. Wszelkie prawa zastrzeżone.",
-        "disclaimer": "Handel wiąże się ze znacznym ryzykiem i nie jest odpowiedni dla każdego inwestora. Wyniki z przeszłości nie są gwarancją przyszłych rezultatów. To nie jest porada finansowa."
+        "disclaimer": "Handel wiąże się ze znacznym ryzykiem i nie jest odpowiedni dla każdego inwestora. Wyniki historyczne nie wskazują na przyszłe rezultaty. To nie jest porada finansowa."
+    },
+    "editBlog": {
+        "exitEditor": "Zamknij edytor",
+        "editingDraft": "Edytowanie szkicu",
+        "discard": "Odrzuć",
+        "publish": "Opublikuj",
+        "saving": "Zapisywanie…",
+        "titlePlaceholder": "Tytuł Twojego bloga…",
+        "words": "{{count}} słów",
+        "readTime": "{{count}} min czytania",
+        "finalizeUpdate": "Sfinalizuj aktualizację",
+        "finalizeDesc": "Przejrzyj zmiany powyżej. Po zapisaniu blog zostanie zaktualizowany na całej platformie, a pamięć podręczna zostanie odświeżona.",
+        "savingChanges": "Zapisywanie zmian…",
+        "updateBlogPost": "Aktualizuj wpis na blogu",
+        "generationsRemaining": "pozostało {{count}} generacji",
+        "generationsRemaining_one": "pozostała {{count}} generacja",
+        "tooltips": {
+            "bold": "Pogrubienie",
+            "italic": "Kursywa",
+            "h1": "Nagłówek 1",
+            "h2": "Nagłówek 2",
+            "list": "Lista punktowana",
+            "orderedList": "Lista numerowana",
+            "code": "Blok kodu",
+            "quote": "Cytat",
+            "undo": "Cofnij",
+            "redo": "Ponów"
+        }
     },
     "exchangePartners": {
         "badge": "Partnerzy giełdowi",
