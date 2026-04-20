@@ -50,12 +50,11 @@ export default function Hero() {
       `}</style>
 
       {/* PURE OGL AURORA BACKGROUND */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-x-0 -top-40 h-[140%] z-0 pointer-events-none">
         <Aurora
-          colorStops={["#0012B8", "#00F0FF", "#0012B8"]}
-          speed={0.55}
-          blend={0.8}
-          amplitude={1.35}
+          colorStops={["#0012B8", "#00F0FF", "#0020FF"]}
+          speed={0.45}
+          amplitude={1.25}
         />
       </div>
 
