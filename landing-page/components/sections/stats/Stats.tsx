@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -10,6 +10,7 @@ import {
   useSpring,
   useMotionValue,
   useInView,
+  AnimatePresence,
 } from "framer-motion";
 
 import glowBar1 from "@/assets/images/glowBar1.png";
@@ -28,6 +29,15 @@ export default function Stats() {
   const rightRocketEmitterOneRef = useRef<HTMLDivElement>(null);
   const rightRocketEmitterTwoRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(statsRef, { once: true, amount: 0.5 });
+
+  const [leftRocketPhase, setLeftRocketPhase] = useState<
+    "launch" | "return" | "idle"
+  >("launch");
+  const [rightRocketPhase, setRightRocketPhase] = useState<
+    "launch" | "return" | "idle"
+  >("launch");
+  const [showParticles, setShowParticles] = useState(true);
+  const [isFadingParticles, setIsFadingParticles] = useState(false);
 
   // Scroll animation
   const { scrollYProgress } = useScroll({
@@ -69,7 +79,7 @@ export default function Stats() {
   return (
     <section
       ref={sectionRef}
-      className="w-full relative lg:py-30 overflow-hidden"
+      className="w-full relative pb-16 lg:pb-30 lg:pt-30 overflow-hidden"
     >
       <Steps />
       <NoiseOverlay />
@@ -82,37 +92,79 @@ export default function Stats() {
         <div className="relative h-full">
           {/* LEFT ROCKET */}
           <motion.div
-            className="absolute top-100 left-0 w-full h-full max-w-60 z-10"
+            className="absolute bottom-0 left-0 w-full h-full max-w-24 sm:max-w-35 lg:max-w-40 xl:max-w-50 z-10 flex items-end"
             animate={
-              isInView
+              isInView && leftRocketPhase === "launch"
                 ? {
                     x: [0, -1, 1, -1, 1, 0],
                     y: ["0%", "-150%"],
                   }
+                : leftRocketPhase === "return"
+                ? {
+                    x: [0, -0.5, 0.5, -0.5, 0.5, 0],
+                    y: ["150%", "0%"],
+                    filter: ["blur(8px)", "blur(0px)"],
+                  }
                 : {}
             }
-            transition={{
-              x: {
-                duration: 0.4,
-                ease: "easeInOut",
-                repeat: 3,
-                repeatType: "reverse",
-              },
-              y: {
-                duration: 5,
-                ease: [0.25, 0.1, 0.25, 1],
-                delay: 1.2,
-              },
+            transition={
+              leftRocketPhase === "launch"
+                ? {
+                    x: {
+                      duration: 0.4,
+                      ease: "easeInOut",
+                      repeat: 3,
+                      repeatType: "reverse",
+                    },
+                    y: {
+                      duration: 5,
+                      ease: [0.25, 0.1, 0.25, 1],
+                      delay: 1.2,
+                    },
+                  }
+                : leftRocketPhase === "return"
+                ? {
+                    x: {
+                      duration: 0.4,
+                      ease: "easeInOut",
+                      repeat: 3,
+                      repeatType: "reverse",
+                    },
+                    y: {
+                      duration: 4,
+                      ease: [0.25, 0.1, 0.25, 1],
+                    },
+                    filter: {
+                      duration: 4,
+                      ease: "easeOut",
+                    },
+                  }
+                : {}
+            }
+            onAnimationComplete={() => {
+              if (leftRocketPhase === "launch") {
+                setLeftRocketPhase("return");
+              } else if (leftRocketPhase === "return") {
+                setLeftRocketPhase("idle");
+                // Start fading particles when both rockets are idle
+                if (rightRocketPhase === "idle") {
+                  setIsFadingParticles(true);
+                  // Actually remove particles after fade animation completes
+                  setTimeout(() => {
+                    setShowParticles(false);
+                  }, 2000); // Match this with the fade duration
+                }
+              }
             }}
           >
-            <div className="max-h-150  relative w-full h-full">
+            <div className="max-h-65 sm:max-h-75 lg:max-h-120 xl:max-h-150 mb-28 md:mb-60 lg:mb-50 relative w-full h-full">
               <div
                 ref={leftRocketEmitterOneRef}
                 className="absolute top-80 w-2 h-2 left-16"
               />
               <div
                 ref={leftRocketEmitterTwoRef}
-                className="absolute top-90 w-2 h-2 right-8"
+                className="absolute top-90 w-2 h-2 right-15"
               />
               <Image
                 src={glowBar1}
@@ -124,35 +176,79 @@ export default function Stats() {
                 priority
               />
             </div>
+            
           </motion.div>
 
           {/* RIGHT ROCKET */}
           <motion.div
-            className="absolute right-0 w-full h-full max-w-60 z-10"
+            className="absolute right-0 w-full h-full max-w-24 sm:max-w-35 lg:max-w-40 xl:max-w-50 z-10 flex items-end"
             animate={
-              isInView
+              isInView && rightRocketPhase === "launch"
                 ? {
                     x: [0, 1, -1, 1, -1, 0],
                     y: ["0%", "-140%"],
                   }
+                : rightRocketPhase === "return"
+                ? {
+                    x: [0, 0.5, -0.5, 0.5, -0.5, 0],
+                    y: ["140%", "0%"],
+                    filter: ["blur(8px)", "blur(0px)"],
+                  }
                 : {}
             }
-            transition={{
-              x: {
-                duration: 0.4,
-                ease: "easeInOut",
-                repeat: 3,
-                repeatType: "reverse",
-                delay: 0.1,
-              },
-              y: {
-                duration: 5,
-                ease: [0.25, 0.1, 0.25, 1],
-                delay: 1.3,
-              },
+            transition={
+              rightRocketPhase === "launch"
+                ? {
+                    x: {
+                      duration: 0.4,
+                      ease: "easeInOut",
+                      repeat: 3,
+                      repeatType: "reverse",
+                      delay: 0.1,
+                    },
+                    y: {
+                      duration: 5,
+                      ease: [0.25, 0.1, 0.25, 1],
+                      delay: 1.3,
+                    },
+                  }
+                : rightRocketPhase === "return"
+                ? {
+                    x: {
+                      duration: 0.4,
+                      ease: "easeInOut",
+                      repeat: 3,
+                      repeatType: "reverse",
+                      delay: 0.1,
+                    },
+                    y: {
+                      duration: 4,
+                      ease: [0.25, 0.1, 0.25, 1],
+                    },
+                    filter: {
+                      duration: 4,
+                      ease: "easeOut",
+                    },
+                  }
+                : {}
+            }
+            onAnimationComplete={() => {
+              if (rightRocketPhase === "launch") {
+                setRightRocketPhase("return");
+              } else if (rightRocketPhase === "return") {
+                setRightRocketPhase("idle");
+                // Start fading particles when both rockets are idle
+                if (leftRocketPhase === "idle") {
+                  setIsFadingParticles(true);
+                  // Actually remove particles after fade animation completes
+                  setTimeout(() => {
+                    setShowParticles(false);
+                  }, 2000); // Match this with the fade duration
+                }
+              }
             }}
           >
-            <div className="max-h-150 mt-130 relative w-full h-full">
+            <div className="max-h-65 sm:max-h-75 lg:max-h-120 xl:max-h-150 mb-18 md:mb-45 lg:mb-18 relative w-full h-full">
               <div
                 ref={rightRocketEmitterOneRef}
                 className="absolute top-80 w-2 h-2 right-25"
@@ -173,10 +269,21 @@ export default function Stats() {
             </div>
           </motion.div>
 
-          <RocketParticles anchorRef={leftRocketEmitterOneRef} />
-          <RocketParticles anchorRef={leftRocketEmitterTwoRef} />
-          <RocketParticles anchorRef={rightRocketEmitterOneRef} />
-          <RocketParticles anchorRef={rightRocketEmitterTwoRef} />
+          <AnimatePresence>
+            {showParticles && (
+              <motion.div
+                initial={{ opacity: 1 }}
+                animate={{ opacity: isFadingParticles ? 0 : 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 2, ease: "easeOut" }}
+              >
+                <RocketParticles anchorRef={leftRocketEmitterOneRef} />
+                <RocketParticles anchorRef={leftRocketEmitterTwoRef} />
+                <RocketParticles anchorRef={rightRocketEmitterOneRef} />
+                <RocketParticles anchorRef={rightRocketEmitterTwoRef} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.div>
 
