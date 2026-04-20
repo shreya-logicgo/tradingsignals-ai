@@ -88,6 +88,7 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
   const queryClient = useQueryClient();
   const [title, setTitle] = useState(post.title);
   const [coverImage, setCoverImage] = useState(post.coverImage || "");
+  const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const [regenCount, setRegenCount] = useState(0);
@@ -120,6 +121,7 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
       if (!response.ok) throw new Error("Failed to generate image");
       const data = await response.json();
       setCoverImage(data.url);
+      setCoverImageFile(null); // Clear manual upload on AI generation
       setRegenCount((prev) => prev + 1);
     } catch (error) {
       console.error(error);
@@ -137,10 +139,19 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
     }
     setIsSaving(true);
     try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", htmlContent);
+      
+      if (coverImageFile) {
+        formData.append("coverImage", coverImageFile);
+      } else if (coverImage) {
+        formData.append("coverImage", coverImage);
+      }
+
       const response = await fetch(`/api/blogs/${post.slug}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, content: htmlContent, coverImage }),
+        body: formData, // fetch will automatically set multipart/form-data with boundary
       });
       if (!response.ok) throw new Error("Failed to update blog");
       
@@ -203,10 +214,10 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
       </div>
 
       {/* ── Layout ── */}
-      <div className="flex flex-col xl:flex-row gap-6 pt-8 pb-24">
+      <div className="max-w-5xl mx-auto w-full flex flex-col gap-8 pt-8 pb-24 px-4 sm:px-0">
 
-        {/* ── Main column ── */}
-        <div className="flex-1 min-w-0 space-y-6">
+        {/* ── Main Content Section (Editor) ── */}
+        <div className="space-y-6">
 
           {/* Title */}
           <div className="relative">
@@ -241,22 +252,22 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
           {/* Rich-text editor */}
           <div className="rounded-2xl border border-cosmos bg-[#08111f] overflow-hidden ring-0 focus-within:ring-1 focus-within:ring-cyan-400/20 transition-all duration-300">
             <MenuBar editor={editor} />
-            <div className="max-h-[65vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+            <div className="min-h-[500px]">
               <EditorContent editor={editor} />
             </div>
           </div>
         </div>
 
-        {/* ── Sidebar ── */}
-        <aside className="lg:w-80 xl:w-96 shrink-0 space-y-6">
-          <div className="rounded-2xl bg-[#08111f] border border-white/5 overflow-hidden shadow-2xl shadow-black/40 transition-all duration-300">
-            {/* Section: Cover & Actions */}
-            <div className="p-6 space-y-6">
-              {/* Image Selector Section */}
-              <div className="-mt-6"> {/* Offsets internal CoverImageSelector margin */}
+        {/* ── Bottom Section (Cover & Actions) ── */}
+        <div className="rounded-2xl bg-[#08111f] border border-white/5 overflow-hidden shadow-2xl shadow-black/40">
+          <div className="p-6 md:p-8 space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              {/* Image Selector */}
+              <div className="-mt-6 md:mt-0">
                 <CoverImageSelector
                   coverImage={coverImage}
                   onImageChange={setCoverImage}
+                  onFileSelect={setCoverImageFile}
                   onGenerate={handleImageGenerate}
                   isLoading={isGeneratingImage}
                   regenCount={regenCount}
@@ -264,34 +275,42 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
                 />
               </div>
 
-              {/* Extras & Hints */}
-              <div className="space-y-4">
-                {regenCount > 0 && (
-                  <div className="flex items-center gap-2 text-[11px] text-slate-400 bg-white/5 rounded-xl px-3 py-2 border border-white/5">
-                    <Sparkles className="w-3 h-3 text-cyan-400/60 shrink-0" />
-                    <span>
-                      {MAX_REGEN - regenCount} {MAX_REGEN - regenCount === 1 ? "generation" : "generations"} remaining
-                    </span>
-                  </div>
-                )}
+              {/* Actions & Insights */}
+              <div className="flex flex-col justify-center h-full space-y-6">
+                <div className="space-y-4">
+                  <h4 className="text-white font-semibold text-lg">Finalize Update</h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    Review your changes above. Once saved, the blog will be updated across the platform and the cache will be refreshed.
+                  </p>
+                </div>
 
-                {/* Main Save Action */}
-                <button
-                  onClick={handleSave}
-                  disabled={isSaving}
-                  className="w-full flex lg:mt-5 mt-2 items-center justify-center gap-2 py-3.5 rounded-xl border border-cosmos bg-cyan-400 text-[#010B24] hover:bg-cyan-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-bold text-sm active:scale-[0.98] shadow-[0_0_20px_rgba(34,211,238,0.15)] group"
-                >
-                  {isSaving ? (
-                    <div className="w-3.5 h-3.5 border-2 border-current/30 border-t-current animate-spin rounded-full" />
-                  ) : (
-                    <Save className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                <div className="space-y-4">
+                  {regenCount > 0 && (
+                    <div className="inline-flex items-center gap-2 text-[11px] text-slate-400 bg-white/5 rounded-xl px-3 py-2 border border-white/5">
+                      <Sparkles className="w-3 h-3 text-cyan-400/60 shrink-0" />
+                      <span>
+                        {MAX_REGEN - regenCount} {MAX_REGEN - regenCount === 1 ? "generation" : "generations"} remaining
+                      </span>
+                    </div>
                   )}
-                  {isSaving ? "Saving…" : "Save Changes"}
-                </button>
+
+                  <button
+                    onClick={handleSave}
+                    disabled={isSaving}
+                    className="w-full flex items-center justify-center gap-2 py-4 rounded-xl border border-cosmos bg-cyan-400 text-[#010B24] hover:bg-cyan-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-bold text-base active:scale-[0.98] shadow-[0_0_20px_rgba(34,211,238,0.15)] group"
+                  >
+                    {isSaving ? (
+                      <div className="w-4 h-4 border-2 border-current/30 border-t-current animate-spin rounded-full" />
+                    ) : (
+                      <Save className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                    )}
+                    {isSaving ? "Saving Changes…" : "Update Blog Post"}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </aside>
+        </div>
       </div>
 
       <style jsx global>{`
