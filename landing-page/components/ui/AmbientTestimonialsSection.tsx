@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Testimonials from "../sections/testimonials/Testimonials";
+import ExchangePartners from "../sections/crypto/Exchangepartners";
 
 export default function AmbientTestimonialsSection() {
   return (
@@ -93,7 +94,16 @@ export default function AmbientTestimonialsSection() {
       </div>
 
       {/* ── CONTENT ── */}
-      <div className="relative z-10">
+      <div className="relative flex flex-col items-center z-10">
+        {/* <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-titan-white mb-4">
+            What Our Users Are Saying
+          </h2>
+          <p className="text-seashell-blue text-lg md:text-xl max-w-2xl mx-auto">
+            Real feedback from traders who have transformed their strategies with our AI signals.
+          </p>
+        </div> */}
+        {/* <ExchangePartners/> */}
         <Testimonials />
       </div>
     </div>
