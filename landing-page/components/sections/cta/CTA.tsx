@@ -5,6 +5,9 @@ import { useTranslation } from "react-i18next";
 import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";
 import blog3 from "@/assets/images/blog-3.jpg";
+import Link from "next/link";
+import HoverFxButton from "@/components/common/HoverFxButton";
+import { motion } from "framer-motion";
 
 interface PostData {
   title: string;
@@ -16,7 +19,7 @@ export default function CTA() {
 
   // Blog posts from common.json
   const blogPosts = t("blog.posts", { returnObjects: true }) as PostData[];
-  
+
   const posts = [
     { image: blog1, title: blogPosts[0]?.title || "", description: blogPosts[0]?.desc || "" },
     { image: blog2, title: blogPosts[1]?.title || "", description: blogPosts[1]?.desc || "" },
@@ -24,28 +27,26 @@ export default function CTA() {
   ];
 
   return (
-    <section className="w-full bg-[#010B24] py-10 md:py-12 relative overflow-hidden">
+    <section className="w-full bg-transparent py-10 md:py-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
         <div className="flex flex-col gap-12 lg:gap-16">
-          
+
           {/* ── Header ── */}
           <div className="flex flex-col items-center text-center gap-6 max-w-[500px] mx-auto">
             {/* Badge */}
-            <div className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-white/70">
+            <div className="px-3.5 py-1.5 rounded-full">
+              <span className="text-[15px] font-mono tracking-widest uppercase text-vivid-cyan">
                 {t("blog.title")}
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight"
-            style={{ fontFamily: "var(--font-hoves)" }}>
+            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight">
               {t("blog.heading")}
             </h2>
 
             <p
-              className="font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed"
-              style={{ fontFamily: "var(--font-hoves)" }}
+              className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed"
             >
               {t("blog.description")}
             </p>
@@ -66,6 +67,7 @@ export default function CTA() {
                       src={post.image}
                       alt={post.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
@@ -81,15 +83,13 @@ export default function CTA() {
                     {/* Top: title + description */}
                     <div className="flex flex-col gap-3">
                       <h3
-                        className="text-xl text-white leading-tight line-clamp-2"
-                        style={{ fontFamily: "var(--font-hoves)" }}
+                        className="text-xl text-white leading-tight line-clamp-2 font-hoves"
                       >
                         {post.title}
                       </h3>
 
                       <p
-                        className="text-sm md:text-base text-[#c7ccd2] leading-relaxed line-clamp-3"
-                        style={{ fontFamily: "var(--font-hoves)" }}
+                        className="text-sm md:text-base text-[#c7ccd2] leading-relaxed line-clamp-3 font-hoves"
                       >
                         {post.description}
                       </p>
@@ -97,8 +97,7 @@ export default function CTA() {
 
                     {/* Bottom: View more — pinned to bottom by justify-between */}
                     <span
-                      className="text-sm text-white underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all"
-                      style={{ fontFamily: "var(--font-hoves)" }}
+                      className="text-sm text-white underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all font-hoves"
                     >
                       {t("blog.viewMore")}
                     </span>
@@ -107,12 +106,21 @@ export default function CTA() {
               ))}
             </div>
 
-            {/* CTA Button — Localized */}
             <div className="flex justify-center mt-4">
-              <button className="px-8 py-3 rounded-full border border-white text-white text-sm font-medium font-hoves transition-all duration-300 hover:bg-white hover:text-black"
-              style={{ fontFamily: "var(--font-hoves)" }}>
-                {t("blog.cta")}
-              </button>
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 0 25px rgba(255,255,255,0.1)",
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <HoverFxButton
+                  href="/blogs"
+                  className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
+                >
+                  {t("blog.cta")}
+                </HoverFxButton>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -120,3 +128,5 @@ export default function CTA() {
     </section>
   );
 }
+
+

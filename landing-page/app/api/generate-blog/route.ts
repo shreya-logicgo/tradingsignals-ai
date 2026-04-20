@@ -92,21 +92,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // ✅ Updated prompt (NO random images)
+    //  "IMPORTANT: For images, use ONLY this URL format: https://loremflickr.com/800/400/{keyword}",
     const generationPrompt = [
       "Generate a complete, production-ready blog page as valid HTML.",
       "Output must be raw HTML only (no markdown, no code fences).",
       "Use inline or <style> CSS for polished styling.",
       "Do not include any JavaScript.",
-      "",
-      "LANGUAGE RULES:",
-      "Detect the user's language from the topic and follow that language for all visible blog text.",
-      "Match transliteration style if used.",
-      "",
-      "IMAGE RULES:",
-      "Do NOT use external/random image URLs.",
-      "Use placeholders like IMAGE_1, IMAGE_2 inside <img src='...'>",
-      "Each image must include alt text and figcaption.",
+      "Replace {keyword} with a relevant term for the image (e.g., 'coding', 'nature').",
+      "Ensure every <img> tag has a descriptive 'alt' attribute.",
       "",
       `User topic: ${prompt}`,
     ].join("\n");

@@ -2,23 +2,27 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Copy, GradientMagicStick, Plane, ReSpin } from "../icons";
+import { Copy, GradientMagicStick, Plane, ReSpin, Save } from "../icons";
 
 type BlogPreviewPanelProps = {
   content: string;
   isLoading: boolean;
   onRegenerate: () => void;
+  coverImage?: string;
 };
 
-const BlogPreviewPanel = ({
+const   BlogPreviewPanel = ({
   content,
   isLoading,
   onRegenerate,
+  coverImage,
 }: BlogPreviewPanelProps) => {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+
   const hasContent = Boolean(content.trim());
-  const controlsDisabled = isLoading || !hasContent;
+  const controlsDisabled = isLoading || !hasContent || isSaving;
 
   const renderedHtml = useMemo(() => {
     const fencedBlockMatch = content.match(/```(?:html)?\s*([\s\S]*?)```/i);
@@ -33,6 +37,36 @@ const BlogPreviewPanel = ({
       .replace(/<\/?(html|body)[^>]*>/gi, "")
       .trim();
   }, [content]);
+
+  const handleSave = async () => {
+    if (controlsDisabled) return;
+
+    setIsSaving(true);
+    try {
+      const formData = new FormData();
+      formData.append("content", renderedHtml);
+      if (coverImage) {
+        formData.append("coverImage", coverImage);
+      }
+
+      const response = await fetch("/api/blogs", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save blog");
+      }
+
+      // Redirect to blog listing on success
+      window.location.href = "/blogs";
+    } catch (error) {
+      console.error("Save error:", error);
+      alert("Failed to save blog. Please try again.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const handleCopy = async () => {
     if (controlsDisabled) {
@@ -103,13 +137,12 @@ const BlogPreviewPanel = ({
         )}
       </div>
 
-      <div className="border-t border-cosmos py-3.5 px-3.5 flex items-center justify-between gap-5">
+      <div className="border-t border-cosmos py-4 px-4 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-5">
         <div
-          className={`flex items-center gap-6 ms-2 ${
-            controlsDisabled ? "opacity-50" : ""
-          }`}
+          className={`flex items-center gap-8 md:ms-2 ${controlsDisabled ? "opacity-50" : ""
+            }`}
         >
-          <div className="relative group">
+          <div className="relative group ">
             <button
               type="button"
               onClick={handleCopy}
@@ -117,7 +150,7 @@ const BlogPreviewPanel = ({
               className="disabled:cursor-not-allowed cursor-pointer hover:opacity-90 transition-colors duration-300"
               aria-label={t("generateBlog.copyAria")}
             >
-              <Copy className="w-4 md:w-5 h-4 md:h-5" />
+              <Copy className="w-5 md:w-5 h-5 md:h-5" />
             </button>
             <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-black border border-cosmos px-2 py-1 text-[11px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               {t("generateBlog.copy")}
@@ -131,7 +164,7 @@ const BlogPreviewPanel = ({
               className="disabled:cursor-not-allowed cursor-pointer hover:opacity-90 transition-colors duration-300"
               aria-label={t("generateBlog.regenerateAria")}
             >
-              <ReSpin className="w-4 md:w-5 h-4 md:h-5" />
+              <ReSpin className="w-5 md:w-5 h-5 md:h-5" />
             </button>
             <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-black border border-cosmos px-2 py-1 text-[11px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               {t("generateBlog.regenerate")}
@@ -143,15 +176,25 @@ const BlogPreviewPanel = ({
             </span>
           )}
         </div>
-        <div>
+
+        <div
+          className="flex flex-col md:flex-row items-center gap-3 w-full">
           <button
             type="button"
+            onClick={handleSave}
             disabled={controlsDisabled}
-            className={`bg-white text-sm md:text-base text-mirage flex items-center gap-2 px-3.5 py-2.75 rounded-full transition-colors duration-300 ${
-              controlsDisabled
-                ? "cursor-not-allowed opacity-60"
-                : "cursor-pointer hover:bg-white/90"
-            }`}
+            className={`w-full md:w-auto bg-white text-sm md:text-base text-mirage font-bold flex items-center justify-center gap-2 px-8 py-3 rounded-full transition-all duration-300 shadow-lg shadow-white/5 ${controlsDisabled
+              ? "cursor-not-allowed opacity-60"
+              : "cursor-pointer hover:bg-white/90 active:scale-[0.98]"
+              }`}
+          >
+            <Save className={`w-4 md:w-5 h-4 md:h-5 ${isSaving ? "animate-pulse" : ""}`} />{" "}
+            {isSaving ? "Saving..." : "Save Blog"}
+          </button>
+          <button
+            type="button"
+            disabled={true}
+            className="w-full md:w-auto bg-white/10 text-sm md:text-base text-white/50 flex items-center justify-center gap-2 px-8 py-3 rounded-full cursor-not-allowed border border-white/10 whitespace-nowrap"
           >
             <Plane className="w-4 md:w-5 h-4 md:h-5" />{" "}
             {t("generateBlog.publish")}

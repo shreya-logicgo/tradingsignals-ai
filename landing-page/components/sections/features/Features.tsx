@@ -88,18 +88,21 @@ export default function Features() {
   return (
     <section
       ref={sectionRef}
-           className="w-screen bg-[#010B24] py-16 md:py-24 relative overflow-hidden max-w-7xl left-1/2 -translate-x-1/2"
+      style={{
+        overflowBlock:"hidden"
+      }}
+           className="w-screen bg-[#010B24] py-8 md:py-10 relative  max-w-7xl left-1/2 -translate-x-1/2 overflow-hidden overflow-x-hidden"
     >
       <div className="w-full lg:px-16 md:px-12 sm:px-6 px-6   relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12 lg:gap-20 mb-12 md:mb-16">
           <motion.div
-            className="flex flex-col items-start gap-4 md:gap-5"
+            className="flex flex-col items-start gap-1 md:gap-3"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={headingVariant}
           >
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 shadow-inner">
-              <span className="text-[11px] font-mono font-medium tracking-widest uppercase text-white/50">
+            <div className="inline-flex items-center   shadow-inner">
+              <span className="text-[15px] font-mono font-medium tracking-widest uppercase text-vivid-cyan">
                 {t("features.title")}
               </span>
             </div>

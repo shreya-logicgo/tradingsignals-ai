@@ -7,7 +7,7 @@ import { createContext, useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import noiseTexture from "@/assets/images/texture.png"; 
-import { Noise } from "@react-three/postprocessing";
+// import { Noise } from "@react-three/postprocessing";
 import NoiseOverlay from "@/components/NoiseOverlay";
 
 
@@ -16,7 +16,6 @@ interface StepData {
   desc: string;
 }
 
-// ── Hover context for sibling dimming ───────────────────────────────────────
 export const HoverContext = createContext<{
   hoveredId: string | null;
   setHoveredId: (id: string | null) => void;
@@ -36,35 +35,33 @@ export default function Steps() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="w-full py-10 md:py-14 relative overflow-hidden bg-[#010B24]"
+        className="w-full py-8 md:py-10 relative bg-transparent overflow-x-clip overflow-y-visible"
       >
         
       <NoiseOverlay/>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-x-12 lg:gap-y-0 items-start relative z-2">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-x-12 lg:gap-y-0 items-start">
 
             {/* ── HEADING ── */}
             <motion.div variants={fadeUpVariant} className="lg:col-start-2 lg:row-start-1 flex flex-col items-center text-center lg:pt-14 mb-8 lg:mb-0 order-1">
-              <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6">
-                <span className="text-[11px] font-mono tracking-widest uppercase text-white/50">
+              <div className="inline-flex items-center justify-center px-4 py-1.5  mb-3 backdrop-blur-md">
+                <span className="text-[15px] font-mono tracking-widest uppercase text-vivid-cyan">
                   {t("gettingStarted.title")}
                 </span>
               </div>
               <h2
-                className="text-4xl md:text-[40px] font-medium leading-tight md:leading-[1.1] text-white font-hoves mb-2 lg:max-w-md"
-                style={{ fontFamily: "var(--font-hoves)" }}
+                className="text-4xl md:text-[40px] font-medium leading-tight md:leading-[1.1] text-white mb-2 lg:max-w-md font-hoves"
               >
                 {t("gettingStarted.heading")}
               </h2>
               <p
-                className="text-sm md:text-base font-light leading-relaxed text-[#c7ccd2] font-hoves max-w-[280px]"
-                style={{ fontFamily: "var(--font-hoves)" }}
+                className="text-sm md:text-base font-light leading-relaxed text-[#c7ccd2] max-w-[280px] font-hoves"
               >
                 {t("gettingStarted.description")}
               </p>
             </motion.div>
 
-            {/* ── STEP 01 ── */}
+            {/* STEP 01 */}
             {stepsData[0] && (
               <motion.div variants={fadeUpVariant} className="lg:col-start-1 lg:row-start-1 flex justify-center lg:justify-start order-2 lg:order-1 lg:pt-4">
                 <StepCard
@@ -77,7 +74,7 @@ export default function Steps() {
               </motion.div>
             )}
 
-            {/* ── STEP 03 ── */}
+            {/* STEP 03 */}
             {stepsData[2] && (
               <motion.div variants={fadeUpVariant} className="lg:col-start-3 lg:row-start-1 flex justify-center lg:justify-end order-4 lg:order-3 lg:pt-4">
                 <StepCard
@@ -90,7 +87,7 @@ export default function Steps() {
               </motion.div>
             )}
 
-            {/* ── STEP 02 ── */}
+            {/* STEP 02 */}
             {stepsData[1] && (
               <motion.div variants={fadeUpVariant} className="lg:col-start-2 lg:row-start-2 flex justify-center pt-8 lg:pt-24 order-3 lg:order-4">
                 <StepCard

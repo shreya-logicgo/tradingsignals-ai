@@ -15,10 +15,21 @@ import {
 
 import glowBar1 from "@/assets/images/glowBar1.png";
 import glowBar2 from "@/assets/images/glowBar2.png";
-
 import NoiseOverlay from "@/components/NoiseOverlay";
 import Steps from "../steps/Steps";
 import RocketParticles from "./RocketParticles";
+
+// Animation constants
+const ANIMATION_DURATION = 1;
+
+interface StatConfig {
+  prefix?: string;
+  value: number;
+  suffix?: string;
+  decimals?: number;
+  label: string;
+  delay: number;
+}
 
 export default function Stats() {
   const { t } = useTranslation();
@@ -39,7 +50,7 @@ export default function Stats() {
   const [showParticles, setShowParticles] = useState(true);
   const [isFadingParticles, setIsFadingParticles] = useState(false);
 
-  // Scroll animation
+  // Scroll-based parallax calculation
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
@@ -49,45 +60,95 @@ export default function Stats() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      // Calculate normalized mouse position (-0.5 to 0.5)
       const relativeY = e.clientY / window.innerHeight - 0.5;
+      // Map to a ±60px range of vertical influence
       mouseTranslateY.set(relativeY * 120);
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseTranslateY]);
 
+  // Transform scroll progress to vertical offset (-120px to 120px)
   const scrollTranslateY = useTransform(scrollYProgress, [0, 1], [-120, 120]);
 
+  // Combine scroll and mouse movement into one value
   const combinedY = useTransform(
     [scrollTranslateY, mouseTranslateY],
     ([scroll, mouse]) => (scroll as number) + (mouse as number)
   );
 
+  // Apply spring smoothing for a premium feel
   const smoothY = useSpring(combinedY, {
     stiffness: 40,
     damping: 25,
     mass: 0.5,
   });
 
-  const stats = [
-    { number: "1,250+", label: t("stats.registeredUsers") },
-    { number: "$4.5M", label: t("stats.aum") },
-    { number: "$12M", label: t("stats.totalPnl") },
+  // Stat definitions with proper formatting
+  const stats: StatConfig[] = [
+    {
+      value: 1250,
+      suffix: "+",
+      label: t("stats.registeredUsers"),
+      delay: 0,
+    },
+    {
+      prefix: "$",
+      value: 4.5,
+      suffix: "M",
+      decimals: 1,
+      label: t("stats.aum"),
+      delay: ANIMATION_DURATION * 0.1,
+    },
+    {
+      prefix: "$",
+      value: 12,
+      suffix: "M",
+      label: t("stats.totalPnl"),
+      delay: ANIMATION_DURATION * 0.2,
+    },
   ];
+
+  // Format stat numbers for display
+  const formatStatNumber = (stat: StatConfig): string => {
+    const formattedValue = stat.decimals 
+      ? stat.value.toFixed(stat.decimals)
+      : stat.value.toLocaleString();
+    
+    return `${stat.prefix || ""}${formattedValue}${stat.suffix || ""}`;
+  };
 
   return (
     <section
       ref={sectionRef}
-      className="w-full relative pb-16 lg:pb-30 lg:pt-30 overflow-hidden"
+      className="w-full relative pb-16 lg:pb-20 lg:pt-30 overflow-hidden"
     >
       <Steps />
       <NoiseOverlay />
 
-      {/* ───────── Rockets + Particles ───────── */}
+      {/* Background Gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 0,
+          background: `radial-gradient(
+            ellipse 27% 52% at 50% 50%,
+            rgba(0, 18, 184, 0.50) 0%,
+            rgba(0, 18, 184, 0.25) 30%,
+            rgba(0, 18, 184, 0.08) 55%,
+            transparent 70%
+          )`,
+        }}
+      />
+
+      {/* Rockets + Particles with Interactive Motion */}
       <motion.div
         className="absolute top-0 inset-0 mx-auto pointer-events-none lg:max-w-300 max-w-200"
-        style={{ y: smoothY }}
+        style={{ 
+          zIndex: 1,
+          y: smoothY 
+        }}
       >
         <div className="relative h-full">
           {/* LEFT ROCKET */}
@@ -146,13 +207,11 @@ export default function Stats() {
                 setLeftRocketPhase("return");
               } else if (leftRocketPhase === "return") {
                 setLeftRocketPhase("idle");
-                // Start fading particles when both rockets are idle
                 if (rightRocketPhase === "idle") {
                   setIsFadingParticles(true);
-                  // Actually remove particles after fade animation completes
                   setTimeout(() => {
                     setShowParticles(false);
-                  }, 2000); // Match this with the fade duration
+                  }, 2000);
                 }
               }
             }}
@@ -176,7 +235,6 @@ export default function Stats() {
                 priority
               />
             </div>
-            
           </motion.div>
 
           {/* RIGHT ROCKET */}
@@ -237,13 +295,11 @@ export default function Stats() {
                 setRightRocketPhase("return");
               } else if (rightRocketPhase === "return") {
                 setRightRocketPhase("idle");
-                // Start fading particles when both rockets are idle
                 if (leftRocketPhase === "idle") {
                   setIsFadingParticles(true);
-                  // Actually remove particles after fade animation completes
                   setTimeout(() => {
                     setShowParticles(false);
-                  }, 2000); // Match this with the fade duration
+                  }, 2000);
                 }
               }
             }}
@@ -287,26 +343,29 @@ export default function Stats() {
         </div>
       </motion.div>
 
-      {/* ───────── Stats Content ───────── */}
+      {/* Stats Content */}
       <div
         ref={statsRef}
-        className="flex flex-col md:flex-row items-center justify-center pt-20 relative z-20"
+        className="flex flex-col md:flex-row items-center justify-center pt-20 relative"
+        style={{ zIndex: 2 }}
       >
         {stats.map((stat, i) => (
           <div
             key={stat.label}
             className="flex flex-col md:flex-row items-center"
           >
+            {/* Divider */}
             {i > 0 && (
               <div className="w-16 h-[1px] md:w-[1px] md:h-[44px] my-6 md:my-0 md:mx-[60px] shrink-0 bg-white/20" />
             )}
 
+            {/* Stat Block */}
             <div className="flex flex-col items-center text-center">
               <span
                 className="text-4xl md:text-[50px] text-white tracking-[-0.5px] leading-[1.1]"
                 style={{ fontFamily: "var(--font-hoves)" }}
               >
-                {stat.number}
+                {formatStatNumber(stat)}
               </span>
 
               <span

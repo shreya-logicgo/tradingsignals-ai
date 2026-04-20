@@ -3,6 +3,8 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import CategoryCard from "./CategoryCard";
+import Link from "next/link";
+import HoverFxButton from "@/components/common/HoverFxButton";
 
 export default function Categories() {
   const { t } = useTranslation();
@@ -41,54 +43,61 @@ export default function Categories() {
   ];
 
   return (
-    <section className="w-full bg-[#010B24] py-16 md:py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15">
-        <div className="flex flex-col gap-12 lg:gap-16">
-          
-          <motion.div 
+    // bg-transparent so the parent AmbientTradingSection gradient shows through.
+    // overflow-visible keeps the shared layer unclipped.
+    // Removed: unified-energy-field div and all its children.
+    <section className="w-full bg-transparent pt-46 md:pt-50 pb-8 md:pb-10 relative z-10 overflow-visible -mt-24">
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-[2]">
+        <div className="flex flex-col gap-8 lg:gap-10">
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            // Slower section reveal
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12"
+            className="flex flex-col lg:flex-row lg:items-end justify-between gap-1 md:gap-3"
           >
             <div className="flex flex-col gap-4 max-w-[439px]">
-              <div className="inline-flex self-start items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5">
-                <span className="text-[11px] font-mono tracking-widest uppercase text-[#C7CCD2]">
+              <div className="inline-flex self-start items-center  py-1.5 ">
+                <span className="text-[15px] font-mono tracking-widest  uppercase text-vivid-cyan">
                   {t("tradingChannels.title")}
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-normal leading-tight md:leading-[40px] font-hoves text-white"
-                style={{ fontFamily: "var(--font-hoves)" }}>
+              <h2 className="text-3xl md:text-4xl font-normal leading-tight md:leading-[40px] font-hoves text-white">
                 {t("tradingChannels.heading")}
               </h2>
             </div>
 
             <div className="max-w-[540px] lg:self-end">
-              <p className="text-sm md:text-base leading-relaxed text-white/65 font-hoves lg:text-right"
-                style={{ fontFamily: "var(--font-hoves)" }}>
+              <p className="text-sm md:text-base leading-relaxed text-white/65 font-hoves lg:text-right">
                 {t("tradingChannels.description")}
               </p>
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 relative z-[2]">
             {categories.map((cat, index) => (
               <CategoryCard key={cat.title} {...cat} index={index} />
             ))}
           </div>
 
-          <div className="flex justify-center pt-4">
-            <motion.button 
-              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(255,255,255,0.1)" }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.5 }}
-              className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black"
-              style={{ fontFamily: "var(--font-hoves)" }}>
-              <span>{t("tradingChannels.cta")}</span>
-            </motion.button>
-          </div>
+          <div className="flex justify-center relative z-10">
+  <motion.div
+    whileHover={{
+      scale: 1.05,
+      boxShadow: "0 0 25px rgba(255,255,255,0.1)",
+    }}
+    whileTap={{ scale: 0.98 }}
+  >
+    <HoverFxButton
+      href="https://crypto.tradingsignals.ai/login"
+      className="px-7 py-3"
+    >
+      {t("tradingChannels.cta")}
+    </HoverFxButton>
+  </motion.div>
+</div>
         </div>
       </div>
     </section>
