@@ -13,14 +13,14 @@ const logos = [
           height="20"
           viewBox="0 0 24 24"
           fill="none"
-          className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] md:w-[26px] md:h-[26px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
+          className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px] md:w-[34px] md:h-[34px] lg:w-[38px] lg:h-[38px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
         >
           <rect x="2" y="2" width="9" height="9" rx="1.5" fill="currentColor" />
           <rect x="13" y="2" width="9" height="9" rx="1.5" fill="currentColor" />
           <rect x="2" y="13" width="9" height="9" rx="1.5" fill="currentColor" />
           <rect x="13" y="13" width="9" height="9" rx="1.5" fill="currentColor" />
         </svg>
-        <span className="text-[13px] sm:text-[15px] md:text-[18px] lg:text-[20px] font-medium text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
+        <span className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] font-medium text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
           WunderTrading
         </span>
       </div>
@@ -33,7 +33,7 @@ const logos = [
         <svg
           viewBox="0 0 24 24"
           fill="none"
-          className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] md:w-[26px] md:h-[26px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
+          className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px] md:w-[34px] md:h-[34px] lg:w-[38px] lg:h-[38px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
         >
           <path d="M12 3L14.5 5.5L9 11L6.5 8.5L12 3Z" fill="currentColor" />
           <path d="M16 7L18.5 9.5L9 19L6.5 16.5L16 7Z" fill="currentColor" />
@@ -41,7 +41,7 @@ const logos = [
           <path d="M19 10.5L21.5 13L19 15.5L16.5 13L19 10.5Z" fill="currentColor" />
           <path d="M12 16.5L14.5 19L12 21.5L9.5 19L12 16.5Z" fill="currentColor" />
         </svg>
-        <span className="text-[13px] sm:text-[15px] md:text-[19px] lg:text-[22px] font-bold text-white/40 group-hover:text-white/60 tracking-wider uppercase font-hoves transition-colors whitespace-nowrap">
+        <span className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] font-bold text-white/40 group-hover:text-white/60 tracking-wider uppercase font-hoves transition-colors whitespace-nowrap">
           BINANCE
         </span>
       </div>
@@ -54,12 +54,12 @@ const logos = [
         <svg
           viewBox="0 0 24 24"
           fill="none"
-          className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
+          className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px] md:w-[34px] md:h-[34px] lg:w-[38px] lg:h-[38px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
         >
           <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M17 7H21V11" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        <span className="text-[13px] sm:text-[15px] md:text-[18px] lg:text-[20px] font-semibold text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
+        <span className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] font-semibold text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
           TradersPost
         </span>
       </div>
@@ -82,12 +82,12 @@ const logos = [
         <svg
           viewBox="0 0 24 24"
           fill="none"
-          className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
+          className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px] md:w-[34px] md:h-[34px] lg:w-[38px] lg:h-[38px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
         >
           <path d="M20.5 11.5C20.5 16.75 16.25 21 11 21C5.75 21 1.5 16.75 1.5 11.5C1.5 6.25 5.75 2 11 2C13.5 2 15.75 2.95 17.45 4.55" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           <circle cx="11" cy="11.5" r="3.5" stroke="currentColor" strokeWidth="1.8" />
         </svg>
-        <span className="text-[13px] sm:text-[15px] md:text-[18px] lg:text-[20px] font-medium text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
+        <span className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] font-medium text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
           OpenAI
         </span>
       </div>
@@ -100,11 +100,11 @@ const logos = [
         <svg
           viewBox="0 0 24 24"
           fill="none"
-          className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
+          className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px] md:w-[34px] md:h-[34px] lg:w-[38px] lg:h-[38px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
         >
           <path d="M2 18L8 12L12 16L22 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        <span className="text-[13px] sm:text-[15px] md:text-[18px] lg:text-[20px] font-semibold text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
+        <span className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] font-semibold text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
           TradingView
         </span>
       </div>
@@ -117,14 +117,14 @@ const logos = [
         <svg
           viewBox="0 0 24 24"
           fill="none"
-          className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
+          className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px] md:w-[34px] md:h-[34px] lg:w-[38px] lg:h-[38px] text-white/40 group-hover:text-white/60 transition-colors flex-shrink-0"
         >
           <rect x="2" y="14" width="4" height="8" rx="1" fill="currentColor" />
           <rect x="8" y="9" width="4" height="13" rx="1" fill="currentColor" />
           <rect x="14" y="5" width="4" height="17" rx="1" fill="currentColor" />
           <rect x="20" y="2" width="4" height="20" rx="1" fill="currentColor" />
         </svg>
-        <span className="text-[13px] sm:text-[15px] md:text-[18px] lg:text-[20px] font-medium text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
+        <span className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] font-medium text-white/40 group-hover:text-white/60 tracking-tight font-hoves transition-colors whitespace-nowrap">
           Barchart
         </span>
       </div>
@@ -161,7 +161,7 @@ export default function TrustedLogos() {
     >
       <motion.p
         variants={fadeUpVariant}
-        className="text-center text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] tracking-[0.05em] uppercase text-white/80 font-hoves px-4"
+        className="text-center text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] tracking-[0.05em] uppercase text-white/80 font-hoves px-4 "
       >
         {t("hero.integration")}
       </motion.p>
