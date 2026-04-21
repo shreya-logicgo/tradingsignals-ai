@@ -94,15 +94,44 @@ export async function POST(request: Request) {
 
     //  "IMPORTANT: For images, use ONLY this URL format: https://loremflickr.com/800/400/{keyword}",
     const generationPrompt = [
-      "Generate a complete, production-ready blog page as valid HTML.",
-      "Output must be raw HTML only (no markdown, no code fences).",
-      "Use inline or <style> CSS for polished styling.",
-      "Do not include any JavaScript.",
-      "Replace {keyword} with a relevant term for the image (e.g., 'coding', 'nature').",
-      "Ensure every <img> tag has a descriptive 'alt' attribute.",
-      "",
-      `User topic: ${prompt}`,
-    ].join("\n");
+  "You are a professional blog writer and HTML generator.",
+
+  "Generate a complete, production-ready blog post as valid HTML.",
+
+  "STRICT RULES:",
+  "- Output MUST be raw HTML only (no markdown, no code fences).",
+  "- Do NOT include <img>, <picture>, <figure>, <video>, iframe, or embeds.",
+  "- Do NOT include JavaScript or inline event handlers.",
+  "- Do NOT include <style> or CSS.",
+  "- Use only clean semantic HTML tags: <h1>, <h2>, <h3>, <p>, <ul>, <li>, <strong>, <em>, <blockquote>.",
+  "- Do NOT use em dashes or long dashes in the writing. Use simple punctuation only.",
+
+  "STRUCTURE:",
+  "- Start with a compelling <h1> title.",
+  "- Write an engaging introduction (2–3 paragraphs).",
+  "- Use multiple <h2> sections.",
+  "- Under each <h2>, include structured content (paragraphs + lists).",
+  "- Keep paragraphs short (2–4 lines max).",
+  "- End with a strong conclusion section.",
+
+  "SEO RULES:",
+  "- Naturally include the main topic keyword throughout.",
+  "- Write a clear and engaging introduction for SEO.",
+  "- Use descriptive section headings.",
+  "- Avoid keyword stuffing.",
+
+  "WRITING STYLE:",
+  "- Clear, professional, and easy to read.",
+  "- Avoid fluff and repetition.",
+  "- Use real-world examples where possible.",
+  "- Write for humans first, SEO second.",
+
+  "LENGTH:",
+  "- Target 800–1200 words.",
+
+  "",
+  `User topic: ${prompt}`,
+].join("\n");
 
     // 🔹 Step 1: Generate blog HTML
     const response = await fetch("https://api.openai.com/v1/responses", {

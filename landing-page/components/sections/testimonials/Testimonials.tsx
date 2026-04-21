@@ -52,7 +52,7 @@ export default function Testimonials() {
       </div>
 
 
-      <div className="max-w-[1250px] mx-auto px-6 md:px-10 relative z-10 w-full">
+      <div id="testimonials" className="max-w-[1250px] mx-auto px-6 md:px-10 relative z-10 w-full scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
 
           {/* LEFT COLUMN - Stacked cards */}

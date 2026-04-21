@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import NoiseOverlay from "../NoiseOverlay";
+import blog1 from "@/assets/images/blog-1.jpg";
+import BlogImage from "./BlogImage";
 
 // 1. Define your types for the multilingual fields
 type MultilingualText = {
@@ -30,11 +32,11 @@ function BlogCard({ post }: { post: BlogPost }) {
     <div className="flex flex-col gap-3 group h-full">
       {/* Image */}
       <Link href={`/blogs/${post.slug || post._id}`}>
-        <div className="w-full aspect-[17/11] rounded-lg overflow-hidden bg-[#111827] relative">
-          <img 
-            src={post.coverImage || `https://picsum.photos/400/300?random=${post._id}`} 
+        <div className="w-full aspect-[17/11]">
+          <BlogImage 
+            src={post.coverImage || ""} 
             alt={post.title} 
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+            className="w-full h-full transition-transform duration-300 group-hover:scale-105" 
           />
         </div>
       </Link>

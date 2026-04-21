@@ -83,7 +83,7 @@ export default function AmbientTradingSection() {
         />
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-20">
         <Categories />
         {/* <div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" /> */}
         <Traders />
