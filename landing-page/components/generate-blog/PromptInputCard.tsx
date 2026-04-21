@@ -68,6 +68,7 @@ const PromptInputCard = ({
         onImageChange={onImageChange}
         onGenerate={onImageGenerate}
         isLoading={isGeneratingImage}
+        disabled={isLoading}
         regenCount={regenCount}
         maxRegen={maxRegen}
       />

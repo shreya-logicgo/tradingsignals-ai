@@ -10,6 +10,7 @@ type CoverImageSelectorProps = {
   onFileSelect?: (file: File) => void;
   onGenerate: () => Promise<void>;
   isLoading: boolean;
+  disabled?: boolean;
   regenCount: number;
   maxRegen: number;
 };
@@ -20,6 +21,7 @@ const CoverImageSelector = ({
   onFileSelect,
   onGenerate,
   isLoading,
+  disabled,
   regenCount,
   maxRegen,
 }: CoverImageSelectorProps) => {
@@ -76,7 +78,8 @@ const CoverImageSelector = ({
               <button
                 type="button"
                 onClick={handleUploadClick}
-                className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-full hover:bg-white/20 transition-colors"
+                disabled={isLoading || disabled}
+                className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-full hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 title={t("generateBlog.uploadNew")}
               >
                 <Upload className="w-5 h-5 text-white" />
@@ -105,7 +108,7 @@ const CoverImageSelector = ({
         <button
           type="button"
           onClick={handleUploadClick}
-          disabled={isLoading}
+          disabled={isLoading || disabled}
           className="flex-1 cursor-pointer flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl border border-cosmos bg-mirage/50 text-titan-white text-sm hover:bg-cosmos/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed group shadow-sm active:scale-[0.98]"
         >
           <Upload className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
@@ -115,7 +118,7 @@ const CoverImageSelector = ({
         <button
           type="button"
           onClick={onGenerate}
-          disabled={isLoading || regenCount >= maxRegen}
+          disabled={isLoading || disabled || regenCount >= maxRegen}
           className="flex-1 cursor-pointer  flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl bg-mirage/50 border border-cosmos text-vivid-cyan text-sm hover:bg-vivid-cyan/10 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:grayscale group shadow-sm active:scale-[0.98]"
         >
           <ReSpin className={`w-4 h-4 ${isLoading ? "animate-spin" : "group-hover:rotate-180 transition-transform duration-500"}`} />
