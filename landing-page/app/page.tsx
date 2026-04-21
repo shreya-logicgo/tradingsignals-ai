@@ -52,10 +52,7 @@ export default function Home() {
       <AmbientStatsStepsSection />
       <AmbientTradingSection />
 
-      <section
-        id="testimonials"
-        className="scroll-mt-14 sm:scroll-mt-14 md:scroll-mt-22 lg:scroll-mt-20"
-      >
+      <section>
         <AmbientTestimonialsSection />
       </section>
       <AmbientFAQCTASection />

@@ -8,23 +8,82 @@ import blog3 from "@/assets/images/blog-3.jpg";
 import Link from "next/link";
 import HoverFxButton from "@/components/common/HoverFxButton";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import BlogImage from "@/components/Blogs/BlogImage";
 
 interface PostData {
   title: string;
   desc: string;
+  image: any;
+  slug?: string;
 }
+
+interface DBBlog {
+  _id: string;
+  title: string;
+  content: string;
+  coverImage?: string;
+  slug: string;
+  createdAt: string;
+}
+
+// Helper to strip HTML tags for preview text
+const stripHtml = (html: string) => {
+  if (typeof window === 'undefined') return html;
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || "";
+};
 
 export default function CTA() {
   const { t } = useTranslation();
+  const [posts, setPosts] = useState<PostData[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Blog posts from common.json
-  const blogPosts = t("blog.posts", { returnObjects: true }) as PostData[];
+  useEffect(() => {
+    async function fetchRecentBlogs() {
+      try {
+        const response = await fetch('/api/blogs');
+        if (!response.ok) throw new Error('Failed to fetch');
+        const data: DBBlog[] = await response.json();
+        
+        // Take 3 most recent
+        const recentBlogs = data.slice(0, 3).map((blog, i) => ({
+          title: blog.title,
+          desc: stripHtml(blog.content),
+          image: blog.coverImage || "",
+          slug: blog.slug
+        }));
 
-  const posts = [
-    { image: blog1, title: blogPosts[0]?.title || "", description: blogPosts[0]?.desc || "" },
-    { image: blog2, title: blogPosts[1]?.title || "", description: blogPosts[1]?.desc || "" },
-    { image: blog3, title: blogPosts[2]?.title || "", description: blogPosts[2]?.desc || "" },
-  ];
+        // If we have less than 3 blogs, fill with static fallbacks
+        if (recentBlogs.length < 3) {
+          const staticPosts = t("blog.posts", { returnObjects: true }) as { title: string, desc: string }[];
+          const fallbacks = staticPosts.slice(recentBlogs.length, 3).map((p, i) => ({
+            title: p.title,
+            desc: p.desc,
+            image: "",
+            slug: "#"
+          }));
+          setPosts([...recentBlogs, ...fallbacks]);
+        } else {
+          setPosts(recentBlogs);
+        }
+      } catch (error) {
+        console.error("Error fetching blogs for CTA:", error);
+        // On error, fall back to static data
+        const staticPosts = t("blog.posts", { returnObjects: true }) as { title: string, desc: string }[];
+        setPosts(staticPosts.map((p, i) => ({
+          title: p.title,
+          desc: p.desc,
+          image: "",
+          slug: "#"
+        })));
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchRecentBlogs();
+  }, [t]);
 
   return (
     <section className="w-full bg-transparent py-10 md:py-12 relative overflow-hidden">
@@ -55,55 +114,66 @@ export default function CTA() {
           {/* ── Cards + CTA ── */}
           <div className="flex flex-col gap-12">
             {/* Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-stretch">
-              {posts.map((post, i) => (
-                <div
-                  key={i}
-                  className="group flex flex-col cursor-pointer transition-transform duration-300 hover:-translate-y-2"
-                >
-                  {/* Image */}
-                  <div className="relative w-full aspect-[460/300] rounded-2xl overflow-hidden shadow-2xl flex-shrink-0">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-stretch min-h-[400px]">
+              {loading ? (
+                // Simple loading state
+                [...Array(3)].map((_, i) => (
+                  <div key={i} className="animate-pulse flex flex-col gap-4">
+                    <div className="bg-white/5 aspect-[460/300] rounded-2xl" />
+                    <div className="h-6 bg-white/5 rounded w-3/4" />
+                    <div className="h-4 bg-white/5 rounded w-full" />
+                    <div className="h-4 bg-white/5 rounded w-5/6" />
                   </div>
-
-                  {/*
-                    Content — flex-col + justify-between
-                    Top group: title + description
-                    Bottom: View more — always aligned across all cards
-                  */}
-                  <div
-                    className="flex flex-col flex-1 pt-6 justify-between gap-4"
+                ))
+              ) : (
+                posts.map((post, i) => (
+                  <Link
+                    href={post.slug !== "#" ? `/blogs/${post.slug}` : "/blogs"}
+                    key={i}
+                    className="group flex flex-col cursor-pointer transition-transform duration-300 hover:-translate-y-2"
                   >
-                    {/* Top: title + description */}
-                    <div className="flex flex-col gap-3">
-                      <h3
-                        className="text-xl text-white leading-tight line-clamp-2 font-hoves"
-                      >
-                        {post.title}
-                      </h3>
-
-                      <p
-                        className="text-sm md:text-base text-[#c7ccd2] leading-relaxed line-clamp-3 font-hoves"
-                      >
-                        {post.description}
-                      </p>
+                    {/* Image */}
+                    <div className="relative w-full aspect-[460/300] flex-shrink-0">
+                      <BlogImage
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
 
-                    {/* Bottom: View more — pinned to bottom by justify-between */}
-                    <span
-                      className="text-sm text-white underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all font-hoves"
+                    {/*
+                      Content — flex-col + justify-between
+                      Top group: title + description
+                      Bottom: View more — always aligned across all cards
+                    */}
+                    <div
+                      className="flex flex-col flex-1 pt-6 justify-between gap-4"
                     >
-                      {t("blog.viewMore")}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                      {/* Top: title + description */}
+                      <div className="flex flex-col gap-3">
+                        <h3
+                          className="text-xl text-white leading-tight line-clamp-2 font-hoves"
+                        >
+                          {post.title}
+                        </h3>
+
+                        <p
+                          className="text-sm md:text-base text-[#c7ccd2] leading-relaxed line-clamp-3 font-hoves"
+                        >
+                          {post.desc}
+                        </p>
+                      </div>
+
+                      {/* Bottom: View more — pinned to bottom by justify-between */}
+                      <span
+                        className="text-sm text-white underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all font-hoves"
+                      >
+                        {t("blog.viewMore")}
+                      </span>
+                    </div>
+                  </Link>
+                ))
+              )}
             </div>
 
             <div className="flex justify-center mt-4">
@@ -128,5 +198,6 @@ export default function CTA() {
     </section>
   );
 }
+
 
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import glowBar from "@/assets/images/glowBars.png";
@@ -10,12 +11,36 @@ interface GlowBarsProps {
 }
 
 export default function GlowBars({ targetRef }: GlowBarsProps) {
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start end", "end start"],
   });
 
-  const yMove = useTransform(scrollYProgress, [0, 1], [-350, 450]);
+  // Calculate dynamic movement based on screen width
+  const yMove = useTransform(scrollYProgress, (value) => {
+    const isMobile = width < 768;
+    const isTablet = width >= 768 && width < 1024;
+    
+    // Default range (Desktop)
+    let range = [-350, -100];
+    
+    if (isMobile) {
+      range = [0, 900];
+    } else if (isTablet) {
+      range = [-650, 400];
+    }
+    
+    return value * (range[1] - range[0]) + range[0];
+  });
 
   const smoothY = useSpring(yMove, {
     stiffness: 70,
