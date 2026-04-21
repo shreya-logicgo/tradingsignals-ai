@@ -69,7 +69,7 @@ export default function Hero() {
       </div>
 
       {/* PARTICLES */}
-      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+      {/* <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
         {mounted &&
           PARTICLES.map((p) => {
             const animName =
@@ -97,7 +97,7 @@ export default function Hero() {
               />
             );
           })}
-      </div>
+      </div> */}
 
       {/* CONTENT */}
       <Container className="relative z-20 flex flex-col items-center text-center px-0">
