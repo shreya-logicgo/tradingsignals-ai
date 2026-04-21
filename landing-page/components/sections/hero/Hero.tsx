@@ -52,7 +52,7 @@ export default function Hero() {
       {/* PURE OGL AURORA BACKGROUND */}
       <div className="absolute inset-x-0 -top-40 h-[140%] z-0 pointer-events-none">
         <Aurora
-          colorStops={["#000C8A", "#00A8B8", "#0016C4"]}
+           colorStops={["#0012B8", "#00c8ff", "#0020FF"]}
           speed={0.45}
           amplitude={1.25}
         />
@@ -69,7 +69,7 @@ export default function Hero() {
       </div>
 
       {/* PARTICLES */}
-      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+      {/* <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
         {mounted &&
           PARTICLES.map((p) => {
             const animName =
@@ -97,7 +97,7 @@ export default function Hero() {
               />
             );
           })}
-      </div>
+      </div> */}
 
       {/* CONTENT */}
       <Container className="relative z-20 flex flex-col items-center text-center px-0">
