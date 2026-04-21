@@ -13,7 +13,7 @@ import userslabel from "@/assets/images/avatars.png";
 import ShineText from "@/components/common/ShineText";
 import GetAccessButton from "@/components/common/GetAccessButton";
 
-const PARTICLES = Array.from({ length: 111 }).map((_, i) => ({
+const PARTICLES = Array.from({ length: 60 }).map((_, i) => ({
   id: i,
   side: i % 2 === 0 ? "left" : "right",
   left: i % 2 === 0 ? -10 + Math.random() * 20 : undefined,

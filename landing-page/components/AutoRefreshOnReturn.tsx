@@ -33,13 +33,13 @@ export default function AutoRefreshOnReturn() {
       }
     };
 
-    window.addEventListener("focus", refreshPage);
-    document.addEventListener("visibilitychange", handleVisibility);
+    // window.addEventListener("focus", refreshPage);
+    // document.addEventListener("visibilitychange", handleVisibility);
 
     return () => {
       clearTimeout(timer);
-      window.removeEventListener("focus", refreshPage);
-      document.removeEventListener("visibilitychange", handleVisibility);
+      // window.removeEventListener("focus", refreshPage);
+      // document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, [router, isPending]);
 

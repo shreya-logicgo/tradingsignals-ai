@@ -9,12 +9,12 @@ export default function SmoothScrollHandler() {
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
+      window.history.scrollRestoration = "auto";
     }
 
     // Initial page load / refresh
     if (isFirstMount.current) {
-      window.scrollTo(0, 0);
+      // window.scrollTo(0, 0);
       isFirstMount.current = false;
 
       if (window.location.hash) {
