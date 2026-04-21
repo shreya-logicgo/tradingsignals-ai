@@ -35,7 +35,7 @@ export default function Steps() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="w-full py-8 md:py-10 relative bg-transparent overflow-x-clip overflow-y-visible"
+        className="w-full  relative bg-transparent overflow-x-clip overflow-y-visible"
       >
         
       <NoiseOverlay/>

@@ -3,8 +3,7 @@
 @custom-variant 3xl (@media (width >=1620px));
 
 @theme {
-  --font-hoves: var(--font-hoves),
-  sans-serif;
+  --font-hoves: var(--font-hoves), sans-serif;
 
   /* color */
   --color-mirage: #0b152d;
@@ -57,7 +56,6 @@ html {
   }
 }
 
-
 @layer utilities {
   .animate-border-spin {
     animation: border-spin 3s linear infinite;
@@ -79,9 +77,11 @@ html {
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
-  background: linear-gradient(135deg,
-      rgba(13, 20, 35, 0.9) 0%,
-      rgba(8, 14, 25, 0.95) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(13, 20, 35, 0.9) 0%,
+    rgba(8, 14, 25, 0.95) 100%
+  );
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -89,12 +89,14 @@ html {
 .glow-btn .your-button {
   position: relative;
   z-index: 2;
-  background: linear-gradient(90deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(255, 255, 255, 0.3) 20%,
-      white 50%,
-      rgba(255, 255, 255, 0.3) 80%,
-      rgba(255, 255, 255, 0.3) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.3) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.3) 80%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;
@@ -151,18 +153,22 @@ html {
 }
 
 .shine {
-  mask-image: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.2) 20%,
-      white 50%,
-      rgba(255, 255, 255, 0.2) 80%,
-      transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.2) 20%,
-      white 50%,
-      rgba(255, 255, 255, 0.2) 80%,
-      transparent 100%);
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    white 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
   mask-size: 200% 100%;
   -webkit-mask-size: 200% 100%;
   mask-repeat: no-repeat;
@@ -261,10 +267,15 @@ html {
 .shine {
   animation: 7s ease-in-out infinite shine;
   mask-image: linear-gradient(to right, #0000 30%, #eeeeeeb6 50%, #0000 70%);
-  -webkit-mask-image: linear-gradient(to right, #0000 30%, #eeeeeeb6 50%, #0000 70%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #0000 30%,
+    #eeeeeeb6 50%,
+    #0000 70%
+  );
   mask-size: 150%;
   -webkit-mask-size: 150%;
-} 
+}
 
 /* ── Floating Particles ── */
 @keyframes float-a {
@@ -387,12 +398,15 @@ html {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: radial-gradient(25% 50%, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(
+    25% 50%,
+    rgb(255, 255, 255) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: -4rem -1.5rem;
-  transition:
-    background-position 0.5s ease-in-out,
+  transition: background-position 0.5s ease-in-out,
     background-size 0.5s ease-in-out;
   animation: radialGlow 4s linear infinite;
 }
@@ -422,14 +436,12 @@ html {
 .get-access-btn-bg {
   z-index: 0;
   will-change: transform;
-  background: linear-gradient(135deg,
-      #0f172a 0%,
-      /* Deep Slate (Darker than #1c263c) */
-      #171f3d 50%,
-      /* Dark Navy Center (Darker than #242f57) */
-      #0f172a 100%
-      /* Deep Slate */
-    );
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    /* Deep Slate (Darker than #1c263c) */ #171f3d 50%,
+    /* Dark Navy Center (Darker than #242f57) */ #0f172a 100% /* Deep Slate */
+  );
   border: 1px solid rgba(255, 255, 255, 0.05);
   /* Subtle rim light */
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
@@ -511,10 +523,10 @@ html {
    touch-action:pan-y allows vertical page scroll while Embla owns X-axis. */
 .carousel__container {
   display: flex;
-  align-items: stretch;       /* all slides stretch to tallest sibling height */
+  align-items: stretch; /* all slides stretch to tallest sibling height */
   touch-action: pan-y;
   backface-visibility: hidden;
-  will-change: transform;     /* promote track to its own GPU layer */
+  will-change: transform; /* promote track to its own GPU layer */
 }
 
 /* ─── Slides ────────────────────────────────────────────────────────────
@@ -530,23 +542,23 @@ html {
    overflow:hidden on each slide prevents internal content from expanding
    the slide beyond its lane height.                                       */
 .carousel__slide {
-  flex: 0 0 100%;             /* 1 slide on mobile */
-  min-width: 0;               /* prevents flex blowout */
+  flex: 0 0 100%; /* 1 slide on mobile */
+  min-width: 0; /* prevents flex blowout */
   overflow: hidden;
   /* Horizontal gap between slides — use padding rather than margin so
      Embla's internal size calculations stay accurate.                    */
-  padding-right: 1rem;        /* adjust to your design token */
+  padding-right: 1rem; /* adjust to your design token */
 }
 
 @media (min-width: 640px) {
   .carousel__slide {
-    flex: 0 0 50%;            /* 2 slides on tablet */
+    flex: 0 0 50%; /* 2 slides on tablet */
   }
 }
 
 @media (min-width: 1024px) {
   .carousel__slide {
-    flex: 0 0 33.333%;        /* 3 slides on desktop */
+    flex: 0 0 33.333%; /* 3 slides on desktop */
   }
 }
 
@@ -581,4 +593,16 @@ html {
   background: #fff;
   position: absolute;
   pointer-events: none;
+}
+
+.section-py {
+  @apply py-20 3xl:py-25;
+}
+
+.section-pt {
+  @apply pt-20 3xl:pt-25;
+}
+
+.section-pb {
+  @apply pb-20 3xl:pb-25;
 }

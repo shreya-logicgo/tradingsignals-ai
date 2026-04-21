@@ -112,42 +112,27 @@ export default function Stats() {
 
   // Format stat numbers for display
   const formatStatNumber = (stat: StatConfig): string => {
-    const formattedValue = stat.decimals 
+    const formattedValue = stat.decimals
       ? stat.value.toFixed(stat.decimals)
       : stat.value.toLocaleString();
-    
+
     return `${stat.prefix || ""}${formattedValue}${stat.suffix || ""}`;
   };
 
   return (
     <section
       ref={sectionRef}
-      className="w-full relative pb-16 lg:pb-20 lg:pt-30 overflow-hidden"
+      className="w-full relative section-pt overflow-hidden"
     >
       <Steps />
       <NoiseOverlay />
 
-      {/* Background Gradient */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 0,
-          background: `radial-gradient(
-            ellipse 27% 52% at 50% 50%,
-            rgba(0, 18, 184, 0.50) 0%,
-            rgba(0, 18, 184, 0.25) 30%,
-            rgba(0, 18, 184, 0.08) 55%,
-            transparent 70%
-          )`,
-        }}
-      />
-
       {/* Rockets + Particles with Interactive Motion */}
       <motion.div
         className="absolute top-0 inset-0 mx-auto pointer-events-none lg:max-w-300 max-w-200"
-        style={{ 
+        style={{
           zIndex: 1,
-          y: smoothY 
+          y: smoothY,
         }}
       >
         <div className="relative h-full">
@@ -216,7 +201,7 @@ export default function Stats() {
               }
             }}
           >
-            <div className="max-h-65 sm:max-h-75 lg:max-h-120 xl:max-h-150 mb-28 md:mb-60 lg:mb-50 relative w-full h-full">
+            <div className="max-h-65 sm:max-h-75 lg:max-h-120 xl:max-h-150 mb-28 md:mb-75 lg:mb-50 relative w-full h-full">
               <div
                 ref={leftRocketEmitterOneRef}
                 className="absolute top-80 w-2 h-2 left-16"
@@ -304,7 +289,7 @@ export default function Stats() {
               }
             }}
           >
-            <div className="max-h-65 sm:max-h-75 lg:max-h-120 xl:max-h-150 mb-18 md:mb-45 lg:mb-18 relative w-full h-full">
+            <div className="max-h-65 sm:max-h-75 lg:max-h-120 xl:max-h-150 mb-18 md:mb-60 lg:mb-18 relative w-full h-full">
               <div
                 ref={rightRocketEmitterOneRef}
                 className="absolute top-80 w-2 h-2 right-25"
@@ -346,13 +331,13 @@ export default function Stats() {
       {/* Stats Content */}
       <div
         ref={statsRef}
-        className="flex flex-col md:flex-row items-center justify-center pt-20 relative"
+        className="flex flex-col md:flex-row items-center justify-center py-20 md:py-40 xl:py-50 relative sm:mt-10"
         style={{ zIndex: 2 }}
       >
         {stats.map((stat, i) => (
           <div
             key={stat.label}
-            className="flex flex-col md:flex-row items-center"
+            className="flex flex-col md:flex-row items-center relative z-1"
           >
             {/* Divider */}
             {i > 0 && (
@@ -377,6 +362,20 @@ export default function Stats() {
             </div>
           </div>
         ))}
+        {/* Background Gradient */}
+        <div
+          className="absolute inset-0 pointer-events-none w-100 sm:w-130 xl:w-150 h-100 sm:h-130 xl:h-150 top-1/2 -translate-1/2 left-1/2"
+          style={{
+            zIndex: 0,
+            background: `radial-gradient(
+            ellipse 80% 60% at 50% 50%,
+            rgba(0, 18, 184, 0.50) 0%,
+            rgba(0, 18, 184, 0.25) 30%,
+            rgba(0, 18, 184, 0.08) 55%,
+            transparent 70%
+          )`,
+          }}
+        />
       </div>
     </section>
   );
