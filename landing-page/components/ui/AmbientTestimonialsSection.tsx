@@ -1,15 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import Testimonials from "../sections/testimonials/Testimonials";
 import ExchangePartners from "../sections/crypto/Exchangepartners";
 
 export default function AmbientTestimonialsSection() {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { amount: 0.1 });
+
   return (
-    <div className="relative overflow-hidden bg-[#010B24] w-full z-20">
+    <div ref={containerRef} className="relative overflow-hidden bg-[#010B24] w-full z-20">
       {/* ── AMBIENT BACKGROUND LAYERS (Cyan Theme) ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden h-full w-full">
+      {isInView && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden h-full w-full">
 
         {/* Primary Cyan Glow (Matched Strength) */}
         <motion.div
@@ -92,6 +97,7 @@ export default function AmbientTestimonialsSection() {
           }}
         />
       </div>
+      )}
 
       {/* ── CONTENT ── */}
       <div className="relative flex flex-col items-center z-10">

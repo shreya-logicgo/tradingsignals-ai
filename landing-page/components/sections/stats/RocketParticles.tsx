@@ -51,7 +51,7 @@ export default function RocketParticles({ anchorRef }: Props) {
         spreadFactor: Math.random() * 2 - 1, // -1 to 1
       };
 
-      setParticles((prev) => [...prev.slice(-110), particle]);
+      setParticles((prev) => [...prev.slice(-30), particle]);
 
       const timeoutId = window.setTimeout(() => {
         setParticles((prev) => prev.filter((p) => p.id !== particle.id));
@@ -61,7 +61,7 @@ export default function RocketParticles({ anchorRef }: Props) {
       timersRef.current.add(timeoutId);
     };
 
-    const intervalId = window.setInterval(spawnParticle, 85);
+    const intervalId = window.setInterval(spawnParticle, 200);
 
     return () => {
       window.clearInterval(intervalId);

@@ -176,6 +176,13 @@ export default function Aurora({
       program.uniforms.uResolution.value = [w, h];
     });
     ro.observe(ctn);
+
+    let isVisible = true;
+    const io = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+    }, { threshold: 0 });
+    io.observe(ctn);
+
     renderer.setSize(ctn.offsetWidth * DPR, ctn.offsetHeight * DPR);
 
     let rafId  = 0;
@@ -184,6 +191,8 @@ export default function Aurora({
 
     const tick = (t: number) => {
       rafId = requestAnimationFrame(tick);
+      if (!isVisible) return; // Skip rendering if hidden
+      
       const dt = Math.min(t - lastT, 50);
       lastT = t;
       accT += dt * speedRef.current;
@@ -196,6 +205,7 @@ export default function Aurora({
     return () => {
       cancelAnimationFrame(rafId);
       ro.disconnect();
+      io.disconnect();
       if (cvs.parentNode === ctn) ctn.removeChild(cvs);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
