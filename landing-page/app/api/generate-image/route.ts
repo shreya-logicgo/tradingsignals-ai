@@ -28,7 +28,36 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         model: "dall-e-3",
-        prompt: `A professional blog cover image for: ${prompt}. Clean, modern, high resolution, suitable for a trading and technology blog.`,
+        prompt: `A natural, candid photograph for a blog cover about: ${prompt}.
+
+The image should look like a real, everyday photo taken by a human:
+slightly imperfect composition
+natural lighting (not cinematic or dramatic)
+realistic environment (home office, workplace, desk setup)
+minor clutter, irregular details, lived-in feel
+
+Include:
+a real person or realistic workspace
+normal objects (laptop, coffee mug, notebook, monitors)
+
+Camera style:
+shot on a phone or DSLR (35mm or 50mm)
+slight grain, natural shadows, no dramatic effects
+
+Avoid completely:
+anything futuristic or sci-fi
+perfect symmetry or overly clean setups
+glowing lights, neon effects
+ultra sharp HDR, over-processed look
+CGI, 3D render, digital art, concept art
+“AI aesthetic” (too polished, too perfect)
+
+Style reference:
+looks like a casual Unsplash or candid LinkedIn photo
+
+Output:
+realistic, slightly imperfect, human feel
+16:9 aspect ratio`,
         n: 1,
         size: "1024x1024",
       }),
