@@ -18,18 +18,18 @@ export default function AmbientTestimonialsSection() {
 
         {/* Primary Cyan Glow (Matched Strength) */}
         <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, -30, 0],
-            y: [0, 40, 0],
-            opacity: [0.28, 0.46, 0.28],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute -left-[50%] top-[30%] w-[85%] h-[50%] rounded-full"
+          // animate={{
+          //   scale: [1, 1.2, 1],
+          //   x: [0, -30, 0],
+          //   y: [0, 40, 0],
+          //   opacity: [0.28, 0.46, 0.28],
+          // }}
+          // transition={{
+          //   duration: 14,
+          //   repeat: Infinity,
+          //   ease: "easeInOut",
+          // }}
+          className="absolute -left-[50%] top-[30%] w-[65%] h-[30%] rounded-full"
           style={{
             background:
               "radial-gradient(ellipse at center, #00F0FF 0%, transparent 70%)",
@@ -38,7 +38,7 @@ export default function AmbientTestimonialsSection() {
         />
 
         {/* Secondary Cyan Bloom (Matched Strength) */}
-        <motion.div
+        {/* <motion.div
           animate={{
             scale: [1, 1.1, 1],
             x: [0, 50, 0],
@@ -57,10 +57,10 @@ export default function AmbientTestimonialsSection() {
               "radial-gradient(ellipse at center, rgba(0,240,255,0.1) 0%, transparent 75%)",
             filter: "blur(140px)",
           }}
-        />
+        /> */}
 
         {/* Deep Blue Complementary Glow */}
-        <motion.div
+        {/* <motion.div
           animate={{
             opacity: [0.16, 0.28, 0.16],
           }}
@@ -75,10 +75,10 @@ export default function AmbientTestimonialsSection() {
               "radial-gradient(ellipse at center, #0012B8 0%, transparent 70%)",
             filter: "blur(140px)",
           }}
-        />
+        /> */}
 
         {/* Vivid Cyan Core Pulse */}
-        <motion.div
+        {/* <motion.div
           animate={{
             scale: [1, 1.25, 1],
             opacity: [0.20, 0.34, 0.20],
@@ -95,7 +95,7 @@ export default function AmbientTestimonialsSection() {
               "radial-gradient(ellipse at center, rgba(0,240,255,0.2) 0%, transparent 60%)",
             filter: "blur(80px)",
           }}
-        />
+        /> */}
       </div>
       )}
 

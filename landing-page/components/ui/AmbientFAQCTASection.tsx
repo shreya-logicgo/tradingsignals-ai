@@ -10,7 +10,7 @@ export default function AmbientFAQCTASection() {
       {/* ── AMBIENT BACKGROUND LAYERS (LEFT SIDE ONLY) ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden h-full w-full">
         {/* Cyan Top Transition Glow (Bleed from Testimonials) */}
-        <motion.div
+        {/* <motion.div
           animate={{
             opacity: [0.15, 0.25, 0.15],
           }}
@@ -25,7 +25,7 @@ export default function AmbientFAQCTASection() {
               "radial-gradient(ellipse at center, rgba(0,240,255,0.25) 0%, transparent 70%)",
             filter: "blur(90px)",
           }}
-        />
+        /> */}
 
         {/* Main Left Deep Blue Glow */}
         <motion.div
@@ -40,7 +40,7 @@ export default function AmbientFAQCTASection() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -right-[35%] top-[8%] w-[90%] h-[75%] rounded-full"
+          className="absolute -right-[35%] top-[8%] w-[65%] h-[50%] rounded-full"
           style={{
             background:
               "radial-gradient(ellipse at center, rgba(0,18,184,1) 0%, transparent 72%)",
@@ -49,7 +49,7 @@ export default function AmbientFAQCTASection() {
         />
 
         {/* Secondary Left Bloom */}
-        <motion.div
+        {/* <motion.div
           animate={{
             scale: [1, 1.08, 1],
             y: [0, 20, 0],
@@ -67,10 +67,10 @@ export default function AmbientFAQCTASection() {
               "radial-gradient(ellipse at center, rgba(0,18,184,0.72) 0%, transparent 75%)",
             filter: "blur(90px)",
           }}
-        />
+        /> */}
 
         {/* Cyan Accent Left */}
-        <motion.div
+        {/* <motion.div
           animate={{
             opacity: [0.18, 0.34, 0.18],
           }}
@@ -85,7 +85,7 @@ export default function AmbientFAQCTASection() {
               "radial-gradient(ellipse at center, rgba(0,240,255,0.38) 0%, transparent 62%)",
             filter: "blur(70px)",
           }}
-        />
+        /> */}
       </div>
 
       {/* ── CONTENT ── */}
