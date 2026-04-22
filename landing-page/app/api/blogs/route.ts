@@ -4,6 +4,7 @@ import dbConnect from '@/lib/db';
 import Blog from '@/models/Blog';
 import { validateBlogData } from '@/lib/validation_middleware/validate';
 import { saveUpload } from '@/lib/upload';
+import { urlToBase64 } from '@/lib/imageUtils';
 
 // GET: Retrieve all blogs from MongoDB
 export async function GET() {
@@ -41,6 +42,16 @@ export async function POST(request: Request) {
     // Validation Middleware
     const validationError = validateBlogData(body);
     if (validationError) return validationError;
+
+    // Persist remote images (from OpenAI) as Base64 strings
+    if (body.coverImage && body.coverImage.startsWith("http")) {
+      try {
+        body.coverImage = await urlToBase64(body.coverImage);
+      } catch (error) {
+        console.error("Failed to persist remote image:", error);
+        // Fallback or handle error (keep as URL maybe, or set to empty)
+      }
+    }
 
     await dbConnect();
     
