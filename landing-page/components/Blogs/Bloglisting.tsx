@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import NoiseOverlay from "../NoiseOverlay";
 import blog1 from "@/assets/images/blog-1.jpg";
 import BlogImage from "./BlogImage";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import HoverFxButton from "../common/HoverFxButton";
 
 // 1. Define your types for the multilingual fields
 type MultilingualText = {
@@ -14,7 +16,6 @@ type MultilingualText = {
   th: string;
 };
 
-import { useQuery } from "@tanstack/react-query";
 
 interface BlogPost {
   _id: string;
@@ -25,6 +26,14 @@ interface BlogPost {
   createdAt: string;
 }
 
+interface BlogsResponse {
+  blogs: BlogPost[];
+  total: number;
+  page: number;
+  limit: number;
+  hasMore: boolean;
+}
+
 function BlogCard({ post }: { post: BlogPost }) {
   const { t } = useTranslation();
   
@@ -32,27 +41,26 @@ function BlogCard({ post }: { post: BlogPost }) {
     <div className="flex flex-col gap-3 group h-full">
       {/* Image */}
       <Link href={`/blogs/${post.slug || post._id}`}>
-        <div className="w-full aspect-[17/11]">
+        <div className="w-full aspect-[17/11] rounded-2xl overflow-hidden border border-white/5">
           <BlogImage 
             src={post.coverImage || ""} 
             alt={post.title} 
-            className="w-full h-full transition-transform duration-300 group-hover:scale-105" 
+            className="w-full h-full transition-transform duration-500 group-hover:scale-110 object-cover" 
           />
         </div>
       </Link>
 
       {/* Content */}
-      <div className="flex flex-col gap-2 flex-grow">
-        <h3 className="text-white font-semibold text-[15px] xl:text-lg 2xl:text-xl leading-snug line-clamp-2 text-justify">
+      <div className="flex flex-col gap-2 flex-grow px-1">
+        <h3 className="text-white font-semibold text-[15px] xl:text-lg 2xl:text-xl leading-snug line-clamp-2">
           {post.title}
         </h3>
-        {/* Strip HTML if content is HTML for excerpt */}
-        <p className="text-gray-400 text-sm xl:text-base 2xl:text-lg leading-snug line-clamp-3 text-justify">
-          {post.content.replace(/<[^>]+>/g, '')}
+        <p className="text-gray-400 text-sm xl:text-base 2xl:text-lg leading-snug line-clamp-3">
+          {post.content.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ')}
         </p>
         <Link
           href={`/blogs/${post.slug || post._id}`}
-          className="text-white text-sm xl:text-base 2xl:text-lg font-medium underline underline-offset-2 hover:text-blue-400 transition-colors duration-200 mt-auto pt-2 w-fit inline-block"
+          className="text-white text-sm xl:text-base 2xl:text-lg font-medium underline underline-offset-4 decoration-white/20 hover:decoration-white hover:text-cyan-400 transition-all duration-300 mt-auto pt-2 w-fit inline-block"
         >
           {t("blog.viewMore")}
         </Link>
@@ -64,14 +72,29 @@ function BlogCard({ post }: { post: BlogPost }) {
 export default function BlogListing() {
   const { t } = useTranslation();
   
-  const { data: blogPosts, isLoading, isError } = useQuery<BlogPost[]>({
+  const { 
+    data, 
+    isLoading, 
+    isError, 
+    fetchNextPage, 
+    hasNextPage, 
+    isFetchingNextPage 
+  } = useInfiniteQuery<BlogsResponse>({
     queryKey: ["blogs"],
-    queryFn: () => fetch("/api/blogs").then((res) => res.json()),
+    queryFn: async ({ pageParam = 1 }) => {
+      const res = await fetch(`/api/blogs?page=${pageParam}&limit=12`);
+      if (!res.ok) throw new Error("Failed to fetch blogs");
+      return res.json();
+    },
+    getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.page + 1 : undefined,
+    initialPageParam: 1,
   });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  const blogPosts = data?.pages.flatMap((page) => page.blogs || []) || [];
 
   if (isLoading) {
     return (
@@ -85,9 +108,9 @@ export default function BlogListing() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div key={i} className="flex flex-col gap-3 animate-pulse">
-                <div className="w-full aspect-[17/11] rounded-lg bg-white/10" />
-                <div className="h-6 bg-white/10 w-full rounded" />
-                <div className="h-4 bg-white/10 w-2/3 rounded" />
+                <div className="w-full aspect-[17/11] rounded-2xl bg-white/10" />
+                <div className="h-6 bg-white/5 w-full rounded" />
+                <div className="h-4 bg-white/5 w-2/3 rounded" />
               </div>
             ))}
           </div>
@@ -127,24 +150,35 @@ export default function BlogListing() {
         </div>
 
         {/* Grid — fetched blogs */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {blogPosts && blogPosts.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mb-16">
+          {blogPosts.length > 0 ? (
             blogPosts.map((post) => (
               <BlogCard key={post._id} post={post} />
             ))
           ) : (
-            <div className="col-span-full text-center py-20">
+            <div className="col-span-full text-center py-20 bg-white/5 rounded-3xl border border-white/5">
               <p className="text-gray-400">No blogs found. Check back later!</p>
             </div>
           )}
         </div>
 
-        {/* View More button (optional logic could be added here) */}
-        {blogPosts && blogPosts.length > 0 && (
+        {/* Show More button */}
+        {hasNextPage && (
           <div className="flex justify-center">
-            <button className="px-8 py-2.5 xl:px-10 xl:py-3 h-13 xl:h-14 rounded-full border border-white text-white text-md xl:text-lg 2xl:text-xl font-medium hover:bg-white hover:text-[#000000] transition-colors duration-200 cursor-pointer">
-              {t("blog.cta")}
-            </button>
+            <HoverFxButton 
+              onClick={() => fetchNextPage()}
+              disabled={isFetchingNextPage}
+              className="px-10 h-14"
+            >
+              {isFetchingNextPage ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-current border-t-transparent animate-spin rounded-full" />
+                  <span>Loading...</span>
+                </div>
+              ) : (
+                t("blog.cta")
+              )}
+            </HoverFxButton>
           </div>
         )}
       </div>

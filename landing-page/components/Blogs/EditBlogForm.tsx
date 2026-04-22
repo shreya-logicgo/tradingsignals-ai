@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
@@ -26,59 +26,136 @@ interface EditBlogFormProps {
 
 const MenuBar = ({ editor }: { editor: any }) => {
   const { t } = useTranslation();
+  
+  // Force re-render on editor state changes (selection, content, etc.)
+  const [, setUpdateCount] = useState(0);
+  
+  useEffect(() => {
+    if (!editor) return;
+    
+    const handler = () => {
+      setUpdateCount(prev => prev + 1);
+    };
+
+    editor.on("selectionUpdate", handler);
+    editor.on("transaction", handler);
+    
+    return () => {
+      editor.off("selectionUpdate", handler);
+      editor.off("transaction", handler);
+    };
+  }, [editor]);
+
   if (!editor) return null;
 
   const btnClass = (active: boolean) =>
-    `w-8 h-8 rounded-lg transition-all duration-150 flex items-center justify-center text-sm ${active
-      ? "bg-cyan-400/20 text-cyan-400 ring-1 ring-cyan-400/40"
-      : "text-slate-500 hover:text-slate-200 hover:bg-white/5"
+    `w-9 h-9 rounded-xl transition-all duration-200 flex items-center justify-center ${
+      active
+        ? "bg-cyan-400/20 text-cyan-400 ring-1 ring-cyan-400/50 shadow-[0_0_15px_rgba(34,211,238,0.15)]"
+        : "text-slate-400 hover:text-white hover:bg-white/10"
     }`;
 
   return (
-    <div className="flex flex-wrap items-center gap-0.5 px-4 py-2.5 border-b border-white/5 bg-[#060e1e]">
-      <div className="flex items-center gap-0.5">
-        <button type="button" onClick={() => editor.chain().focus().toggleBold().run()} className={btnClass(editor.isActive("bold"))} title={t("editBlog.tooltips.bold")}>
-          <Bold className="w-3.5 h-3.5" />
+    <div className="flex flex-wrap items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-3 border-b border-white/5 bg-[#08111f]">
+      {/* Basic Formatting Group */}
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          className={btnClass(editor.isActive("bold"))}
+          title={t("editBlog.tooltips.bold")}
+        >
+          <Bold className="w-4 h-4" />
         </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleItalic().run()} className={btnClass(editor.isActive("italic"))} title={t("editBlog.tooltips.italic")}>
-          <Italic className="w-3.5 h-3.5" />
-        </button>
-      </div>
-
-      <div className="w-px h-4 bg-white/10 mx-2" />
-
-      <div className="flex items-center gap-0.5">
-        <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} className={btnClass(editor.isActive("heading", { level: 1 }))} title={t("editBlog.tooltips.h1")}>
-          <Heading1 className="w-3.5 h-3.5" />
-        </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={btnClass(editor.isActive("heading", { level: 2 }))} title={t("editBlog.tooltips.h2")}>
-          <Heading2 className="w-3.5 h-3.5" />
-        </button>
-      </div>
-
-      <div className="w-px h-4 bg-white/10 mx-2" />
-
-      <div className="flex items-center gap-0.5">
-        <button type="button" onClick={() => editor.chain().focus().toggleBulletList().run()} className={btnClass(editor.isActive("bulletList"))} title={t("editBlog.tooltips.list")}>
-          <List className="w-3.5 h-3.5" />
-        </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleOrderedList().run()} className={btnClass(editor.isActive("orderedList"))} title={t("editBlog.tooltips.orderedList")}>
-          <ListOrdered className="w-3.5 h-3.5" />
-        </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleCodeBlock().run()} className={btnClass(editor.isActive("codeBlock"))} title={t("editBlog.tooltips.code")}>
-          <Code className="w-3.5 h-3.5" />
-        </button>
-        <button type="button" onClick={() => editor.chain().focus().toggleBlockquote().run()} className={btnClass(editor.isActive("blockquote"))} title={t("editBlog.tooltips.quote")}>
-          <Quote className="w-3.5 h-3.5" />
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          className={btnClass(editor.isActive("italic"))}
+          title={t("editBlog.tooltips.italic")}
+        >
+          <Italic className="w-4 h-4" />
         </button>
       </div>
 
-      <div className="ml-auto flex items-center gap-0.5 ">
-        <button type="button" onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()} className={`${btnClass(false)} disabled:opacity-25 disabled:cursor-not-allowed`} title={t("editBlog.tooltips.undo")}>
-          <Undo className="w-3.5 h-3.5" />
+      <div className="w-px h-5 bg-white/10 mx-1 sm:mx-2 hidden sm:block" />
+
+      {/* Headings Group */}
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          className={btnClass(editor.isActive("heading", { level: 1 }))}
+          title={t("editBlog.tooltips.h1")}
+        >
+          <Heading1 className="w-4 h-4" />
         </button>
-        <button type="button" onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().redo()} className={`${btnClass(false)} disabled:opacity-25 disabled:cursor-not-allowed`} title={t("editBlog.tooltips.redo")}>
-          <Redo className="w-3.5 h-3.5" />
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          className={btnClass(editor.isActive("heading", { level: 2 }))}
+          title={t("editBlog.tooltips.h2")}
+        >
+          <Heading2 className="w-4 h-4" />
+        </button>
+      </div>
+
+      <div className="w-px h-5 bg-white/10 mx-1 sm:mx-2 hidden sm:block" />
+
+      {/* Lists & Extras Group */}
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          className={btnClass(editor.isActive("bulletList"))}
+          title={t("editBlog.tooltips.list")}
+        >
+          <List className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          className={btnClass(editor.isActive("orderedList"))}
+          title={t("editBlog.tooltips.orderedList")}
+        >
+          <ListOrdered className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          className={btnClass(editor.isActive("codeBlock"))}
+          title={t("editBlog.tooltips.code")}
+        >
+          <Code className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          className={btnClass(editor.isActive("blockquote"))}
+          title={t("editBlog.tooltips.quote")}
+        >
+          <Quote className="w-4 h-4" />
+        </button>
+      </div>
+
+      {/* History Group (Right Aligned or Stacked) */}
+      <div className="ml-auto flex items-center gap-1">
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().undo().run()}
+          disabled={!editor.can().undo()}
+          className={`${btnClass(false)} disabled:opacity-20 disabled:grayscale`}
+          title={t("editBlog.tooltips.undo")}
+        >
+          <Undo className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().redo().run()}
+          disabled={!editor.can().redo()}
+          className={`${btnClass(false)} disabled:opacity-20 disabled:grayscale`}
+          title={t("editBlog.tooltips.redo")}
+        >
+          <Redo className="w-4 h-4" />
         </button>
       </div>
     </div>
@@ -90,12 +167,20 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [title, setTitle] = useState(post.title);
+  const titleRef = useRef<HTMLTextAreaElement>(null);
   const [coverImage, setCoverImage] = useState(post.coverImage || "");
   const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const [regenCount, setRegenCount] = useState(0);
   const MAX_REGEN = 3;
+
+  useEffect(() => {
+    if (titleRef.current) {
+      titleRef.current.style.height = "auto";
+      titleRef.current.style.height = `${titleRef.current.scrollHeight}px`;
+    }
+  }, []);
 
   const editor = useEditor({
     extensions: [StarterKit],
@@ -225,10 +310,11 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
           {/* Title */}
           <div className="relative">
             <textarea
+              ref={titleRef}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder={t("editBlog.titlePlaceholder")}
-              rows={2}
+              rows={1}
               onInput={(e) => {
                 const t = e.target as HTMLTextAreaElement;
                 t.style.height = "auto";
@@ -316,47 +402,6 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
         </div>
       </div>
 
-      <style jsx global>{`
-        .ProseMirror p.is-editor-empty:first-child::before {
-          content: attr(data-placeholder);
-          float: left;
-          color: #1e293b;
-          pointer-events: none;
-          height: 0;
-        }
-        .ProseMirror h1 { font-size: 2rem; font-weight: 800; margin: 0 0 1.25rem; color: #f1f5f9; line-height: 1.2; }
-        .ProseMirror h2 { font-size: 1.35rem; font-weight: 700; margin: 2rem 0 1rem; color: #e2e8f0; }
-        .ProseMirror p { margin-bottom: 1.25rem; color: #94a3b8; }
-        .ProseMirror ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; color: #94a3b8; }
-        .ProseMirror ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; color: #94a3b8; }
-        .ProseMirror li { margin-bottom: 0.375rem; }
-        .ProseMirror blockquote {
-          border-left: 3px solid #22d3ee;
-          padding-left: 1.25rem;
-          font-style: italic;
-          color: #64748b;
-          margin: 1.75rem 0;
-        }
-        .ProseMirror strong { color: #e2e8f0; }
-        .ProseMirror em { color: #94a3b8; }
-        .ProseMirror pre {
-          background: #0d121f;
-          color: #7dd3fc;
-          font-family: 'Space Mono', monospace;
-          padding: 0.75rem 1rem;
-          border-radius: 0.5rem;
-          margin: 1.5rem 0;
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          white-space: pre-wrap;
-        }
-        .ProseMirror pre code {
-          color: inherit;
-          padding: 0;
-          background: none;
-          font-size: 0.8rem;
-        }
-        .ProseMirror:focus { outline: none; }
-      `}</style>
     </div>
   );
 }

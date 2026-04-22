@@ -61,7 +61,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
 
       {/* Cover Image */}
       {post.coverImage && (
-        <div className="w-full aspect-video rounded-3xl overflow-hidden  border border-white/5 shadow-2xl shadow-black/40">
+        <div className="w-full aspect-video rounded-3xl overflow-hidden mb-10  border border-white/5 shadow-2xl shadow-black/40">
           <img
             src={post.coverImage}
             alt={post.title}
@@ -75,117 +75,6 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
         className="blog-prose text-[#c8cdd8] text-[15px] md:text-[17px] xl:text-lg 2xl:text-xl leading-relaxed text-justify overflow-hidden break-words min-w-0"
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
       />
-
-      <style jsx global>{`
-        .blog-prose h1 {
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: white;
-          margin-top: 2.5rem;
-          margin-bottom: 1.25rem;
-          line-height: 1.2;
-        }
-        .blog-prose h2 {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: white;
-          margin-top: 2rem;
-          margin-bottom: 1rem;
-          line-height: 1.3;
-        }
-        .blog-prose h3 {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: white;
-          margin-top: 1.5rem;
-          margin-bottom: 0.75rem;
-          line-height: 1.4;
-        }
-        @media (min-width: 768px) {
-          .blog-prose h1 { font-size: 2.25rem; }
-          .blog-prose h2 { font-size: 1.875rem; }
-          .blog-prose h3 { font-size: 1.5rem; }
-        }
-        .blog-prose p {
-          margin-bottom: 1.5rem;
-        }
-        .blog-prose ul {
-          list-style-type: disc;
-          margin-bottom: 1.5rem;
-          padding-left: 1.5rem;
-          list-style-position: outside;
-        }
-        .blog-prose ol {
-          list-style-type: decimal;
-          margin-bottom: 1.5rem;
-          padding-left: 1.5rem;
-          list-style-position: outside;
-        }
-        .blog-prose li {
-          margin-bottom: 0.5rem;
-          padding-left: 0.5rem;
-        }
-        .blog-prose strong, .blog-prose b {
-          font-weight: 700;
-          color: white;
-        }
-        .blog-prose a {
-          color: #3b82f6;
-          text-decoration: underline;
-          text-underline-offset: 2px;
-        }
-        .blog-prose a:hover {
-          color: #60a5fa;
-        }
-        .blog-prose img {
-          max-width: 100%;
-          height: auto;
-          border-radius: 12px;
-          margin: 2rem 0;
-        }
-        .blog-prose pre {
-          max-width: 100%;
-          overflow-x: auto;
-          background: #0d121f;
-          padding: 1.5rem;
-          border-radius: 12px;
-          border: 1px solid rgba(0, 240, 255, 0.15);
-          margin: 2.5rem 0;
-          font-family: 'Space Mono', monospace;
-          font-size: 0.9em;
-          line-height: 1.6;
-          white-space: pre;
-          tab-size: 4;
-        }
-        .blog-prose pre code {
-          background: transparent;
-          padding: 0;
-          border-radius: 0;
-          border: none;
-          color: #7dd3fc;
-          white-space: pre-wrap;
-          word-break: normal;
-          overflow-wrap: normal;
-        }
-        .blog-prose :not(pre) > code {
-          background: rgba(0, 240, 255, 0.1);
-          color: #00f0ff;
-          padding: 0.2rem 0.4rem;
-          border-radius: 6px;
-          font-size: 0.9em;
-        }
-        .blog-prose table {
-          display: block;
-          max-width: 100%;
-          overflow-x: auto;
-          border-collapse: collapse;
-          margin: 2rem 0;
-        }
-        .blog-prose iframe {
-          max-width: 100%;
-          border-radius: 12px;
-        }
-      `}</style>
 
       {/* Back link */}
       <div className="mt-14 pt-8 border-t border-white/10">

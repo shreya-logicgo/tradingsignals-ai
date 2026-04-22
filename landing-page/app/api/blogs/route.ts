@@ -6,12 +6,28 @@ import { validateBlogData } from '@/lib/validation_middleware/validate';
 import { saveUpload } from '@/lib/upload';
 import { urlToBase64 } from '@/lib/imageUtils';
 
-// GET: Retrieve all blogs from MongoDB
-export async function GET() {
+// GET: Retrieve blogs from MongoDB with pagination support
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const page = parseInt(searchParams.get('page') || '1');
+    const limit = parseInt(searchParams.get('limit') || '12');
+    const skip = (page - 1) * limit;
+
     await dbConnect();
-    const blogs = await Blog.find({}).sort({ createdAt: -1 });
-    return NextResponse.json(blogs);
+    
+    const [blogs, total] = await Promise.all([
+      Blog.find({}).sort({ createdAt: -1 }).skip(skip).limit(limit),
+      Blog.countDocuments({})
+    ]);
+
+    return NextResponse.json({
+      blogs,
+      total,
+      page,
+      limit,
+      hasMore: skip + blogs.length < total
+    });
   } catch (error) {
     console.error("Error fetching blogs:", error);
     return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
