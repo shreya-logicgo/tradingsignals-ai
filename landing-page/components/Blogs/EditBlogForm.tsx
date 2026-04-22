@@ -73,7 +73,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
         </button>
       </div>
 
-      <div className="ml-auto flex items-center gap-0.5">
+      <div className="ml-auto flex items-center gap-0.5 ">
         <button type="button" onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().undo()} className={`${btnClass(false)} disabled:opacity-25 disabled:cursor-not-allowed`} title={t("editBlog.tooltips.undo")}>
           <Undo className="w-3.5 h-3.5" />
         </button>
