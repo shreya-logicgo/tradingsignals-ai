@@ -61,7 +61,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
 
       {/* Cover Image */}
       {post.coverImage && (
-        <div className="w-full aspect-video rounded-3xl overflow-hidden mb-10  border border-white/5 shadow-2xl shadow-black/40">
+        <div className="w-full aspect-video rounded-3xl overflow-hidden  border border-white/5 shadow-2xl shadow-black/40">
           <img
             src={post.coverImage}
             alt={post.title}
