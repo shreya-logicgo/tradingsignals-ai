@@ -157,7 +157,7 @@ export default function TrustedLogos() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="w-full bg-transparent py-8 md:py-10 relative overflow-hidden"
+      className="w-full bg-transparent section-pt relative overflow-hidden"
     >
       <motion.p
         variants={fadeUpVariant}
