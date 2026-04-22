@@ -266,7 +266,12 @@
             }
         ],
         "viewMore": "Wyświetl więcej",
-        "cta": "Pokaż więcej"
+        "cta": "Pokaż więcej",
+        "errorHeading": "Ups! Nie udało się załadować blogów.",
+        "tryAgain": "Spróbuj ponownie",
+        "emptyState": "Nie znaleziono żadnych blogów. Zajrzyj tu później!",
+        "loading": "Ładowanie...",
+        "backToBlog": "Wróć do bloga"
     },
     "generateBlog": {
         "promptPlaceholder": "Wpisz temat lub treść promptu na bloga…",
