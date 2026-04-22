@@ -230,7 +230,7 @@ export default function ExchangePartners() {
         {/* Grid */}
         <div
           className="
-            grid gap-[13px]
+            grid gap-4 3xl:gap-5
             grid-cols-1
             sm:grid-cols-2
             md:grid-cols-3

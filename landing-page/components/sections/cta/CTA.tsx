@@ -117,7 +117,7 @@ export default function CTA() {
           {/* ── Cards + CTA ── */}
           <div className="flex flex-col gap-12">
             {/* Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-stretch min-h-[400px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 items-stretch min-h-[400px]">
               {loading ? (
                 // Simple loading state
                 [...Array(3)].map((_, i) => (

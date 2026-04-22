@@ -37,7 +37,8 @@ export default function Testimonials() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full relative overflow-hidden bg-transparent overflow-visible">
+      className="w-full relative overflow-hidden bg-transparent overflow-visible"
+    >
       <ExchangePartners />
 
       {/* Radial depth glow */}
@@ -51,14 +52,19 @@ export default function Testimonials() {
         />
       </div>
 
-
-      <div id="testimonials" className="max-w-[1250px]  section-pb mx-auto px-6 md:px-10 relative z-10 w-full scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
-
+      <div
+        id="testimonials"
+        className="max-w-[1250px]  section-pb mx-auto px-6 md:px-10 relative z-10 w-full scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 3xl:gap-12">
           {/* LEFT COLUMN - Stacked cards */}
-          <div className="flex flex-col gap-6 md:gap-8 order-2 lg:order-1 w-full justify-between items-center">
+          <div className="flex flex-col gap-6 md:gap-10 3xl:gap-12 order-2 lg:order-1 w-full justify-between items-center">
             {leftCards.map((card, i) => (
-              <motion.div key={i} variants={fadeUpVariant} className="w-full flex justify-center">
+              <motion.div
+                key={i}
+                variants={fadeUpVariant}
+                className="w-full flex justify-center"
+              >
                 <TestimonialCard {...card} />
               </motion.div>
             ))}
@@ -70,9 +76,7 @@ export default function Testimonials() {
             className="flex flex-col items-center text-center gap-1 md:gap-3 order-1 lg:order-2 md:col-span-2 lg:col-span-1 w-full mx-auto"
           >
             <div className="inline-flex items-center px-4 py-1.5 shadow-inner">
-              <span
-                className="text-[15px] font-mono tracking-widest uppercase text-vivid-cyan"
-              >
+              <span className="text-[15px] font-mono tracking-widest uppercase text-vivid-cyan">
                 {t("testimonials.title")}
               </span>
             </div>
@@ -86,24 +90,24 @@ export default function Testimonials() {
             </p>
 
             <div className="w-full flex justify-center mt-2 lg:mt-6 flex-1">
-              <TestimonialCard
-                image={img3}
-                quote={quotes[2]}
-              />
+              <TestimonialCard image={img3} quote={quotes[2]} />
             </div>
           </motion.div>
 
           {/* RIGHT COLUMN - Stacked cards */}
-          <div className="flex flex-col gap-6 md:gap-8 order-3 items-center w-full justify-between">
+          <div className="flex flex-col gap-6 md:gap-10 3xl:gap-12 order-3 items-center w-full justify-between">
             {rightCards.map((card, i) => (
-              <motion.div key={i} variants={fadeUpVariant} className="w-full flex justify-center">
+              <motion.div
+                key={i}
+                variants={fadeUpVariant}
+                className="w-full flex justify-center"
+              >
                 <TestimonialCard {...card} />
               </motion.div>
             ))}
           </div>
-
         </div>
       </div>
     </motion.section>
   );
-} 
+}
