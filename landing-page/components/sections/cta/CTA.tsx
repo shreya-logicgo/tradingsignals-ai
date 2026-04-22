@@ -42,12 +42,15 @@ export default function CTA() {
   useEffect(() => {
     async function fetchRecentBlogs() {
       try {
-        const response = await fetch('/api/blogs');
+        const response = await fetch('/api/blogs?limit=3');
         if (!response.ok) throw new Error('Failed to fetch');
-        const data: DBBlog[] = await response.json();
+        const data = await response.json();
+        
+        // The API now returns { blogs: [], total: 0, hasMore: boolean }
+        const blogsArray = Array.isArray(data) ? data : (data.blogs || []);
         
         // Take 3 most recent
-        const recentBlogs = data.slice(0, 3).map((blog, i) => ({
+        const recentBlogs = blogsArray.slice(0, 3).map((blog: DBBlog, i: number) => ({
           title: blog.title,
           desc: stripHtml(blog.content),
           image: blog.coverImage || "",
