@@ -157,7 +157,7 @@ export default function Strategies() {
           - The wrapper div is removed — StrategyCard itself is the grid item
         */}
         <motion.div
-          className="grid gap-4 mt-8"
+          className="grid gap-4 3xl:gap-5 mt-8"
           style={{
             gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
             gridAutoRows: "1fr",
