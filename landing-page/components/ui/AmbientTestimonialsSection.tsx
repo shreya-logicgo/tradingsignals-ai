@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Testimonials from "../sections/testimonials/Testimonials";
 import ExchangePartners from "../sections/crypto/Exchangepartners";
+import CTA from "../sections/cta/CTA";
 
 export default function AmbientTestimonialsSection() {
   const containerRef = useRef(null);
@@ -111,6 +112,7 @@ export default function AmbientTestimonialsSection() {
         </div> */}
         {/* <ExchangePartners/> */}
         <Testimonials />
+         <CTA />
       </div>
     </div>
   );

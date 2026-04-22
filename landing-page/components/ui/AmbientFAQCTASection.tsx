@@ -27,8 +27,9 @@ export default function AmbientFAQCTASection() {
           }}
         /> */}
 
+{/* side glow */}
         {/* Main Left Deep Blue Glow */}
-        <motion.div
+        {/* <motion.div
           animate={{
             scale: [1, 1.15, 1],
             x: [0, -30, 0],
@@ -46,7 +47,7 @@ export default function AmbientFAQCTASection() {
               "radial-gradient(ellipse at center, rgba(0,18,184,1) 0%, transparent 72%)",
             filter: "blur(100px)",
           }}
-        />
+        /> */}
 
         {/* Secondary Left Bloom */}
         {/* <motion.div
@@ -99,7 +100,7 @@ export default function AmbientFAQCTASection() {
 
         {/* <div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" /> */}
 
-        <CTA />
+          
       </div>
     </div>
   );

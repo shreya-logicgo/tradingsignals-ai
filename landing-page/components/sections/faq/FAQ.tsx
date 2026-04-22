@@ -30,7 +30,10 @@ export default function FAQ() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full bg-transparent section-pb relative overflow-hidden">
+      style={{         background: "linear-gradient(0deg, #010B24 0%, #010B24 75%, #02164b 100%)",
+
+}}
+      className="w-full bg-transparent section-pt section-pb relative overflow-hidden">
       {/* Outer container — responsive horizontal padding */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         <div className="flex flex-col items-center gap-10 lg:gap-12">
