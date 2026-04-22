@@ -190,7 +190,7 @@ export default function ExchangePartners() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className=" max-w-[1250px] mx-auto px-5 sm:px-8 lg:px-10 py-8 md:py-10 sm:mb-24"
+      className=" max-w-[1250px] mx-auto px-5 sm:px-8 lg:px-10 section-pt section-pb"
     >
       <div className=" mx-auto">
 
