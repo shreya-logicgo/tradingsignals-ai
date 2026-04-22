@@ -9,13 +9,6 @@ import BlogImage from "./BlogImage";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import HoverFxButton from "../common/HoverFxButton";
 
-// 1. Define your types for the multilingual fields
-type MultilingualText = {
-  en: string;
-  pl: string;
-  th: string;
-};
-
 
 interface BlogPost {
   _id: string;
@@ -123,12 +116,12 @@ export default function BlogListing() {
     return (
       <section className="bg-[#010B24] min-h-screen py-12 lg:px-7 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-white text-2xl font-semibold mb-4">Oops! Failed to load blogs.</h2>
+          <h2 className="text-white text-2xl font-semibold mb-4">{t("blog.errorHeading")}</h2>
           <button 
             onClick={() => window.location.reload()}
             className="px-6 py-2 bg-white text-black rounded-full font-medium"
           >
-            Try Again
+            {t("blog.tryAgain")}
           </button>
         </div>
       </section>
@@ -157,7 +150,7 @@ export default function BlogListing() {
             ))
           ) : (
             <div className="col-span-full text-center py-20 bg-white/5 rounded-3xl border border-white/5">
-              <p className="text-gray-400">No blogs found. Check back later!</p>
+              <p className="text-gray-400">{t("blog.emptyState")}</p>
             </div>
           )}
         </div>
@@ -173,7 +166,7 @@ export default function BlogListing() {
               {isFetchingNextPage ? (
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 border-2 border-current border-t-transparent animate-spin rounded-full" />
-                  <span>Loading...</span>
+                  <span>{t("blog.loading")}</span>
                 </div>
               ) : (
                 t("blog.cta")
@@ -184,4 +177,4 @@ export default function BlogListing() {
       </div>
     </section>
   );
-}
+}

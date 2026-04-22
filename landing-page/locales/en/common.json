@@ -266,7 +266,12 @@
             }
         ],
         "viewMore": "View more",
-        "cta": "Show More"
+        "cta": "Show More",
+        "errorHeading": "Oops! Failed to load blogs.",
+        "tryAgain": "Try Again",
+        "emptyState": "No blogs found. Check back later!",
+        "loading": "Loading...",
+        "backToBlog": "Back to Blog"
     },
     "generateBlog": {
         "promptPlaceholder": "Enter a blog topic or prompt…",
