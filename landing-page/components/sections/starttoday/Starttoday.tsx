@@ -27,7 +27,7 @@ export default function StartToday() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className=" section-py px-4"
+            className=" section-pb px-4"
         >
             {/* <Faltu/> */}
             <div className="max-w-7xl px-2 md:px-8 lg:px-12 xl:px-15  mx-auto">

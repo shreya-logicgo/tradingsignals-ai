@@ -98,7 +98,7 @@ export default function Strategies() {
 
   return (
     <section
-      className="w-full section-pt section-pb relative overflow-hidden"
+      className="w-full section-pb relative overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #010B24 0%, #010B24 75%, #02164b 100%)",
       }}
