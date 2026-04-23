@@ -18,6 +18,7 @@ import volIcon from "@/assets/icons/tsai-vol.png";
 import hybridIcon from "@/assets/icons/tsai-hybrid.png";
 import noiseTexture from "@/assets/images/texture.png"; 
 import NoiseOverlay from "@/components/NoiseOverlay";
+import Container from "@/components/common/container/Container";
 
 
 export default function Strategies() {
@@ -97,6 +98,7 @@ export default function Strategies() {
   ];
 
   return (
+    <Container>
     <section
       className="w-full section-pb relative overflow-hidden"
       style={{
@@ -119,7 +121,7 @@ export default function Strategies() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="max-w-[1320px] mx-auto px-6 md:px-12 lg:px-15 xl:px-20 relative z-10"
+        className=" mx-auto relative z-10"
       >
 
         {/* Header Section */}
@@ -157,28 +159,25 @@ export default function Strategies() {
           - The wrapper div is removed — StrategyCard itself is the grid item
         */}
         <motion.div
-          className="grid gap-4 3xl:gap-5 mt-8"
-          style={{
-            gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-            gridAutoRows: "1fr",
-          }}
-        >
-          {strategies.map((s) => (
-            <motion.div 
-              key={s.name} 
-              variants={fadeUpVariant} 
-              className="h-full"
-              whileHover={{ y: -8, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <StrategyCard {...s} />
-            </motion.div>
-          ))}
-        </motion.div>
+  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 3xl:gap-5 mt-8 auto-rows-fr"
+>
+  {strategies.map((s) => (
+    <motion.div
+      key={s.name}
+      variants={fadeUpVariant}
+      className="h-full"
+      whileHover={{ y: -8, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <StrategyCard {...s} />
+    </motion.div>
+  ))}
+</motion.div>
       </motion.div>
 
       {/* Background Glow */}
       {/* <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" /> */}
     </section>
+    </Container>
   );
 }

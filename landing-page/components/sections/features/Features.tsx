@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import FeatureCard from "./FeatureCard";
+import Container from "@/components/common/container/Container";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -86,6 +87,7 @@ export default function Features() {
   const cv = shouldReduceMotion ? cardVariantReduced : cardVariant;
 
   return (
+    <Container>
     <section
       ref={sectionRef}
       style={{
@@ -144,5 +146,6 @@ export default function Features() {
         </div>
       </div>
     </section>
+    </Container>
   );
 }

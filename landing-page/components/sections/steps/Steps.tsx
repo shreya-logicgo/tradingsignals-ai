@@ -9,6 +9,7 @@ import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import noiseTexture from "@/assets/images/texture.png"; 
 // import { Noise } from "@react-three/postprocessing";
 import NoiseOverlay from "@/components/NoiseOverlay";
+import Container from "@/components/common/container/Container";
 
 
 interface StepData {
@@ -39,7 +40,7 @@ export default function Steps() {
       >
         
       <NoiseOverlay/>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-10">
+        <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-x-12 lg:gap-y-0 items-start">
 
             {/* ── HEADING ── */}
@@ -101,7 +102,7 @@ export default function Steps() {
             )}
 
           </div>
-        </div>
+        </Container>
       </motion.section>
     </HoverContext.Provider>
   );
