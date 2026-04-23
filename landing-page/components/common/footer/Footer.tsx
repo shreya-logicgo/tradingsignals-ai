@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import Container from "@/components/common/container/Container";
 
 const productLinks = [
   { key: "features", href: "#features" },
@@ -44,7 +45,7 @@ export default function Footer() {
         {/* Main Content: 
         Needs 'relative z-10' to ensure it renders on top of the z-0 glow. 
       */}
-        <div className="max-w-7xl  max-h-fit mx-auto px-6 py-14 xl:py-16 2xl:py-20 relative z-10 ">
+        <Container className="max-h-fit py-14 xl:py-16 2xl:py-20 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-between gap-12 lg:gap-10">
             {/* Brand Column */}
             <div className="flex flex-col gap-6 max-w-xs sm:mx-0 mx-auto items-center sm:items-start">
@@ -134,7 +135,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        </div>
+       </Container>
 
         {/* Bottom Bar */}
         <div className="border-t max-w-7xl 2xl:max-w-[1400px]  mx-auto border-[#343445] border-dashed relative z-10 ">

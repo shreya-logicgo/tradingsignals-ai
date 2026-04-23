@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUpVariant } from "@/utils/animations";
+import Container from "@/components/common/container/Container";
 
 interface Exchange {
   name: string;
@@ -190,9 +191,9 @@ export default function ExchangePartners() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className=" max-w-[1250px] mx-auto px-5 sm:px-8 lg:px-10 section-pt section-pb"
+      className="section-pt section-pb"
     >
-      <div className=" mx-auto">
+      <Container>
 
         {/* Badge */}
         <motion.span
@@ -242,7 +243,7 @@ export default function ExchangePartners() {
           ))}
         </div>
 
-      </div>
+      </Container>
     </motion.section>
   );
 }

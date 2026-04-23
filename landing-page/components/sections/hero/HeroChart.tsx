@@ -90,8 +90,8 @@ export default function HeroChart() {
 
   return (
     <section className="w-full relative z-10 mx-auto">
-      <Container className="flex justify-center">
-        <div className="relative w-full max-w-[1100px]">
+      
+        <div className="relative w-full]">
           {/* OUTER GLOW */}
           <div className="absolute -inset-4 -z-10 rounded-3xl bg-[radial-gradient(ellipse_at_50%_40%,_rgba(0,120,255,0.25)_0%,_rgba(0,60,180,0.1)_50%,_transparent_75%)] blur-[40px] pointer-events-none" />
 
@@ -259,7 +259,6 @@ export default function HeroChart() {
             transition={{ duration: 0.25, ease: "easeOut" }}
           />
         </div>
-      </Container>
     </section>
   );
 }

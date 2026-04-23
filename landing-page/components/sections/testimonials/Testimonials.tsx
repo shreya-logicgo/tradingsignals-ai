@@ -13,6 +13,7 @@ import img4 from "@/assets/images/testimonial-4.jpg";
 import img5 from "@/assets/images/testimonial-5.jpg";
 import gradientBg from "@/assets/images/Gradient.png";
 import ExchangePartners from "../crypto/Exchangepartners";
+import Container from "@/components/common/container/Container";
 
 export default function Testimonials() {
   const { t } = useTranslation();
@@ -52,10 +53,10 @@ export default function Testimonials() {
         />
       </div>
 
-      <div
-        id="testimonials"
-        className="max-w-[1250px]  section-pb mx-auto px-6 md:px-10 relative z-10 w-full scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30"
-      >
+      <Container
+  id="testimonials"
+  className="section-pt section-pb relative z-10 w-full scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30"
+>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 3xl:gap-12">
           {/* LEFT COLUMN - Stacked cards */}
           <div className="flex flex-col gap-6 md:gap-10 3xl:gap-12 order-2 lg:order-1 w-full justify-between items-center">
@@ -107,7 +108,7 @@ export default function Testimonials() {
             ))}
           </div>
         </div>
-      </div>
+      </Container>
     </motion.section>
   );
 }

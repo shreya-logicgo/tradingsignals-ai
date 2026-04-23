@@ -64,7 +64,7 @@ export default function Navbar() {
         .filter(Boolean)
         .join(" ")}
     >
-      <Container className="h-16 flex items-center px-6 md:px-10 xl:px-32 2xl:px-32">
+      <Container className="h-16 flex items-center ">
 
         {/* Logo */}
         <div className="flex-none">

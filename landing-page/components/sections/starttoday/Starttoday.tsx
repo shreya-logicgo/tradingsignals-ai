@@ -12,6 +12,7 @@ import React from 'react';
 import NoiseOverlay from "@/components/NoiseOverlay";
 import noiseTexture from "@/assets/images/texture.png"; 
 import Link from "next/link";
+import Container from "@/components/common/container/Container";
 
 export default function StartToday() {
     const { t } = useTranslation();
@@ -27,10 +28,10 @@ export default function StartToday() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className=" section-pb px-4"
+            className=" section-pb"
         >
             {/* <Faltu/> */}
-            <div className="max-w-7xl px-2 md:px-8 lg:px-12 xl:px-15  mx-auto">
+            <Container className="relative z-10">
                 <div
                     className="relative rounded-2xl overflow-hidden px-8 py-13 text-center min-h-[300px]"
                     style={{
@@ -86,7 +87,7 @@ export default function StartToday() {
 
                     </div>
                 </div>
-            </div>
+            </Container>
         </motion.section>
     );
 }
