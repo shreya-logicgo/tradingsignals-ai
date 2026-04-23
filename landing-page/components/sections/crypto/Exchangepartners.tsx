@@ -120,17 +120,17 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       rel="noopener noreferrer"
       className="
         group
-        flex flex-col justify-between
-        w-full h-[245px] p-5 rounded-[10px]
+        flex flex-col justify-between gap-6
+        w-full  p-6 rounded-[10px]
         bg-[#0E172F] border border-[#182138]
         transition-all duration-200 ease-out
         hover:-translate-y-1 hover:border-[#182853]
         hover:shadow-[0_12px_40px_rgba(0,0,0,0.45)]
-        no-underline  font-hoves
+        no-underline  font-hoves z-1
       "
     >
       {/* Top content */}
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-4">
         {/* Logo */}
         <div
           className="
@@ -149,29 +149,32 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
               alt={`${exchange.name} logo`}
               width={36}
               height={36}
-               className="w-full h-full object-contain"
+              className="w-full h-full object-contain"
               onError={() => setImgError(true)}
             />
           )}
         </div>
 
         {/* Name */}
-        <div className="text-[19px] text-white font-hoves mb-1 ">
-          {exchange.name}
-        </div>
+        <div className="flex flex-col gap-2">
 
-        {/* Description */}
-        <p className="text-[13px] text-[#C7CCD2] font-hoves leading-5 sm:h-min-12 max-h-14 overflow-clip">
-          {t(exchange.descKey)}
-        </p>
+          <div className="text-[19px] text-white font-hoves mb-1 ">
+            {exchange.name}
+          </div>
+
+          {/* Description */}
+          <p className="text-xs sm:text-sm  text-[#C7CCD2] font-hoves leading-5 sm:h-min-12 max-h-14 overflow-clip">
+            {t(exchange.descKey)}
+          </p>
+        </div>
       </div>
 
       {/* CTA Button */}
       <span
         className="
-          flex items-center justify-center w-full py-[11px]  
-         text-[15px] text-[#FFFFFF]
-          bg-[#010B24] border border-[#FFFFFF1A]
+          flex items-center justify-center w-full py-3 px-15 
+         text-sm md:text-base lg:text-lg  text-[#FFFFFF]
+          bg-[#010B24] border border-white/10
           transition-all duration-150 rounded-full  "
       >
         {t("exchangePartners.cta")}
@@ -191,7 +194,7 @@ export default function ExchangePartners() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="section-pt section-pb"
+      className="section-pt section-pb bg-[linear-gradient(0deg,_#0012B8%,_#0012B8_75%,_#0012B8_100%)]"
     >
       <Container>
 
