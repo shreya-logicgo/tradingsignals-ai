@@ -19,12 +19,12 @@ const exchanges: Exchange[] = [
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png",
     link: "https://accounts.binance.com/en/register?ref=38024889",
   },
-  {
-    name: "Binance Futures",
-    descKey: "exchangePartners.exchanges.binanceFutures",
-    logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png",
-    link: "https://accounts.binance.com/en/register?ref=38024889",
-  },
+  // {
+  //   name: "Binance Futures",
+  //   descKey: "exchangePartners.exchanges.binanceFutures",
+  //   logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png",
+  //   link: "https://accounts.binance.com/en/register?ref=38024889",
+  // },
   {
     name: "Bybit UTA",
     descKey: "exchangePartners.exchanges.bybitUta",

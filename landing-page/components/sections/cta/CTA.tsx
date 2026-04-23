@@ -57,29 +57,10 @@ export default function CTA() {
           slug: blog.slug
         }));
 
-        // If we have less than 3 blogs, fill with static fallbacks
-        if (recentBlogs.length < 3) {
-          const staticPosts = t("blog.posts", { returnObjects: true }) as { title: string, desc: string }[];
-          const fallbacks = staticPosts.slice(recentBlogs.length, 3).map((p, i) => ({
-            title: p.title,
-            desc: p.desc,
-            image: "",
-            slug: "#"
-          }));
-          setPosts([...recentBlogs, ...fallbacks]);
-        } else {
-          setPosts(recentBlogs);
-        }
+        setPosts(recentBlogs);
       } catch (error) {
         console.error("Error fetching blogs for CTA:", error);
-        // On error, fall back to static data
-        const staticPosts = t("blog.posts", { returnObjects: true }) as { title: string, desc: string }[];
-        setPosts(staticPosts.map((p, i) => ({
-          title: p.title,
-          desc: p.desc,
-          image: "",
-          slug: "#"
-        })));
+        setPosts([]);
       } finally {
         setLoading(false);
       }
@@ -87,6 +68,9 @@ export default function CTA() {
 
     fetchRecentBlogs();
   }, [t]);
+
+
+  if (!loading && posts.length === 0) return null;
 
   return (
     <section className="w-full bg-transparent section-pb relative overflow-hidden">
@@ -179,22 +163,24 @@ export default function CTA() {
               )}
             </div>
 
-            <div className="flex justify-center mt-4">
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 25px rgba(255,255,255,0.1)",
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <HoverFxButton
-                  href="/blogs"
-                  className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
+            {posts.length > 0 && (
+              <div className="flex justify-center mt-4">
+                <motion.div
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 0 25px rgba(255,255,255,0.1)",
+                  }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  {t("blog.cta")}
-                </HoverFxButton>
-              </motion.div>
-            </div>
+                  <HoverFxButton
+                    href="/blogs"
+                    className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
+                  >
+                    {t("blog.cta")}
+                  </HoverFxButton>
+                </motion.div>
+              </div>
+            )}
           </div>
         </div>
       </div>
