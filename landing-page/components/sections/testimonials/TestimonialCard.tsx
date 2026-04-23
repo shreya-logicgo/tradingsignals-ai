@@ -7,7 +7,7 @@ interface TestimonialCardProps {
 
 export default function TestimonialCard({ image, quote }: TestimonialCardProps) {
   return (
-    <div className="w-full max-w-[440px] h-[339px] p-5 rounded-[15px] bg-white/5 border border-white/10 flex flex-col gap-5 box-border backdrop-blur-sm transition-all duration-300 hover:border-white/20 overflow-hidden shrink-0">
+    <div className="w-full max-w-[440px] max-h-[350px] p-5 rounded-[15px] bg-white/5 border border-white/10 flex flex-col gap-5 box-border backdrop-blur-sm transition-all duration-300 hover:border-white/20 overflow-hidden shrink-0">
 
       {/* Video thumbnail */}
       <div className="w-full h-[200px] rounded-[15px] overflow-hidden relative flex-shrink-0 group cursor-pointer">
@@ -42,7 +42,7 @@ export default function TestimonialCard({ image, quote }: TestimonialCardProps) 
 
       {/* Quote */}
       <div className="flex-1 overflow-hidden">
-        <p className="text-[16px] text-white/70 leading-[100%] font-normal m-0 font-hoves line-clamp-4">
+        <p className="text-base text-white/70 leading-snug font-normal m-0 font-hoves line-clamp-4">
           {quote}
         </p>
       </div>

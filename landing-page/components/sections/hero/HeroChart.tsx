@@ -203,36 +203,57 @@ export default function HeroChart() {
                   />
 
                   {/* PLAY BUTTON */}
-                  {!isPlaying && (
-                    <div className="absolute inset-0 flex items-center justify-center p-6">
-                      <motion.div style={{ x: playX, y: playY }}>
-                        <motion.button
-                          onClick={handlePlay}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.97 }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 200,
-                            damping: 25,
-                          }}
-                          className="inline-flex items-center gap-[10px] w-[178px] h-[56px] rounded-[90px] px-[20px] pl-[8px] py-[8px] bg-white/90 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.18)]"
-                        >
-                          <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r from-[#123DFF] to-[#12D7F5] shrink-0">
-                            <Play className="w-4 h-4 fill-white text-white ml-[1px]" />
-                          </div>
+{!isPlaying && (
+  <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 md:px-8">
+    <motion.div style={{ x: playX, y: playY }}>
+      <motion.button
+        onClick={handlePlay}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 25,
+        }}
+        className="
+          inline-flex items-center gap-2 sm:gap-[10px]
+          w-auto min-w-[145px] sm:min-w-[165px] md:min-w-[178px]
+          h-[46px] sm:h-[50px] md:h-[56px]
+          rounded-full
+          px-3 sm:px-4 md:px-[20px]
+          pl-1.5 sm:pl-2 md:pl-[8px]
+          py-1.5 sm:py-2
+          bg-white/90 backdrop-blur-md
+          shadow-[0_8px_30px_rgba(0,0,0,0.18)]
+        "
+      >
+        {/* Icon */}
+        <div
+          className="
+            w-8 h-8
+            sm:w-9 sm:h-9
+            md:w-10 md:h-10
+            rounded-full flex items-center justify-center
+            bg-gradient-to-r from-[#123DFF] to-[#12D7F5]
+            shrink-0
+          "
+        >
+          <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white ml-[1px]" />
+        </div>
 
-                          <div className="flex flex-col leading-none text-left">
-                            <span className="text-sm font-semibold text-black">
-                              Watch Demo
-                            </span>
-                            <span className="text-[11px] text-[#5D5D5D] mt-1">
-                              1:00 min
-                            </span>
-                          </div>
-                        </motion.button>
-                      </motion.div>
-                    </div>
-                  )}
+        {/* Text */}
+        <div className="flex flex-col leading-none text-left">
+          <span className="text-[12px] sm:text-[13px] md:text-sm font-semibold text-black whitespace-nowrap">
+            Watch Demo
+          </span>
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] text-[#5D5D5D] mt-0.5 sm:mt-1 whitespace-nowrap">
+            1:00 min
+          </span>
+        </div>
+      </motion.button>
+    </motion.div>
+  </div>
+)}
 
                   {/* PAUSE BUTTON */}
                   {isPlaying && (

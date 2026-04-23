@@ -17,6 +17,12 @@ const TILT_SPRING = { stiffness: 200, damping: 28, mass: 0.6 };
 const LIFT_SPRING = { stiffness: 180, damping: 24, mass: 0.7 };
 const GLOW_SPRING = { stiffness: 100, damping: 22 };
 
+const PATTERN_OFFSETS: Record<string, { left: number; bottom: number }> = {
+  "step-01": { left: -32, bottom: -30 },
+  "step-02": { left: -28, bottom: -38 },
+  "step-03": { left: -30, bottom: -32 },
+};
+
 export default function StepCard({
   id,
   step,
@@ -62,6 +68,8 @@ export default function StepCard({
     setHoveredId(null);
   }, [rawX, rawY, cardY, cardScale, glowOpacity, borderOpacity, setHoveredId]);
 
+  const patternOffset = PATTERN_OFFSETS[id] || { left: -28, bottom: -22 };
+
   return (
     <motion.div
       className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-[330px] isolate"
@@ -71,6 +79,15 @@ export default function StepCard({
         transition: "all 0.4s ease" 
       }}
     >
+      {/* ── Diagonal pattern accent ── */}
+      <div 
+        className="absolute w-7 h-7 md:w-8 md:h-8 opacity-[0.45] pointer-events-none z-[-1]"
+        style={{
+          left: patternOffset.left,
+          bottom: patternOffset.bottom,
+          background: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 4px)',
+        }}
+      />
       {/* ── Background Glow ── */}
       <motion.div
         className="absolute inset-[-20px] rounded-2xl blur-[40px] pointer-events-none z-0"
@@ -93,7 +110,7 @@ export default function StepCard({
       >
         {/* ── Step Badge: Forced to top with high Z-index ── */}
         <motion.div
-          className="absolute -top-3 -right-2 px-5 py-1.5 rounded-full bg-blue-600 text-white text-[12px] font-bold z-50 shadow-[0_4px_12px_rgba(0,0,0,0.5)] border border-white/20 tracking-wider pointer-events-none"
+          className="absolute -top-3 -right-2 px-5 py-2 rounded-full bg-[#0012B8] text-white text-[15px]  z-50 shadow-[0_4px_12px_rgba(0,0,0,0.5)]  tracking-widest pointer-events-none"
           animate={{ 
             scale: isHovered ? 1.1 : 1,
             rotate: isHovered ? [0, -5, 5, 0] : 0 
@@ -104,7 +121,7 @@ export default function StepCard({
         </motion.div>
 
         {/* ── Card body ── */}
-        <div className="relative flex flex-col h-full min-h-[260px] p-8 gap-8  bg-white/5 border border-white/[0.08] shadow-2xl overflow-hidden z-10">
+        <div className="relative flex flex-col h-full min-h-[260px] p-8 gap-8 rounded-sm bg-white/5  shadow-2xl overflow-hidden z-10">
           
           {/* Internal Highlight on Hover */}
           <motion.div 
@@ -114,7 +131,7 @@ export default function StepCard({
 
           {/* Icon */}
           <motion.div
-            className="flex items-center justify-center w-14 h-14  bg-black/40 border border-white/[0.1] shadow-inner relative z-20"
+            className="flex items-center justify-center w-14 h-14  bg-black/40  shadow-inner relative z-20"
             animate={{ scale: isHovered ? 1.1 : 1 }}
           >
             <Icon size={26} className="text-white" />

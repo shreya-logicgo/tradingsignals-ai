@@ -87,15 +87,15 @@ export default function Features() {
   const cv = shouldReduceMotion ? cardVariantReduced : cardVariant;
 
   return (
-    <Container>
     <section
-      ref={sectionRef}
-      style={{
-        overflowBlock:"hidden"
+    ref={sectionRef}
+    style={{
+      overflowBlock:"hidden"
       }}
-           className="w-screen bg-[#010B24] section-pt section-pb relative  max-w-7xl left-1/2 -translate-x-1/2 overflow-hidden overflow-x-hidden"
+      className="bg-[#010B24] section-pt section-pb relative"
     >
-      <div className="w-full lg:px-16 md:px-12 sm:px-6 px-6   relative z-10">
+      <Container>
+      <div className="w-full relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12 lg:gap-20 mb-12 md:mb-16">
           <motion.div
             className="flex flex-col items-start gap-1 md:gap-3"
@@ -145,7 +145,7 @@ export default function Features() {
           ))}
         </div>
       </div>
-    </section>
     </Container>
+    </section>
   );
 }
