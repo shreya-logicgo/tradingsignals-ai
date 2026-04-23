@@ -22,7 +22,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
   const { t } = useTranslation();
 
   return (
-    <article className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-6 sm:px-10 lg:px-0 py-10 sm:py-14  mt-10 lg:mt-0">
+    <article className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-6 sm:px-10 lg:px-0 section-py">
 
       {/* Author + date + Edit button */}
       <div className="flex flex-wrap items-center justify-between gap-y-4 gap-x-3 mb-7">
@@ -77,7 +77,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
       />
 
       {/* Back link */}
-      <div className="mt-14 pt-8 border-t border-white/10">
+      <div className="mt-10 pt-8 border-t border-white/10">
         <Link
           href="/blogs"
           className="inline-flex items-center gap-2 text-gray-400 text-sm xl:text-base 2xl:text-lg hover:text-white transition-colors duration-200"

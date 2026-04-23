@@ -58,7 +58,7 @@ export default function BlogDetailPage() {
   });
 
   return (
-    <div className="bg-[#010B24] min-h-screen flex flex-col lg:mt-28 font-hoves">
+    <div className="bg-[#010B24] min-h-screen flex flex-col font-hoves">
       <NoiseOverlay />
       <main className="flex-1">
         <BlogDetailView post={post} formattedDate={formattedDate} />
