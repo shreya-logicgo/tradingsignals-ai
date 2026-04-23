@@ -5,12 +5,14 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import Container from "@/components/common/container/Container";
+import { useRouter } from "next/navigation";
 
 interface Exchange {
   name: string;
   descKey: string;
   logo: string;
   link: string;
+  pageLink?: string;
 }
 
 const exchanges: Exchange[] = [
@@ -19,6 +21,7 @@ const exchanges: Exchange[] = [
     descKey: "exchangePartners.exchanges.binance",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/270.png",
     link: "https://accounts.binance.com/en/register?ref=38024889",
+    pageLink: "/how-it-works/binance",
   },
   // {
   //   name: "Binance Futures",
@@ -31,6 +34,7 @@ const exchanges: Exchange[] = [
     descKey: "exchangePartners.exchanges.bybitUta",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/521.png",
     link: "https://www.bybit.com",
+    pageLink: "/how-it-works/bybit",
   },
   {
     name: "Bitget Spot",
@@ -111,13 +115,14 @@ const exchanges: Exchange[] = [
 function ExchangeCard({ exchange }: { exchange: Exchange }) {
   const [imgError, setImgError] = useState(false);
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
-    <motion.a
+    <motion.div
       variants={fadeUpVariant}
-      href={exchange.link}
-      target="_blank"
-      rel="noopener noreferrer"
+      // href={exchange.link}
+      // target="_blank"
+      // rel="noopener noreferrer"
       className="
         group
         flex flex-col justify-between gap-6
@@ -170,16 +175,21 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       </div>
 
       {/* CTA Button */}
-      <span
-        className="
-          flex items-center justify-center w-full py-3
-         text-sm md:text-base lg:text-lg  text-[#FFFFFF]
-          bg-[#010B24] border border-white/10
-          transition-all duration-150 rounded-full  "
-      >
-        {t("exchangePartners.cta")}
-      </span>
-    </motion.a>
+      <button
+  onClick={() =>
+    router.push(exchange.pageLink || exchange.link)
+  }
+  className="
+    flex items-center justify-center w-full py-3 px-15
+    text-sm md:text-base lg:text-lg text-white
+    bg-[#010B24] border border-white/10
+    transition-all duration-150 rounded-full
+    hover:opacity-90 cursor-pointer
+  "
+>
+  {t("exchangePartners.cta")}
+</button>
+    </motion.div>
   );
 }
 
