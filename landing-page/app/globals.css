@@ -370,84 +370,52 @@ html {
 }
 
 @keyframes radialGlow {
-  0% {
-    background-position: -4rem -1.5rem;
-  }
-
-  25% {
-    background-position: 4rem -1.5rem;
-  }
-
-  50% {
-    background-position: 4rem 1.5rem;
-  }
-
-  75% {
-    background-position: -4rem 1.5rem;
-  }
-
-  100% {
-    background-position: -4rem -1.5rem;
-  }
+  0%   { background-position: -4rem -1.5rem; }
+  25%  { background-position:  4rem -1.5rem; }
+  50%  { background-position:  4rem  1.5rem; }
+  75%  { background-position: -4rem  1.5rem; }
+  100% { background-position: -4rem -1.5rem; }
 }
 
+/* base glow layer */
 .get-access-glow {
+  --x-size: 25;
+  --y-size: 50;
   z-index: 0;
   will-change: transform;
   border-radius: 99px;
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: radial-gradient(
-    25% 50%,
-    rgb(255, 255, 255) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background-size: 100% 100%;
+  background: radial-gradient(25% 50%, rgb(255,255,255) 0%, rgba(255,255,255,0) 100%);
+  background-size: calc((var(--x-size) / 25) * 100%) calc((var(--y-size) / 50) * 100%);
   background-repeat: no-repeat;
   background-position: -4rem -1.5rem;
   transition: background-position 0.5s ease-in-out,
-    background-size 0.5s ease-in-out;
+              background-size     0.5s ease-in-out;
   animation: radialGlow 4s linear infinite;
 }
+.get-access-glow.outter { filter: blur(15px); }
+.get-access-glow.inner  { filter: none; }
 
-@keyframes gradient-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+/* HOVER — outer doubles, inner triples, both snap to center */
+.get-access-btn:hover .get-access-glow.outter {
+  --x-size: 50;
+  --y-size: 100;
+}
+.get-access-btn:hover .get-access-glow.inner {
+  --x-size: 75;
+  --y-size: 181.159;
+}
+.get-access-btn:hover .get-access-glow {
+  background-position: center !important;
 }
 
-.get-access-glow.outter {
-  filter: blur(15px);
-}
-
-.get-access-glow.inner {
-  filter: none;
-}
-
+/* dark inner fill */
 .get-access-btn-bg {
   z-index: 0;
   will-change: transform;
-  background: linear-gradient(
-    135deg,
-    #0f172a 0%,
-    /* Deep Slate (Darker than #1c263c) */ #171f3d 50%,
-    /* Dark Navy Center (Darker than #242f57) */ #0f172a 100% /* Deep Slate */
-  );
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  /* Subtle rim light */
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-  /* Adds depth */
-  background-size: 400% 400%;
-  animation: gradient-flow 8s ease infinite;
+  background-color: #030303;
   border-radius: 99px;
   position: absolute;
   inset: 2px;

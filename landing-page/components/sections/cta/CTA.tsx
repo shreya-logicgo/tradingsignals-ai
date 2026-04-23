@@ -165,20 +165,12 @@ export default function CTA() {
 
             {posts.length > 0 && (
               <div className="flex justify-center mt-4">
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 0 25px rgba(255,255,255,0.1)",
-                  }}
-                  whileTap={{ scale: 0.98 }}
+                <HoverFxButton
+                  href="/blogs"
+                  className="px-7 py-3"
                 >
-                  <HoverFxButton
-                    href="/blogs"
-                    className="px-7 py-3 rounded-full border border-white font-hoves text-white text-md font-medium tracking-widest transition-all duration-500 hover:bg-white hover:text-black inline-flex items-center justify-center"
-                  >
-                    {t("blog.cta")}
-                  </HoverFxButton>
-                </motion.div>
+                  {t("blog.cta")}
+                </HoverFxButton>
               </div>
             )}
           </div>
