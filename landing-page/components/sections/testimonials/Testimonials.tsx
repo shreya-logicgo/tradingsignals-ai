@@ -54,7 +54,7 @@ export default function Testimonials() {
       </div>
 
       <Container
-        id="testimonials"
+      id="testimonials"
         className="section-pt section-pb relative z-10 w-full scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 3xl:gap-12">
@@ -82,11 +82,11 @@ export default function Testimonials() {
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white font-hoves">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-snug text-white font-hoves">
               {t("testimonials.heading")}
             </h2>
 
-            <p className="text-sm md:text-base text-white/65 leading-relaxed max-w-[400px] font-hoves">
+            <p className="text-sm md:text-base text-white/65 leading-snug max-w-[400px] font-hoves">
               {t("testimonials.description")}
             </p>
 

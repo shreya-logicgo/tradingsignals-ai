@@ -199,8 +199,8 @@ export default function ExchangePartners() {
         <motion.span
           variants={fadeUpVariant}
           className="
-            inline-block mb-3  pb-1 
-            text-[15px] tracking-[0.12em] uppercase text-vivid-cyan lg:text-start w-fit text-center
+            inline-block mb-3  pb-1  
+            text-[15px] tracking-widest uppercase text-vivid-cyan lg:text-start w-fit text-center
             rounded-full font-mono
           "
         >

@@ -135,7 +135,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-       </Container>
+       
 
         {/* Bottom Bar */}
         <div className="border-t max-w-7xl 2xl:max-w-[1400px]  mx-auto border-[#343445] border-dashed relative z-10 ">
@@ -148,6 +148,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
+      </Container>
       </footer>
     </div>
   );
