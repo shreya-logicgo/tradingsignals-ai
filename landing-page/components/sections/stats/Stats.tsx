@@ -18,7 +18,6 @@ import glowBar2 from "@/assets/images/glowBar2.png";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import Steps from "../steps/Steps";
 import RocketParticles from "./RocketParticles";
-import Container from "@/components/common/container/Container";
 
 // Animation constants
 const ANIMATION_DURATION = 1;
@@ -63,7 +62,7 @@ export default function Stats() {
     const handleMouseMove = (e: MouseEvent) => {
       // Calculate normalized mouse position (-0.5 to 0.5)
       const relativeY = e.clientY / window.innerHeight - 0.5;
-      // Map to a ±60px range of vertical influence
+      // Map to a Â±60px range of vertical influence
       mouseTranslateY.set(relativeY * 120);
     };
     window.addEventListener("mousemove", handleMouseMove);
@@ -330,12 +329,11 @@ export default function Stats() {
       </motion.div>
 
       {/* Stats Content */}
-      <Container>
-  <div
-    ref={statsRef}
-    className="flex flex-col md:flex-row items-center justify-center section-pt section-pb relative sm:mt-10"
-    style={{ zIndex: 2 }}
-  >
+      <div
+        ref={statsRef}
+        className="flex flex-col md:flex-row items-center justify-center py-20 md:py-40 xl:py-50 relative sm:mt-10"
+        style={{ zIndex: 2 }}
+      >
         {stats.map((stat, i) => (
           <div
             key={stat.label}
@@ -379,7 +377,6 @@ export default function Stats() {
           }}
         />
       </div>
-      </Container>
     </section>
   );
 }

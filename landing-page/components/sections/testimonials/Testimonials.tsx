@@ -54,9 +54,9 @@ export default function Testimonials() {
       </div>
 
       <Container
-  id="testimonials"
-  className="section-pt section-pb relative z-10 w-full scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30"
->
+        id="testimonials"
+        className="section-pt section-pb relative z-10 w-full scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 3xl:gap-12">
           {/* LEFT COLUMN - Stacked cards */}
           <div className="flex flex-col gap-6 md:gap-10 3xl:gap-12 order-2 lg:order-1 w-full justify-between items-center">

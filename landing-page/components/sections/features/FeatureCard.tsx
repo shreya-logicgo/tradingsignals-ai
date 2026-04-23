@@ -35,18 +35,6 @@ export default function FeatureCard({
     damping: 18,
   });
 
-  const cardY = useSpring(useMotionValue(0), {
-    stiffness: 160,
-    damping: 22,
-    mass: 0.8,
-  });
-
-  const cardScale = useSpring(useMotionValue(1), {
-    stiffness: 160,
-    damping: 22,
-    mass: 0.8,
-  });
-
   const borderOpacity = useSpring(useMotionValue(0), {
     stiffness: 100,
     damping: 22,
@@ -75,15 +63,11 @@ export default function FeatureCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => {
         smoothOpacity.set(1);
-        cardY.set(-6);
-        cardScale.set(1.015);
         borderOpacity.set(1);
         setIsHovered(true);
       }}
       onMouseLeave={() => {
         smoothOpacity.set(0);
-        cardY.set(0);
-        cardScale.set(1);
         borderOpacity.set(0);
         setIsHovered(false);
       }}
@@ -92,20 +76,8 @@ export default function FeatureCard({
         backgroundImage: `url('${gradient}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        y: cardY,
-        scale: cardScale,
       }}
-      animate={{
-        y: [0, -2, 0],
-      }}
-      transition={{
-        y: {
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        },
-      }}
-      whileTap={{ scale: 0.98 }}
+      whileTap={{ scale: 0.995 }}
     >
       {/* Cursor light */}
       <motion.div
@@ -136,7 +108,7 @@ export default function FeatureCard({
           {title}
         </h3>
 
-        <p className="text-[13px] md:text-sm font-normal text-white/60 group-hover:text-white/90 transition-colors duration-500 leading-relaxed max-w-[420px] font-hoves">
+        <p className="text-[13px] md:text-sm font-normal text-white/60 group-hover:text-white/90  leading-relaxed max-w-[420px] font-hoves">
           {description}
         </p>
       </div>
@@ -162,40 +134,64 @@ function IconMotion({
 
   const glowColor = glowColorMap[iconName] ?? "bg-blue-500/30";
 
-  // Equal premium movement for all icons
-  const sharedHover = isHovered
-    ? {
-        scale: [1, 1.22, 1.12],
-        y: [0, -8, -4],
-        rotate: [0, -6, 6, 0],
-        x: [0, 3, -3, 0],
-      }
-    : {
-        scale: 1,
-        y: 0,
-        rotate: 0,
-        x: 0,
-      };
-
   return (
     <div className="relative w-12 h-12 flex items-center justify-center">
       <motion.span
         className={`absolute inset-0 rounded-full blur-xl ${glowColor}`}
+        initial={false}
         animate={
           isHovered
-            ? { scale: 2.1, opacity: 1 }
+            ? { scale: 2.2, opacity: 1 }
             : { scale: 0.6, opacity: 0 }
         }
-        transition={SP}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
+          mass: 0.8
+        }}
       />
 
       <motion.div
-        animate={sharedHover}
-        transition={{
-          duration: 1.8,
-          repeat: isHovered ? Infinity : 0,
-          ease: "easeInOut",
-        }}
+        animate={
+          isHovered
+            ? {
+                y: -5,
+                scale: 1.1,
+                rotate: [0, -3, 3, 0],
+              }
+            : {
+                y: 0,
+                scale: 1,
+                rotate: 0,
+              }
+        }
+        transition={
+          isHovered
+            ? {
+                y: {
+                  duration: 2.5,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: [0.45, 0, 0.55, 1], // Smooth sine-like ease
+                },
+                rotate: {
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+                scale: {
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 25,
+                },
+              }
+            : {
+                type: "spring",
+                stiffness: 200,
+                damping: 25,
+              }
+        }
         className="text-white/90 group-hover:text-white transition-colors"
       >
         <Icon className="w-10 h-10 md:w-12 md:h-12 stroke-[1.2] relative z-10" />

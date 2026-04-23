@@ -98,13 +98,13 @@ export default function Strategies() {
   ];
 
   return (
-    <Container>
     <section
-      className="w-full section-pb relative overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, #010B24 0%, #010B24 75%, #02164b 100%)",
-      }}
+    className="w-full section-pb relative overflow-hidden"
+    style={{
+      background: "linear-gradient(180deg, #010B24 0%, #010B24 75%, #02164b 100%)",
+    }}
     >
+      <Container>
       {/* <div
         className="absolute inset-0 z-[999] pointer-events-none opacity-50"
         style={{
@@ -177,7 +177,7 @@ export default function Strategies() {
 
       {/* Background Glow */}
       {/* <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" /> */}
-    </section>
     </Container>
+    </section>
   );
 }
