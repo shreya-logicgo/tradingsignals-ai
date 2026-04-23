@@ -62,7 +62,7 @@ export default function Stats() {
     const handleMouseMove = (e: MouseEvent) => {
       // Calculate normalized mouse position (-0.5 to 0.5)
       const relativeY = e.clientY / window.innerHeight - 0.5;
-      // Map to a ±60px range of vertical influence
+      // Map to a Â±60px range of vertical influence
       mouseTranslateY.set(relativeY * 120);
     };
     window.addEventListener("mousemove", handleMouseMove);

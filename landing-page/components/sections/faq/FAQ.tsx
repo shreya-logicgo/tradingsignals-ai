@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, X } from "lucide-react";
 import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import FAQItem from "./FAQItem";
+import Container from "@/components/common/container/Container";
 
 interface FAQData {
   q: string;
@@ -35,7 +36,7 @@ export default function FAQ() {
 }}
       className="w-full bg-transparent section-pt section-pb relative overflow-hidden">
       {/* Outer container — responsive horizontal padding */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+      <Container className="relative z-10">
         <div className="flex flex-col items-center gap-10 lg:gap-12">
           {/* ── Header Block — Localized ── */}
           <motion.div
@@ -118,7 +119,7 @@ export default function FAQ() {
             </AnimatePresence>
           </div>
         </div>
-      </div>
+      </Container>
     </motion.section>
   );
 }
