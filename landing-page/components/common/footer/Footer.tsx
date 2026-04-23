@@ -41,7 +41,7 @@ export default function Footer() {
         className="absolute -top-3 left-1/2 -translate-x-1/2 -translate-y-1/8 w-3/4 max-w-4xl xl:max-w-5xl 2xl:max-w-6xl h-40 bg-dark-blue blur-[120px] rounded-full z-0 pointer-events-none"
       />
 
-      <footer className="bg-[#010B24] border-t border-white/5 relative overflow-hidden px-6 md:px-10  2xl:px-32">
+      <footer className="bg-[#010B24] border-t border-white/5 relative overflow-hidden ">
         {/* Main Content: 
         Needs 'relative z-10' to ensure it renders on top of the z-0 glow. 
       */}
