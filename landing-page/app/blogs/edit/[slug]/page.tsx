@@ -2,6 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import EditBlogForm from "@/components/Blogs/EditBlogForm";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import { PenLine } from "lucide-react";
@@ -38,6 +39,7 @@ function EditorSkeleton() {
 }
 
 export default function EditBlogPage() {
+  const { t } = useTranslation();
   const params = useParams();
   const router = useRouter();
   const slug = params?.slug as string;
@@ -93,13 +95,15 @@ export default function EditBlogPage() {
     <div className="bg-[#010B24] min-h-screen font-hoves pt-30">
       <NoiseOverlay />
       {/* <main className="max-w-6xl mx-auto w-full px-4 sm:px-6"> */}
-      <main className=" mx-auto px-6 sm:px-10 lg:px-0 ">
+      {/* <main className=" mx-auto px-6 sm:px-10 lg:px-0 "> */}
         <Container>
-          
+          <h1 className="text-3xl py-10 text-2xl sm:text-3xl md:text-5xl text-center font-semibold text-white font-hoves">
+            {t("editBlog.pageTitle")}
+          </h1>
           
         <EditBlogForm post={post} />
         </Container>
-      </main>
+      {/* </main> */}
     </div>
   );
 }

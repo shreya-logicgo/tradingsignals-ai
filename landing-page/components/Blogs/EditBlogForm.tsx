@@ -258,7 +258,7 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
   };
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-3 duration-500 pt-20">
+    <div className="animate-in fade-in slide-in-from-bottom-3 duration-500">
       {/* ── Top bar ── */}
       <div className="sticky top-0 z-40 flex items-center justify-between gap-4  py-3 bg-[#010B24]/90 backdrop-blur-xl border-b border-white/5">
         <button

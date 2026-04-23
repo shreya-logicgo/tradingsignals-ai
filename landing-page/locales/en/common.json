@@ -328,6 +328,7 @@
         "disclaimer": "Trading involves substantial risk and is not suitable for every investor. Past performance is not indicative of future results. This is not financial advice."
     },
     "editBlog": {
+        "pageTitle": "Edit Blog",
         "exitEditor": "Exit Editor",
         "editingDraft": "Editing Draft",
         "discard": "Discard",

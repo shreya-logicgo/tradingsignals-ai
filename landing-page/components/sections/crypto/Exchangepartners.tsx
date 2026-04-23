@@ -172,7 +172,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       {/* CTA Button */}
       <span
         className="
-          flex items-center justify-center w-full py-3 px-15 
+          flex items-center justify-center w-full py-3
          text-sm md:text-base lg:text-lg  text-[#FFFFFF]
           bg-[#010B24] border border-white/10
           transition-all duration-150 rounded-full  "
