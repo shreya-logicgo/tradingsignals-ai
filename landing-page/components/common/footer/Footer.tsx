@@ -45,8 +45,8 @@ export default function Footer() {
         {/* Main Content: 
         Needs 'relative z-10' to ensure it renders on top of the z-0 glow. 
       */}
-        <Container className="max-h-fit py-14 xl:py-16 2xl:py-20 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-between gap-12 lg:gap-10">
+        <Container className="max-h-fit relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-between gap-12 lg:gap-10 section-py">
             {/* Brand Column */}
             <div className="flex flex-col gap-6 max-w-xs sm:mx-0 mx-auto items-center sm:items-start">
               {/* Logo */}
@@ -138,12 +138,12 @@ export default function Footer() {
        
 
         {/* Bottom Bar */}
-        <div className="border-t max-w-7xl 2xl:max-w-[1400px]  mx-auto border-[#343445] border-dashed relative z-10 ">
-          <div className="max-w-7xl 2xl:max-w-[1400px] mx-auto  py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <div className="border-t pb-7 mx-auto border-[#343445] border-dashed relative z-10 ">
+          <div className=" mx-auto  py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
             <p className="text-[#C7CCD2] text-xs xl:text-sm 2xl:text-base font-hoves">
               {t("footer.copyright")}
             </p>
-            <p className="text-[#C7CCD2] text-xs xl:text-sm 2xl:text-base sm:text-right  leading-relaxed font-hoves">
+            <p className="text-[#C7CCD2] max-w-3/5 text-xs xl:text-sm 2xl:text-base sm:text-right  leading-relaxed font-hoves">
               {t("footer.disclaimer")}
             </p>
           </div>

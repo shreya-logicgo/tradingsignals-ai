@@ -63,7 +63,7 @@ export default function HoverFxButton({
   );
 
   return (
-    <div className="relative inline-flex items-center justify-center">
+    <div className="relative inline-flex items-center justify-center rounded-full">
       {/* ── SUBTLE OUTSIDE GLOW (Only active on hover) ── */}
       <motion.div
         className="absolute inset-0 rounded-full bg-white/20 pointer-events-none"
@@ -81,25 +81,32 @@ export default function HoverFxButton({
       />
 
       {href ? (
-        <Link
-          href={href}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className={sharedStyles}
+        <motion.div
+          whileHover={!disabled ? { scale: 1.05 } : {}}
+          whileTap={!disabled ? { scale: 0.98 } : {}}
         >
-          {innerContent}
-        </Link>
+          <Link
+            href={href}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className={sharedStyles}
+          >
+            {innerContent}
+          </Link>
+        </motion.div>
       ) : (
-        <button
+        <motion.button
           type={type}
           onClick={onClick}
           disabled={disabled}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          whileHover={!disabled ? { scale: 1.05 } : {}}
+          whileTap={!disabled ? { scale: 0.98 } : {}}
           className={sharedStyles}
         >
           {innerContent}
-        </button>
+        </motion.button>
       )}
     </div>
   );
