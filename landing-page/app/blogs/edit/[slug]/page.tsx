@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import EditBlogForm from "@/components/Blogs/EditBlogForm";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import { PenLine } from "lucide-react";
+import Container from "@/components/common/container/Container";
 
 interface BlogPost {
   _id: string;
@@ -92,9 +93,12 @@ export default function EditBlogPage() {
     <div className="bg-[#010B24] min-h-screen font-hoves pt-30">
       <NoiseOverlay />
       {/* <main className="max-w-6xl mx-auto w-full px-4 sm:px-6"> */}
-      <main className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-6 sm:px-10 lg:px-0 py-5 sm:py-14 lg:py-0">
+      <main className=" mx-auto px-6 sm:px-10 lg:px-0 ">
+        <Container>
+          
           
         <EditBlogForm post={post} />
+        </Container>
       </main>
     </div>
   );

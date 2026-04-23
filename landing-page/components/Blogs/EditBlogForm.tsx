@@ -258,9 +258,9 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
   };
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-3 duration-500">
+    <div className="animate-in fade-in slide-in-from-bottom-3 duration-500 pt-20">
       {/* ── Top bar ── */}
-      <div className="sticky top-0 z-40 flex items-center justify-between gap-4 px-4 sm:px-6 py-3 bg-[#010B24]/90 backdrop-blur-xl border-b border-white/5">
+      <div className="sticky top-0 z-40 flex items-center justify-between gap-4  py-3 bg-[#010B24]/90 backdrop-blur-xl border-b border-white/5">
         <button
           onClick={() => router.back()}
           className="flex items-center gap-1.5 text-white hover:text-white transition-colors text-sm group"
@@ -302,7 +302,7 @@ export default function EditBlogForm({ post }: EditBlogFormProps) {
       </div>
 
       {/* ── Layout ── */}
-      <div className="max-w-5xl mx-auto w-full flex flex-col gap-8 pt-8 pb-24 px-4 sm:px-0">
+      <div className="mx-auto w-full flex flex-col gap-8 pb-20 px-4 sm:px-0">
 
         {/* ── Main Content Section (Editor) ── */}
         <div className="space-y-6">
