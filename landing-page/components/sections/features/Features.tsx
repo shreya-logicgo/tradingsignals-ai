@@ -61,7 +61,7 @@ export default function Features() {
       icon: Brain,
       title: t("features.cards.aiSignals.title"),
       description: t("features.cards.aiSignals.desc"),
-      gradient: "/images/gradient_3_.png",
+      gradient: "/images/grad_3.png",
     },
     {
       icon: Link2,
@@ -126,7 +126,7 @@ export default function Features() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
           {[0, 1, 2, 3].map((i) => (
             <motion.div
               key={i}
