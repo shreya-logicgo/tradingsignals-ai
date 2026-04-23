@@ -45,7 +45,7 @@ function BlogCard({ post }: { post: BlogPost }) {
 
       {/* Content */}
       <div className="flex flex-col gap-2 flex-grow px-1">
-        <h3 className="text-white font-semibold text-[15px] xl:text-lg 2xl:text-xl leading-snug line-clamp-2">
+        <h3 className="text-white font-semibold text-[15px] xl:text-lg 2xl:text-xl min-h-13 leading-snug line-clamp-2">
           {post.title}
         </h3>
         <p className="text-gray-400 text-sm xl:text-base 2xl:text-lg leading-snug line-clamp-3">
@@ -129,7 +129,7 @@ export default function BlogListing() {
   }
 
   return (
-    <section className="bg-[#010B24] min-h-screen py-12 lg:px-7 font-hoves">
+    <section className="bg-[#010B24] min-h-screen section-py lg:px-7 font-hoves">
       <NoiseOverlay />
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto">
         {/* Header */}
@@ -143,7 +143,7 @@ export default function BlogListing() {
         </div>
 
         {/* Grid — fetched blogs */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 gap-y-7 mb-16">
           {blogPosts.length > 0 ? (
             blogPosts.map((post) => (
               <BlogCard key={post._id} post={post} />
@@ -177,4 +177,4 @@ export default function BlogListing() {
       </div>
     </section>
   );
-}
+}
