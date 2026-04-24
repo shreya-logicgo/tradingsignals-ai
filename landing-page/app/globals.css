@@ -661,3 +661,28 @@ html {
   }
 }
 
+
+.head-size{
+  @apply text-3xl md:text-4xl 3xl:text-5xl font-normal;
+}
+
+.desc-size{
+  @apply text-sm md:text-base 3xl:text-xl font-normal;
+}
+
+/* 1- (20-16) , 2- (22-18) */
+.card-title-size1 {
+  @apply text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl 3xl:text-xl;
+}
+
+.card-desc-size1 {
+  @apply text-xs sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base 3xl:text-base;
+}
+
+.card-title-size2 {
+  @apply text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-[21px] 3xl:text-[22px];
+}
+
+.card-desc-size2 {
+  @apply text-xs sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-lg 3xl:text-lg;
+}

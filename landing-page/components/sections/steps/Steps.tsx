@@ -51,12 +51,12 @@ export default function Steps() {
                 </span>
               </div>
               <h2
-                className="text-4xl md:text-[40px] font-medium leading-tight md:leading-[1.1] text-white mb-2 lg:max-w-md font-hoves"
+                className="head-size font-medium leading-tight md:leading-[1.1] text-white mb-2 lg:max-w-md font-hoves"
               >
                 {t("gettingStarted.heading")}
               </h2>
               <p
-                className="text-sm md:text-base font-light leading-relaxed text-[#c7ccd2] max-w-[280px] font-hoves"
+                className="desc-size text-[#c7ccd2] leading-snug max-w-[320px] font-hoves"
               >
                 {t("gettingStarted.description")}
               </p>

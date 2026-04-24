@@ -139,10 +139,10 @@ export default function StepCard({
 
           {/* Text content */}
           <div className="flex flex-col gap-2 relative z-20">
-            <h3 className="text-white text-lg font leading-tight font-hoves">
+            <h3 className="text-white card-title-size2 font leading-tight font-hoves">
               {title}
             </h3>
-            <p className="text-[14px] font-light text-white/70 leading-relaxed font-hoves">
+            <p className="card-desc-size2 font-light text-white/70 leading-snug font-hoves">
               {description}
             </p>
           </div>
