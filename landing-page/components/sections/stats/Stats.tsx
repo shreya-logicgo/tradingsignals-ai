@@ -326,7 +326,7 @@ export default function Stats() {
       {/* Stats Content */}
       <div
         ref={statsRef}
-        className="grid md:grid-cols-3 items-center justify-center py-20 md:py-40 xl:py-50 relative sm:mt-10 max-w-2xl lg:max-w-4xl mx-auto  gap-12 lg:gap-15 xl:gap-30"
+        className="grid md:grid-cols-3 items-center justify-center py-20 md:py-40 xl:py-50 relative sm:mt-10 max-w-2xl lg:max-w-3xl 3xl:max-w-4xl mx-auto  gap-12 3xl:gap-30"
         style={{ zIndex: 2 }}
       >
         <StatsCounter stats={stats} start={isInView} />
