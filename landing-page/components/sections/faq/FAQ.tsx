@@ -86,7 +86,7 @@ export default function FAQ() {
           </motion.div>
 
           {/* ── Questions List ── */}
-          <div className="w-full max-w-2xl flex flex-col gap-4">
+          <div className="w-full max-w-2xl lg:max-w-xl flex flex-col gap-4">
             <AnimatePresence mode="popLayout">
               {filteredQuestions.length > 0 ? (
                 filteredQuestions.map((faq) => (
