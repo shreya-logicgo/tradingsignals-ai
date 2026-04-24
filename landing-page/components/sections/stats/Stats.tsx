@@ -124,7 +124,7 @@ export default function Stats() {
 
       {/* Rockets + Particles with Interactive Motion */}
       <motion.div
-        className="absolute top-0 inset-0 mx-auto pointer-events-none lg:max-w-300 max-w-200"
+        className="absolute top-0 inset-0 mx-auto pointer-events-none lg:max-w-300 max-w-200 3xl:min-w-328"
         style={{
           zIndex: 1,
           y: smoothY,
