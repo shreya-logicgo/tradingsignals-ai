@@ -134,12 +134,12 @@ export default function Strategies() {
 
           <div className="flex flex-col items-center gap-2">
             <h2
-              className="text-white font-hoves font-medium text-3xl md:text-4xl lg:text-5xl leading-tight"
+              className="text-white font-hoves font-medium head-size leading-tight"
             >
               {t("strategy.title")}
             </h2>
             <p
-              className="font-hoves text-[15px] md:text-base text-[#C7CCD2] leading-relaxed max-w-[600px] opacity-80"
+              className="font-hoves desc-size text-[#C7CCD2] leading-snug max-w-3xl opacity-80"
             >
               {t("strategy.description")}
             </p>
@@ -159,7 +159,7 @@ export default function Strategies() {
           - The wrapper div is removed — StrategyCard itself is the grid item
         */}
         <motion.div
-  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 3xl:gap-5 mt-8 auto-rows-fr"
+  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 3xl:gap-5 mt-8 auto-rows-fr"
 >
   {strategies.map((s) => (
     <motion.div

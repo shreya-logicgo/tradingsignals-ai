@@ -109,7 +109,7 @@ export default function Features() {
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-[40px] font-medium text-white leading-tight md:leading-[1.15] font-hoves max-w-[520px]">
+            <h2 className="head-size text-white leading-tight md:leading-[1.15] font-hoves max-w-[520px]">
               {t("features.heading")}
             </h2>
           </motion.div>
@@ -120,7 +120,7 @@ export default function Features() {
             animate={isInView ? "visible" : "hidden"}
             variants={paraVariant}
           >
-            <p className="text-[15px] md:text-base font-normal text-white/50 leading-relaxed font-hoves">
+            <p className="desc-size text-white/50 leading-relaxed font-hoves">
               {t("features.description")}
             </p>
           </motion.div>

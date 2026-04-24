@@ -82,11 +82,11 @@ export default function Testimonials() {
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-snug text-white font-hoves">
+            <h2 className="head-size font-medium leading-snug text-white font-hoves">
               {t("testimonials.heading")}
             </h2>
 
-            <p className="text-sm md:text-base text-white/65 leading-snug max-w-[400px] font-hoves">
+            <p className="desc-size text-white/65 leading-snug max-w-[400px] font-hoves">
               {t("testimonials.description")}
             </p>
 
