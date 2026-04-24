@@ -22,7 +22,7 @@ export default function ShineText({
   };
 
   return (
-    <div 
+    <div
       className={`grid grid-cols-1 grid-rows-1 place-items-center w-full ${className}`}
       style={{ color: "#adb1b8" }}
     >

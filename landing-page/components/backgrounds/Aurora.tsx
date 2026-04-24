@@ -62,13 +62,14 @@ vec4 band(
   vec3  colB,
   float opacity
 ) {
-  float wave  = snoise(vec2(uv.x * 1.8 + t * 0.12, t * 0.22)) * amp * uAmplitude;
-        wave += snoise(vec2(uv.x * 3.6 - t * 0.07, t * 0.15)) * amp * 0.35 * uAmplitude;
-
-  float dist = uv.y - (yCenter + wave * 0.16);
+  // Reduced to a single snoise call per band for better performance
+  float wave = snoise(vec2(uv.x * 1.5 + t * 0.1, t * 0.2)) * amp * uAmplitude;
+  
+  float dist = uv.y - (yCenter + wave * 0.15);
   float mask = exp(-dist * dist / (thickness * thickness));
 
-  vec3 col = mix(colA, colB, uv.x + 0.25 * snoise(vec2(uv.x * 2.0, t * 0.09)));
+  // Simplified color mixing
+  vec3 col = mix(colA, colB, uv.x);
   col *= mask;
 
   return vec4(col, mask * opacity);
@@ -92,8 +93,8 @@ void main() {
   vec3 col   = l1.rgb*l1.a + l2.rgb*l2.a + l3.rgb*l3.a + l4.rgb*l4.a + l5.rgb*l5.a;
   float alpha = clamp(l1.a + l2.a + l3.a + l4.a + l5.a, 0.0, 0.93);
 
-  // Smoothly fade out the bottom of the aurora container to prevent harsh lines
-  alpha *= smoothstep(0.0, 0.45, uv.y);
+  // Smoothly fade out the bottom of the aurora container with a more gradual ramp
+  alpha *= smoothstep(0.0, 0.6, uv.y);
 
   fragColor = vec4(col, alpha);
 }

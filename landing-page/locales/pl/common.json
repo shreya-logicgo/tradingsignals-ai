@@ -361,6 +361,7 @@
         "title": "Obsługiwane giełdy kryptowalut",
         "desc": "„Jeśli nie masz konta krypto, możesz zarejestrować się u naszych obsługiwanych partnerów giełdowych”",
         "subtitle": "Nasza platforma jest połączona z 15 różnymi giełdami",
+        "howItWorks": "Jak to działa",
         "cta": "Utwórz konto",
         "exchanges": {
             "binance": "Największa na świecie giełda kryptowalut z wysoką płynnością i zaawansowanymi narzędziami handlowymi.",
