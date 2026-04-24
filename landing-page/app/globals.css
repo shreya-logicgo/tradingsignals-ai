@@ -12,12 +12,14 @@
   --color-seashell-blue: #e6eeff;
   --color-dark-blue: #0012b8;
   --color-vivid-cyan: #00f0ff;
+  --color-tealish-blue: #182138;
 }
 
 /* ── Base ── */
-body {
-  background-color: #010b24;
-  color: white;
+@layer base {
+  body {
+    @apply bg-[#010b24] text-white font-normal;
+  }
 }
 
 html {
@@ -27,7 +29,6 @@ html {
 :root {
   --font-inter: "Inter", sans-serif;
   --font-mono: "Space Mono", monospace;
-  --font-hoves: "TT Hoves Pro Trial", sans-serif;
 }
 
 /* ── Responsive Container ── */

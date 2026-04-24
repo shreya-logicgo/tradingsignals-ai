@@ -88,7 +88,7 @@ export default function Categories() {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 relative z-[2]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 md:gap-4 3xl:gap-5 relative z-[2]">
             {categories.map((cat, index) => (
               <CategoryCard key={cat.title} {...cat} index={index} />
             ))}
