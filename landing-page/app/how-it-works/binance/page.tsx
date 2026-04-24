@@ -9,8 +9,8 @@ import {
   AlertTriangle,
   ArrowRight,
   Copy,
-  Container,
 } from "lucide-react";
+import Container from "@/components/common/container/Container";
 
 const trustedIps = [
   "185.141.195.71",
@@ -90,7 +90,8 @@ export default function BinanceApiSetupPage() {
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_20%),radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.12),transparent_20%),linear-gradient(180deg,#030b16_0%,#06111f_50%,#02060d_100%)]" />
 
     
-      <section className="max-w-6xl mx-auto px-6 pt-20 pb-12 text-center">
+      <section className=" pt-20 pb-12 text-center">
+        <Container>
         <div className="inline-flex px-4 py-1 font-mono rounded-full tracking-widest text-cyan-300 text-sm mb-5">
           HOW IT WORKS
         </div>
@@ -113,9 +114,11 @@ export default function BinanceApiSetupPage() {
             Start Setup
           </button>
         </div>
+        </Container>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 pb-6">
+      <section className="pb-6">
+          <Container>
         <Card className="p-6 md:p-8">
           <h2 className="text-2xl font-semibold mb-5">
             How to create API keys for Binance and Binance US?
@@ -145,10 +148,12 @@ export default function BinanceApiSetupPage() {
             </p>
           </div>
         </Card>
+        </Container>
       </section>
 
       {/* horizontal flow */}
-      <section className="max-w-6xl mx-auto px-6 py-6 space-y-6">
+      <section className="py-6 space-y-6">
+        <Container className="space-y-10">
         <Section
           step="STEP 1"
           title="Complete Verification"
@@ -303,9 +308,11 @@ export default function BinanceApiSetupPage() {
             start Trading.
           </p>
         </Section>
+        </Container>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 pt-6 pb-24">
+      <section className="pt-6 pb-24">
+        <Container>
         <Card className="p-8 md:p-12 text-center border-cyan-400/20 shadow-[0_0_60px_rgba(34,211,238,0.08)]">
           <h2 className="text-3xl md:text-5xl font-semibold">
             Ready to Connect Binance?
@@ -325,6 +332,7 @@ export default function BinanceApiSetupPage() {
             </button>
           </div>
         </Card>
+        </Container>
       </section>
     </main>
   );

@@ -361,6 +361,7 @@
         "title": "Supported Crypto Exchanges",
         "desc": "\"If you don't have a crypto account, you can sign up using our supported exchange partners\"",
         "subtitle": "Our platform is connected with 15 different exchanges",
+        "howItWorks": "How It Works",
         "cta": "Create Account",
         "exchanges": {
             "binance": "World's largest crypto exchange with high liquidity and advanced trading tools.",
