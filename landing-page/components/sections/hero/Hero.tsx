@@ -62,11 +62,11 @@ export default function Hero() {
       {/* Soft Dark Overlay */}
       <div className="absolute inset-0 z-[1] bg-[#010B24]/30 pointer-events-none" />
 
-      {/* Extra Glow Layer - Optimized with radial gradients instead of heavy blur filters */}
+      {/* Extra Glow Layer - Optimized with elliptical gradients to prevent sharp edge clipping */}
       <div className="absolute inset-0 z-[2] pointer-events-none transform-gpu">
-        <div className="absolute -top-[10%] left-[10%] w-[45%] h-[45%] rounded-full bg-[radial-gradient(circle,rgba(0,240,255,0.15)_0%,transparent_70%)]" />
-        <div className="absolute top-[25%] right-[5%] w-[40%] h-[40%] rounded-full bg-[radial-gradient(circle,rgba(0,18,184,0.25)_0%,transparent_70%)]" />
-        <div className="absolute bottom-[5%] left-[25%] w-[35%] h-[35%] rounded-full bg-[radial-gradient(circle,rgba(0,240,255,0.08)_0%,transparent_70%)]" />
+        <div className="absolute -top-[10%] left-[10%] w-[50%] h-[50%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(0,240,255,0.12)_0%,transparent_75%)]" />
+        <div className="absolute top-[20%] right-[0%] w-[45%] h-[45%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(0,18,184,0.22)_0%,transparent_75%)]" />
+        <div className="absolute bottom-[0%] left-[20%] w-[40%] h-[40%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(0,240,255,0.06)_0%,transparent_75%)]" />
       </div>
 
       {/* PARTICLES */}
