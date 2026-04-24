@@ -63,13 +63,13 @@ export default function StrategyCard({
         {/* Text — flex-grow so footer is always pushed to bottom */}
         <div className="flex flex-col gap-2 relative z-10 flex-grow pt-2">
           <h3
-            className="text-white text-[17px] font-medium leading-snug font-hoves"
+            className="text-white card-title-size1 font-medium leading-snug font-hoves"
           >
             {name}
           </h3>
           {/* min-h reserves 3 lines so all cards align the footer at the same Y */}
           <p
-            className="text-[13px] text-slate-300 leading-relaxed line-clamp-3 group-hover:text-white/70 transition-colors min-h-[3.9em] font-hoves"
+            className="card-desc-size1 text-slate-300 leading-relaxed line-clamp-3 group-hover:text-white/70 transition-colors min-h-[3.9em] font-hoves"
           >
             {description}
           </p>

@@ -29,10 +29,10 @@ export default function TraderFeatureCard({
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-lg font-medium text-white m-0">
+        <h3 className="card-title-size1 font-medium text-white m-0">
           {title}
         </h3>
-        <p className="text-sm font-light leading-relaxed text-[#c7ccd2]">
+        <p className="card-desc-size1 font-light leading-snug text-[#c7ccd2]">
           {description}
         </p>
       </div>

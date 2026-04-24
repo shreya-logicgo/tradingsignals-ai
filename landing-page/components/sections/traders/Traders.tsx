@@ -47,8 +47,8 @@ export default function Traders() {
         
         {/* Header Logic */}
         <div className="text-center mb-12">
-           <h2 className="text-3xl md:text-5xl text-white font-medium mb-4">{t("whyUs.heading")}</h2>
-           <p className="text-[#c7ccd2]">{t("whyUs.description")}</p>
+           <h2 className="head-size text-white font-medium mb-4">{t("whyUs.heading")}</h2>
+           <p className="desc-size text-[#c7ccd2] leading-snug">{t("whyUs.description")}</p>
         </div>
 
         {/* Carousel Container */}

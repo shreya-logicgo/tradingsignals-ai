@@ -104,11 +104,11 @@ export default function FeatureCard({
       </div>
 
       <div className="relative z-30 mt-auto pt-8">
-        <h3 className="text-lg md:text-xl font-medium text-white leading-tight mb-2 md:mb-3 font-hoves">
+        <h3 className="card-title-size2 font-medium text-white leading-tight mb-2 md:mb-3 font-hoves">
           {title}
         </h3>
 
-        <p className="text-[13px] md:text-sm font-normal text-white/60 group-hover:text-white/90  leading-relaxed max-w-[420px] font-hoves">
+        <p className="card-desc-size2 font-normal text-white/60 group-hover:text-white/90  leading-snug max-w-[420px] font-hoves">
           {description}
         </p>
       </div>

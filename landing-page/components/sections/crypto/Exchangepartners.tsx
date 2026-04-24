@@ -175,12 +175,12 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         {/* Name */}
         <div className="flex flex-col gap-2">
 
-          <div className="text-[19px] text-white font-hoves mb-1 ">
+          <div className="card-title-size1 text-white font-hoves mb-1 ">
             {exchange.name}
           </div>
 
           {/* Description */}
-          <p className="text-xs sm:text-sm  text-[#C7CCD2] font-hoves leading-5 sm:h-min-12 max-h-14 overflow-clip">
+          <p className="card-desc-size1 text-xs sm:text-sm  text-[#C7CCD2] font-hoves leading-5 sm:h-min-12 max-h-14 overflow-clip">
             {t(exchange.descKey)}
           </p>
         </div>
@@ -239,10 +239,10 @@ export default function ExchangePartners() {
           variants={fadeUpVariant}
           className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-8 mb-2"
         >
-          <h2 className="text-[30px] max-w-80 font-hoves sm:text-[34px] lg:text-[40px] text-white leading-tight tracking-tight">
+          <h2 className="head-size max-w-100 font-hoves  text-white leading-tight tracking-tight">
             {t("exchangePartners.title")}
           </h2>
-          <p className="sm:max-w-[480px] text-[#C7CCD2] font-hoves text-[13px] sm:text-[18px]  ">
+          <p className="desc-size sm:max-w-[480px] text-[#C7CCD2] font-hoves  ">
             {t("exchangePartners.desc")}
           </p>
         </motion.div>
