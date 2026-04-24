@@ -22,7 +22,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
   const { t } = useTranslation();
 
   return (
-    <article className="max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-6 sm:px-10 lg:px-0 section-py">
+    <article className="section-py">
 
       {/* Author + date + Edit button */}
       <div className="flex flex-wrap items-center justify-between gap-y-4 gap-x-3 mb-7">

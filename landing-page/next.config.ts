@@ -7,10 +7,22 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "oaidalleapiprodscus.blob.core.windows.net",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "oaidalleapiprod.blob.core.windows.net",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "oaidalleapiprod*.blob.core.windows.net",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.openai.com",
+        pathname: "/**",
       },
     ],
   },

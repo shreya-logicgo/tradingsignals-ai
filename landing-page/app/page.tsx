@@ -36,10 +36,7 @@ export default function Home() {
         id="features"
         className="scroll-mt-18 sm:scroll-mt-6 md:scroll-mt-18 lg:scroll-mt-18"
       >
-        <Container>
-
-          <Features />
-        </Container>
+        <Features />
       </section>
 
       <section

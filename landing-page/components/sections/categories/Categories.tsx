@@ -84,21 +84,13 @@ export default function Categories() {
           </div>
 
           <div className="flex justify-center relative z-10">
-  <motion.div
-    whileHover={{
-      scale: 1.05,
-      boxShadow: "0 0 25px rgba(255,255,255,0.1)",
-    }}
-    whileTap={{ scale: 0.98 }}
-  >
-    <HoverFxButton
-      href="https://crypto.tradingsignals.ai/login"
-      className="px-7 py-3"
-    >
-      {t("tradingChannels.cta")}
-    </HoverFxButton>
-  </motion.div>
-</div>
+            <HoverFxButton
+              href="https://crypto.tradingsignals.ai/login"
+              className="px-7 py-3"
+            >
+              {t("tradingChannels.cta")}
+            </HoverFxButton>
+          </div>
         </div>
       </Container>
     </section>

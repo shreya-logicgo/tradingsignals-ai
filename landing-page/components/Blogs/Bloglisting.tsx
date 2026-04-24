@@ -93,7 +93,7 @@ export default function BlogListing() {
     return (
       <section className="bg-[#010B24] min-h-screen py-12 lg:px-7 font-hoves">
         <NoiseOverlay />
-        <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto">
+        <div className="mx-auto">
           <div className="text-center mb-12">
             <div className="h-10 bg-white/10 w-64 mx-auto rounded animate-pulse mb-4" />
             <div className="h-4 bg-white/10 w-96 mx-auto rounded animate-pulse" />
@@ -129,9 +129,9 @@ export default function BlogListing() {
   }
 
   return (
-    <section className="bg-[#010B24] min-h-screen section-py lg:px-7 font-hoves">
+    <section className="bg-[#010B24] min-h-screen section-py font-hoves">
       <NoiseOverlay />
-      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto">
+      <div className=" mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-white text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-3 font-hoves">

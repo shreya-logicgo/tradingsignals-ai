@@ -58,7 +58,7 @@ export default function StartToday() {
 
                     <div className="relative flex flex-col items-center gap-5 z-10">
                         {/* Badge */}
-                        <motion.span variants={fadeUpVariant} className="inline-flex items-center px-5 py-1.5 rounded-full border border-white/25 text-white/80 text-xs xl:text-sm font-medium tracking-[0.18em] uppercase"
+                        <motion.span variants={fadeUpVariant} className="inline-flex items-center px-5 py-1.5 rounded-full border border-white/25 text-white/80 text-xs xl:text-sm font-medium tracking-widest uppercase"
                             style={{ fontFamily: "var(--font-mono)" }}>
                             {t("starttoday.badge")}
                         </motion.span>

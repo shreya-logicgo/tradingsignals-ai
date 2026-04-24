@@ -34,7 +34,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen pt-30 md:pt-32  overflow-hidden bg-[#010B24]">
+    <section className="relative w-full  pt-30 md:pt-32  overflow-hidden bg-[#010B24]">
       <style>{`
         @keyframes particle-fall-left {
           0% { transform: translate3d(0,0,0); opacity: 0; }
