@@ -41,72 +41,84 @@ const exchanges: Exchange[] = [
     descKey: "exchangePartners.exchanges.bitgetSpot",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/513.png",
     link: "https://www.bitget.com/",
+    pageLink: "/how-it-works/bitget-spot",
   },
   {
     name: "Bitget Futures",
     descKey: "exchangePartners.exchanges.bitgetFutures",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/513.png",
     link: "https://www.bitget.com/",
+    pageLink: "/how-it-works/bitget-futures",
   },
   {
     name: "MEXC",
     descKey: "exchangePartners.exchanges.mexc",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/544.png",
     link: "https://www.mexc.com/",
+    pageLink: "/how-it-works/mexc",
   },
   {
     name: "OKX",
     descKey: "exchangePartners.exchanges.okx",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/294.png",
     link: "https://www.okx.com/join/1839944",
+    pageLink: "/how-it-works/okx",
   },
   {
     name: "KuCoin",
     descKey: "exchangePartners.exchanges.kucoin",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/311.png",
     link: "https://www.kucoin.com/ucenter/signup?rcode=rBBECG6",
+    pageLink: "/how-it-works/kucoin",
   },
   {
     name: "HTX",
     descKey: "exchangePartners.exchanges.htx",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/102.png",
     link: "https://www.htx.com/en-us/",
+    pageLink: "/how-it-works/htx",
   },
   {
     name: "Blofin Futures",
     descKey: "exchangePartners.exchanges.blofin",
     logo: "/blofin.svg",
     link: "https://www.blofin.com/",
+    pageLink: "/how-it-works/blofin",
   },
   {
     name: "Bitfinex",
     descKey: "exchangePartners.exchanges.bitfinex",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/37.png",
     link: "https://bitfinex.com/?refcode=TxQqcB-OY",
+    pageLink: "/how-it-works/bitfinex",
   },
   {
     name: "Kraken",
     descKey: "exchangePartners.exchanges.kraken",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/24.png",
     link: "https://www.kraken.com/en-us",
+    pageLink: "/how-it-works/kraken",
   },
   {
     name: "Gate.io",
     descKey: "exchangePartners.exchanges.gate",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/302.png",
     link: "https://www.gate.io/signup/2794924",
+    pageLink: "/how-it-works/gate",
   },
   {
     name: "Exmo",
     descKey: "exchangePartners.exchanges.exmo",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/50.png",
     link: "https://exmo.com/?ref=1719109",
+    pageLink: "/how-it-works/exmo",
   },
   {
     name: "XT",
     descKey: "exchangePartners.exchanges.xt",
     logo: "https://s2.coinmarketcap.com/static/img/exchanges/64x64/525.png",
     link: "https://www.xt.com/en/accounts/register?ref=HSI5J2",
+    pageLink: "/how-it-works/xt",
   },
 ];
 
@@ -175,23 +187,22 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       </div>
 
       {/* CTA Button */}
-      <div className="mt-auto pt-5 space-y-3">
-  {/* How It Works */}
-  <button
+      {/* <div className="mt-auto pt-5 space-y-3"> */}
+        {/* <button
     onClick={() => exchange.pageLink && router.push(exchange.pageLink)}
     className="flex items-center justify-center w-full py-3 text-sm md:text-base lg:text-lg text-white bg-white/5 border border-white/10 rounded-full transition-all duration-200 hover:bg-white/10 hover:scale-[1.02] cursor-pointer"
   >
     {t("exchangePartners.howItWorks")}
-  </button>
+  </button> */}
 
-  {/* Create Account */}
-  <button
-    onClick={() => router.push(exchange.link)}
-    className="flex items-center justify-center w-full py-3 text-sm md:text-base lg:text-lg text-white bg-[#010B24] border border-white/10 rounded-full transition-all duration-200 hover:opacity-90 hover:scale-[1.02] cursor-pointer"
-  >
-    {t("exchangePartners.cta")}
-  </button>
-</div>
+        {/* Create Account */}
+        <button
+          onClick={() => exchange.pageLink && router.push(exchange.pageLink)}
+          className="flex items-center justify-center w-full py-3 text-sm md:text-base lg:text-lg text-white bg-[#010B24] border border-white/10 rounded-full transition-all duration-200 hover:opacity-90 hover:scale-[1.02] cursor-pointer"
+        >
+          {t("exchangePartners.getStarted")}
+        </button>
+      {/* </div> */}
     </motion.div>
   );
 }
