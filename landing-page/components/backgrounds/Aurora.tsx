@@ -93,8 +93,8 @@ void main() {
   vec3 col   = l1.rgb*l1.a + l2.rgb*l2.a + l3.rgb*l3.a + l4.rgb*l4.a + l5.rgb*l5.a;
   float alpha = clamp(l1.a + l2.a + l3.a + l4.a + l5.a, 0.0, 0.93);
 
-  // Smoothly fade out the bottom of the aurora container to prevent harsh lines
-  alpha *= smoothstep(0.0, 0.45, uv.y);
+  // Smoothly fade out the bottom of the aurora container with a more gradual ramp
+  alpha *= smoothstep(0.0, 0.6, uv.y);
 
   fragColor = vec4(col, alpha);
 }
