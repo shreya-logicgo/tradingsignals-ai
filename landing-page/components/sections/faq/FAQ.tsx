@@ -65,19 +65,19 @@ export default function FAQ() {
             className="w-full max-w-md relative group"
           >
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none z-10">
-              <Search className="w-4 h-4 text-[#C7CCD2] group-focus-within:text-white transition-colors" />
+              <Search className="w-5 h-5 text-[#999999] group-focus-within:text-white transition-colors" />
             </div>
             <input
               type="text"
               placeholder={t("faq.searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-12 text-white text-sm placeholder:text-[#C7CCD2]/50 focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all duration-300 backdrop-blur-md"
+              className="w-full bg-white/5 border border-white/10 rounded-full py-3 pl-12 pr-12 text-white text-lg placeholder:text-[#999999] focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all duration-300 backdrop-blur-md"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm("")}
-                className="absolute inset-y-0 right-4 flex items-center text-[#C7CCD2] hover:text-white transition-colors z-10"
+                className="absolute cursor-pointer inset-y-0 right-4 flex items-center text-[#C7CCD2] hover:text-white transition-colors z-10"
                 aria-label="Clear search"
               >
                 <X className="w-4 h-4" />

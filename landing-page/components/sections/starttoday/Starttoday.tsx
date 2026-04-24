@@ -33,7 +33,7 @@ export default function StartToday() {
             {/* <Faltu/> */}
             <Container className="relative z-10">
                 <div
-                    className="relative rounded-2xl overflow-hidden px-8 py-13 text-center min-h-[300px]"
+                    className="relative rounded-2xl overflow-hidden px-8 py-10 text-center min-h-[300px]"
                     style={{
                         backgroundImage: `url(${startTodayBack.src})`,
                         backgroundSize: "cover",
