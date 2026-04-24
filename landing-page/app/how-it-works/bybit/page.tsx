@@ -94,9 +94,9 @@ export default function BybitUTAHowItWorksPage() {
               Join Now
             </button>
 
-            <button className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
+            {/* <button className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
               Start Setup
-            </button>
+            </button> */}
           </div>
         </Container>
       </section>
@@ -280,9 +280,7 @@ export default function BybitUTAHowItWorksPage() {
       <section className="pt-6 pb-24">
         <Container>
           <Card className="p-8 md:p-12 text-center border-violet-500/20 shadow-[0_0_60px_rgba(139,92,246,0.12)]">
-            <div className="h-16 w-16 rounded-3xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mx-auto mb-6 text-violet-300">
-              <Rocket size={28} />
-            </div>
+        
 
             <h2 className="text-3xl md:text-5xl font-semibold">
               Ready to Connect Bybit UTA?
@@ -302,9 +300,9 @@ export default function BybitUTAHowItWorksPage() {
                 Join Now
               </button>
 
-              <button className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
+              {/* <button className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
                 Go to Dashboard
-              </button>
+              </button> */}
             </div>
           </Card>
         </Container>
