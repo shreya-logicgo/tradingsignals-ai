@@ -49,8 +49,8 @@ export default function Home() {
         <Strategies />
       </section>
       <Stats />
-      {/* <AmbientStatsStepsSection />
-      <AmbientTradingSection /> */}
+      {/* <AmbientStatsStepsSection /> */}
+      <AmbientTradingSection />
 
       <section>
         <AmbientTestimonialsSection />
