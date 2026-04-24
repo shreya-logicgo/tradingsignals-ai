@@ -116,7 +116,7 @@ const copyIps = async () => {
             <button
               onClick={() =>
                 window.open(
-                  "https://accounts.binance.com/en/register?ref=38024889&registerChannel=&return_to=",
+                  "https://www.binance.com/en/",
                   "_blank"
                 )
               }
@@ -349,7 +349,7 @@ const copyIps = async () => {
               <button
                 onClick={() =>
                   window.open(
-                    "https://accounts.binance.com/en/register?ref=38024889&registerChannel=&return_to=",
+                    "https://www.binance.com/en/",
                     "_blank"
                   )
                 }
