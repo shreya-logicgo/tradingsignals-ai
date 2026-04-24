@@ -124,10 +124,6 @@ const copyIps = async () => {
             >
               Join Now
             </button>
-
-            <button className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
-              Start Setup
-            </button>
           </div>
         </Container>
       </section>
@@ -358,9 +354,6 @@ const copyIps = async () => {
                 Join Now
               </button>
 
-              <button className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">
-                Go to Dashboard
-              </button>
             </div>
           </Card>
         </Container>
