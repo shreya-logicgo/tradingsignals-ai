@@ -21,12 +21,43 @@ const spaceMono = Space_Mono({
 const ttHoves = localFont({
   src: [
     {
+      path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
       path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial Regular.ttf",
       weight: "400",
       style: "normal",
     },
+    {
+      path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial DemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial ExtraBold.ttf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/tt-hoves/TT Hoves Pro Trial Black.ttf",
+      weight: "900",
+      style: "normal",
+    },
   ],
   variable: "--font-hoves",
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -36,7 +67,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${spaceMono.variable} ${ttHoves.variable}`}>
+      <body
+        className={`${inter.variable} ${spaceMono.variable} ${ttHoves.variable} ${ttHoves.className}`}
+      >
         <I18nProvider>
           <QueryProvider>
             <SmoothScrollHandler />
