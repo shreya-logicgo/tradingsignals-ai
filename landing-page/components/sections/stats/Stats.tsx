@@ -192,12 +192,10 @@ export default function Stats() {
                 setLeftRocketPhase("return");
               } else if (leftRocketPhase === "return") {
                 setLeftRocketPhase("idle");
-                if (rightRocketPhase === "idle") {
-                  setIsFadingParticles(true);
-                  setTimeout(() => {
-                    setShowParticles(false);
-                  }, 2000);
-                }
+                // Restart the sequence after a short delay for continuous launching
+                setTimeout(() => {
+                  setLeftRocketPhase("launch");
+                }, 2000);
               }
             }}
           >
@@ -247,12 +245,11 @@ export default function Stats() {
                       ease: "easeInOut",
                       repeat: 3,
                       repeatType: "reverse",
-                      delay: 0.1,
                     },
                     y: {
                       duration: 5,
                       ease: [0.25, 0.1, 0.25, 1],
-                      delay: 1.3,
+                      delay: 1.2,
                     },
                   }
                 : rightRocketPhase === "return"
@@ -280,12 +277,10 @@ export default function Stats() {
                 setRightRocketPhase("return");
               } else if (rightRocketPhase === "return") {
                 setRightRocketPhase("idle");
-                if (leftRocketPhase === "idle") {
-                  setIsFadingParticles(true);
-                  setTimeout(() => {
-                    setShowParticles(false);
-                  }, 2000);
-                }
+                // Restart the sequence after a short delay for continuous launching
+                setTimeout(() => {
+                  setRightRocketPhase("launch");
+                }, 2000); // Synchronized with left rocket
               }
             }}
           >
