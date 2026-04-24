@@ -50,11 +50,11 @@ export default function FAQ() {
               </span>
             </div>
 
-            <h2 className="font-hoves font-medium text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+            <h2 className="font-hoves head-size text-white leading-tight">
               {t("faq.title")}
             </h2>
 
-            <p className="font-hoves font-light text-sm md:text-base text-[#C7CCD2] leading-relaxed max-w-[500px]">
+            <p className="font-hoves desc-size text-[#C7CCD2] leading-relaxed max-w-[500px]">
               {t("faq.description")}
             </p>
           </motion.div>
@@ -86,7 +86,7 @@ export default function FAQ() {
           </motion.div>
 
           {/* ── Questions List ── */}
-          <div className="w-full max-w-2xl flex flex-col gap-4">
+          <div className="w-full max-w-2xl lg:max-w-xl flex flex-col gap-4">
             <AnimatePresence mode="popLayout">
               {filteredQuestions.length > 0 ? (
                 filteredQuestions.map((faq) => (
@@ -111,7 +111,7 @@ export default function FAQ() {
                   exit="hidden"
                   className="text-center py-10"
                 >
-                  <p className="text-[#C7CCD2] font-hoves">
+                  <p className="text-[#C7CCD2] card-title-size1 font-hoves">
                     {t("faq.noResults", { query: searchTerm })}
                   </p>
                 </motion.div>

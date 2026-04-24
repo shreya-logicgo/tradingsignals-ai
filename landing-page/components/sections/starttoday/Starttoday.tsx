@@ -65,13 +65,13 @@ export default function StartToday() {
 
                         <motion.div variants={fadeUpVariant}>
                             <ShineText
-                                className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] font-hoves"
+                                className="head-size font-hoves"
                             >
                                 {t("starttoday.heading")}
                             </ShineText>
                         </motion.div>
 
-                        <motion.p variants={fadeUpVariant} className="text-white/60 text-sm sm:text-base xl:text-lg 2xl:text-xl leading-relaxed max-w-sm xl:max-w-md 2xl:max-w-xl font-hoves">
+                        <motion.p variants={fadeUpVariant} className="text-white/70 font-normal desc-size leading-relaxed max-w-sm xl:max-w-md 2xl:max-w-xl font-hoves">
                             {t("starttoday.description")}
                         </motion.p>
 
