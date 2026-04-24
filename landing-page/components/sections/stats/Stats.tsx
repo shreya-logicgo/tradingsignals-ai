@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -18,11 +18,12 @@ import glowBar2 from "@/assets/images/glowBar2.png";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import Steps from "../steps/Steps";
 import RocketParticles from "./RocketParticles";
+import StatsCounter from "./StatsCounter";
 
 // Animation constants
 const ANIMATION_DURATION = 1;
 
-interface StatConfig {
+export interface StatConfig {
   prefix?: string;
   value: number;
   suffix?: string;
@@ -86,38 +87,32 @@ export default function Stats() {
   });
 
   // Stat definitions with proper formatting
-  const stats: StatConfig[] = [
-    {
-      value: 1250,
-      suffix: "+",
-      label: t("stats.registeredUsers"),
-      delay: 0,
-    },
-    {
-      prefix: "$",
-      value: 4.5,
-      suffix: "M",
-      decimals: 1,
-      label: t("stats.aum"),
-      delay: ANIMATION_DURATION * 0.1,
-    },
-    {
-      prefix: "$",
-      value: 12,
-      suffix: "M",
-      label: t("stats.totalPnl"),
-      delay: ANIMATION_DURATION * 0.2,
-    },
-  ];
-
-  // Format stat numbers for display
-  const formatStatNumber = (stat: StatConfig): string => {
-    const formattedValue = stat.decimals
-      ? stat.value.toFixed(stat.decimals)
-      : stat.value.toLocaleString();
-
-    return `${stat.prefix || ""}${formattedValue}${stat.suffix || ""}`;
-  };
+  const stats: StatConfig[] = useMemo(
+    () => [
+      {
+        value: 1250,
+        suffix: "+",
+        label: t("stats.registeredUsers"),
+        delay: 0,
+      },
+      {
+        prefix: "$",
+        value: 4.5,
+        suffix: "M",
+        decimals: 1,
+        label: t("stats.aum"),
+        delay: ANIMATION_DURATION * 0.1,
+      },
+      {
+        prefix: "$",
+        value: 12,
+        suffix: "M",
+        label: t("stats.totalPnl"),
+        delay: ANIMATION_DURATION * 0.2,
+      },
+    ],
+    [t]
+  );
 
   return (
     <section
@@ -331,51 +326,10 @@ export default function Stats() {
       {/* Stats Content */}
       <div
         ref={statsRef}
-        className="flex flex-col md:flex-row items-center justify-center py-20 md:py-40 xl:py-50 relative sm:mt-10"
+        className="grid md:grid-cols-3 items-center justify-center py-20 md:py-40 xl:py-50 relative sm:mt-10 max-w-2xl lg:max-w-4xl mx-auto  gap-12 lg:gap-15 xl:gap-30"
         style={{ zIndex: 2 }}
       >
-        {stats.map((stat, i) => (
-          <div
-            key={stat.label}
-            className="flex flex-col md:flex-row items-center relative z-1"
-          >
-            {/* Divider */}
-            {i > 0 && (
-              <div className="w-16 h-[1px] md:w-[1px] md:h-[44px] my-6 md:my-0 md:mx-[60px] shrink-0 bg-white/20" />
-            )}
-
-            {/* Stat Block */}
-            <div className="flex flex-col items-center text-center">
-              <span
-                className="text-4xl md:text-[50px] text-white tracking-[-0.5px] leading-[1.1]"
-                style={{ fontFamily: "var(--font-hoves)" }}
-              >
-                {formatStatNumber(stat)}
-              </span>
-
-              <span
-                className="text-xs md:text-[14px] text-white/70 mt-2 md:mt-[10px] whitespace-nowrap"
-                style={{ fontFamily: "var(--font-hoves)" }}
-              >
-                {stat.label}
-              </span>
-            </div>
-          </div>
-        ))}
-        {/* Background Gradient */}
-        <div
-          className="absolute inset-0 pointer-events-none w-100 sm:w-130 xl:w-150 h-100 sm:h-130 xl:h-150 top-1/2 -translate-1/2 left-1/2"
-          style={{
-            zIndex: 0,
-            background: `radial-gradient(
-            ellipse 80% 60% at 50% 50%,
-            rgba(0, 18, 184, 0.50) 0%,
-            rgba(0, 18, 184, 0.25) 30%,
-            rgba(0, 18, 184, 0.08) 55%,
-            transparent 70%
-          )`,
-          }}
-        />
+        <StatsCounter stats={stats} start={isInView} />
       </div>
     </section>
   );
