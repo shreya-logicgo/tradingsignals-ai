@@ -415,7 +415,7 @@ html {
 .get-access-btn-bg {
   z-index: 0;
   will-change: transform;
-  background-color: #030303;
+  background-color: rgb(31, 58, 116);
   border-radius: 99px;
   position: absolute;
   inset: 2px;
