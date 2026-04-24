@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import TraderFeatureCard from "./TraderFeatureCard";
 import { useCarousel } from "./useCarousel";
+import Container from "@/components/common/container/Container";
 
 /* ─── SVG icons (unchanged) ──────────────────────────────────── */
 const ShieldIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>;
@@ -41,8 +42,8 @@ export default function Traders() {
 });
 
   return (
-    <section className="w-full py-16 bg-transparent">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="w-full section-pb bg-transparent">
+      <Container>
         
         {/* Header Logic */}
         <div className="text-center mb-12">
@@ -86,7 +87,7 @@ export default function Traders() {
             <ChevronRight />
           </button>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

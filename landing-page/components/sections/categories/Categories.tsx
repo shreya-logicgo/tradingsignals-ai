@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import CategoryCard from "./CategoryCard";
 import Link from "next/link";
 import HoverFxButton from "@/components/common/HoverFxButton";
+import Container from "@/components/common/container/Container";
 
 export default function Categories() {
   const { t } = useTranslation();
@@ -46,9 +47,9 @@ export default function Categories() {
     // bg-transparent so the parent AmbientTradingSection gradient shows through.
     // overflow-visible keeps the shared layer unclipped.
     // Removed: unified-energy-field div and all its children.
-    <section className="w-full bg-transparent pt-46 md:pt-50 pb-8 md:pb-10 relative z-10 overflow-visible -mt-24">
+    <section className="w-full bg-transparent section-pb relative z-10 overflow-visible">
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-15 relative z-[2]">
+      <Container className="relative z-2">
         <div className="flex flex-col gap-8 lg:gap-10">
 
           <motion.div
@@ -91,7 +92,7 @@ export default function Categories() {
             </HoverFxButton>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
