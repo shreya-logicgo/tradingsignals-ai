@@ -175,20 +175,23 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       </div>
 
       {/* CTA Button */}
-      <button
-  onClick={() =>
-    router.push(exchange.pageLink || exchange.link)
-  }
-  className="
-    flex items-center justify-center w-full py-3 
-    text-sm md:text-base lg:text-lg text-white
-    bg-[#010B24] border border-white/10
-    transition-all duration-150 rounded-full
-    hover:opacity-90 cursor-pointer
-  "
->
-  {t("exchangePartners.cta")}
-</button>
+      <div className="mt-auto pt-5 space-y-3">
+  {/* How It Works */}
+  <button
+    onClick={() => router.push(exchange.pageLink)}
+    className="flex items-center justify-center w-full py-3 text-sm md:text-base lg:text-lg text-white bg-white/5 border border-white/10 rounded-full transition-all duration-200 hover:bg-white/10 hover:scale-[1.02] cursor-pointer"
+  >
+    {t("exchangePartners.howItWorks")}
+  </button>
+
+  {/* Create Account */}
+  <button
+    onClick={() => router.push(exchange.link)}
+    className="flex items-center justify-center w-full py-3 text-sm md:text-base lg:text-lg text-white bg-[#010B24] border border-white/10 rounded-full transition-all duration-200 hover:opacity-90 hover:scale-[1.02] cursor-pointer"
+  >
+    {t("exchangePartners.cta")}
+  </button>
+</div>
     </motion.div>
   );
 }
