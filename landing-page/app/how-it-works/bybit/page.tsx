@@ -224,7 +224,7 @@ export default function BybitUTAHowItWorksPage() {
             icon={<ArrowRight size={20} />}
           >
             <p>
-              Use the ADD NEW KEY button in the Account -&gt; Exchange Accounts
+              Use the ADD NEW KEY button in the Account &gt; Exchange Accounts
               section.
             </p>
 

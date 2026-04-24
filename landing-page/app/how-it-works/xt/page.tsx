@@ -198,7 +198,7 @@ export default function XtHowItWorksPage() {
             icon={<ArrowRight size={20} />}
           >
             <p>
-              Use the + ADD NEW KEY button in Account -&gt; Exchange Accounts.
+              Use the + ADD NEW KEY button in Account &gt; Exchange Accounts.
             </p>
 
             <p>Select XT from the exchange list.</p>
