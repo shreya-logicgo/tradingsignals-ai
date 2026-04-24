@@ -178,7 +178,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       <div className="mt-auto pt-5 space-y-3">
   {/* How It Works */}
   <button
-    onClick={() => router.push(exchange.pageLink)}
+    onClick={() => exchange.pageLink && router.push(exchange.pageLink)}
     className="flex items-center justify-center w-full py-3 text-sm md:text-base lg:text-lg text-white bg-white/5 border border-white/10 rounded-full transition-all duration-200 hover:bg-white/10 hover:scale-[1.02] cursor-pointer"
   >
     {t("exchangePartners.howItWorks")}
