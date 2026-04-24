@@ -85,7 +85,12 @@ export default function BybitUTAHowItWorksPage() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <button className="px-6 py-3 rounded-xl bg-violet-500 text-white font-semibold hover:scale-105 transition">
+            <button
+              onClick={() =>
+                window.open("https://www.bybit.com", "_blank")
+              }
+              className="px-6 py-3 rounded-xl bg-violet-500 text-white font-semibold hover:scale-105 transition"
+            >
               Join Now
             </button>
 
@@ -288,7 +293,12 @@ export default function BybitUTAHowItWorksPage() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <button className="px-6 py-3 rounded-xl bg-violet-500 text-white font-semibold hover:scale-105 transition">
+              <button
+                onClick={() =>
+                  window.open("https://www.bybit.com", "_blank")
+                }
+                className="px-6 py-3 rounded-xl bg-violet-500 text-white font-semibold hover:scale-105 transition"
+              >
                 Join Now
               </button>
 
