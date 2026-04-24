@@ -62,11 +62,11 @@ export default function Hero() {
       {/* Soft Dark Overlay */}
       <div className="absolute inset-0 z-[1] bg-[#010B24]/30 pointer-events-none" />
 
-      {/* Extra Glow Layer */}
-      <div className="absolute inset-0 z-[2] pointer-events-none">
-        <div className="absolute -top-[10%] left-[10%] w-[45%] h-[45%] rounded-full bg-[#00F0FF]/20 blur-[140px]" />
-        <div className="absolute top-[25%] right-[5%] w-[40%] h-[40%] rounded-full bg-[#0012B8]/30 blur-[160px]" />
-        <div className="absolute bottom-[5%] left-[25%] w-[35%] h-[35%] rounded-full bg-[#00F0FF]/10 blur-[130px]" />
+      {/* Extra Glow Layer - Optimized with radial gradients instead of heavy blur filters */}
+      <div className="absolute inset-0 z-[2] pointer-events-none transform-gpu">
+        <div className="absolute -top-[10%] left-[10%] w-[45%] h-[45%] rounded-full bg-[radial-gradient(circle,rgba(0,240,255,0.15)_0%,transparent_70%)]" />
+        <div className="absolute top-[25%] right-[5%] w-[40%] h-[40%] rounded-full bg-[radial-gradient(circle,rgba(0,18,184,0.25)_0%,transparent_70%)]" />
+        <div className="absolute bottom-[5%] left-[25%] w-[35%] h-[35%] rounded-full bg-[radial-gradient(circle,rgba(0,240,255,0.08)_0%,transparent_70%)]" />
       </div>
 
       {/* PARTICLES */}
@@ -101,7 +101,7 @@ export default function Hero() {
       </div> */}
 
       {/* CONTENT */}
-      <Container className="relative z-20 flex flex-col items-center text-center ">
+      <Container className="relative z-20 flex flex-col items-center text-center transform-gpu">
         <motion.div
           variants={staggerContainer}
           initial="hidden"

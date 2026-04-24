@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import {
   motion,
   useMotionValue,
@@ -37,7 +37,7 @@ export default function HeroChart() {
   const glowX = useMotionValue(50);
   const glowY = useMotionValue(50);
 
-  const springConfig = { stiffness: 25, damping: 32, mass: 1.6 };
+  const springConfig = useMemo(() => ({ stiffness: 25, damping: 32, mass: 1.6 }), []);
   const springX = useSpring(rawX, springConfig);
   const springY = useSpring(rawY, springConfig);
 
@@ -52,9 +52,13 @@ export default function HeroChart() {
 
   const barX = useTransform(springX, [-0.5, 0.5], [-3, 3]);
 
-  const glowSpring = { stiffness: 30, damping: 35, mass: 2 };
-  const glowXSpring = useSpring(glowX, glowSpring);
-  const glowYSpring = useSpring(glowY, glowSpring);
+  const glowSpringConfig = useMemo(() => ({ stiffness: 30, damping: 35, mass: 2 }), []);
+  const glowXSpring = useSpring(glowX, glowSpringConfig);
+  const glowYSpring = useSpring(glowY, glowSpringConfig);
+
+  // Optimized CSS variables for gradients to avoid string parsing on every frame
+  const mouseXPercent = useTransform(glowXSpring, (v) => `${v}%`);
+  const mouseYPercent = useTransform(glowYSpring, (v) => `${v}%`);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = cardRef.current?.getBoundingClientRect();
@@ -106,6 +110,7 @@ export default function HeroChart() {
               transformStyle: "preserve-3d",
               transformPerspective: 1200,
               willChange: "transform",
+              backfaceVisibility: "hidden",
             }}
           >
             {/* MAIN CARD */}
@@ -127,12 +132,11 @@ export default function HeroChart() {
                   zIndex: 20,
                   opacity: isHovered ? 1 : 0,
                   transition: "opacity 0.8s ease",
-                  background: useTransform(
-                    [glowXSpring, glowYSpring],
-                    ([x, y]: number[]) =>
-                      `radial-gradient(circle at ${x}% ${y}%, rgba(59,130,246,0.15) 0%, transparent 50%)`
-                  ),
-                }}
+                  // Using CSS variables for position to optimize performance
+                  background: `radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(59,130,246,0.15) 0%, transparent 50%)`,
+                  "--glow-x": mouseXPercent,
+                  "--glow-y": mouseYPercent,
+                } as any}
               />
 
               {/* WHITE SHEEN */}
@@ -146,12 +150,11 @@ export default function HeroChart() {
                   zIndex: 19,
                   opacity: isHovered ? 1 : 0,
                   transition: "opacity 1s ease",
-                  background: useTransform(
-                    [glowXSpring, glowYSpring],
-                    ([x, y]: number[]) =>
-                      `radial-gradient(ellipse at ${x}% ${y}%, rgba(255,255,255,0.06) 0%, transparent 45%)`
-                  ),
-                }}
+                  // Using CSS variables for position to optimize performance
+                  background: `radial-gradient(ellipse at var(--glow-x) var(--glow-y), rgba(255,255,255,0.06) 0%, transparent 45%)`,
+                  "--glow-x": mouseXPercent,
+                  "--glow-y": mouseYPercent,
+                } as any}
               />
 
               {/* TOP BAR */}
@@ -176,8 +179,8 @@ export default function HeroChart() {
 
               {/* VIDEO WRAPPER */}
               <div className="relative w-full  bg-[#00000033]  px-3 md:px-4 lg:px-5 pt-0">
-                <div className="relative overflow-hidden rounded-2xl md:rounded-3xl rounded-t-none border border-white/[0.06] bg-[#00000033] shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-                  <motion.div style={{ x: videoX, y: videoY }}>
+                <div className="relative overflow-hidden rounded-2xl md:rounded-3xl rounded-t-none border border-white/[0.06] bg-[#00000033] shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transform-gpu">
+                  <motion.div style={{ x: videoX, y: videoY, translateZ: 0 }}>
                     <video
                       ref={videoRef}
                       muted
@@ -275,7 +278,7 @@ export default function HeroChart() {
           {/* BOTTOM OUTER FADE */}
           <motion.div
             className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#02081e] via-[#02081e]/80 to-transparent pointer-events-none rounded-b-3xl z-20"
-            style={{ x: videoX, y: videoY }}
+            style={{ x: videoX, y: videoY, translateZ: 0 }}
             animate={{ opacity: isPlaying ? 0 : 1 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
           />
