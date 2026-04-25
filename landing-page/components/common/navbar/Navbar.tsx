@@ -184,14 +184,34 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 top-[64px] lg:hidden bg-[#010B24]/98 backdrop-blur-2xl z-40 flex flex-col h-[calc(100vh-64px)] overflow-y-auto"
+            className="fixed inset-0 top-0 lg:hidden bg-[#010B24]/98 backdrop-blur-2xl z-40 flex flex-col h-[calc(100vh)] overflow-y-auto"
           >
-            <div className="flex flex-col gap-1 p-6">
+            <div className="flex items-center justify-between p-6 pb-0">
+              <Link href="/" className="flex items-center gap-2 py-3" onClick={() => setMobileOpen(false)}>
+                <Image
+                  src="/logofi.svg"
+                  alt="Trading Signals AI"
+                  width={120}
+                  height={120}
+                  className="w-35"
+                />
+              </Link>
+              <button
+                className="text-white p-2 hover:bg-white/5 rounded-full transition-colors"
+                onClick={() => setMobileOpen(false)}
+                aria-label="Close menu"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 18L18 6M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
+            <div className="flex flex-col pb-0 p-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-gray-300 hover:text-white text-xl font-medium py-3 border-b border-white/5 font-hoves"
+                  className="text-gray-300 hover:text-white text-lg font-medium py-3 border-b border-white/5 font-hoves"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -200,17 +220,17 @@ export default function Navbar() {
             </div>
 
             <div className="mt-auto p-6 flex flex-col gap-6">
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href="https://crypto.tradingsignals.ai/login"
-                  className="w-full text-center px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all font-hoves"
+                  className="w-full text-center px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all font-hoves"
                   onClick={() => setMobileOpen(false)}
                 >
                   {t("navbar.login")}
                 </Link>
                 <Link
                   href="/"
-                  className="w-full text-center px-6 py-4 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-all font-hoves"
+                  className="w-full text-center px-6 py-3 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-all font-hoves"
                   onClick={() => setMobileOpen(false)}
                 >
                   {t("navbar.signup")}

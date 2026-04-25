@@ -15,8 +15,8 @@ const productLinks = [
 ];
 
 const legalLinks = [
-  { key: "privacy", href: "/privacy" },
-  { key: "terms", href: "/terms" },
+  { key: "privacy", href: "/privacy-policy" },
+  { key: "terms", href: "/terms-of-service" },
   { key: "risk", href: "/risk" },
   { key: "cookie", href: "/cookies" },
 ];
