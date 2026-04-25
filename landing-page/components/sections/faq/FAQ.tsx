@@ -37,7 +37,7 @@ export default function FAQ() {
       className="w-full bg-transparent section-pt section-pb relative overflow-hidden">
       {/* Outer container — responsive horizontal padding */}
       <Container className="relative z-10">
-        <div className="flex flex-col items-center gap-10 lg:gap-12">
+        <div className="flex flex-col items-center gap-9">
           {/* ── Header Block — Localized ── */}
           <motion.div
             variants={fadeUpVariant}
@@ -50,11 +50,11 @@ export default function FAQ() {
               </span>
             </div>
 
-            <h2 className="font-hoves font-medium text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+            <h2 className="head-size text-white">
               {t("faq.title")}
             </h2>
 
-            <p className="font-hoves font-light text-sm md:text-base text-[#C7CCD2] leading-relaxed max-w-[500px]">
+            <p className="desc-size max-w-[500px]">
               {t("faq.description")}
             </p>
           </motion.div>
@@ -72,7 +72,7 @@ export default function FAQ() {
               placeholder={t("faq.searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-full py-3 pl-12 pr-12 text-white text-lg placeholder:text-[#999999] focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all duration-300 backdrop-blur-md"
+              className="w-full bg-white/5 border border-white/5 rounded-full py-3 pl-12 pr-12 text-white text-lg placeholder:text-[#999999] focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all duration-300 backdrop-blur-md"
             />
             {searchTerm && (
               <button
@@ -86,7 +86,7 @@ export default function FAQ() {
           </motion.div>
 
           {/* ── Questions List ── */}
-          <div className="w-full max-w-2xl flex flex-col gap-4">
+          <div className="w-full max-w-3xl flex flex-col gap-4">
             <AnimatePresence mode="popLayout">
               {filteredQuestions.length > 0 ? (
                 filteredQuestions.map((faq) => (

@@ -96,18 +96,18 @@ export default function Features() {
     >
       <Container>
       <div className="w-full relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12 lg:gap-20 mb-12 md:mb-16">
-          <motion.div
-            className="flex flex-col items-start gap-1 md:gap-3"
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={headingVariant}
-          >
-            <div className="inline-flex items-center   shadow-inner">
+            <div className="inline-flex items-center mb-2.5 md:mb-3  shadow-inner">
               <span className="text-[15px] font-mono font-medium tracking-widest uppercase text-vivid-cyan">
                 {t("features.title")}
               </span>
             </div>
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-1.5 md:gap-4 lg:gap-20 mb-10 sm:mb-12 md:mb-16">
+          <motion.div
+            className="flex flex-col items-start gap-2.5 md:gap-3"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={headingVariant}
+          >
 
             <h2 className="head-size text-white leading-tight md:leading-[1.15] font-hoves max-w-[520px]">
               {t("features.heading")}
@@ -115,7 +115,7 @@ export default function Features() {
           </motion.div>
 
           <motion.div
-            className="lg:max-w-[420px] lg:mb-2 flex-shrink-0"
+            className="lg:max-w-120 lg:mb-2 flex-shrink-0"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={paraVariant}
@@ -126,7 +126,7 @@ export default function Features() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-5 items-stretch">
           {[0, 1, 2, 3].map((i) => (
             <motion.div
               key={i}

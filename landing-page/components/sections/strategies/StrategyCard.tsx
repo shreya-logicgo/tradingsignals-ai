@@ -28,7 +28,7 @@ export default function StrategyCard({
       - h-full: stretches to fill the equal-height grid row (gridAutoRows: 1fr)
       - flex flex-col: so inner content can flex-grow properly
     */
-    <div className="group relative p-[2px] rounded-xl w-full min-w-[220px] h-full flex flex-col overflow-visible">
+    <div className="group relative p-0.5 rounded-xl w-full min-w-[220px] h-full flex flex-col overflow-visible">
 
       {/* Outer Bloom */}
       <div className="absolute inset-[-10px] rounded-xl bg-blue-600/0 group-hover:bg-blue-600/25 blur-[50px] transition-all duration-700 -z-10 pointer-events-none" />
@@ -44,13 +44,13 @@ export default function StrategyCard({
       </div>
 
       {/* Inner Card */}
-      <div className="relative flex flex-col w-full flex-1 p-4 gap-3 rounded-[10px] bg-white/5 z-10 overflow-hidden backdrop-blur-sm">
+      <div className="relative flex flex-col w-full flex-1 p-4 3xl:p-6 gap-3 3xl:gap-4 rounded-[10px] bg-white/5 z-10 overflow-hidden backdrop-blur-sm">
 
         {/* Internal Glow */}
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
         {/* Icon */}
-        <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 border border-white/10 relative z-10 shadow-inner">
+        <div className="w-14 h-14 3xl:w-17.5 3xl:h-17.5 rounded-full overflow-hidden flex-shrink-0 border border-white/10 relative z-10 shadow-inner">
           <Image
             src={icon}
             alt={name}
@@ -80,7 +80,7 @@ export default function StrategyCard({
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
               <span
-                className="text-[25px] text-[#43C251] leading-tight tracking-tight font-hoves"
+                className="text-[25px] 3xl:text-3xl text-[#43C251] leading-tight tracking-tight font-hoves"
               >
                 {roi}
               </span>
@@ -91,7 +91,7 @@ export default function StrategyCard({
               </span>
             </div>
             <span
-              className="text-white font-medium text-[19px] font-hoves"
+              className="text-white font-medium text-[19px] 3xl:text-xl font-hoves"
             >
               {price}
             </span>
@@ -99,7 +99,7 @@ export default function StrategyCard({
 
           <Link
             href="https://crypto.tradingsignals.ai/login"
-            className="w-full h-11 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300 bg-[#010B24] text-white group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 font-hoves"
+            className="w-full h-11 3xl:h-12.5 rounded-full flex items-center justify-center text-sm 3xl:text-base font-medium transition-all duration-300 bg-[#010B24] text-white group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-sky-500 font-hoves border border-cyan-blue/12"
           >
             {t("strategy.card_cta")}
           </Link>

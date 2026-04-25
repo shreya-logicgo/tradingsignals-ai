@@ -180,7 +180,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
           </div>
 
           {/* Description */}
-          <p className="card-desc-size1 text-xs sm:text-sm  text-[#C7CCD2] font-hoves leading-5 sm:h-min-12 max-h-14 overflow-clip">
+          <p className="card-desc-size1 font-hoves leading-5 sm:h-min-12 max-h-14 overflow-clip">
             {t(exchange.descKey)}
           </p>
         </div>
@@ -198,7 +198,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         {/* Create Account */}
         <button
           onClick={() => exchange.pageLink && router.push(exchange.pageLink)}
-          className="flex items-center justify-center w-full py-3 text-sm md:text-base lg:text-lg text-white bg-[#010B24] border border-white/10 rounded-full transition-all duration-200 hover:opacity-90 hover:scale-[1.02] cursor-pointer"
+          className="flex items-center justify-center w-full py-2.5 text-sm xl:text-base lg:text-lg text-white bg-[#010B24] border border-white/10 rounded-full transition-all duration-200 hover:opacity-90 hover:scale-[1.02] cursor-pointer"
         >
           {t("exchangePartners.getStarted")}
         </button>
@@ -218,7 +218,7 @@ export default function ExchangePartners() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="section-pt section-pb bg-[linear-gradient(0deg,_#0012B8%,_#0012B8_75%,_#0012B8_100%)]"
+      className="section-pt section-pb bg-[linear-gradient(0deg,_#0012B8%,_#0012B8_75%,_#0012B8_100%)] relative z-1"
     >
       <Container>
 
@@ -242,7 +242,7 @@ export default function ExchangePartners() {
           <h2 className="head-size max-w-100 font-hoves  text-white leading-tight tracking-tight">
             {t("exchangePartners.title")}
           </h2>
-          <p className="desc-size sm:max-w-[480px] text-[#C7CCD2] font-hoves  ">
+          <p className="desc-size sm:max-w-150 font-hoves">
             {t("exchangePartners.desc")}
           </p>
         </motion.div>
@@ -250,7 +250,7 @@ export default function ExchangePartners() {
         {/* Subtitle */}
         <motion.p
           variants={fadeUpVariant}
-          className="text-[#C7CCD2]  text-[13px] sm:text-[18px] mb-10 lg:mb-11 font-hoves "
+          className="desc-size mb-10 lg:mb-11 font-hoves "
         >
           {t("exchangePartners.subtitle")}
         </motion.p>
@@ -261,8 +261,8 @@ export default function ExchangePartners() {
             grid gap-4 3xl:gap-5
             grid-cols-1
             sm:grid-cols-2
-            md:grid-cols-3
-            lg:grid-cols-4
+            lg:grid-cols-3
+            xl:grid-cols-4
           "
         >
           {exchanges.map((exchange) => (

@@ -72,7 +72,7 @@ export default function StepCard({
 
   return (
     <motion.div
-      className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-[330px] isolate"
+      className="relative w-full max-w-[340px] md:max-w-[320px] lg:max-w-[330px] 3xl:max-w-[420px] isolate"
       style={{ 
         opacity: isDimmed ? 0.6 : 1, 
         scale: isDimmed ? 0.98 : 1,
@@ -121,7 +121,7 @@ export default function StepCard({
         </motion.div>
 
         {/* ── Card body ── */}
-        <div className="relative flex flex-col h-full min-h-[260px] p-8 gap-8 rounded-sm bg-white/5  shadow-2xl overflow-hidden z-10">
+        <div className="relative flex flex-col h-full min-h-[260px] p-8 3xl:p-10 gap-8 3xl:gap-15 rounded-sm bg-white/5  shadow-2xl overflow-hidden z-10">
           
           {/* Internal Highlight on Hover */}
           <motion.div 
@@ -131,10 +131,10 @@ export default function StepCard({
 
           {/* Icon */}
           <motion.div
-            className="flex items-center justify-center w-14 h-14  bg-black/40  shadow-inner relative z-20"
+            className="flex items-center justify-center w-14 h-14 3xl:w-17.5 3xl:h-17.5  bg-black/40  shadow-inner relative z-20 rounded-sm"
             animate={{ scale: isHovered ? 1.1 : 1 }}
           >
-            <Icon size={26} className="text-white" />
+            <Icon size={26} className="text-white 3xl:h-8.5 3xl:w-8.5" />
           </motion.div>
 
           {/* Text content */}

@@ -31,7 +31,7 @@ export default function StartToday() {
             className=" section-pb"
         >
             {/* <Faltu/> */}
-            <Container className="relative z-10">
+            <Container className="relative z-10 max-w-360!">
                 <div
                     className="relative rounded-2xl overflow-hidden px-8 py-10 text-center min-h-[300px]"
                     style={{
@@ -56,7 +56,7 @@ export default function StartToday() {
                         }}
                     />
 
-                    <div className="relative flex flex-col items-center gap-5 z-10">
+                    <div className="relative flex flex-col items-center gap-2.5 z-10">
                         {/* Badge */}
                         <motion.span variants={fadeUpVariant} className="inline-flex items-center px-5 py-1.5 rounded-full border border-white/25 text-white/80 text-xs xl:text-sm font-medium tracking-widest uppercase"
                             style={{ fontFamily: "var(--font-mono)" }}>
@@ -65,17 +65,17 @@ export default function StartToday() {
 
                         <motion.div variants={fadeUpVariant}>
                             <ShineText
-                                className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] font-hoves"
+                                className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] font-hoves font-light!"
                             >
                                 {t("starttoday.heading")}
                             </ShineText>
                         </motion.div>
 
-                        <motion.p variants={fadeUpVariant} className="text-white/60 text-sm sm:text-base xl:text-lg 2xl:text-xl leading-relaxed max-w-sm xl:max-w-md 2xl:max-w-xl font-hoves">
+                        <motion.p variants={fadeUpVariant} className="desc-size max-w-sm xl:max-w-md 2xl:max-w-xl">
                             {t("starttoday.description")}
                         </motion.p>
 
-                        <motion.div variants={fadeUpVariant}>
+                        <motion.div variants={fadeUpVariant} className="mt-4">
                             <Link href="https://crypto.tradingsignals.ai/login">
                             <ShineButton onClick={() => { }}>
                                 {t("starttoday.cta")}

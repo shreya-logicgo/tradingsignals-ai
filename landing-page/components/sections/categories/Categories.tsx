@@ -80,7 +80,7 @@ export default function Categories() {
                   {t("tradingChannels.heading")}
                 </h2>
                 <div className="max-w-[540px] lg:self-center">
-                  <p className="text-sm md:text-base 3xl:text-lg leading-snug text-white/65 font-hoves lg:text-right">
+                  <p className="desc-size leading-snug text-white/65 font-hoves ">
                     {t("tradingChannels.description")}
                   </p>
                 </div>
@@ -88,7 +88,7 @@ export default function Categories() {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 md:gap-4 3xl:gap-5 relative z-[2]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 3xl:gap-5 relative z-[2]">
             {categories.map((cat, index) => (
               <CategoryCard key={cat.title} {...cat} index={index} />
             ))}

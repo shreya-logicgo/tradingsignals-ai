@@ -13,6 +13,7 @@
   --color-dark-blue: #0012b8;
   --color-vivid-cyan: #00f0ff;
   --color-tealish-blue: #182138;
+  --color-cyan-blue: #c7ccd2;
 }
 
 /* ── Base ── */
@@ -371,11 +372,21 @@ html {
 }
 
 @keyframes radialGlow {
-  0%   { background-position: -4rem -1.5rem; }
-  25%  { background-position:  4rem -1.5rem; }
-  50%  { background-position:  4rem  1.5rem; }
-  75%  { background-position: -4rem  1.5rem; }
-  100% { background-position: -4rem -1.5rem; }
+  0% {
+    background-position: -4rem -1.5rem;
+  }
+  25% {
+    background-position: 4rem -1.5rem;
+  }
+  50% {
+    background-position: 4rem 1.5rem;
+  }
+  75% {
+    background-position: -4rem 1.5rem;
+  }
+  100% {
+    background-position: -4rem -1.5rem;
+  }
 }
 
 /* base glow layer */
@@ -388,16 +399,25 @@ html {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: radial-gradient(25% 50%, rgb(255,255,255) 0%, rgba(255,255,255,0) 100%);
-  background-size: calc((var(--x-size) / 25) * 100%) calc((var(--y-size) / 50) * 100%);
+  background: radial-gradient(
+    25% 50%,
+    rgb(255, 255, 255) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: calc((var(--x-size) / 25) * 100%)
+    calc((var(--y-size) / 50) * 100%);
   background-repeat: no-repeat;
   background-position: -4rem -1.5rem;
   transition: background-position 0.5s ease-in-out,
-              background-size     0.5s ease-in-out;
+    background-size 0.5s ease-in-out;
   animation: radialGlow 4s linear infinite;
 }
-.get-access-glow.outter { filter: blur(15px); }
-.get-access-glow.inner  { filter: none; }
+.get-access-glow.outter {
+  filter: blur(15px);
+}
+.get-access-glow.inner {
+  filter: none;
+}
 
 /* HOVER — outer doubles, inner triples, both snap to center */
 .get-access-btn:hover .get-access-glow.outter {
@@ -576,42 +596,47 @@ html {
   @apply pb-20 md:pb-20 3xl:pb-25;
 }
 
-
 @layer base {
   /* ── Tiptap Editor Styles ── */
   .ProseMirror p.is-editor-empty:first-child::before {
     @apply content-[attr(data-placeholder)] float-left text-slate-800 pointer-events-none h-0;
   }
-  .ProseMirror h1 { 
+  .ProseMirror h1 {
     @apply text-4xl font-extrabold mb-5 text-slate-100 leading-tight;
   }
-  .ProseMirror h2 { 
+  .ProseMirror h2 {
     @apply text-2xl font-bold mt-8 mb-4 text-slate-200;
   }
-  .ProseMirror p { 
+  .ProseMirror p {
     @apply mb-5 text-slate-400;
   }
-  .ProseMirror ul { 
+  .ProseMirror ul {
     @apply list-disc pl-6 mb-5 text-slate-400;
   }
-  .ProseMirror ol { 
+  .ProseMirror ol {
     @apply list-decimal pl-6 mb-5 text-slate-400;
   }
-  .ProseMirror li { 
+  .ProseMirror li {
     @apply mb-1.5;
   }
   .ProseMirror blockquote {
     @apply border-l-3 border-cyan-400 pl-5 italic text-slate-500 my-7;
   }
-  .ProseMirror strong { @apply text-slate-200; }
-  .ProseMirror em { @apply text-slate-400; }
+  .ProseMirror strong {
+    @apply text-slate-200;
+  }
+  .ProseMirror em {
+    @apply text-slate-400;
+  }
   .ProseMirror pre {
     @apply bg-[#0d121f] text-sky-300 font-mono p-3 rounded-lg my-6 border border-white/5 whitespace-pre-wrap;
   }
   .ProseMirror pre code {
     @apply text-inherit p-0 bg-transparent text-[0.8rem];
   }
-  .ProseMirror:focus { @apply outline-none; }
+  .ProseMirror:focus {
+    @apply outline-none;
+  }
 
   /* ── Blog Content Styling (Published View) ── */
   .blog-prose h1 {
@@ -635,7 +660,8 @@ html {
   .blog-prose li {
     @apply mb-2 pl-2;
   }
-  .blog-prose strong, .blog-prose b {
+  .blog-prose strong,
+  .blog-prose b {
     @apply font-bold text-white;
   }
   .blog-prose a {
@@ -661,28 +687,27 @@ html {
   }
 }
 
-
-.head-size{
-  @apply text-3xl md:text-4xl 3xl:text-5xl font-normal;
+.head-size {
+  @apply text-3xl md:text-4xl 3xl:text-5xl font-normal leading-tight 3xl:leading-14;
 }
 
-.desc-size{
-  @apply text-sm md:text-base 3xl:text-xl font-normal;
+.desc-size {
+  @apply text-base 3xl:text-[19px] font-light text-cyan-blue;
 }
 
 /* 1- (20-16) , 2- (22-18) */
 .card-title-size1 {
-  @apply text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl 3xl:text-xl;
+  @apply text-lg xl:text-lg 2xl:text-xl 3xl:text-xl;
 }
 
 .card-desc-size1 {
-  @apply text-xs sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-base 3xl:text-base;
+  @apply text-sm lg:text-base xl:text-base 2xl:text-base 3xl:text-base text-cyan-blue font-light;
 }
 
 .card-title-size2 {
-  @apply text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-[21px] 3xl:text-[22px];
+  @apply text-lg lg:text-lg xl:text-xl 2xl:text-[21px] 3xl:text-[22px];
 }
 
 .card-desc-size2 {
-  @apply text-xs sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-lg 3xl:text-lg;
+  @apply text-[15px] text-base lg:text-base xl:text-[17px] text-cyan-blue font-light;
 }

@@ -20,7 +20,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
     >
       {/* Question row */}
       <div className="flex items-center justify-between gap-4">
-        <span className="font-hoves font-medium text-xl text-white leading-tight">
+        <span className="desc-size text-white!">
           {question}
         </span>
 
