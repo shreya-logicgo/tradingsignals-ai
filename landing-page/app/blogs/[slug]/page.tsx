@@ -9,7 +9,7 @@ const BlogDetails = async ({ params }: { params: Promise<{ slug: string }> }) =>
     <div className="bg-[#010B24] lg:mt-24 mt-10 ">
       <NoiseOverlay />
       {/* We pass the slug to the BlogDetailPage component */}
-      <Container>
+      <Container className="max-w-3xl! xl:max-w-6xl!">
 
         <BlogDetailPage />
       </Container>
