@@ -34,7 +34,7 @@ export default function FAQ() {
       style={{         background: "linear-gradient(0deg, #010B24 0%, #010B24 75%, #02164b 100%)",
 
 }}
-      className="w-full bg-transparent section-pt section-pb relative overflow-hidden">
+      className="w-full bg-transparent section-py relative overflow-hidden">
       {/* Outer container — responsive horizontal padding */}
       <Container className="relative z-10">
         <div className="flex flex-col items-center gap-9">

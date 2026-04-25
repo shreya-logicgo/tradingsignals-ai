@@ -593,7 +593,8 @@ html {
 }
 
 .section-pb {
-  @apply pb-20 md:pb-20 3xl:pb-25;
+  /* @apply pb-10 md:pb-20 3xl:pb-25; */
+  @apply pb-10 md:pb-20 3xl:pb-25;
 }
 
 @layer base {
