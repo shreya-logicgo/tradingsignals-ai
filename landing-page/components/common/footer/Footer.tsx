@@ -143,7 +143,7 @@ export default function Footer() {
             <p className="text-[#C7CCD2] text-xs xl:text-sm 2xl:text-base font-hoves">
               {t("footer.copyright")}
             </p>
-            <p className="text-[#C7CCD2] max-w-180 card-desc-size2 sm:text-right">
+            <p className="text-[#C7CCD2] max-w-150 xl:max-w-180 card-desc-size2 sm:text-right">
               {t("footer.disclaimer")}
             </p>
           </div>
