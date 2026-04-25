@@ -6,14 +6,35 @@ import { validateBlogData } from '@/lib/validation_middleware/validate';
 import { saveUpload } from '@/lib/upload';
 import { urlToBase64 } from '@/lib/imageUtils';
 
+type BlogRequestBody = {
+  title?: string;
+  content?: string;
+  coverImage?: string;
+  [key: string]: unknown;
+};
+
+function isMongoConnectionError(error: unknown) {
+  if (!(error instanceof Error)) return false;
+
+  const message = error.message.toLowerCase();
+  return (
+    message.includes('mongodb') ||
+    message.includes('querysrv') ||
+    message.includes('enotfound') ||
+    message.includes('mongoose') ||
+    message.includes('timed out') ||
+    message.includes('econnrefused')
+  );
+}
+
 // GET: Retrieve blogs from MongoDB with pagination support
 export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '12');
-    const skip = (page - 1) * limit;
+  const { searchParams } = new URL(request.url);
+  const page = parseInt(searchParams.get('page') || '1');
+  const limit = parseInt(searchParams.get('limit') || '12');
+  const skip = (page - 1) * limit;
 
+  try {
     await dbConnect();
     
     const [blogs, total] = await Promise.all([
@@ -30,6 +51,18 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("Error fetching blogs:", error);
+
+    // Keep the UI functional when MongoDB is temporarily unavailable
+    if (isMongoConnectionError(error)) {
+      return NextResponse.json({
+        blogs: [],
+        total: 0,
+        page,
+        limit,
+        hasMore: false,
+      });
+    }
+
     return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
   }
 }
@@ -38,11 +71,11 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const contentType = request.headers.get("content-type") || "";
-    let body: any = {};
+    let body: BlogRequestBody = {};
 
     if (contentType.includes("multipart/form-data")) {
       const formData = await request.formData();
-      body = Object.fromEntries(formData.entries());
+      body = Object.fromEntries(formData.entries()) as BlogRequestBody;
 
       // Special handling for file uploads
       const coverImageFile = formData.get("coverImage");
@@ -50,9 +83,9 @@ export async function POST(request: Request) {
         body.coverImage = await saveUpload(coverImageFile);
       }
     } else {
-      body = await request.json().catch(() => {
+      body = (await request.json().catch(() => {
         throw new Error("Invalid JSON format in request body. Use application/json or multipart/form-data.");
-      });
+      })) as BlogRequestBody;
     }
     
     // Validation Middleware
@@ -60,7 +93,7 @@ export async function POST(request: Request) {
     if (validationError) return validationError;
 
     // Persist remote images (from OpenAI) as Base64 strings
-    if (body.coverImage && body.coverImage.startsWith("http")) {
+    if (typeof body.coverImage === 'string' && body.coverImage.startsWith("http")) {
       try {
         body.coverImage = await urlToBase64(body.coverImage);
       } catch (error) {
@@ -74,7 +107,8 @@ export async function POST(request: Request) {
     // Smartly extract the title from the first <h1> tag in the raw HTML if no explicit title is provided
     let extractedTitle = body.title;
     if (!extractedTitle) {
-      const h1Match = body.content.match(/<h1[^>]*>(.*?)<\/h1>/i);
+      const content = typeof body.content === 'string' ? body.content : '';
+      const h1Match = content.match(/<h1[^>]*>(.*?)<\/h1>/i);
       extractedTitle = h1Match ? h1Match[1].replace(/<[^>]+>/g, '').trim() : "Untitled Generated Blog";
     }
     
@@ -92,7 +126,7 @@ export async function POST(request: Request) {
     }
     
     let slug = baseSlug;
-    let exists = await Blog.findOne({ slug });
+    const exists = await Blog.findOne({ slug });
     if (exists) {
       const randomSuffix = Math.random().toString(36).substring(2, 6);
       slug = `${baseSlug}-${randomSuffix}`;
