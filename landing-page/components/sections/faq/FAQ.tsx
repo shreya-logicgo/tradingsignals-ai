@@ -111,7 +111,7 @@ export default function FAQ() {
                   exit="hidden"
                   className="text-center py-10"
                 >
-                  <p className="text-[#C7CCD2] font-hoves">
+                  <p className="text-[#C7CCD2] card-title-size1 font-hoves">
                     {t("faq.noResults", { query: searchTerm })}
                   </p>
                 </motion.div>

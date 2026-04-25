@@ -41,7 +41,7 @@ export default function Home() {
 
       <section
         id="strategies"
-        className="scroll-mt-14 sm:scroll-mt-14 md:scroll-mt-8 lg:scroll-mt-6"
+        className="scroll-mt-14 sm:scroll-mt-14 md:scroll-mt-24 lg:scroll-mt-29"
       >
         <Strategies />
       </section>

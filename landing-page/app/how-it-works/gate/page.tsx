@@ -264,7 +264,7 @@ export default function GateioHowItWorksPage() {
             icon={<ArrowRight size={20} />}
           >
             <p>
-              Use the + ADD NEW KEY button in Account -&gt; Exchange Accounts.
+              Use the + ADD NEW KEY button in Account &gt; Exchange Accounts.
             </p>
 
             <p>Select Gateio from the exchange list.</p>

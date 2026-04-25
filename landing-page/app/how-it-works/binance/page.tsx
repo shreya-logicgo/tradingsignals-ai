@@ -21,13 +21,13 @@ const trustedIps = [
 
 
 const permissions = [
-  "Enable reading — this parameter allows third-party applications to read trade data.",
-  "Enable Margin Loan, Repay & Transfer — this parameter allows you to take a margin loan on Binance via a third-party application.",
-  "Enable spot and margin trading — this option allows you to conduct spot and margin trades on Binance through a third-party application.",
-  "Enable Futures — this option allows you to execute Binance futures trades through a third-party application.",
-  "Enable symbol whitelist — this option allows you to execute trades only on specific trading pairs on Binance through a third-party application.",
-  "Enable withdrawals — this option allows you to withdraw funds from your Binance account via a third-party application.",
-  "Enable universal transfers — this option allows you to transfer funds from your Binance account via a third-party application.",
+  "Enable reading. This parameter allows third-party applications to read trade data.",
+  "Enable Margin Loan, Repay & Transfer. This parameter allows you to take a margin loan on Binance via a third-party application.",
+  "Enable spot and margin trading. This option allows you to conduct spot and margin trades on Binance through a third-party application.",
+  "Enable Futures. This option allows you to execute Binance futures trades through a third-party application.",
+  "Enable symbol whitelist. This option allows you to execute trades only on specific trading pairs on Binance through a third-party application.",
+  "Enable withdrawals. This option allows you to withdraw funds from your Binance account via a third-party application.",
+  "Enable universal transfers. This option allows you to transfer funds from your Binance account via a third-party application.",
 ];
 
 function Card({
@@ -308,7 +308,7 @@ const copyIps = async () => {
             icon={<ArrowRight size={20} />}
           >
             <p>
-              Use the + ADD NEW KEY button in the Account -&gt; Exchange accounts
+              Use the + ADD NEW KEY button in the Account &gt; Exchange accounts
               section.
             </p>
 
