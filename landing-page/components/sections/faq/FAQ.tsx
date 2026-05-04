@@ -7,6 +7,7 @@ import { Search, X } from "lucide-react";
 import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import FAQItem from "./FAQItem";
 import Container from "@/components/common/container/Container";
+import HeroChart from "../hero/HeroChart";
 
 interface FAQData {
   q: string;
@@ -31,11 +32,23 @@ export default function FAQ() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      style={{         background: "linear-gradient(0deg, #010B24 0%, #010B24 75%, #02164b 100%)",
+      style={{
+        background: "linear-gradient(0deg, #010B24 0%, #010B24 75%, #02164b 100%)",
 
-}}
+      }}
       className="w-full bg-transparent section-py relative overflow-hidden">
       {/* Outer container — responsive horizontal padding */}
+      <Container className="relative z-20 flex flex-col items-center text-center transform-gpu mb-16 md:mb-24 ">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUpVariant}
+          className="w-full flex justify-center"
+        >
+          <HeroChart videoSrc="/videos/Trading Signal AI Video 2 (1).mp4" />
+        </motion.div>
+      </Container>
       <Container className="relative z-10">
         <div className="flex flex-col items-center gap-9">
           {/* ── Header Block — Localized ── */}
@@ -90,8 +103,8 @@ export default function FAQ() {
             <AnimatePresence mode="popLayout">
               {filteredQuestions.length > 0 ? (
                 filteredQuestions.map((faq) => (
-                  <motion.div 
-                    key={faq.q} 
+                  <motion.div
+                    key={faq.q}
                     layout
                     variants={fadeUpVariant}
                     initial="hidden"
@@ -102,7 +115,7 @@ export default function FAQ() {
                   </motion.div>
                 ))
               ) : (
-                <motion.div 
+                <motion.div
                   key="no-results"
                   layout
                   variants={fadeUpVariant}

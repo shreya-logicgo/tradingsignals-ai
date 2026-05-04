@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import FAQ from "../sections/faq/FAQ";
 import CTA from "../sections/cta/CTA";
+import HeroChart from "../sections/hero/HeroChart";
+import Container from "@/components/common/container/Container";
+import { fadeUpVariant } from "@/utils/animations";
 
 export default function AmbientFAQCTASection() {
   return (
@@ -91,11 +94,12 @@ export default function AmbientFAQCTASection() {
 
       {/* ── CONTENT ── */}
       <div className="relative z-10">
+
         <div
           id="faq"
           className="scroll-mt-18 sm:scroll-mt-18 md:scroll-mt-18 lg:scroll-mt-16"
         >
-          <FAQ />
+          <FAQ />   
         </div>
 
         {/* <div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent" /> */}
