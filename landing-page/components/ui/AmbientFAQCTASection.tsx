@@ -96,8 +96,8 @@ export default function AmbientFAQCTASection() {
       <div className="relative z-10">
 
         <div
-          id="faq"
-          className="scroll-mt-18 sm:scroll-mt-18 md:scroll-mt-18 lg:scroll-mt-16"
+       
+          className=""
         >
           <FAQ />   
         </div>

@@ -212,7 +212,7 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
                   {/* PLAY BUTTON */}
 {!isPlaying && (
   <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 md:px-8">
-    <motion.div style={{ x: playX, y: playY }}>
+    <motion.div className="" style={{ x: playX, y: playY }}>
       <motion.button
         onClick={handlePlay}
         whileHover={{ scale: 1.04 }}
