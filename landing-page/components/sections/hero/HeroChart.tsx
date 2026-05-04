@@ -9,7 +9,7 @@ import {
   useInView,
 } from "framer-motion";
 import Container from "@/components/common/container/Container";
-import { Play } from "lucide-react";
+import { Play, Volume2, VolumeX } from "lucide-react";
 
 interface HeroChartProps {
   videoSrc?: string;
@@ -22,15 +22,36 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [hasManuallyPaused, setHasManuallyPaused] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
   const isInView = useInView(cardRef, { amount: 0.4 });
 
   useEffect(() => {
     if (isInView && !isPlaying && !hasManuallyPaused) {
-      videoRef.current?.play().catch(() => {});
-      setIsPlaying(true);
+      if (videoRef.current) {
+        videoRef.current.muted = isMuted;
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsPlaying(true);
+            })
+            .catch(() => {
+              // Browser blocked unmuted autoplay, fallback to muted
+              if (videoRef.current) {
+                videoRef.current.muted = true;
+                videoRef.current.play().then(() => {
+                  setIsMuted(true);
+                  setIsPlaying(true);
+                }).catch(() => {
+                  setIsPlaying(false);
+                });
+              }
+            });
+        }
+      }
     }
-  }, [isInView, isPlaying, hasManuallyPaused]);
+  }, [isInView, isPlaying, hasManuallyPaused, isMuted]);
 
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
@@ -82,13 +103,21 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
     setIsHovered(false);
   };
 
-  const handlePlay = () => {
-    videoRef.current?.play().catch(() => {});
-    setIsPlaying(true);
-    setHasManuallyPaused(false);
+  const handlePlay = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+      videoRef.current.play().then(() => {
+        setIsPlaying(true);
+        setHasManuallyPaused(false);
+      }).catch(() => {
+        setIsPlaying(false);
+      });
+    }
   };
 
-  const handlePause = () => {
+  const handlePause = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     videoRef.current?.pause();
     setIsPlaying(false);
     setHasManuallyPaused(true);
@@ -185,7 +214,7 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
                   <motion.div style={{ x: videoX, y: videoY, translateZ: 0 }}>
                     <video
                       ref={videoRef}
-                      muted
+                      muted={isMuted}
                       loop
                       playsInline
                       className="w-full h-auto block cursor-pointer"
@@ -260,17 +289,32 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
   </div>
 )}
 
-                  {/* PAUSE BUTTON */}
+                  {/* CONTROLS */}
                   {isPlaying && (
-                    <button
-                      onClick={handlePause}
-                      className="absolute bottom-6 right-6 flex items-center justify-center w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/20 hover:bg-black/60 transition-all duration-200"
-                    >
-                      <div className="flex gap-[3px]">
-                        <div className="w-[3px] h-[12px] bg-white rounded-full" />
-                        <div className="w-[3px] h-[12px] bg-white rounded-full" />
-                      </div>
-                    </button>
+                    <div className="absolute bottom-6 right-6 flex items-center gap-3">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsMuted(!isMuted);
+                        }}
+                        className="flex items-center justify-center w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/20 hover:bg-black/60 transition-all duration-200"
+                      >
+                        {isMuted ? (
+                          <VolumeX className="w-4 h-4 text-white" />
+                        ) : (
+                          <Volume2 className="w-4 h-4 text-white" />
+                        )}
+                      </button>
+                      <button
+                        onClick={handlePause}
+                        className="flex items-center justify-center w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/20 hover:bg-black/60 transition-all duration-200"
+                      >
+                        <div className="flex gap-[3px]">
+                          <div className="w-[3px] h-[12px] bg-white rounded-full" />
+                          <div className="w-[3px] h-[12px] bg-white rounded-full" />
+                        </div>
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
