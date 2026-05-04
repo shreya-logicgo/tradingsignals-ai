@@ -21,20 +21,16 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [hasManuallyPaused, setHasManuallyPaused] = useState(false);
 
   const isInView = useInView(cardRef, { amount: 0.4 });
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-
-    if (isInView && !isPlaying) {
-      timer = setTimeout(() => {
-        handlePlay();
-      }, 3000);
+    if (isInView && !isPlaying && !hasManuallyPaused) {
+      videoRef.current?.play().catch(() => {});
+      setIsPlaying(true);
     }
-
-    return () => clearTimeout(timer);
-  }, [isInView, isPlaying]);
+  }, [isInView, isPlaying, hasManuallyPaused]);
 
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
@@ -89,11 +85,13 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
   const handlePlay = () => {
     videoRef.current?.play().catch(() => {});
     setIsPlaying(true);
+    setHasManuallyPaused(false);
   };
 
   const handlePause = () => {
     videoRef.current?.pause();
     setIsPlaying(false);
+    setHasManuallyPaused(true);
   };
 
   return (
@@ -182,7 +180,7 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
               </motion.div>
 
               {/* VIDEO WRAPPER */}
-              <div className="relative w-full  bg-[#00000033]  px-3 md:px-4 lg:px-5 pt-0">
+              <div className="relative w-full  bg-[#00000033]  px-1.5 md:px-2 lg:px-3 pt-0">
                 <div className="relative overflow-hidden rounded-2xl md:rounded-3xl rounded-t-none border border-white/[0.06] bg-[#00000033] shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transform-gpu">
                   <motion.div style={{ x: videoX, y: videoY, translateZ: 0 }}>
                     <video
