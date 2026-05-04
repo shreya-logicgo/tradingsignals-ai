@@ -50,7 +50,7 @@ export default function FAQ() {
         </motion.div>
       </Container>
       <Container className="relative z-10">
-        <div className="flex flex-col items-center gap-9">
+        <div    id="faq" className="flex flex-col items-center gap-9 scroll-mt-18 sm:scroll-mt-18 md:scroll-mt-16 lg:scroll-mt-25">
           {/* ── Header Block — Localized ── */}
           <motion.div
             variants={fadeUpVariant}
