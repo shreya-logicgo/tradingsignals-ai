@@ -11,7 +11,11 @@ import {
 import Container from "@/components/common/container/Container";
 import { Play } from "lucide-react";
 
-export default function HeroChart() {
+interface HeroChartProps {
+  videoSrc?: string;
+}
+
+export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video 1 Final (1) (1).mp4" }: HeroChartProps = {}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -95,7 +99,7 @@ export default function HeroChart() {
   return (
     <section className="w-full relative z-10 mx-auto">
       
-        <div className="relative w-full]">
+        <div className="relative w-full">
           {/* OUTER GLOW */}
           <div className="absolute -inset-4 -z-10 rounded-3xl bg-[radial-gradient(ellipse_at_50%_40%,_rgba(0,120,255,0.25)_0%,_rgba(0,60,180,0.1)_50%,_transparent_75%)] blur-[40px] pointer-events-none" />
 
@@ -191,7 +195,7 @@ export default function HeroChart() {
                       onClick={isPlaying ? handlePause : handlePlay}
                     >
                       <source
-                        src="/videos/hero-video.mp4"
+                        src={videoSrc}
                         type="video/mp4"
                       />
                     </video>
@@ -245,13 +249,13 @@ export default function HeroChart() {
         </div>
 
         {/* Text */}
-        <div className="flex flex-col leading-none text-left">
-          <span className="text-[12px] sm:text-[13px] md:text-sm font-semibold text-black whitespace-nowrap">
-            Watch Demo
+        <div className="flex flex-col leading-none text-center mx-auto">
+          <span className="text-[12px] sm:text-[14px] md:text-sm font-semibold text-black whitespace-nowrap">
+            Watch 
           </span>
-          <span className="text-[9px] sm:text-[10px] md:text-[11px] text-[#5D5D5D] mt-0.5 sm:mt-1 whitespace-nowrap">
+          {/* <span className="text-[9px] sm:text-[10px] md:text-[11px] text-[#5D5D5D] mt-0.5 sm:mt-1 whitespace-nowrap">
             1:00 min
-          </span>
+          </span> */}
         </div>
       </motion.button>
     </motion.div>
