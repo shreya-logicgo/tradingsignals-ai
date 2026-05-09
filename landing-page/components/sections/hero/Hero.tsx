@@ -161,7 +161,7 @@ export default function Hero() {
             variants={fadeUpVariant}
             className="w-full mt-10 md:mt-12 flex justify-center"
           >
-            <HeroChart />
+            <HeroChart videoId="landing-hero-main" />
           </motion.div>
         </motion.div>
       </Container>

@@ -1,57 +1,44 @@
 "use client";
 
-import { useRef, useState, useEffect, useMemo } from "react";
+import { useRef, useState, useMemo, useCallback, useId } from "react";
 import {
   motion,
   useMotionValue,
   useSpring,
   useTransform,
-  useInView,
 } from "framer-motion";
-import Container from "@/components/common/container/Container";
 import { Play, Volume2, VolumeX } from "lucide-react";
+import { useAutoplayVideo } from "@/components/video/useAutoplayVideo";
 
 interface HeroChartProps {
   videoSrc?: string;
+  /** Unique per instance so only one coordinated clip plays at a time. */
+  videoId?: string;
 }
 
-export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video 1 Final (1) (1).mp4" }: HeroChartProps = {}) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+export default function HeroChart({
+  videoSrc = "/videos/Trading Signals AI Video 1 Final (1) (1).mp4",
+  videoId: videoIdProp,
+}: HeroChartProps) {
+  const generatedId = useId().replace(/:/g, "");
+  const videoId = videoIdProp ?? `landing-video-${generatedId}`;
+
   const cardRef = useRef<HTMLDivElement>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [hasManuallyPaused, setHasManuallyPaused] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
-  const isInView = useInView(cardRef, { amount: 0.4 });
+  const beforeVisibilityPlay = useCallback((video: HTMLVideoElement) => {
+    video.muted = true;
+    setIsMuted(true);
+  }, []);
 
-  useEffect(() => {
-    if (isInView && !isPlaying && !hasManuallyPaused) {
-      if (videoRef.current) {
-        videoRef.current.muted = isMuted;
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsPlaying(true);
-            })
-            .catch(() => {
-              // Browser blocked unmuted autoplay, fallback to muted
-              if (videoRef.current) {
-                videoRef.current.muted = true;
-                videoRef.current.play().then(() => {
-                  setIsMuted(true);
-                  setIsPlaying(true);
-                }).catch(() => {
-                  setIsPlaying(false);
-                });
-              }
-            });
-        }
-      }
-    }
-  }, [isInView, isPlaying, hasManuallyPaused, isMuted]);
+  const { containerRef, videoRef, beforeManualPlay } = useAutoplayVideo({
+    videoId,
+    threshold: 0.5,
+    beforeVisibilityPlay,
+  });
 
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
@@ -105,13 +92,16 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
 
   const handlePlay = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
-      videoRef.current.play().then(() => {
-        setIsPlaying(true);
-        setHasManuallyPaused(false);
-      }).catch(() => {
-        setIsPlaying(false);
+    const video = videoRef.current;
+    if (!video) return;
+    beforeManualPlay();
+    video.muted = isMuted;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        video.muted = true;
+        setIsMuted(true);
+        void video.play();
       });
     }
   };
@@ -119,8 +109,6 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
   const handlePause = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     videoRef.current?.pause();
-    setIsPlaying(false);
-    setHasManuallyPaused(true);
   };
 
   return (
@@ -210,7 +198,10 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
 
               {/* VIDEO WRAPPER */}
               <div className="relative w-full  bg-[#00000033]  px-1.5 md:px-2 lg:px-3 pt-0">
-                <div className="relative overflow-hidden rounded-2xl md:rounded-3xl rounded-t-none border border-white/[0.06] bg-[#00000033] shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transform-gpu">
+                <div
+                  ref={containerRef}
+                  className="relative overflow-hidden rounded-2xl md:rounded-3xl rounded-t-none border border-white/[0.06] bg-[#00000033] shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transform-gpu"
+                >
                   <motion.div style={{ x: videoX, y: videoY, translateZ: 0 }}>
                     <video
                       ref={videoRef}
@@ -218,6 +209,8 @@ export default function HeroChart({ videoSrc = "/videos/Trading Signals AI Video
                       loop
                       playsInline
                       className="w-full h-auto block cursor-pointer"
+                      onPlay={() => setIsPlaying(true)}
+                      onPause={() => setIsPlaying(false)}
                       onEnded={() => setIsPlaying(false)}
                       onClick={isPlaying ? handlePause : handlePlay}
                     >

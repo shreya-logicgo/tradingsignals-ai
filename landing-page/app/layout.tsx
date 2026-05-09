@@ -6,6 +6,7 @@ import Footer from "@/components/common/footer/Footer";
 import { I18nProvider } from "@/components/I18nProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
 import SmoothScrollHandler from "@/components/common/SmoothScrollHandler";
+import { VideoAutoplayProvider } from "@/components/video/VideoAutoplayContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -72,10 +73,12 @@ export default function RootLayout({
       >
         <I18nProvider>
           <QueryProvider>
-            <SmoothScrollHandler />
-            <Navbar />
-            {children}
-            <Footer />
+            <VideoAutoplayProvider>
+              <SmoothScrollHandler />
+              <Navbar />
+              {children}
+              <Footer />
+            </VideoAutoplayProvider>
           </QueryProvider>
         </I18nProvider>
       </body>

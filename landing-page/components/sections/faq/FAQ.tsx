@@ -46,7 +46,10 @@ export default function FAQ() {
           variants={fadeUpVariant}
           className="w-full flex justify-center"
         >
-          <HeroChart videoSrc="/videos/Trading Signal AI Video 2 (1).mp4" />
+          <HeroChart
+            videoId="landing-faq-preview"
+            videoSrc="/videos/Trading Signal AI Video 2 (1).mp4"
+          />
         </motion.div>
       </Container>
       <Container className="relative z-10">
