@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useMemo, useCallback, useId } from "react";
+import { useRef, useState, useMemo, useCallback, useId, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -27,7 +27,8 @@ export default function HeroChart({
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  // Start muted for cross-browser autoplay reliability (Safari/iOS are strict).
+  const [isMuted, setIsMuted] = useState(true);
 
   const beforeVisibilityPlay = useCallback((video: HTMLVideoElement) => {
     video.muted = true;
@@ -39,6 +40,14 @@ export default function HeroChart({
     threshold: 0.5,
     beforeVisibilityPlay,
   });
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    // Helps stricter engines treat this media as muted-autoplay capable from first paint.
+    video.defaultMuted = true;
+    video.muted = true;
+  }, [videoRef]);
 
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
@@ -205,9 +214,11 @@ export default function HeroChart({
                   <motion.div style={{ x: videoX, y: videoY, translateZ: 0 }}>
                     <video
                       ref={videoRef}
+                      autoPlay
                       muted={isMuted}
                       loop
                       playsInline
+                      preload="metadata"
                       className="w-full h-auto block cursor-pointer"
                       onPlay={() => setIsPlaying(true)}
                       onPause={() => setIsPlaying(false)}

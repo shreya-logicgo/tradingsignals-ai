@@ -61,41 +61,44 @@ export function useAutoplayVideo(
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  /** Distinguishes our pause/play calls from user-driven media events. */
-  const programmaticActionRef = useRef(false);
-  const programmaticResetTimerRef = useRef<number | null>(null);
+  /** Guards for the next media events triggered by our own pause/play calls. */
+  const ignoreNextPauseEventRef = useRef(0);
+  const ignoreNextPlayEventRef = useRef(0);
+  const pauseResetTimerRef = useRef<number | null>(null);
+  const playResetTimerRef = useRef<number | null>(null);
 
   const userDismissedRef = useRef(false);
   const [userDismissedAutoplay, setUserDismissedAutoplay] = useState(false);
 
-  const markProgrammatic = useCallback(() => {
-    programmaticActionRef.current = true;
-    if (programmaticResetTimerRef.current !== null) {
-      window.clearTimeout(programmaticResetTimerRef.current);
+  const safePause = useCallback((video: HTMLVideoElement) => {
+    ignoreNextPauseEventRef.current += 1;
+    if (pauseResetTimerRef.current !== null) {
+      window.clearTimeout(pauseResetTimerRef.current);
     }
-    // Use a macrotask (not a microtask) so media events triggered by `pause()`/`play()`
-    // in the same tick are still treated as programmatic.
-    programmaticResetTimerRef.current = window.setTimeout(() => {
-      programmaticActionRef.current = false;
-      programmaticResetTimerRef.current = null;
-    }, 0);
+    // Fallback reset in case browser does not fire `pause`.
+    pauseResetTimerRef.current = window.setTimeout(() => {
+      ignoreNextPauseEventRef.current = 0;
+      pauseResetTimerRef.current = null;
+    }, 300);
+    video.pause();
   }, []);
 
-  const safePause = useCallback((video: HTMLVideoElement) => {
-    markProgrammatic();
-    video.pause();
-  }, [markProgrammatic]);
-
   const safePlay = useCallback(async (video: HTMLVideoElement) => {
-    markProgrammatic();
+    ignoreNextPlayEventRef.current += 1;
+    if (playResetTimerRef.current !== null) {
+      window.clearTimeout(playResetTimerRef.current);
+    }
+    // Fallback reset in case browser blocks `play` event.
+    playResetTimerRef.current = window.setTimeout(() => {
+      ignoreNextPlayEventRef.current = 0;
+      playResetTimerRef.current = null;
+    }, 500);
     try {
       await video.play();
     } catch {
       /* Autoplay or decode failures are ignored; user can still tap play. */
     }
-    // Keep programmatic flag through the `play` event tick.
-    markProgrammatic();
-  }, [markProgrammatic]);
+  }, []);
 
   const beforeManualPlay = useCallback(() => {
     // Always reset opt-out on an explicit user play gesture, not only when `play` fires.
@@ -123,13 +126,19 @@ export function useAutoplayVideo(
     if (!video) return;
 
     const onPause = () => {
-      if (programmaticActionRef.current) return;
+      if (ignoreNextPauseEventRef.current > 0) {
+        ignoreNextPauseEventRef.current -= 1;
+        return;
+      }
       userDismissedRef.current = true;
       setUserDismissedAutoplay(true);
     };
 
     const onPlay = () => {
-      if (programmaticActionRef.current) return;
+      if (ignoreNextPlayEventRef.current > 0) {
+        ignoreNextPlayEventRef.current -= 1;
+        return;
+      }
       userDismissedRef.current = false;
       setUserDismissedAutoplay(false);
     };
@@ -144,8 +153,11 @@ export function useAutoplayVideo(
 
   useEffect(() => {
     return () => {
-      if (programmaticResetTimerRef.current !== null) {
-        window.clearTimeout(programmaticResetTimerRef.current);
+      if (pauseResetTimerRef.current !== null) {
+        window.clearTimeout(pauseResetTimerRef.current);
+      }
+      if (playResetTimerRef.current !== null) {
+        window.clearTimeout(playResetTimerRef.current);
       }
     };
   }, []);
@@ -177,10 +189,10 @@ export function useAutoplayVideo(
             void safePlay(video);
           }
         } else if (video) {
-          // You requested: manual pause should not “stick” forever.
-          // If the section fully leaves the viewport, reset the manual-pause lock so
-          // it can autoplay again on re-enter.
-          if (!entry.isIntersecting) {
+          // Reset manual-pause lock once visibility is meaningfully low, so re-visit
+          // always autoplays when the section becomes visible again.
+          // Using a ratio check is more reliable than `!isIntersecting` on tall sections.
+          if (!entry.isIntersecting || entry.intersectionRatio < 0.15) {
             userDismissedRef.current = false;
             setUserDismissedAutoplay(false);
           }
