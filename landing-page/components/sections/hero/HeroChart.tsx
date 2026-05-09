@@ -219,7 +219,7 @@ export default function HeroChart({
                       loop
                       playsInline
                       preload="metadata"
-                      className="w-full h-auto block cursor-pointer"
+                      className="w-full aspect-video block cursor-pointer"
                       onPlay={() => setIsPlaying(true)}
                       onPause={() => setIsPlaying(false)}
                       onEnded={() => setIsPlaying(false)}
