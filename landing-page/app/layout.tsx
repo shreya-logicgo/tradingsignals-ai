@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/common/navbar/Navbar";
 import "./globals.css";
 import { Inter, Space_Mono } from "next/font/google";
@@ -60,6 +61,12 @@ const ttHoves = localFont({
   variable: "--font-hoves",
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.png",
+  },
+};
 
 export default function RootLayout({
   children,
