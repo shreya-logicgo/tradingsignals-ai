@@ -132,7 +132,10 @@ export default function Hero() {
             variants={fadeUpVariant}
             className="w-full flex justify-center"
           >
-            <ShineText className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] max-w-[650px]  font-hoves">
+            <ShineText
+              as="h1"
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] max-w-[650px] font-hoves"
+            >
               {t("hero.title")}
             </ShineText>
           </motion.div>

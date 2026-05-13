@@ -62,9 +62,74 @@ const ttHoves = localFont({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  "http://localhost:3000";
+
+const siteName = "Trading Signals AI";
+const defaultDescription =
+  "AI-powered trading signals and strategies to help you make informed decisions in the markets.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteName} — AI-Powered Trading Signals`,
+    template: `%s | ${siteName}`,
+  },
+  description: defaultDescription,
+  applicationName: siteName,
+  keywords: [
+    "trading signals",
+    "AI trading",
+    "algorithmic trading",
+    "market analysis",
+    "trading strategies",
+  ],
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName,
+    title: `${siteName} — AI-Powered Trading Signals`,
+    description: defaultDescription,
+    images: [
+      {
+        url: "/images/grad_3.png",
+        alt: siteName,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteName} — AI-Powered Trading Signals`,
+    description: defaultDescription,
+    images: ["/images/grad_3.png"],
+  },
   icons: {
     icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
   },
 };
 
@@ -76,7 +141,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceMono.variable} ${ttHoves.variable} ${ttHoves.className}`}
+        className={`relative ${inter.variable} ${spaceMono.variable} ${ttHoves.variable} ${ttHoves.className}`}
       >
         <I18nProvider>
           <QueryProvider>
