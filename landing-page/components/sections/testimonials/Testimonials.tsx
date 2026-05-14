@@ -1,39 +1,54 @@
 "use client";
 
 import Image from "next/image";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import TestimonialCard from "./TestimonialCard";
 
-import img1 from "@/assets/images/testimonial-1.jpg";
-import img2 from "@/assets/images/testimonial-2.jpg";
-import img3 from "@/assets/images/testimonial-3.jpg";
-import img4 from "@/assets/images/testimonial-4.jpg";
-import img5 from "@/assets/images/testimonial-5.jpg";
 import gradientBg from "@/assets/images/Gradient.png";
 import ExchangePartners from "../crypto/Exchangepartners";
 import Container from "@/components/common/container/Container";
 
+/** Place MP4s in `public/videos/` as `1.mp4` … `4.mp4`. */
+const TESTIMONIAL_VIDEOS = {
+  v1: "/videos/1.mp4",
+  v2: "/videos/2.mp4",
+  v3: "/videos/3.mp4",
+  v4: "/videos/4.mp4",
+} as const;
+
 export default function Testimonials() {
   const { t } = useTranslation();
+  const [activePlaybackId, setActivePlaybackId] = useState<string | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const isSectionInView = useInView(sectionRef, {
+    amount: 0.08,
+    margin: "0px 0px -48px 0px",
+  });
+
+  /** When the block scrolls out of view, treat as no active player so every card pauses. */
+  const effectiveActivePlaybackId = isSectionInView ? activePlaybackId : null;
 
   const quotes = t("testimonials.quotes", {
     returnObjects: true,
   }) as string[];
 
+  // Left: videos 1 & 3 — Right: videos 2 & 4
   const leftCards = [
-    { image: img1, quote: quotes[0] },
-    { image: img2, quote: quotes[1] },
+    { videoSrc: TESTIMONIAL_VIDEOS.v1, quote: quotes[0] },
+    { videoSrc: TESTIMONIAL_VIDEOS.v3, quote: quotes[2] },
   ];
 
   const rightCards = [
-    { image: img4, quote: quotes[3] },
-    { image: img5, quote: quotes[4] },
+    { videoSrc: TESTIMONIAL_VIDEOS.v2, quote: quotes[1] },
+    { videoSrc: TESTIMONIAL_VIDEOS.v4, quote: quotes[3] },
   ];
 
   return (
     <motion.section
+      ref={sectionRef}
       variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
@@ -58,23 +73,31 @@ export default function Testimonials() {
           id="testimonials"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-10 3xl:gap-12 scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30"
         >
-          {/* LEFT COLUMN - Stacked cards */}
+          {/* LEFT COLUMN — videos 1 & 3 */}
           <div className="flex flex-col gap-4  xl:gap-10 3xl:gap-12 order-2 lg:order-1 w-full justify-between items-center">
-            {leftCards.map((card, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUpVariant}
-                className="w-full flex justify-center"
-              >
-                <TestimonialCard {...card} />
-              </motion.div>
-            ))}
+            {leftCards.map((card, i) => {
+              const playbackId = `left-${i}`;
+              return (
+                <motion.div
+                  key={playbackId}
+                  variants={fadeUpVariant}
+                  className="w-full flex justify-center"
+                >
+                  <TestimonialCard
+                    {...card}
+                    playbackId={playbackId}
+                    activePlaybackId={effectiveActivePlaybackId}
+                    onVideoPlay={setActivePlaybackId}
+                  />
+                </motion.div>
+              );
+            })}
           </div>
 
-          {/* CENTER COLUMN - Title, text, and main card */}
+          {/* CENTER COLUMN — title & copy only (middle video commented out) */}
           <motion.div
             variants={fadeUpVariant}
-            className="flex flex-col items-center text-center gap-1 md:gap-3 order-1 lg:order-2 md:col-span-2 lg:col-span-1 w-full mx-auto"
+            className="flex flex-col items-center justify-center text-center gap-1 md:gap-3 order-1 lg:order-2 md:col-span-2 lg:col-span-1 w-full mx-auto"
           >
             <div className="inline-flex items-center px-4 py-1.5 shadow-inner">
               <span className="text-[15px] font-mono tracking-widest uppercase text-vivid-cyan">
@@ -90,22 +113,38 @@ export default function Testimonials() {
               {t("testimonials.description")}
             </p>
 
+            {/* Middle testimonial video — restore when needed (no poster / direct video like other cards)
             <div className="w-full flex justify-center mt-6 flex-1 text-start">
-              <TestimonialCard image={img3} quote={quotes[2]} />
+              <TestimonialCard
+                videoSrc="/videos/…"
+                quote={quotes[2]}
+                playbackId="center"
+                activePlaybackId={effectiveActivePlaybackId}
+                onVideoPlay={setActivePlaybackId}
+              />
             </div>
+            */}
           </motion.div>
 
-          {/* RIGHT COLUMN - Stacked cards */}
+          {/* RIGHT COLUMN — videos 2 & 4 */}
           <div className="flex flex-col gap-4  xl:gap-10 3xl:gap-12 order-3 items-center w-full justify-between">
-            {rightCards.map((card, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUpVariant}
-                className="w-full flex justify-center"
-              >
-                <TestimonialCard {...card} />
-              </motion.div>
-            ))}
+            {rightCards.map((card, i) => {
+              const playbackId = `right-${i}`;
+              return (
+                <motion.div
+                  key={playbackId}
+                  variants={fadeUpVariant}
+                  className="w-full flex justify-center"
+                >
+                  <TestimonialCard
+                    {...card}
+                    playbackId={playbackId}
+                    activePlaybackId={effectiveActivePlaybackId}
+                    onVideoPlay={setActivePlaybackId}
+                  />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </Container>
