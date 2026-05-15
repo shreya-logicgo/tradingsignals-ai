@@ -6,7 +6,7 @@ import Traders from "../sections/traders/Traders";
 
 export default function AmbientTradingSection() {
   return (
-    <div className="relative overflow-visible bg-transparent w-full z-20 ">
+    <div className="relative overflow-hidden bg-transparent w-full z-20 ">
       <div className="absolute inset-0 pointer-events-none overflow-visible h-full w-full">
 
         {/* Primary Glow */}
