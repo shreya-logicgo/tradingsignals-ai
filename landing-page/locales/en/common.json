@@ -206,6 +206,12 @@
         "title": "Testimonials",
         "heading": "Trusted by 1k+ Traders",
         "description": "Real results from real traders using Trading Signals AI",
+        "fullScreen": "Full screen",
+        "exitFullScreen": "Exit",
+        "enterFullScreenAria": "Enter full screen",
+        "exitFullScreenAria": "Exit full screen",
+        "playVideoAria": "Play video",
+        "pauseVideoAria": "Pause video",
         "quotes": [
             "\"Trading Signals AI has been a game-changer for me as a beginner in the world of crypto trading. Before joining, I was hesitant to explore into the market, fearing I'd make costly mistakes.\"",
             "\"With Trading Signals AI, I found a welcoming community and a wealth of resources to guide me on my trading journey.\"",

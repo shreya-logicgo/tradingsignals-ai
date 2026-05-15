@@ -8,7 +8,6 @@ import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import TestimonialCard from "./TestimonialCard";
 
 import gradientBg from "@/assets/images/Gradient.png";
-import ExchangePartners from "../crypto/Exchangepartners";
 import Container from "@/components/common/container/Container";
 
 /** Vimeo IDs from share links (player.vimeo.com/video/{id}) */
@@ -51,11 +50,9 @@ export default function Testimonials() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full relative overflow-x-hidden overflow-y-visible bg-transparent"
+      className="relative w-full bg-transparent"
     >
-      <ExchangePartners />
-
-      <div className="absolute inset-x-0 -top-1/4 -bottom-1/4 z-0 pointer-events-none overflow-hidden select-none">
+      <div className="absolute inset-x-0 top-0 bottom-0 z-0 pointer-events-none overflow-hidden select-none">
         <Image
           src={gradientBg}
           alt=""
@@ -65,12 +62,12 @@ export default function Testimonials() {
         />
       </div>
 
-      <Container className="section-pb relative z-10 w-full ">
+      <Container className="section-py relative z-10 w-full ">
         <div
           id="testimonials"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-10 3xl:gap-12 scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30"
+          className="grid grid-cols-1 gap-4 scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 md:grid-cols-2 md:gap-10 lg:grid-cols-3 lg:scroll-mt-30 xl:gap-10 3xl:gap-12"
         >
-          <div className="flex flex-col gap-4  xl:gap-10 3xl:gap-12 order-2 lg:order-1 w-full justify-between items-center">
+          <div className="flex flex-col items-center gap-4 xl:gap-10 3xl:gap-12 order-2 lg:order-1 w-full">
             {leftCards.map((card, i) => {
               const id = `left-${i}`;
               return (
@@ -117,7 +114,7 @@ export default function Testimonials() {
             */}
           </motion.div>
 
-          <div className="flex flex-col gap-4  xl:gap-10 3xl:gap-12 order-3 items-center w-full justify-between">
+          <div className="flex flex-col items-center gap-4 xl:gap-10 3xl:gap-12 order-3 w-full">
             {rightCards.map((card, i) => {
               const id = `right-${i}`;
               return (

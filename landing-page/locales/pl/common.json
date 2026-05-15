@@ -206,6 +206,12 @@
         "title": "Opinie",
         "heading": "Zaufało nam ponad 1000 traderów",
         "description": "Prawdziwe wyniki od prawdziwych traderów korzystających z Trading Signals AI",
+        "fullScreen": "Pełny ekran",
+        "exitFullScreen": "Wyjście",
+        "enterFullScreenAria": "Włącz pełny ekran",
+        "exitFullScreenAria": "Wyjdź z pełnego ekranu",
+        "playVideoAria": "Odtwórz wideo",
+        "pauseVideoAria": "Wstrzymaj wideo",
         "quotes": [
             "\"Trading Signals AI zmieniło zasady gry dla mnie, jako początkującego w świecie handlu kryptowalutami. Przed dołączeniem wahałem się, czy wejść na rynek, obawiając się kosztownych błędów.\"",
             "\"Dzięki Trading Signals AI znalazłem przyjazną społeczność i bogactwo zasobów, które prowadzą mnie w mojej podróży handlowej.\"",

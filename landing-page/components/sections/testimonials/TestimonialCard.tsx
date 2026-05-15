@@ -3,6 +3,7 @@
 import { Maximize2, Minimize2 } from "lucide-react";
 import type Player from "@vimeo/player";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const FULLSCREEN_CHROME_IDLE_MS = 2800;
 
@@ -59,6 +60,7 @@ export default function TestimonialCard({
   activePlaybackId,
   onVideoPlay,
 }: TestimonialCardProps) {
+  const { t } = useTranslation();
   const stageRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerRef = useRef<Player | null>(null);
@@ -215,11 +217,11 @@ export default function TestimonialCard({
   const chromeHiddenInFs = isFullscreen && !fullscreenChromeVisible;
 
   return (
-    <div className="w-full max-w-[440px] h-full lg:h-fit p-5 rounded-[15px] bg-white/5 border border-white/10 flex flex-col gap-5 box-border backdrop-blur-sm transition-all duration-300 hover:border-white/20 overflow-hidden shrink-0">
+    <div className="flex w-full max-w-[440px] shrink-0 flex-col gap-5 rounded-[15px] border border-white/10 bg-white/5 p-5 box-border backdrop-blur-sm transition-all duration-300 hover:border-white/20">
 
       <div
         ref={stageRef}
-        className="group relative aspect-video w-full shrink-0 overflow-hidden rounded-[15px] bg-black"
+        className="group relative h-[200px] w-full shrink-0 overflow-hidden rounded-[15px] bg-black @container-[size]"
         onMouseMove={() => {
           if (isFullscreen) wakeFullscreenChrome();
         }}
@@ -232,14 +234,20 @@ export default function TestimonialCard({
           key={vimeoVideoId}
           src={vimeoEmbedSrc(vimeoVideoId)}
           title="Testimonial video"
-          className="pointer-events-auto absolute inset-0 z-0 h-full w-full border-0"
+          className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 border-0"
+          style={{
+            display: "block",
+            overflow: "hidden",
+            width: "max(100cqw, calc(100cqh * 16 / 9))",
+            height: "max(100cqh, calc(100cqw * 9 / 16))",
+          }}
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
           loading="lazy"
         />
 
         <div
-          className={`pointer-events-none absolute inset-0 z-[1] bg-linear-to-t from-black/50 via-black/15 to-transparent transition-opacity duration-200 ${
+          className={`pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-black/50 via-black/15 to-transparent transition-opacity duration-200 ${
             chromeHiddenInFs
               ? "opacity-0"
               : playing
@@ -258,14 +266,16 @@ export default function TestimonialCard({
           className={`absolute bottom-2 right-2 z-20 flex cursor-pointer items-center gap-1.5 rounded-md border border-white/15 bg-black/55 px-2.5 py-1.5 text-[11px] font-medium uppercase tracking-wide text-white/90 backdrop-blur-sm transition-all duration-200 hover:bg-black/70 hover:text-white font-mono ${
             chromeHiddenInFs ? "pointer-events-none opacity-0" : "pointer-events-auto opacity-100"
           }`}
-          aria-label={isFullscreen ? "Exit full screen" : "Enter full screen"}
+          aria-label={
+            isFullscreen ? t("testimonials.exitFullScreenAria") : t("testimonials.enterFullScreenAria")
+          }
         >
           {isFullscreen ? (
             <Minimize2 className="size-3.5 shrink-0 opacity-90" aria-hidden />
           ) : (
             <Maximize2 className="size-3.5 shrink-0 opacity-90" aria-hidden />
           )}
-          <span>{isFullscreen ? "Exit" : "Full screen"}</span>
+          <span>{isFullscreen ? t("testimonials.exitFullScreen") : t("testimonials.fullScreen")}</span>
         </button>
 
         <button
@@ -281,7 +291,7 @@ export default function TestimonialCard({
                   ? "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100"
                   : "opacity-100"
           }`}
-          aria-label={playing ? "Pause video" : "Play video"}
+          aria-label={playing ? t("testimonials.pauseVideoAria") : t("testimonials.playVideoAria")}
         >
           <span className="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-white/25 backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
             {playing ? <PauseIcon /> : <PlayIcon />}
@@ -289,7 +299,7 @@ export default function TestimonialCard({
         </button>
       </div>
 
-      <div className="flex-1 overflow-hidden">
+      <div className="min-w-0">
         <p className="card-desc-size2 m-0 font-hoves line-clamp-3 lg:line-clamp-4">
           {quote}
         </p>
