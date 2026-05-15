@@ -1,16 +1,28 @@
 "use client";
 
 import { Maximize2, Minimize2 } from "lucide-react";
+import type Player from "@vimeo/player";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const FULLSCREEN_CHROME_IDLE_MS = 2800;
 
+function vimeoEmbedSrc(videoId: string) {
+  const q = new URLSearchParams({
+    badge: "0",
+    autopause: "1",
+    playsinline: "1",
+    controls: "0",
+    title: "0",
+    byline: "0",
+    portrait: "0",
+  });
+  return `https://player.vimeo.com/video/${videoId}?${q.toString()}`;
+}
+
 interface TestimonialCardProps {
-  /** Public path to MP4, e.g. `/videos/1.mp4` */
-  videoSrc: string;
+  vimeoVideoId: string;
   quote: string;
   playbackId: string;
-  /** Whichever card is “active”; others are paused */
   activePlaybackId: string | null;
   onVideoPlay: (playbackId: string) => void;
 }
@@ -41,14 +53,16 @@ function PauseIcon() {
 }
 
 export default function TestimonialCard({
-  videoSrc,
+  vimeoVideoId,
   quote,
   playbackId,
   activePlaybackId,
   onVideoPlay,
 }: TestimonialCardProps) {
   const stageRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerRef = useRef<Player | null>(null);
+  const [playerReady, setPlayerReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [fullscreenChromeVisible, setFullscreenChromeVisible] = useState(true);
@@ -75,12 +89,47 @@ export default function TestimonialCard({
   }, [scheduleFullscreenChromeHide]);
 
   useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    let cancelled = false;
+    let player: Player | null = null;
+
+    void (async () => {
+      try {
+        const { default: PlayerCtor } = await import("@vimeo/player");
+        if (cancelled || !iframeRef.current) return;
+        player = new PlayerCtor(iframeRef.current);
+        await player.ready();
+        if (cancelled) {
+          void player.destroy();
+          return;
+        }
+        playerRef.current = player;
+        player.on("play", () => setPlaying(true));
+        player.on("pause", () => setPlaying(false));
+        player.on("ended", () => setPlaying(false));
+        if (!cancelled) setPlayerReady(true);
+      } catch {
+        setPlayerReady(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      setPlayerReady(false);
+      void player?.destroy();
+      playerRef.current = null;
+    };
+  }, [vimeoVideoId]);
+
+  useEffect(() => {
+    const p = playerRef.current;
+    if (!p || !playerReady) return;
     if (activePlaybackId !== playbackId) {
-      el.pause();
+      void p.pause();
     }
-  }, [activePlaybackId, playbackId]);
+  }, [activePlaybackId, playbackId, playerReady]);
 
   useEffect(() => {
     const sync = () => {
@@ -112,8 +161,7 @@ export default function TestimonialCard({
 
   const toggleFullscreen = useCallback(async () => {
     const stage = stageRef.current;
-    const video = videoRef.current;
-    if (!stage || !video) return;
+    if (!stage) return;
 
     try {
       const doc = document as Document & {
@@ -136,29 +184,32 @@ export default function TestimonialCard({
         await stageEl.requestFullscreen();
       } else if (stageEl.webkitRequestFullscreen) {
         stageEl.webkitRequestFullscreen();
-      } else {
-        throw new Error("no fullscreen");
       }
     } catch {
-      const v = video as HTMLVideoElement & {
-        webkitEnterFullscreen?: () => void;
-      };
-      v.webkitEnterFullscreen?.();
+      const p = playerRef.current;
+      if (p) void p.requestFullscreen().catch(() => {});
     }
   }, []);
 
   const handleToggle = () => {
-    if (isFullscreen) {
-      wakeFullscreenChrome();
-    }
-    const el = videoRef.current;
-    if (!el) return;
-    if (el.paused) {
-      onVideoPlay(playbackId);
-      void el.play().catch(() => {});
-    } else {
-      el.pause();
-    }
+    if (isFullscreen) wakeFullscreenChrome();
+    const p = playerRef.current;
+    if (!p || !playerReady) return;
+
+    void (async () => {
+      try {
+        const paused = await p.getPaused();
+        if (paused) {
+          onVideoPlay(playbackId);
+          void p.setMuted(false);
+          await p.play();
+        } else {
+          await p.pause();
+        }
+      } catch {
+        /* ignore */
+      }
+    })();
   };
 
   const chromeHiddenInFs = isFullscreen && !fullscreenChromeVisible;
@@ -168,7 +219,7 @@ export default function TestimonialCard({
 
       <div
         ref={stageRef}
-        className="group relative h-[200px] w-full shrink-0 overflow-hidden rounded-[15px] bg-black"
+        className="group relative aspect-video w-full shrink-0 overflow-hidden rounded-[15px] bg-black"
         onMouseMove={() => {
           if (isFullscreen) wakeFullscreenChrome();
         }}
@@ -176,20 +227,19 @@ export default function TestimonialCard({
           if (isFullscreen) wakeFullscreenChrome();
         }}
       >
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          className="absolute inset-0 h-full w-full object-cover"
-          playsInline
-          preload="metadata"
-          onPlay={() => setPlaying(true)}
-          onPause={() => setPlaying(false)}
-          onEnded={() => setPlaying(false)}
+        <iframe
+          ref={iframeRef}
+          key={vimeoVideoId}
+          src={vimeoEmbedSrc(vimeoVideoId)}
+          title="Testimonial video"
+          className="pointer-events-auto absolute inset-0 z-0 h-full w-full border-0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          loading="lazy"
         />
 
-        {/* Light scrim — only when paused (helps play affordance); hidden while playing for a cleaner frame */}
         <div
-          className={`pointer-events-none absolute inset-0 bg-linear-to-t from-black/50 via-black/15 to-transparent transition-opacity duration-200 ${
+          className={`pointer-events-none absolute inset-0 z-[1] bg-linear-to-t from-black/50 via-black/15 to-transparent transition-opacity duration-200 ${
             chromeHiddenInFs
               ? "opacity-0"
               : playing
@@ -221,7 +271,8 @@ export default function TestimonialCard({
         <button
           type="button"
           onClick={handleToggle}
-          className={`absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-transparent outline-none transition-opacity duration-200 focus-visible:pointer-events-auto focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/30 ${
+          disabled={!playerReady}
+          className={`absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-transparent outline-none transition-opacity duration-200 focus-visible:pointer-events-auto focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/30 disabled:cursor-wait disabled:opacity-60 ${
             chromeHiddenInFs
               ? "pointer-events-none opacity-0"
               : isFullscreen
