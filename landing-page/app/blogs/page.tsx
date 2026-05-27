@@ -6,7 +6,7 @@ import NoiseOverlay from "@/components/NoiseOverlay";
 import StartToday from "@/components/sections/starttoday/Starttoday";
 
 export const metadata = {
-  title: "Blog | Trading Signals AI",
+  title: "Blog",
   description: "Everything you've ever wanted to know about AI-powered trading.",
 };
 

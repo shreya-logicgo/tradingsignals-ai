@@ -19,7 +19,7 @@ import Stats from "@/components/sections/stats/Stats";
 
 export default function Home() {
   return (
-    <main className="relative overflow-x-hidden">
+    <main className="relative w-full min-w-0">
       <AutoRefreshOnReturn />
       <div
         className="absolute inset-0 z-[999] pointer-events-none opacity-50"

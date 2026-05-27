@@ -1,11 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
 import FAQ from "../sections/faq/FAQ";
-import CTA from "../sections/cta/CTA";
-import HeroChart from "../sections/hero/HeroChart";
-import Container from "@/components/common/container/Container";
-import { fadeUpVariant } from "@/utils/animations";
 
 export default function AmbientFAQCTASection() {
   return (

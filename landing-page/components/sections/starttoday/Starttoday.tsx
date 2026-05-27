@@ -65,6 +65,7 @@ export default function StartToday() {
 
                         <motion.div variants={fadeUpVariant}>
                             <ShineText
+                                as="h2"
                                 className="head-size font-hoves"
                             >
                                 {t("starttoday.heading")}
