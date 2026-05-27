@@ -50,15 +50,10 @@ export async function GET(request: Request) {
       hasMore: skip + blogs.length < total
     });
   } catch (error) {
+    console.error("Error fetching blogs:", error);
+
     // Keep the UI functional when MongoDB is temporarily unavailable
     if (isMongoConnectionError(error)) {
-      const hint =
-        process.env.NODE_ENV === "development"
-          ? " Check MONGODB_URI in .env.local (Atlas SRV host should look like cluster0.xxxxx.mongodb.net)."
-          : "";
-      console.warn(
-        `[api/blogs] MongoDB unavailable.${hint} Returning empty blog list.`
-      );
       return NextResponse.json({
         blogs: [],
         total: 0,
@@ -68,7 +63,6 @@ export async function GET(request: Request) {
       });
     }
 
-    console.error("Error fetching blogs:", error);
     return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
   }
 }
