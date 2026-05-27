@@ -20,9 +20,9 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
     >
       {/* Question row */}
       <div className="flex items-center justify-between gap-4">
-        <span className="desc-size text-white!">
+        <h3 className="desc-size text-white! m-0 font-normal text-left flex-1 min-w-0">
           {question}
-        </span>
+        </h3>
 
         {/* +/× icon */}
         {/* + / × icon */}

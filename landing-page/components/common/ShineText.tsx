@@ -1,20 +1,27 @@
 // components/ShineText.tsx
 import React from "react";
 
+type ShineTextAs = "h1" | "h2" | "h3" | "h4" | "p" | "div";
+
 interface ShineTextProps {
   children: string;
-  className?: string;        // font-size, font-weight, etc.
+  className?: string;
   style?: React.CSSProperties;
+  /** Semantic tag for the primary (visible) text layer. Decorative layers are aria-hidden. */
+  as?: ShineTextAs;
 }
 
 export default function ShineText({
   children,
   className = "",
   style,
+  as = "div",
 }: ShineTextProps) {
+  const Tag = as;
+
   const baseStyle: React.CSSProperties = {
     fontFamily: "var(--font-hoves)",
-    lineHeight: "1.3",         // Balanced line height for wrapped titles
+    lineHeight: "1.3",
     textAlign: "center",
     margin: 0,
     ...style,
@@ -25,50 +32,49 @@ export default function ShineText({
       className={`grid grid-cols-1 grid-rows-1 place-items-center w-full font-medium ${className}`}
       style={{ color: "#adb1b8" }}
     >
-      {/* Layer 1 — base dim text, always visible, no animation */}
+      {/* Layer 1 — base text, exposed to assistive tech */}
       <div className="select-none" style={{ gridArea: "1/1" }}>
-        <p style={{ ...baseStyle, color: "#f9f9f9" }}>
-          {children}
-        </p>
+        <Tag style={{ ...baseStyle, color: "#f9f9f9" }}>{children}</Tag>
       </div>
 
-      {/* Layer 2 — blur(3px) + shine, white */}
+      {/* Layers 2–4 — visual-only duplicates */}
       <div
         className="select-none pointer-events-none"
+        aria-hidden
         style={{
           gridArea: "1/1",
           zIndex: 1,
           filter: "blur(4px)",
         }}
       >
-        <p className="shine" style={{ ...baseStyle, color: "#f9f9f9" }}>
+        <p className="shine m-0" style={{ ...baseStyle, color: "#f9f9f9" }}>
           {children}
         </p>
       </div>
 
-      {/* Layer 3 — blur(8px) + shine, white */}
       <div
         className="select-none pointer-events-none"
+        aria-hidden
         style={{
           gridArea: "1/1",
           zIndex: 1,
           filter: "blur(8px)",
         }}
       >
-        <p className="shine" style={{ ...baseStyle, color: "#c7c7c7" }}>
+        <p className="shine m-0" style={{ ...baseStyle, color: "#c7c7c7" }}>
           {children}
         </p>
       </div>
 
-      {/* Layer 4 — no blur + shine, #c7c7c7 — sharpest top layer */}
       <div
         className="select-none pointer-events-none"
+        aria-hidden
         style={{
           gridArea: "1/1",
           zIndex: 2,
         }}
       >
-        <p className="shine" style={{ ...baseStyle, color: "#c7c7c7" }}>
+        <p className="shine m-0" style={{ ...baseStyle, color: "#c7c7c7" }}>
           {children}
         </p>
       </div>
