@@ -209,7 +209,7 @@ export default function Stats() {
                 src={glowBar1}
                 alt=""
                 fill
-                sizes="(max-width: 640px) 96px, (max-width: 768px) 140px, (max-width: 1280px) 180px, 200px"
+                sizes="100vw"
                 className="max-h-150"
                 style={{ mixBlendMode: "screen" }}
                 priority
@@ -297,7 +297,7 @@ export default function Stats() {
                 src={glowBar2}
                 alt=""
                 fill
-                sizes="(max-width: 640px) 96px, (max-width: 768px) 140px, (max-width: 1280px) 180px, 200px"
+                sizes="100vw"
                 className="max-h-150"
                 style={{ mixBlendMode: "screen" }}
                 priority

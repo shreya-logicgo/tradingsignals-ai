@@ -132,10 +132,7 @@ export default function Hero() {
             variants={fadeUpVariant}
             className="w-full flex justify-center"
           >
-            <ShineText
-              as="h1"
-              className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] max-w-[650px] font-hoves"
-            >
+            <ShineText className="text-2xl sm:text-3xl md:text-5xl lg:text-[50px] max-w-[650px]  font-hoves">
               {t("hero.title")}
             </ShineText>
           </motion.div>
@@ -164,7 +161,7 @@ export default function Hero() {
             variants={fadeUpVariant}
             className="w-full mt-10 md:mt-12 flex justify-center"
           >
-            <HeroChart videoId="landing-hero-main" />
+            <HeroChart />
           </motion.div>
         </motion.div>
       </Container>

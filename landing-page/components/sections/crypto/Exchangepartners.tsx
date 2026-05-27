@@ -175,9 +175,9 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         {/* Name */}
         <div className="flex flex-col gap-2">
 
-          <h3 className="card-title-size1 text-white font-hoves mb-1 m-0 font-medium">
+          <div className="card-title-size1 text-white font-hoves mb-1 ">
             {exchange.name}
-          </h3>
+          </div>
 
           {/* Description */}
           <p className="card-desc-size1 font-hoves leading-5 sm:h-min-12 max-h-14 overflow-clip">
