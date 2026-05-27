@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Container from "@/components/common/container/Container";
 import { AnimatePresence, motion } from "framer-motion";
@@ -33,17 +33,34 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useLayoutEffect(() => {
+    setScrolled(window.scrollY > 20);
+  }, []);
+
   useEffect(() => {
+    const syncScrolled = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
     const onScroll = () => {
       if (ticking.current) return;
       ticking.current = true;
       requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 20);
+        syncScrolled();
         ticking.current = false;
       });
     };
+
+    syncScrolled();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("popstate", syncScrolled);
+    window.addEventListener("pageshow", syncScrolled);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("popstate", syncScrolled);
+      window.removeEventListener("pageshow", syncScrolled);
+    };
   }, []);
 
   const navLinks = [
@@ -57,7 +74,7 @@ export default function Navbar() {
   return (
     <nav
       className={[
-        "fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out",
+        "fixed top-0 left-0 w-full z-[9999] isolate transition-all duration-500 ease-in-out",
         !scrolled && "bg-transparent py-5 border-b border-transparent",
         scrolled && "bg-transparent/70 backdrop-blur-xl py-3 border-b border-white/10",
       ]

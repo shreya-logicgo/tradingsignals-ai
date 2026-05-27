@@ -28,10 +28,10 @@ export default function StrategyCard({
       - h-full: stretches to fill the equal-height grid row (gridAutoRows: 1fr)
       - flex flex-col: so inner content can flex-grow properly
     */
-    <div className="group relative p-[2px] rounded-xl w-full min-w-[220px] h-full flex flex-col overflow-visible">
+    <div className="group relative isolate p-[2px] rounded-xl w-full min-w-[220px] h-full flex flex-col overflow-hidden">
 
       {/* Outer Bloom */}
-      <div className="absolute inset-[-10px] rounded-xl bg-blue-600/0 group-hover:bg-blue-600/25 blur-[50px] transition-all duration-700 -z-10 pointer-events-none" />
+      <div className="absolute inset-[-10px] rounded-xl bg-blue-600/0 group-hover:bg-blue-600/25 blur-[50px] transition-all duration-700 z-0 pointer-events-none" />
 
       {/* Animated Border */}
       <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none z-0">
