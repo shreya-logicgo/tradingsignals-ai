@@ -110,7 +110,7 @@ export default function AmbientTestimonialsSection() {
             Real feedback from traders who have transformed their strategies with our AI signals.
           </p>
         </div> */}
-        <ExchangePartners />
+        {/* <ExchangePartners/> */}
         <Testimonials />
          <CTA />
       </div>

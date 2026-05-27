@@ -7,11 +7,11 @@ import { motion } from "framer-motion";
 import Container from "@/components/common/container/Container";
 
 const productLinks = [
-  { key: "features", href: "#features" },
-  { key: "strategies", href: "#strategies" },
-  { key: "testimonials", href: "#testimonials" },
-  { key: "faq", href: "#faq" },
-  { key: "contact", href: "#contact" },
+  { key: "features", href: "/#features" },
+  { key: "strategies", href: "/#strategies" },
+  { key: "testimonials", href: "/#testimonials" },
+  { key: "faq", href: "/#faq" },
+  { key: "contact", href: "/#contact" },
 ];
 
 const legalLinks = [

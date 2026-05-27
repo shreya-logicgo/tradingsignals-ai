@@ -58,7 +58,7 @@ export default function GlowBars({ targetRef }: GlowBarsProps) {
         alt=""
         fill
         priority
-        sizes="(max-width: 1400px) 100vw, 1400px"
+        sizes="100vw"
         className="object-contain"
         style={{ mixBlendMode: "screen" }}
       />
