@@ -90,7 +90,7 @@ export default function Steps() {
 
             {/* STEP 02 */}
             {stepsData[1] && (
-              <motion.div variants={fadeUpVariant} className="lg:col-start-2 lg:row-start-2 flex justify-center pt-8 lg:pt-24 order-3 lg:order-4">
+              <motion.div variants={fadeUpVariant} className="lg:col-start-2 lg:row-start-2 flex justify-center  order-3 lg:order-4 lg:-translate-y-7">
                 <StepCard
                   id="step-02"
                   step={`${stepPrefix} 02`}

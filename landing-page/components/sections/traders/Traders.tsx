@@ -53,11 +53,11 @@ export default function Traders() {
 
         {/* Carousel Container */}
         <div className="relative overflow-hidden" ref={emblaRef}>
-          <div className="flex -ml-5"> 
+          <div className="flex -ml-4 lg:-ml-5"> 
             {cards.map((card, i) => (
               <div 
                 key={i} 
-                className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] pl-5"
+                className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33%] xl:flex-[0_0_25%] pl-4 lg:pl-5"
               >
                 <TraderFeatureCard {...card} index={i} />
               </div>

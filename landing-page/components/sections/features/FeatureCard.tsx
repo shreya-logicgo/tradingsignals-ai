@@ -71,7 +71,7 @@ export default function FeatureCard({
         borderOpacity.set(0);
         setIsHovered(false);
       }}
-      className={`group relative flex flex-col justify-between p-6 lg:p-8 rounded-xl overflow-hidden min-h-[240px] md:min-h-[260px] h-full cursor-default ${className}`}
+      className={`group relative flex flex-col justify-between p-6 lg:p-8 3xl:p-12 rounded-xl overflow-hidden min-h-[240px] md:min-h-[260px] 3xl:min-h-84 h-full cursor-default ${className}`}
       style={{
         backgroundImage: `url('${gradient}')`,
         backgroundSize: "cover",
@@ -108,7 +108,7 @@ export default function FeatureCard({
           {title}
         </h3>
 
-        <p className="card-desc-size2 font-normal text-white/60 group-hover:text-white/90  leading-snug max-w-[420px] font-hoves">
+        <p className="card-desc-size2 font-normal text-white/60 group-hover:text-white/90  leading-snug font-hoves">
           {description}
         </p>
       </div>
@@ -135,7 +135,7 @@ function IconMotion({
   const glowColor = glowColorMap[iconName] ?? "bg-blue-500/30";
 
   return (
-    <div className="relative w-12 h-12 flex items-center justify-center">
+    <div className="relative w-12 h-12 3xl:h-17.5 3xl:w-17.5 flex items-center justify-center">
       <motion.span
         className={`absolute inset-0 rounded-full blur-xl ${glowColor}`}
         initial={false}
@@ -194,7 +194,7 @@ function IconMotion({
         }
         className="text-white/90 group-hover:text-white transition-colors"
       >
-        <Icon className="w-10 h-10 md:w-12 md:h-12 stroke-[1.2] relative z-10" />
+        <Icon className="w-10 h-10 md:w-12 md:h-12 3xl:h-17.5 3xl:w-17.5 stroke-[1.2] relative z-10" />
       </motion.div>
     </div>
   );

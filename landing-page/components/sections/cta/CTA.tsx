@@ -76,10 +76,10 @@ export default function CTA() {
   return (
     <section className="w-full bg-transparent section-pb relative overflow-hidden">
       <Container>
-        <div className="flex flex-col gap-12 lg:gap-16">
+        <div className="flex flex-col gap-12 lg:gap-14.5">
 
           {/* ── Header ── */}
-          <div className="flex flex-col items-center text-center gap-6 max-w-[500px] mx-auto">
+          <div className="flex flex-col items-center text-center gap-2.5 max-w-[500px] mx-auto">
             {/* Badge */}
             <div className="px-3.5 py-1.5 rounded-full">
               <span className="text-[15px] font-mono tracking-widest uppercase text-vivid-cyan">
@@ -88,12 +88,12 @@ export default function CTA() {
             </div>
 
             {/* Heading */}
-            <h2 className="font-hoves font-medium text-3xl md:text-4xl text-white leading-tight">
+            <h2 className="head-size text-white">
               {t("blog.heading")}
             </h2>
 
             <p
-              className="font-hoves font-light text-sm md:text-base text-[#c7ccd2] leading-relaxed"
+              className="desc-size"
             >
               {t("blog.description")}
             </p>
@@ -102,7 +102,7 @@ export default function CTA() {
           {/* ── Cards + CTA ── */}
           <div className="flex flex-col gap-12">
             {/* Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 items-stretch min-h-[400px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-5 items-stretch min-h-[400px]">
               {loading ? (
                 // Simple loading state
                 [...Array(3)].map((_, i) => (
@@ -140,13 +140,13 @@ export default function CTA() {
                       {/* Top: title + description */}
                       <div className="flex flex-col gap-3">
                         <h3
-                          className="text-xl text-white leading-tight line-clamp-2 font-hoves"
+                          className="text-xl 3xl:text-[27px] text-white leading-tight line-clamp-2 font-hoves"
                         >
                           {post.title}
                         </h3>
 
                         <p
-                          className="text-sm md:text-base text-[#c7ccd2] leading-relaxed line-clamp-3 font-hoves"
+                          className="card-desc-size2 line-clamp-3"
                         >
                           {post.desc}
                         </p>
@@ -154,7 +154,7 @@ export default function CTA() {
 
                       {/* Bottom: View more — pinned to bottom by justify-between */}
                       <span
-                        className="text-sm text-white underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all font-hoves"
+                        className="card-desc-size2 text-white! underline underline-offset-4 decoration-white/30 group-hover:decoration-white transition-all font-hoves"
                       >
                         {t("blog.viewMore")}
                       </span>

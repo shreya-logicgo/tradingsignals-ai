@@ -53,13 +53,13 @@ export default function Testimonials() {
         />
       </div>
 
-      <Container
-        
-        className="section-pb relative z-10 w-full "
-      >
-        <div id="testimonials" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 3xl:gap-12 scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30">
+      <Container className="section-pb relative z-10 w-full ">
+        <div
+          id="testimonials"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-10 3xl:gap-12 scroll-mt-24 sm:scroll-mt-24 md:scroll-mt-22 lg:scroll-mt-30"
+        >
           {/* LEFT COLUMN - Stacked cards */}
-          <div className="flex flex-col gap-6 md:gap-10 3xl:gap-12 order-2 lg:order-1 w-full justify-between items-center">
+          <div className="flex flex-col gap-4  xl:gap-10 3xl:gap-12 order-2 lg:order-1 w-full justify-between items-center">
             {leftCards.map((card, i) => (
               <motion.div
                 key={i}
@@ -90,13 +90,13 @@ export default function Testimonials() {
               {t("testimonials.description")}
             </p>
 
-            <div className="w-full flex justify-center mt-2 lg:mt-6 flex-1">
+            <div className="w-full flex justify-center mt-6 flex-1 text-start">
               <TestimonialCard image={img3} quote={quotes[2]} />
             </div>
           </motion.div>
 
           {/* RIGHT COLUMN - Stacked cards */}
-          <div className="flex flex-col gap-6 md:gap-10 3xl:gap-12 order-3 items-center w-full justify-between">
+          <div className="flex flex-col gap-4  xl:gap-10 3xl:gap-12 order-3 items-center w-full justify-between">
             {rightCards.map((card, i) => (
               <motion.div
                 key={i}

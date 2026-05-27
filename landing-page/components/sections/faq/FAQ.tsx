@@ -7,6 +7,7 @@ import { Search, X } from "lucide-react";
 import { staggerContainer, fadeUpVariant } from "@/utils/animations";
 import FAQItem from "./FAQItem";
 import Container from "@/components/common/container/Container";
+import HeroChart from "../hero/HeroChart";
 
 interface FAQData {
   q: string;
@@ -31,13 +32,25 @@ export default function FAQ() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      style={{         background: "linear-gradient(0deg, #010B24 0%, #010B24 75%, #02164b 100%)",
+      style={{
+        background: "linear-gradient(0deg, #010B24 0%, #010B24 75%, #02164b 100%)",
 
-}}
-      className="w-full bg-transparent section-pt section-pb relative overflow-hidden">
+      }}
+      className="w-full bg-transparent section-py relative overflow-hidden">
       {/* Outer container — responsive horizontal padding */}
+      <Container className="relative z-20 flex flex-col items-center text-center transform-gpu mb-16 md:mb-24 ">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUpVariant}
+          className="w-full flex justify-center"
+        >
+          <HeroChart videoSrc="/videos/Trading Signal AI Video 2 (1).mp4" />
+        </motion.div>
+      </Container>
       <Container className="relative z-10">
-        <div className="flex flex-col items-center gap-10 lg:gap-12">
+        <div    id="faq" className="flex flex-col items-center gap-9 scroll-mt-18 sm:scroll-mt-18 md:scroll-mt-16 lg:scroll-mt-25">
           {/* ── Header Block — Localized ── */}
           <motion.div
             variants={fadeUpVariant}
@@ -50,11 +63,11 @@ export default function FAQ() {
               </span>
             </div>
 
-            <h2 className="font-hoves head-size text-white leading-tight">
+            <h2 className="head-size text-white">
               {t("faq.title")}
             </h2>
 
-            <p className="font-hoves desc-size text-[#C7CCD2] leading-relaxed max-w-[500px]">
+            <p className="desc-size max-w-[500px]">
               {t("faq.description")}
             </p>
           </motion.div>
@@ -72,7 +85,7 @@ export default function FAQ() {
               placeholder={t("faq.searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-full py-3 pl-12 pr-12 text-white text-lg placeholder:text-[#999999] focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all duration-300 backdrop-blur-md"
+              className="w-full bg-white/5 border border-white/5 rounded-full py-3 pl-12 pr-12 text-white text-lg placeholder:text-[#999999] focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all duration-300 backdrop-blur-md"
             />
             {searchTerm && (
               <button
@@ -86,12 +99,12 @@ export default function FAQ() {
           </motion.div>
 
           {/* ── Questions List ── */}
-          <div className="w-full max-w-xl lg:max-w-2xl flex flex-col gap-4">
+          <div className="w-full max-w-3xl flex flex-col gap-4">
             <AnimatePresence mode="popLayout">
               {filteredQuestions.length > 0 ? (
                 filteredQuestions.map((faq) => (
-                  <motion.div 
-                    key={faq.q} 
+                  <motion.div
+                    key={faq.q}
                     layout
                     variants={fadeUpVariant}
                     initial="hidden"
@@ -102,7 +115,7 @@ export default function FAQ() {
                   </motion.div>
                 ))
               ) : (
-                <motion.div 
+                <motion.div
                   key="no-results"
                   layout
                   variants={fadeUpVariant}

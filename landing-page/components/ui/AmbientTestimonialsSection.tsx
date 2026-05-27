@@ -30,7 +30,7 @@ export default function AmbientTestimonialsSection() {
           //   repeat: Infinity,
           //   ease: "easeInOut",
           // }}
-          className="absolute -left-[50%] top-[30%] w-[65%] h-[30%] rounded-full"
+          className="absolute -left-250 top-[30%] w-300 h-300 rounded-full"
           style={{
             background:
               "radial-gradient(ellipse at center, #00F0FF 0%, transparent 70%)",
