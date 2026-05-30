@@ -1,5 +1,18 @@
 import { NextResponse } from "next/server";
 
+// DISABLED: Dynamic blog generation is turned off for production landing-page deploy.
+// Re-enable the commented block below when CMS / admin features are needed again.
+
+export async function POST() {
+  return NextResponse.json(
+    { error: "Blog generation is disabled." },
+    { status: 503 }
+  );
+}
+
+/*
+import { NextResponse } from "next/server";
+
 type OpenAIResponsePayload = {
   output_text?: string;
   output?: Array<{
@@ -25,7 +38,6 @@ const extractContent = (payload: OpenAIResponsePayload) => {
   return payload.content || payload.blog || payload.result || "";
 };
 
-// ✅ Generate image (stable + safe)
 const generateImages = async (topic: string) => {
   const apiKey = process.env.OPENAI_API_KEY;
 
@@ -66,7 +78,7 @@ const generateImages = async (topic: string) => {
 
   return results;
 };
-// ✅ Replace placeholders with real images
+
 const injectImages = (html: string, images: string[]) => {
   let i = 0;
   return html.replace(/IMAGE_\d+/g, () => images[i++ % images.length]);
@@ -92,7 +104,6 @@ export async function POST(request: Request) {
       );
     }
 
-    //  "IMPORTANT: For images, use ONLY this URL format: https://loremflickr.com/800/400/{keyword}",
     const generationPrompt = [
   "You are a professional blog writer and HTML generator.",
 
@@ -133,7 +144,6 @@ export async function POST(request: Request) {
   `User topic: ${prompt}`,
 ].join("\n");
 
-    // 🔹 Step 1: Generate blog HTML
     const response = await fetch("https://api.openai.com/v1/responses", {
       method: "POST",
       headers: {
@@ -164,10 +174,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // 🔹 Step 2: Generate image
     const images = await generateImages(prompt);
 
-    // 🔹 Step 3: Inject OR fallback
     if (images.length) {
       content = injectImages(content, images);
     } else {
@@ -186,3 +194,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
+*/

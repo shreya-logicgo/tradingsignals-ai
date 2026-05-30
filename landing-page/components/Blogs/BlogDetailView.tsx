@@ -42,6 +42,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
           </div>
         </div>
         
+        {/* DISABLED: Edit link hidden for production landing-page deploy.
         <Link
           href={`/blogs/edit/${post.slug}`}
           className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-white text-sm xl:text-base hover:bg-white/10 transition-colors"
@@ -52,6 +53,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
           </svg>
           <span className="whitespace-nowrap">{t("blog.edit", { defaultValue: "Edit Blog" })}</span>
         </Link>
+        */}
       </div>
 
       {/* Title */}

@@ -1,5 +1,18 @@
 import { NextResponse } from "next/server";
 
+// DISABLED: AI image generation is turned off for production landing-page deploy.
+// Re-enable the commented block below when CMS / admin features are needed again.
+
+export async function POST() {
+  return NextResponse.json(
+    { error: "Image generation is disabled." },
+    { status: 503 }
+  );
+}
+
+/*
+import { NextResponse } from "next/server";
+
 export async function POST(request: Request) {
   try {
     const { prompt } = (await request.json()) as { prompt?: string };
@@ -19,7 +32,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Call OpenAI DALL-E API
     const response = await fetch("https://api.openai.com/v1/images/generations", {
       method: "POST",
       headers: {
@@ -89,3 +101,4 @@ realistic, slightly imperfect, human feel
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
+*/

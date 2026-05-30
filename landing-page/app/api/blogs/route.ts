@@ -1,17 +1,6 @@
 import { NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Blog from '@/models/Blog';
-import { validateBlogData } from '@/lib/validation_middleware/validate';
-import { saveUpload } from '@/lib/upload';
-import { urlToBase64 } from '@/lib/imageUtils';
-
-type BlogRequestBody = {
-  title?: string;
-  content?: string;
-  coverImage?: string;
-  [key: string]: unknown;
-};
 
 function isMongoConnectionError(error: unknown) {
   if (!(error instanceof Error)) return false;
@@ -73,6 +62,15 @@ export async function GET(request: Request) {
   }
 }
 
+// DISABLED: Blog publishing is turned off for production landing-page deploy.
+export async function POST() {
+  return NextResponse.json(
+    { error: "Blog publishing is disabled." },
+    { status: 503 }
+  );
+}
+
+/*
 // POST: Save a new blog to MongoDB
 export async function POST(request: Request) {
   try {
@@ -154,3 +152,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: message }, { status });
   }
 }
+*/
