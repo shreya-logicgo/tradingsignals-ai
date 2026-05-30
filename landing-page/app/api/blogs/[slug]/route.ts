@@ -1,10 +1,6 @@
 import { NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/db';
 import Blog from '@/models/Blog';
-import { validateBlogData } from '@/lib/validation_middleware/validate';
-import { saveUpload } from '@/lib/upload';
-import { urlToBase64 } from '@/lib/imageUtils';
 import mongoose from 'mongoose';
 
 // GET: Retrieve a single blog by ID or Slug from MongoDB
@@ -38,6 +34,15 @@ export async function GET(
   }
 }
 
+// DISABLED: Blog editing is turned off for production landing-page deploy.
+export async function PUT() {
+  return NextResponse.json(
+    { error: "Blog editing is disabled." },
+    { status: 503 }
+  );
+}
+
+/*
 // PUT: Edit a specific blog by ID or Slug in MongoDB
 export async function PUT(
   request: Request,
@@ -108,7 +113,17 @@ export async function PUT(
     return NextResponse.json({ error: "Failed to update blog" }, { status: 500 });
   }
 }
+*/
 
+// DISABLED: Blog deletion is turned off for production landing-page deploy.
+export async function DELETE() {
+  return NextResponse.json(
+    { error: "Blog deletion is disabled." },
+    { status: 503 }
+  );
+}
+
+/*
 // DELETE: Remove a blog by ID or Slug from MongoDB
 export async function DELETE(
   request: Request,
@@ -140,3 +155,4 @@ export async function DELETE(
     return NextResponse.json({ error: "Failed to delete blog" }, { status: 500 });
   }
 }
+*/

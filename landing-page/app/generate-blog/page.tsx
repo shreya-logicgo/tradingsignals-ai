@@ -1,3 +1,13 @@
+import { redirect } from "next/navigation";
+
+// DISABLED: Generate-blog page is not deployed on the public landing site.
+// Re-enable the commented block below when CMS / admin features are needed again.
+
+export default function GenerateBlogPage() {
+  redirect("/blogs");
+}
+
+/*
 import GenerateBlog from "@/components/generate-blog";
 import React from "react";
 
@@ -12,3 +22,4 @@ const GenerateBlogPage = () => {
 };
 
 export default GenerateBlogPage;
+*/

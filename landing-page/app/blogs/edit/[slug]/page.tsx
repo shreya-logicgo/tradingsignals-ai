@@ -1,3 +1,13 @@
+import { redirect } from "next/navigation";
+
+// DISABLED: Blog edit page is not deployed on the public landing site.
+// Re-enable the commented block below when CMS / admin features are needed again.
+
+export default function EditBlogPage() {
+  redirect("/blogs");
+}
+
+/*
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
@@ -17,18 +27,14 @@ interface BlogPost {
   createdAt: string;
 }
 
-/* ── Skeleton shimmer ── */
 function EditorSkeleton() {
   return (
     <div className="animate-pulse space-y-6 pt-8">
-      {/* Title skeleton */}
       <div className="space-y-3">
         <div className="h-10 w-3/4 rounded-xl bg-white/5" />
         <div className="h-10 w-1/2 rounded-xl bg-white/5" />
       </div>
-      {/* Toolbar skeleton */}
       <div className="h-10 rounded-xl bg-white/5" />
-      {/* Body skeleton */}
       <div className="rounded-2xl border border-white/5 bg-[#08111f] p-8 space-y-4 min-h-[400px]">
         {[90, 75, 82, 60, 78].map((w, i) => (
           <div key={i} className="h-4 rounded-lg bg-white/5" style={{ width: `${w}%` }} />
@@ -54,12 +60,10 @@ export default function EditBlogPage() {
     enabled: !!slug,
   });
 
-  /* ── Loading ── */
   if (isLoading) {
     return (
       <div className="bg-[#010B24] min-h-screen font-hoves">
         <NoiseOverlay />
-        {/* Fake top bar */}
         <div className="sticky top-0 z-40 h-12 border-b border-white/5 bg-[#010B24]/90 backdrop-blur-xl" />
         <main className="max-w-6xl mx-auto w-full px-4 sm:px-6">
           <EditorSkeleton />
@@ -68,7 +72,6 @@ export default function EditBlogPage() {
     );
   }
 
-  /* ── Error / not found ── */
   if (isError || !post) {
     return (
       <div className="bg-[#010B24] min-h-screen flex flex-col items-center justify-center gap-4 font-hoves px-6">
@@ -90,12 +93,9 @@ export default function EditBlogPage() {
     );
   }
 
-  /* ── Success ── */
   return (
     <div className="bg-[#010B24] min-h-screen font-hoves pt-30">
       <NoiseOverlay />
-      {/* <main className="max-w-6xl mx-auto w-full px-4 sm:px-6"> */}
-      {/* <main className=" mx-auto px-6 sm:px-10 lg:px-0 "> */}
         <Container>
           <h1 className="text-3xl py-10 text-2xl sm:text-3xl md:text-5xl text-center font-semibold text-white font-hoves">
             {t("editBlog.pageTitle")}
@@ -103,7 +103,7 @@ export default function EditBlogPage() {
           
         <EditBlogForm post={post} />
         </Container>
-      {/* </main> */}
     </div>
   );
 }
+*/
