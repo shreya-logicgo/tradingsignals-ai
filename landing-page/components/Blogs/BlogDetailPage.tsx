@@ -4,29 +4,20 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import BlogDetailView from "@/components/Blogs/BlogDetailView";
 import NoiseOverlay from "../NoiseOverlay";
-
-interface BlogPost {
-  _id: string;
-  title: string;
-  content: string;
-  slug: string;
-  coverImage?: string;
-  createdAt: string;
-}
+import { fetchPublicBlogBySlug } from "@/lib/blogs-api";
 
 export default function BlogDetailPage() {
   const params = useParams();
   // The parameter could be a slug or an ID depending on the link clicked
   const identifier = (params?.slug || params?.id) as string;
 
-  const { data: post, isLoading, isError } = useQuery<BlogPost>({
+  const { data: post, isLoading, isError } = useQuery({
     queryKey: ["blog", identifier],
-    queryFn: async () => {
-      const res = await fetch(`/api/blogs/${identifier}`);
-      if (!res.ok) throw new Error("Blog not found");
-      return res.json();
-    },
+    queryFn: () => fetchPublicBlogBySlug(identifier),
     enabled: !!identifier,
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   if (isLoading) {

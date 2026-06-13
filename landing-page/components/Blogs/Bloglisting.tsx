@@ -8,24 +8,11 @@ import blog1 from "@/assets/images/blog-1.jpg";
 import BlogImage from "./BlogImage";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import HoverFxButton from "../common/HoverFxButton";
-
-
-interface BlogPost {
-  _id: string;
-  title: string;
-  slug: string;
-  content: string;
-  coverImage?: string;
-  createdAt: string;
-}
-
-interface BlogsResponse {
-  blogs: BlogPost[];
-  total: number;
-  page: number;
-  limit: number;
-  hasMore: boolean;
-}
+import {
+  fetchPublicBlogs,
+  type BlogPost,
+  type BlogsListData,
+} from "@/lib/blogs-api";
 
 function BlogCard({ post }: { post: BlogPost }) {
   const { t } = useTranslation();
@@ -72,15 +59,16 @@ export default function BlogListing() {
     fetchNextPage, 
     hasNextPage, 
     isFetchingNextPage 
-  } = useInfiniteQuery<BlogsResponse>({
+  } = useInfiniteQuery<BlogsListData>({
     queryKey: ["blogs"],
-    queryFn: async ({ pageParam = 1 }) => {
-      const res = await fetch(`/api/blogs?page=${pageParam}&limit=12`);
-      if (!res.ok) throw new Error("Failed to fetch blogs");
-      return res.json();
-    },
-    getNextPageParam: (lastPage) => lastPage.hasMore ? lastPage.page + 1 : undefined,
+    queryFn: async ({ pageParam = 1 }) =>
+      fetchPublicBlogs({ page: Number(pageParam), limit: 12 }),
+    getNextPageParam: (lastPage) =>
+      lastPage.hasMore ? lastPage.page + 1 : undefined,
     initialPageParam: 1,
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   useEffect(() => {

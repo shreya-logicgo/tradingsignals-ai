@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-import dbConnect from "@/lib/db";
-import Blog from "@/models/Blog";
+import { fetchPublicBlogs } from "@/lib/blogs-api";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
@@ -60,12 +59,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   try {
-    await dbConnect();
-    const posts = await Blog.find({
-      slug: { $exists: true, $nin: [null, ""] },
-    })
-      .select("slug updatedAt")
-      .lean<{ slug: string; updatedAt?: Date }[]>();
+    const { blogs: posts } = await fetchPublicBlogs(
+      { page: 1, limit: 500 },
+      { next: { revalidate: 3600 } },
+    );
 
     const blogEntries: MetadataRoute.Sitemap = posts
       .filter((p) => typeof p.slug === "string" && p.slug.length > 0)

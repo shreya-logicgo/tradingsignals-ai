@@ -9,7 +9,6 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/generate-blog", "/blogs/edit"],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
   };

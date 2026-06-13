@@ -11,21 +11,13 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import BlogImage from "@/components/Blogs/BlogImage";
 import Container from "@/components/common/container/Container";
+import { fetchPublicBlogs } from "@/lib/blogs-api";
 
 interface PostData {
   title: string;
   desc: string;
   image: any;
   slug?: string;
-}
-
-interface DBBlog {
-  _id: string;
-  title: string;
-  content: string;
-  coverImage?: string;
-  slug: string;
-  createdAt: string;
 }
 
 // Helper to strip HTML tags for preview text
@@ -43,15 +35,9 @@ export default function CTA() {
   useEffect(() => {
     async function fetchRecentBlogs() {
       try {
-        const response = await fetch('/api/blogs?limit=3');
-        if (!response.ok) throw new Error('Failed to fetch');
-        const data = await response.json();
-        
-        // The API now returns { blogs: [], total: 0, hasMore: boolean }
-        const blogsArray = Array.isArray(data) ? data : (data.blogs || []);
-        
-        // Take 3 most recent
-        const recentBlogs = blogsArray.slice(0, 3).map((blog: DBBlog, i: number) => ({
+        const { blogs } = await fetchPublicBlogs({ page: 1, limit: 3 });
+
+        const recentBlogs = blogs.slice(0, 3).map((blog) => ({
           title: blog.title,
           desc: stripHtml(blog.content),
           image: blog.coverImage || "",
@@ -68,7 +54,7 @@ export default function CTA() {
     }
 
     fetchRecentBlogs();
-  }, [t]);
+  }, []);
 
 
   if (!loading && posts.length === 0) return null;
