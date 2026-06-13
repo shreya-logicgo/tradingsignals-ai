@@ -84,7 +84,7 @@ export default function BlogContent({ blocks }: Props) {
                 </p>
                 {block.author && (
                   <cite className="text-gray-500 text-sm not-italic">
-                    — {block.author}
+                    - {block.author}
                   </cite>
                 )}
               </blockquote>

@@ -46,7 +46,7 @@ export function LandingVideoShowcase() {
               Bottom section video
             </h2>
             <p className="mt-3 text-sm text-white/70 md:text-base">
-              Scrolling here pauses the hero clip — only one video plays at a
+              Scrolling here pauses the hero clip - only one video plays at a
               time.
             </p>
             <AutoPlayVideo

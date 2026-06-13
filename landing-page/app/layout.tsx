@@ -66,14 +66,14 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
   "http://localhost:3000";
 
-const siteName = "Trading Signals AI";
+const siteName = "Trading Signals";
 const defaultDescription =
   "AI-powered trading signals and strategies to help you make informed decisions in the markets.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} — AI-Powered Trading Signals`,
+    default: `${siteName} - AI-Powered Trading Signals`,
     template: `%s | ${siteName}`,
   },
   description: defaultDescription,
@@ -107,7 +107,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName,
-    title: `${siteName} — AI-Powered Trading Signals`,
+    title: `${siteName} - AI-Powered Trading Signals`,
     description: defaultDescription,
     images: [
       {
@@ -118,7 +118,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteName} — AI-Powered Trading Signals`,
+    title: `${siteName} - AI-Powered Trading Signals`,
     description: defaultDescription,
     images: ["/images/grad_3.png"],
   },
