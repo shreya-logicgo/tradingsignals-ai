@@ -36,7 +36,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
           <div className="flex items-center gap-2">
             <span className="text-white text-sm xl:text-base 2xl:text-lg font-medium whitespace-nowrap">TradingSignals AI</span>
             <span className="text-gray-500 text-sm xl:text-base lg:block hidden">·</span>
-            <time className="text-gray-400 text-sm xl:text-base 2xl:text-lg whitespace-nowrap" dateTime={post.createdAt}>
+            <time className="text-gray-400 text-sm xl:text-base whitespace-nowrap" dateTime={post.createdAt}>
               {formattedDate}
             </time>
           </div>
@@ -44,7 +44,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
       </div>
 
       {/* Title */}
-      <h1 className="text-white text-[32px] sm:text-[40px] xl:text-[52px] 2xl:text-[64px] font-bold leading-[1.15] tracking-tight mb-8">
+      <h1 className="text-white text-[32px] sm:text-[40px] xl:text-[52px] font-bold leading-[1.15] tracking-tight mb-8">
         {post.title}
       </h1>
 
@@ -61,7 +61,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
 
       {/* Blog body - Render content string as HTML */}
       <div 
-        className="blog-prose text-[#c8cdd8] text-[15px] md:text-[17px] xl:text-lg 2xl:text-xl leading-relaxed text-justify overflow-hidden break-words min-w-0"
+        className="blog-prose text-[#c8cdd8] text-[15px] md:text-[17px] xl:text-lg leading-relaxed text-justify overflow-hidden break-words min-w-0"
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
       />
 
@@ -69,7 +69,7 @@ export default function BlogDetailView({ post, formattedDate }: Props) {
       <div className="mt-10 pt-8 border-t border-white/10">
         <Link
           href="/blogs"
-          className="inline-flex items-center gap-2 text-gray-400 text-sm xl:text-base 2xl:text-lg hover:text-white transition-colors duration-200"
+          className="inline-flex items-center gap-2 text-gray-400 text-sm xl:text-base hover:text-white transition-colors duration-200"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
