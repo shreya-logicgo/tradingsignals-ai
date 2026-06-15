@@ -1,10 +1,9 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import NoiseOverlay from "../NoiseOverlay";
-import blog1 from "@/assets/images/blog-1.jpg";
 import BlogImage from "./BlogImage";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import HoverFxButton from "../common/HoverFxButton";
@@ -40,9 +39,14 @@ function BlogCard({ post }: { post: BlogPost }) {
         </p>
         <Link
           href={`/blogs/${post.slug || post._id}`}
-          className="text-white text-sm xl:text-base 2xl:text-lg font-medium underline underline-offset-4 decoration-white/20 hover:decoration-white hover:text-cyan-400 transition-all duration-300 mt-auto pt-2 w-fit inline-block"
+          className="inline-flex items-center gap-1 text-white text-sm xl:text-base 2xl:text-lg font-medium underline underline-offset-4 decoration-white/20 hover:decoration-white hover:text-cyan-400 transition-all duration-300 mt-auto pt-2 w-fit"
         >
           {t("blog.viewMore")}
+          <ArrowRight
+            className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
+            strokeWidth={2}
+            aria-hidden
+          />
         </Link>
       </div>
     </div>
